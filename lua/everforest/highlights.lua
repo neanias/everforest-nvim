@@ -1414,7 +1414,11 @@ highlights.generate_syntax = function(palette)
     htmlBold = syntax_entry(palette.none, palette.none, { styles.bold }),
     htmlBoldUnderline = syntax_entry(palette.none, palette.none, { styles.bold, styles.underline }),
     htmlBoldItalic = syntax_entry(palette.none, palette.none, { styles.bold, styles.italic }),
-    htmlBoldUnderlineItalic = syntax_entry(palette.none, palette.none, { styles.bold, styles.underline, styles.italic }),
+    htmlBoldUnderlineItalic = syntax_entry(
+      palette.none,
+      palette.none,
+      { styles.bold, styles.underline, styles.italic }
+    ),
     htmlUnderline = syntax_entry(palette.none, palette.none, { styles.underline }),
     htmlUnderlineItalic = syntax_entry(palette.none, palette.none, { styles.underline, styles.italic }),
     htmlItalic = syntax_entry(palette.none, palette.none, { styles.italic }),
