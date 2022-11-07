@@ -427,6 +427,9 @@ highlights.generate_syntax = function(palette)
     diffLine = { link = "Grey" },
     diffIndexLine = { link = "Purple" },
 
+    -- machakann/vim-highlightedyank
+    HighlightedyankRegion = { link = "Visual" },
+
     -- Coc.nvim
     CocHoverRange = syntax_entry(palette.none, palette.none, { styles.bold, styles.underline }),
     CocSearch = syntax_entry(palette.green, palette.none, { styles.bold }),
@@ -482,12 +485,80 @@ highlights.generate_syntax = function(palette)
     CocSelectedText = { link = "Orange" },
     CocListsLine = { link = "Fg" },
     CocListsDesc = { link = "Grey" },
-    HighlightedyankRegion = { link = "Visual" },
     CocGitAddedSign = { link = "GreenSign" },
     CocGitChangeRemovedSign = { link = "PurpleSign" },
     CocGitChangedSign = { link = "BlueSign" },
     CocGitRemovedSign = { link = "RedSign" },
     CocGitTopRemovedSign = { link = "RedSign" },
+    CocTreeOpenClose = { link = "Aqua" },
+    CocTreeDescription = { link = "Grey" },
+    CocSymbolFile = { link = "Green" },
+    CocSymbolModule = { link = "Purple" },
+    CocSymbolNamespace = { link = "Purple" },
+    CocSymbolPackage = { link = "Purple" },
+    CocSymbolClass = { link = "Red" },
+    CocSymbolMethod = { link = "Green" },
+    CocSymbolProperty = { link = "Blue" },
+    CocSymbolField = { link = "Green" },
+    CocSymbolConstructor = { link = "Green" },
+    CocSymbolEnum = { link = "Yellow" },
+    CocSymbolInterface = { link = "Yellow" },
+    CocSymbolFunction = { link = "Green" },
+    CocSymbolVariable = { link = "Blue" },
+    CocSymbolConstant = { link = "Blue" },
+    CocSymbolString = { link = "Aqua" },
+    CocSymbolNumber = { link = "Aqua" },
+    CocSymbolBoolean = { link = "Aqua" },
+    CocSymbolArray = { link = "Aqua" },
+    CocSymbolObject = { link = "Aqua" },
+    CocSymbolKey = { link = "Red" },
+    CocSymbolNull = { link = "Aqua" },
+    CocSymbolEnumMember = { link = "Aqua" },
+    CocSymbolStruct = { link = "Yellow" },
+    CocSymbolEvent = { link = "Orange" },
+    CocSymbolOperator = { link = "Orange" },
+    CocSymbolTypeParameter = { link = "Yellow" },
+    CocSymbolDefault = { link = "Aqua" },
+
+    -- https://github.com/weirongxu/coc-explorer
+    CocExplorerBufferRoot = { link = "Orange" },
+    CocExplorerBufferExpandIcon = { link = "Aqua" },
+    CocExplorerBufferBufnr = { link = "Purple" },
+    CocExplorerBufferModified = { link = "Yellow" },
+    CocExplorerBufferReadonly = { link = "Red" },
+    CocExplorerBufferBufname = { link = "Grey" },
+    CocExplorerBufferFullpath = { link = "Grey" },
+    CocExplorerFileRoot = { link = "Orange" },
+    CocExplorerFileRootName = { link = "Green" },
+    CocExplorerFileExpandIcon = { link = "Aqua" },
+    CocExplorerFileFullpath = { link = "Grey" },
+    CocExplorerFileDirectory = { link = "Green" },
+    CocExplorerFileGitStaged = { link = "Purple" },
+    CocExplorerFileGitUnstaged = { link = "Yellow" },
+    CocExplorerFileGitRootStaged = { link = "Purple" },
+    CocExplorerFileGitRootUnstaged = { link = "Yellow" },
+    CocExplorerGitPathChange = { link = "Fg" },
+    CocExplorerGitContentChange = { link = "Fg" },
+    CocExplorerGitRenamed = { link = "Purple" },
+    CocExplorerGitCopied = { link = "Fg" },
+    CocExplorerGitAdded = { link = "Green" },
+    CocExplorerGitUntracked = { link = "Blue" },
+    CocExplorerGitUnmodified = { link = "Fg" },
+    CocExplorerGitUnmerged = { link = "Orange" },
+    CocExplorerGitMixed = { link = "Aqua" },
+    CocExplorerGitModified = { link = "Yellow" },
+    CocExplorerGitDeleted = { link = "Red" },
+    CocExplorerGitIgnored = { link = "Grey" },
+    CocExplorerFileSize = { link = "Blue" },
+    CocExplorerTimeAccessed = { link = "Aqua" },
+    CocExplorerTimeCreated = { link = "Aqua" },
+    CocExplorerTimeModified = { link = "Aqua" },
+    CocExplorerIndentLine = { link = "Conceal" },
+    CocExplorerHelpDescription = { link = "Grey" },
+    CocExplorerHelpHint = { link = "Grey" },
+    CocExplorerDiagnosticError = { link = "Red" },
+    CocExplorerDiagnosticWarning = { link = "Yellow" },
+    CocExplorerFileHidden = { link = "Grey" },
 
     -- prabirshrestha/vim-lsp
     LspErrorVirtual = { link = "VirtualTextError" },
@@ -522,7 +593,7 @@ highlights.generate_syntax = function(palette)
     LspSemanticRegexp = { link = "TSStringRegex" },
     LspSemanticOperator = { link = "TSOperator" },
 
-    --- ycm-core/YouCompleteMe
+    -- ycm-core/YouCompleteMe
     YcmErrorSign = { link = "RedSign" },
     YcmWarningSign = { link = "YellowSign" },
     YcmErrorLine = { link = "ErrorLine" },
@@ -651,11 +722,11 @@ highlights.generate_syntax = function(palette)
     MatchWord = syntax_entry(palette.none, palette.none, { styles.underline }),
     MatchWordCur = syntax_entry(palette.none, palette.none, { styles.underline }),
 
-    -- easymotion/vim-easymotion {{{
+    -- easymotion/vim-easymotion
     EasyMotionTarget = { link = "Search" },
     EasyMotionShade = { link = "Grey" },
 
-    -- justinmk/vim-sneak {{{
+    -- justinmk/vim-sneak
     SneakLabelMask = syntax_entry(palette.orange, palette.orange),
     Sneak = { link = "Search" },
     SneakLabel = { link = "Search" },
@@ -663,10 +734,6 @@ highlights.generate_syntax = function(palette)
 
     -- rhysd/clever-f.vim
     CleverFDefaultLabel = { link = "Search" },
-
-    -- terryma/vim-multiple-cursors
-    multiple_cursors_cursor = { link = "Cursor" },
-    multiple_cursors_visual = { link = "Visual" },
 
     -- dominikduda/vim_current_word
     CurrentWordTwins = { link = "CurrentWord" },
@@ -865,7 +932,7 @@ highlights.generate_syntax = function(palette)
     NavicText = syntax_entry(palette.fg, palette.none),
     NavicSeparator = syntax_entry(palette.fg, palette.none),
 
-    -- rcarriga/nvim-notify {{{
+    -- rcarriga/nvim-notify
     NotifyERRORBorder = { link = "Red" },
     NotifyWARNBorder = { link = "Yellow" },
     NotifyINFOBorder = { link = "Green" },
@@ -882,7 +949,7 @@ highlights.generate_syntax = function(palette)
     NotifyDEBUGTitle = { link = "Grey" },
     NotifyTRACETitle = { link = "Purple" },
 
-    -- rcarriga/nvim-dap-ui {{{
+    -- rcarriga/nvim-dap-ui
     DapUIModifiedValue = syntax_entry(palette.blue, palette.none, { styles.bold }),
     DapUIBreakpointsCurrentLine = syntax_entry(palette.blue, palette.none, { styles.bold }),
     DapUIScope = { link = "Blue" },
@@ -935,10 +1002,10 @@ highlights.generate_syntax = function(palette)
     DefinitionCount = { link = "Grey" },
     TargetFileName = { link = "Grey" },
 
-    -- b0o/incline.nvim {{{
+    -- b0o/incline.nvim
     InclineNormalNC = syntax_entry(palette.grey1, palette.bg2),
 
-    -- echasnovski/mini.nvim {{{
+    -- echasnovski/mini.nvim
     MiniIndentscopePrefix = syntax_entry(palette.none, palette.none, { styles.nocombine }),
     MiniJump2dSpot = syntax_entry(palette.orange, palette.none, { styles.bold, styles.nocombine }),
     MiniStarterCurrent = syntax_entry(palette.none, palette.none, { styles.nocombine }),
@@ -979,7 +1046,7 @@ highlights.generate_syntax = function(palette)
     MiniSurround = { link = "IncSearch" },
     MiniTablineFill = { link = "TabLineFill" },
 
-    -- ggandor/lightspeed.nvim {{{
+    -- ggandor/lightspeed.nvim
     LightspeedLabel = syntax_entry(palette.red, palette.none, { styles.bold, styles.underline }),
     LightspeedLabelDistant = syntax_entry(palette.blue, palette.none, { styles.bold, styles.underline }),
     LightspeedShortcut = syntax_entry(palette.bg0, palette.red, { styles.bold }),
@@ -1022,77 +1089,6 @@ highlights.generate_syntax = function(palette)
     packerTimeHigh = { link = "Red" },
     packerTimeMedium = { link = "Yellow" },
     packerTimeLow = { link = "Green" },
-
-    -- https://github.com/neoclide/coc.nvim
-    CocTreeOpenClose = { link = "Aqua" },
-    CocTreeDescription = { link = "Grey" },
-    CocSymbolFile = { link = "Green" },
-    CocSymbolModule = { link = "Purple" },
-    CocSymbolNamespace = { link = "Purple" },
-    CocSymbolPackage = { link = "Purple" },
-    CocSymbolClass = { link = "Red" },
-    CocSymbolMethod = { link = "Green" },
-    CocSymbolProperty = { link = "Blue" },
-    CocSymbolField = { link = "Green" },
-    CocSymbolConstructor = { link = "Green" },
-    CocSymbolEnum = { link = "Yellow" },
-    CocSymbolInterface = { link = "Yellow" },
-    CocSymbolFunction = { link = "Green" },
-    CocSymbolVariable = { link = "Blue" },
-    CocSymbolConstant = { link = "Blue" },
-    CocSymbolString = { link = "Aqua" },
-    CocSymbolNumber = { link = "Aqua" },
-    CocSymbolBoolean = { link = "Aqua" },
-    CocSymbolArray = { link = "Aqua" },
-    CocSymbolObject = { link = "Aqua" },
-    CocSymbolKey = { link = "Red" },
-    CocSymbolNull = { link = "Aqua" },
-    CocSymbolEnumMember = { link = "Aqua" },
-    CocSymbolStruct = { link = "Yellow" },
-    CocSymbolEvent = { link = "Orange" },
-    CocSymbolOperator = { link = "Orange" },
-    CocSymbolTypeParameter = { link = "Yellow" },
-    CocSymbolDefault = { link = "Aqua" },
-
-    -- https://github.com/weirongxu/coc-explorer
-    CocExplorerBufferRoot = { link = "Orange" },
-    CocExplorerBufferExpandIcon = { link = "Aqua" },
-    CocExplorerBufferBufnr = { link = "Purple" },
-    CocExplorerBufferModified = { link = "Yellow" },
-    CocExplorerBufferReadonly = { link = "Red" },
-    CocExplorerBufferBufname = { link = "Grey" },
-    CocExplorerBufferFullpath = { link = "Grey" },
-    CocExplorerFileRoot = { link = "Orange" },
-    CocExplorerFileRootName = { link = "Green" },
-    CocExplorerFileExpandIcon = { link = "Aqua" },
-    CocExplorerFileFullpath = { link = "Grey" },
-    CocExplorerFileDirectory = { link = "Green" },
-    CocExplorerFileGitStaged = { link = "Purple" },
-    CocExplorerFileGitUnstaged = { link = "Yellow" },
-    CocExplorerFileGitRootStaged = { link = "Purple" },
-    CocExplorerFileGitRootUnstaged = { link = "Yellow" },
-    CocExplorerGitPathChange = { link = "Fg" },
-    CocExplorerGitContentChange = { link = "Fg" },
-    CocExplorerGitRenamed = { link = "Purple" },
-    CocExplorerGitCopied = { link = "Fg" },
-    CocExplorerGitAdded = { link = "Green" },
-    CocExplorerGitUntracked = { link = "Blue" },
-    CocExplorerGitUnmodified = { link = "Fg" },
-    CocExplorerGitUnmerged = { link = "Orange" },
-    CocExplorerGitMixed = { link = "Aqua" },
-    CocExplorerGitModified = { link = "Yellow" },
-    CocExplorerGitDeleted = { link = "Red" },
-    CocExplorerGitIgnored = { link = "Grey" },
-    CocExplorerFileSize = { link = "Blue" },
-    CocExplorerTimeAccessed = { link = "Aqua" },
-    CocExplorerTimeCreated = { link = "Aqua" },
-    CocExplorerTimeModified = { link = "Aqua" },
-    CocExplorerIndentLine = { link = "Conceal" },
-    CocExplorerHelpDescription = { link = "Grey" },
-    CocExplorerHelpHint = { link = "Grey" },
-    CocExplorerDiagnosticError = { link = "Red" },
-    CocExplorerDiagnosticWarning = { link = "Yellow" },
-    CocExplorerFileHidden = { link = "Grey" },
 
     -- https://github.com/majutsushi/tagbar
     TagbarFoldIcon = { link = "Green" },
@@ -1195,7 +1191,7 @@ highlights.generate_syntax = function(palette)
     NvimTreeLspDiagnosticsInformation = { link = "BlueSign" },
     NvimTreeLspDiagnosticsHint = { link = "GreenSign" },
 
-    -- NeoTree
+    -- nvim-neo-tree/neo-tree.nvim
     NeoTreeDirectoryName = syntax_entry(palette.blue, palette.none),
     NeoTreeDirectoryIcon = syntax_entry(palette.blue, palette.none),
     NeoTreeNormal = syntax_entry(palette.fg, palette.none),
@@ -1305,7 +1301,7 @@ highlights.generate_syntax = function(palette)
     DashboardShortcut = { link = "Red" },
     DashboardFooter = { link = "Orange" },
 
-    -- Neotest
+    -- nvim-neotest/neotest
     NeotestPassed = syntax_entry(palette.green, palette.none),
     NeotestRunning = syntax_entry(palette.yellow, palette.none),
     NeotestFailed = syntax_entry(palette.red, palette.none),
@@ -1673,7 +1669,7 @@ highlights.generate_syntax = function(palette)
     makeCommands = { link = "Orange" },
   }
 
-  -- nathanaelkane/vim-indent-guides {{{
+  -- nathanaelkane/vim-indent-guides
   if vim.g.indent_guides_auto_colors == false then
     syntax["IndentGuidesOdd"] = syntax_entry(palette.bg0, palette.bg1)
     syntax["IndentGuidesEven"] = syntax_entry(palette.bg0, palette.bg2)
@@ -1731,7 +1727,7 @@ highlights.generate_syntax = function(palette)
     spinner = { "fg", "Yellow" },
     header = { "fg", "Grey" },
   }
-  -- junegunn/limelight.vim {{{
+  -- junegunn/limelight.vim
   vim.g.limelight_conceal_ctermfg = palette.grey0[1]
   vim.g.limelight_conceal_guifg = palette.grey0[0]
 
