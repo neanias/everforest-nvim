@@ -64,6 +64,14 @@ require("lualine").setup({
 This colour scheme has a light and a dark mode which are configured using the vim background
 setting: `:set background=light` or `vim.o.background=dark` as appropriate.
 
+```lua
+require("everforest").setup({
+  -- Controls the "hardness" of the background. Options are "light", "medium" or "hard".
+  -- Default is "medium".
+  background = "medium",
+})
+```
+
 ## Plugin support
 
 - [ALE](https://github.com/dense-analysis/ale)
@@ -118,7 +126,7 @@ have highlights.
 ## Still TODO
 
 - [ ] Colour scheme configuration
-- [ ] Different colour scheme "weights"
+- [x] Different colour scheme "weights"
 
 ## Inspiration
 

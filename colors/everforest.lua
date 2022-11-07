@@ -1,1 +1,1 @@
-require("everforest")._load()
+require("everforest").load()

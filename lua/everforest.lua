@@ -1,31 +1,24 @@
--- main module file
 local util = require("everforest.util")
 local colours = require("everforest.colours")
 local highlights = require("everforest.highlights")
 
 local M = {}
 
-M.config = {}
+M.config = {
+  -- Controls the "hardness" of the background. Options are "light", "medium" or "hard".
+  -- Default is "medium".
+  background = "medium",
+}
 
 M.setup = function(opts)
-  M.config = vim.tbl_deep_extend("force", M.config, opts or {})
-end
-
-M._load = function()
-  local palette
-  if vim.o.background == "dark" then
-    palette = colours.dark
-  else
-    palette = colours.light
-  end
-
-  local generated_syntax = highlights.generate_syntax(palette)
-
-  util.load(generated_syntax)
+  M.config = vim.tbl_extend("force", M.config, opts or {})
 end
 
 M.load = function()
-  M._load()
+  local palette = colours.generate_palette(M.config, vim.o.background)
+  local generated_syntax = highlights.generate_syntax(palette)
+
+  util.load(generated_syntax)
 end
 
 M.colorscheme = M.load
