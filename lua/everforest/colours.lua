@@ -122,10 +122,10 @@ local base_palette = {
     statusline2 = "#d3c6aa",
     statusline3 = "#e67e80",
     none = "NONE",
-  }
+  },
 }
 
-M.generate_palette = function (options, theme)
+M.generate_palette = function(options, theme)
   local background = options.background or "medium"
   local base = base_palette[theme]
   local background_palette
