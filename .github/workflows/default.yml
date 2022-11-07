@@ -12,6 +12,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --color always --check lua
+          version: 0.15.2
   selene:
     name: selene
     runs-on: ubuntu-latest
