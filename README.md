@@ -6,7 +6,13 @@
 A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour scheme. For
 screenshots, please see the everforest repo.
 
-## Installation & Usage
+## Features
+
+- 100% Lua, supports Treesitter & LSP
+- Vim terminal colours
+- **Lualine** theme
+
+## Installation
 
 Using [packer.nvim](https://github.com/wbthomason/packer.nvim):
 
@@ -15,7 +21,6 @@ use({
   "neanias/everforest-nvim",
   config = function()
     require("everforest").setup()
-    vim.cmd([[colorscheme everforest]])
   end,
 })
 ```
@@ -23,14 +28,38 @@ use({
 Using [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```viml
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'neanias/everforest-nvim', { 'branch': 'main' }
 ```
 
-## Features and structure
+## Usage
 
-- 100% Lua, supports Treesitter & LSP
-- Vim terminal colours
-- **Lualine** theme
+```viml
+" This has both light & dark modes to match your background setting.
+colorscheme everforest
+```
+
+```lua
+vim.cmd([[colorscheme everforest]])
+```
+
+To enable the everforest theme for LuaLine, you can specify it as such:
+
+```lua
+require("lualine").setup({
+  options = {
+    -- ... other configuration
+    theme = "lualine", -- Can also be "auto" to detect automatically.
+  }
+})
+```
+
+## Configuration
+
+> Configuration options are still TODO, but will hopefully be coming soon, including configuring
+> italics and more.
+
+This colour scheme has a light and a dark mode which are configured using the vim background
+setting: `:set background=light` or `vim.o.background=dark` as appropriate.
 
 ## Plugin support
 
