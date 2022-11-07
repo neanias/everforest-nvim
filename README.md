@@ -34,11 +34,14 @@ Plug 'neanias/everforest-nvim', { 'branch': 'main' }
 ## Usage
 
 ```viml
+" In VimL
+
 " This has both light & dark modes to match your background setting.
 colorscheme everforest
 ```
 
 ```lua
+-- In Lua
 vim.cmd([[colorscheme everforest]])
 ```
 
@@ -48,7 +51,7 @@ To enable the everforest theme for LuaLine, you can specify it as such:
 require("lualine").setup({
   options = {
     -- ... other configuration
-    theme = "lualine", -- Can also be "auto" to detect automatically.
+    theme = "everforest", -- Can also be "auto" to detect automatically.
   }
 })
 ```
