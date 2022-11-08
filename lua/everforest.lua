@@ -5,7 +5,7 @@ local highlights = require("everforest.highlights")
 local M = {}
 
 M.config = {
-  -- Controls the "hardness" of the background. Options are "light", "medium" or "hard".
+  -- Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   -- Default is "medium".
   background = "medium",
 }

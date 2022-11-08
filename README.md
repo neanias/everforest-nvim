@@ -20,6 +20,8 @@ Using [packer.nvim](https://github.com/wbthomason/packer.nvim):
 use({
   "neanias/everforest-nvim",
   config = function()
+    -- Not strictly necessary as the default configuration will be used if
+    -- setup isn't called.
     require("everforest").setup()
   end,
 })
@@ -66,7 +68,7 @@ setting: `:set background=light` or `vim.o.background=dark` as appropriate.
 
 ```lua
 require("everforest").setup({
-  -- Controls the "hardness" of the background. Options are "light", "medium" or "hard".
+  -- Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   -- Default is "medium".
   background = "medium",
 })
@@ -117,7 +119,7 @@ require("everforest").setup({
 - [vim-floaterm](https://github.com/voldikss/vim-floaterm)
 - [vim-matchup](https://github.com/andymass/vim-matchup)
 - [vim-plug](https://github.com/junegunn/vim-plug)
-- [vim-sneak](https://github.com/justinmk/vim-sneak) 
+- [vim-sneak](https://github.com/justinmk/vim-sneak)
 - [yanky.nvim](https://github.com/gbprod/yanky.nvim)
 
 See [the wiki](https://github.com/neanias/everforest-nvim/wiki) for the full list of plugins that

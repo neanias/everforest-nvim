@@ -59,7 +59,7 @@ local medium_background = {
   },
 }
 
-local light_background = {
+local soft_background = {
   dark = {
     bg0 = "#323d43",
     bg1 = "#3c474d",
@@ -130,8 +130,8 @@ M.generate_palette = function(options, theme)
   local base = base_palette[theme]
   local background_palette
 
-  if background == "light" then
-    background_palette = light_background[theme]
+  if background == "soft" then
+    background_palette = soft_background[theme]
   elseif background == "hard" then
     background_palette = hard_background[theme]
   else
