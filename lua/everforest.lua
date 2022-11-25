@@ -4,12 +4,15 @@ local highlights = require("everforest.highlights")
 
 local M = {}
 
+---@class Config
+---@field background "soft" | "medium" | "hard"
 M.config = {
   -- Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   -- Default is "medium".
   background = "medium",
 }
 
+---@param opts Config | nil
 M.setup = function(opts)
   M.config = vim.tbl_extend("force", M.config, opts or {})
 end

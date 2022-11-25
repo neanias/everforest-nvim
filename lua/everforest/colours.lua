@@ -1,4 +1,3 @@
--- module represents a lua module for the plugin
 local M = {}
 
 local hard_background = {
@@ -125,6 +124,38 @@ local base_palette = {
   },
 }
 
+---@class Palette
+---@field bg0 string
+---@field bg1 string
+---@field bg2 string
+---@field bg3 string
+---@field bg4 string
+---@field bg5 string
+---@field bg_visual string
+---@field bg_red string
+---@field bg_green string
+---@field bg_blue string
+---@field bg_yellow string
+---@field fg string
+---@field red string
+---@field orange string
+---@field yellow string
+---@field green string
+---@field aqua string
+---@field blue string
+---@field purple string
+---@field grey0 string
+---@field grey1 string
+---@field grey2 string
+---@field statusline1 string
+---@field statusline2 string
+---@field statusline3 string
+---@field none string
+
+---Generates the colour palette based on the user's config
+---@param options Config The package configuration table
+---@param theme "light" | "dark" The user's background preference
+---@return Palette
 M.generate_palette = function(options, theme)
   local background = options.background or "medium"
   local base = base_palette[theme]

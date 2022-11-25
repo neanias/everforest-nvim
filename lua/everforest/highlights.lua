@@ -10,7 +10,14 @@ local styles = {
   nocombine = "nocombine",
 }
 
+---Generates a table that can be accepted by nvim_set_hl
+---@param fg string
+---@param bg string
+---@param stylings? Styles[]
+---@param sp? string
+---@return { fg: string, bg: string, [Styles]: boolean?, sp: string? }
 local function syntax_entry(fg, bg, stylings, sp)
+  ---@type { fg: string, bg: string, [Styles]: boolean?, sp: string? }
   local highlight = { fg = fg, bg = bg }
 
   if stylings then
@@ -20,12 +27,15 @@ local function syntax_entry(fg, bg, stylings, sp)
   end
 
   if sp then
-    highlight = vim.tbl_extend("force", highlight, { sp = sp })
+    highlight["sp"] = sp
   end
 
   return highlight
 end
 
+---Generates the various highlight groups for this colour scheme to be used by Neovim.
+---@param palette Palette
+---@return table
 highlights.generate_syntax = function(palette)
   local syntax = {
     Normal = syntax_entry(palette.fg, palette.bg0),
