@@ -35,16 +35,17 @@ end
 
 ---Generates the various highlight groups for this colour scheme to be used by Neovim.
 ---@param palette Palette
+---@param options Config
 ---@return table
-highlights.generate_syntax = function(palette)
+highlights.generate_syntax = function(palette, options)
   local syntax = {
-    Normal = syntax_entry(palette.fg, palette.bg0),
-    Terminal = syntax_entry(palette.fg, palette.bg0),
-    EndOfBuffer = syntax_entry(palette.bg4, palette.bg0),
-    Folded = syntax_entry(palette.grey1, palette.bg1),
+    Normal = syntax_entry(palette.fg, options.transparent_background_level > 0 and palette.none or palette.bg0),
+    Terminal = syntax_entry(palette.fg, options.transparent_background_level > 0 and palette.none or palette.bg0),
+    EndOfBuffer = syntax_entry(palette.bg4, options.transparent_background_level > 0 and palette.none or palette.bg0),
+    Folded = syntax_entry(palette.grey1, options.transparent_background_level > 0 and palette.none or palette.bg1),
     SignColumn = syntax_entry(palette.fg, palette.none),
     FoldColumn = syntax_entry(palette.bg5, palette.none),
-    ToolbarLine = syntax_entry(palette.fg, palette.bg2),
+    ToolbarLine = syntax_entry(palette.fg, options.transparent_background_level > 0 and palette.none or palette.bg2),
     IncSearch = syntax_entry(palette.bg0, palette.red),
     Search = syntax_entry(palette.bg0, palette.green),
     ColorColumn = syntax_entry(palette.none, palette.bg1),
@@ -84,12 +85,24 @@ highlights.generate_syntax = function(palette)
     SpellLocal = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.aqua),
     SpellRare = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.purple),
 
-    StatusLine = syntax_entry(palette.grey1, palette.bg1),
-    StatusLineTerm = syntax_entry(palette.grey1, palette.bg1),
-    StatusLineNC = syntax_entry(palette.grey1, palette.bg0),
-    StatusLineTermNC = syntax_entry(palette.grey1, palette.bg0),
+    StatusLine = syntax_entry(palette.grey1, options.transparent_background_level == 2 and palette.none or palette.bg1),
+    StatusLineTerm = syntax_entry(
+      palette.grey1,
+      options.transparent_background_level == 2 and palette.none or palette.bg1
+    ),
+    StatusLineNC = syntax_entry(
+      palette.grey1,
+      options.transparent_background_level == 2 and palette.none or palette.bg0
+    ),
+    StatusLineTermNC = syntax_entry(
+      palette.grey1,
+      options.transparent_background_level == 2 and palette.none or palette.bg0
+    ),
     TabLine = syntax_entry(palette.grey2, palette.bg3),
-    TabLineFill = syntax_entry(palette.grey1, palette.bg1),
+    TabLineFill = syntax_entry(
+      palette.grey1,
+      options.transparent_background_level == 2 and palette.none or palette.bg1
+    ),
     TabLineSel = syntax_entry(palette.bg0, palette.statusline1),
     VertSplit = syntax_entry(palette.bg4, palette.none),
     WinSeparator = { link = "VertSplit" },
@@ -219,13 +232,13 @@ highlights.generate_syntax = function(palette)
     PurpleItalic = syntax_entry(palette.purple, palette.none),
 
     -- Related to `transparent_background` and `sign_column_background`
-    RedSign = syntax_entry(palette.red, palette.bg1),
-    OrangeSign = syntax_entry(palette.orange, palette.bg1),
-    YellowSign = syntax_entry(palette.yellow, palette.bg1),
-    GreenSign = syntax_entry(palette.green, palette.bg1),
-    AquaSign = syntax_entry(palette.aqua, palette.bg1),
-    BlueSign = syntax_entry(palette.blue, palette.bg1),
-    PurpleSign = syntax_entry(palette.purple, palette.bg1),
+    RedSign = syntax_entry(palette.red, options.transparent_background_level > 0 and palette.none or palette.bg1),
+    OrangeSign = syntax_entry(palette.orange, options.transparent_background_level > 0 and palette.none or palette.bg1),
+    YellowSign = syntax_entry(palette.yellow, options.transparent_background_level > 0 and palette.none or palette.bg1),
+    GreenSign = syntax_entry(palette.green, options.transparent_background_level > 0 and palette.none or palette.bg1),
+    AquaSign = syntax_entry(palette.aqua, options.transparent_background_level > 0 and palette.none or palette.bg1),
+    BlueSign = syntax_entry(palette.blue, options.transparent_background_level > 0 and palette.none or palette.bg1),
+    PurpleSign = syntax_entry(palette.purple, options.transparent_background_level > 0 and palette.none or palette.bg1),
 
     -- Configuration based on `diagnostic_text_highlight` option
     ErrorText = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.red),

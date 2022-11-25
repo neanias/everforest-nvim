@@ -19,9 +19,8 @@ Using [packer.nvim](https://github.com/wbthomason/packer.nvim):
 ```lua
 use({
   "neanias/everforest-nvim",
+  -- Optional; default configuration will be used if setup isn't called.
   config = function()
-    -- Not strictly necessary as the default configuration will be used if
-    -- setup isn't called.
     require("everforest").setup()
   end,
 })
@@ -66,11 +65,19 @@ require("lualine").setup({
 This colour scheme has a light and a dark mode which are configured using the vim background
 setting: `:set background=light` or `vim.o.background=dark` as appropriate.
 
+This is the default config:
+
 ```lua
 require("everforest").setup({
   -- Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   -- Default is "medium".
   background = "medium",
+  -- How much of the background should be transparent. Options are 0, 1 or 2.
+  -- Default is 0.
+  --
+  -- 2 will have more UI components be transparent (e.g. status line
+  -- background).
+  transparent_background_level = 0,
 })
 ```
 
@@ -128,6 +135,7 @@ have highlights.
 ## Still TODO
 
 - [ ] Colour scheme configuration
+- [x] Transparent backgrounds
 - [x] Different colour scheme "weights"
 
 ## Inspiration
