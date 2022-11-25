@@ -956,21 +956,26 @@ highlights.generate_syntax = function(palette, options)
     NavicSeparator = syntax_entry(palette.fg, palette.none),
 
     -- rcarriga/nvim-notify
-    NotifyERRORBorder = { link = "Red" },
-    NotifyWARNBorder = { link = "Yellow" },
-    NotifyINFOBorder = { link = "Green" },
+    -- Borders
     NotifyDEBUGBorder = { link = "Grey" },
+    NotifyERRORBorder = { link = "Red" },
+    NotifyINFOBorder = { link = "Green" },
     NotifyTRACEBorder = { link = "Purple" },
-    NotifyERRORIcon = { link = "Red" },
-    NotifyWARNIcon = { link = "Yellow" },
-    NotifyINFOIcon = { link = "Green" },
+    NotifyWARNBorder = { link = "Yellow" },
+
+    -- Icons
     NotifyDEBUGIcon = { link = "Grey" },
+    NotifyERRORIcon = { link = "Red" },
+    NotifyINFOIcon = { link = "Green" },
     NotifyTRACEIcon = { link = "Purple" },
-    NotifyERRORTitle = { link = "Red" },
-    NotifyWARNTitle = { link = "Yellow" },
-    NotifyINFOTitle = { link = "Green" },
+    NotifyWARNIcon = { link = "Yellow" },
+
+    -- Titles
     NotifyDEBUGTitle = { link = "Grey" },
+    NotifyERRORTitle = { link = "Red" },
+    NotifyINFOTitle = { link = "Green" },
     NotifyTRACETitle = { link = "Purple" },
+    NotifyWARNTitle = { link = "Yellow" },
 
     -- rcarriga/nvim-dap-ui
     DapUIModifiedValue = syntax_entry(palette.blue, palette.none, { styles.bold }),
