@@ -114,6 +114,7 @@ require("everforest").setup({
 - [aerial.nvim](https://github.com/stevearc/aerial.nvim)
 - [blamer.nvim](https://github.com/APZelos/blamer.nvim)
 - [fzf.vim](https://github.com/junegunn/fzf.vim)
+- [fsread.nvim](https://github.com/nullchilly/fsread.nvim)
 - [lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)

@@ -1,5 +1,6 @@
 local highlights = {}
 
+---@enum Styles
 local styles = {
   bold = "bold",
   italic = "italic",
@@ -1400,6 +1401,14 @@ highlights.generate_syntax = function(palette, options)
     NoiceCompletionItemKindEnumMember = syntax_entry(palette.green, palette.none),
     NoiceCompletionItemKindOperator = syntax_entry(palette.green, palette.none),
     NoiceCompletionItemKindSnippet = syntax_entry(palette.grey1, palette.none),
+
+    -- nullchilly/fsread.nvim
+    FSPrefix = syntax_entry(
+      palette.fg,
+      options.transparent_background_level > 0 and palette.none or palette.bg0,
+      { styles.bold }
+    ),
+    FSSuffix = syntax_entry(palette.grey1, palette.none),
 
     -- Language specific settings
     -- Markdown
