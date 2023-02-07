@@ -39,6 +39,11 @@ end
 ---@param options Config
 ---@return table
 highlights.generate_syntax = function(palette, options)
+  -- Comments are italic by default
+  local comment_italics = options.disable_italic_comments and {} or { styles.italic }
+  -- All other italics are disabled by default
+  local optional_italics = options.italics and { styles.italic } or {}
+
   local syntax = {
     Normal = syntax_entry(palette.fg, options.transparent_background_level > 0 and palette.none or palette.bg0),
     Terminal = syntax_entry(palette.fg, options.transparent_background_level > 0 and palette.none or palette.bg0),
@@ -174,17 +179,16 @@ highlights.generate_syntax = function(palette, options)
     Number = syntax_entry(palette.purple, palette.none),
     Float = syntax_entry(palette.purple, palette.none),
 
-    -- Italics could be optional here?
-    PreProc = syntax_entry(palette.purple, palette.none, { styles.italic }),
-    PreCondit = syntax_entry(palette.purple, palette.none, { styles.italic }),
-    Include = syntax_entry(palette.purple, palette.none, { styles.italic }),
-    Define = syntax_entry(palette.purple, palette.none, { styles.italic }),
-    Conditional = syntax_entry(palette.red, palette.none, { styles.italic }),
-    Repeat = syntax_entry(palette.red, palette.none, { styles.italic }),
-    Keyword = syntax_entry(palette.red, palette.none, { styles.italic }),
-    Typedef = syntax_entry(palette.red, palette.none, { styles.italic }),
-    Exception = syntax_entry(palette.red, palette.none, { styles.italic }),
-    Statement = syntax_entry(palette.red, palette.none, { styles.italic }),
+    PreProc = syntax_entry(palette.purple, palette.none, optional_italics),
+    PreCondit = syntax_entry(palette.purple, palette.none, optional_italics),
+    Include = syntax_entry(palette.purple, palette.none, optional_italics),
+    Define = syntax_entry(palette.purple, palette.none, optional_italics),
+    Conditional = syntax_entry(palette.red, palette.none, optional_italics),
+    Repeat = syntax_entry(palette.red, palette.none, optional_italics),
+    Keyword = syntax_entry(palette.red, palette.none, optional_italics),
+    Typedef = syntax_entry(palette.red, palette.none, optional_italics),
+    Exception = syntax_entry(palette.red, palette.none, optional_italics),
+    Statement = syntax_entry(palette.red, palette.none, optional_italics),
 
     Error = syntax_entry(palette.red, palette.none),
     StorageClass = syntax_entry(palette.orange, palette.none),
@@ -203,10 +207,9 @@ highlights.generate_syntax = function(palette, options)
     Macro = syntax_entry(palette.aqua, palette.none),
     Identifier = syntax_entry(palette.blue, palette.none),
 
-    -- Italics for comments could be toggled here
-    Comment = syntax_entry(palette.grey1, palette.none, { styles.italic }),
-    SpecialComment = syntax_entry(palette.grey1, palette.none, { styles.italic }),
-    Todo = syntax_entry(palette.purple, palette.none, { styles.italic }),
+    Comment = syntax_entry(palette.grey1, palette.none, comment_italics),
+    SpecialComment = syntax_entry(palette.grey1, palette.none, comment_italics),
+    Todo = syntax_entry(palette.purple, palette.none, comment_italics),
 
     Delimiter = syntax_entry(palette.fg, palette.none),
     Ignore = syntax_entry(palette.grey1, palette.none),
@@ -223,14 +226,13 @@ highlights.generate_syntax = function(palette, options)
     Blue = syntax_entry(palette.blue, palette.none),
     Purple = syntax_entry(palette.purple, palette.none),
 
-    -- This isn't italics by default, but is toggled in the original colourscheme
-    RedItalic = syntax_entry(palette.red, palette.none),
-    OrangeItalic = syntax_entry(palette.orange, palette.none),
-    YellowItalic = syntax_entry(palette.yellow, palette.none),
-    GreenItalic = syntax_entry(palette.green, palette.none),
-    AquaItalic = syntax_entry(palette.aqua, palette.none),
-    BlueItalic = syntax_entry(palette.blue, palette.none),
-    PurpleItalic = syntax_entry(palette.purple, palette.none),
+    RedItalic = syntax_entry(palette.red, palette.none, optional_italics),
+    OrangeItalic = syntax_entry(palette.orange, palette.none, optional_italics),
+    YellowItalic = syntax_entry(palette.yellow, palette.none, optional_italics),
+    GreenItalic = syntax_entry(palette.green, palette.none, optional_italics),
+    AquaItalic = syntax_entry(palette.aqua, palette.none, optional_italics),
+    BlueItalic = syntax_entry(palette.blue, palette.none, optional_italics),
+    PurpleItalic = syntax_entry(palette.purple, palette.none, optional_italics),
 
     -- Related to `transparent_background` and `sign_column_background`
     RedSign = syntax_entry(palette.red, options.transparent_background_level > 0 and palette.none or palette.bg1),

@@ -59,11 +59,12 @@ require("lualine").setup({
 
 ## Configuration
 
-> Configuration options are still TODO, but will hopefully be coming soon, including configuring
-> italics and more.
+> Configuration options aren't as comprehensive as the original everforest
+> theme yet.
 
-This colour scheme has a light and a dark mode which are configured using the vim background
-setting: `:set background=light` or `vim.o.background=dark` as appropriate.
+This colour scheme has a light and a dark mode which are configured using the
+vim background setting: `:set background=light` or `vim.o.background=dark` as
+appropriate.
 
 This is the default config:
 
@@ -78,6 +79,11 @@ require("everforest").setup({
   -- 2 will have more UI components be transparent (e.g. status line
   -- background).
   transparent_background_level = 0,
+  -- Whether italics should be used for keywords, builtin types and more.
+  italics = false,
+  -- Disable italic fonts for comments. Comments are in italics by default, set
+  -- this to `true` to make them _not_ italic!
+  disable_italic_comments = false,
 })
 ```
 
