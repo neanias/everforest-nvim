@@ -3,8 +3,8 @@
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/neanias/everforest-nvim/default?style=for-the-badge)
 ![Lua](https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua)
 
-A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour scheme. For
-screenshots, please see the everforest repo.
+A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour
+scheme. For screenshots, please see the everforest repo.
 
 ## Features
 
@@ -13,6 +13,23 @@ screenshots, please see the everforest repo.
 - **Lualine** theme
 
 ## Installation
+
+Using [lazy.nvim](https://github.com/folke/lazy.nvim):
+
+```lua
+require("lazy").setup({
+  "neanias/everforest-nvim",
+  version = false,
+  lazy = false,
+  priority = 1000, -- make sure to load this before all the other start plugins
+  -- Optional; default configuration will be used if setup isn't called.
+  config = function()
+    require("everforest").setup({
+      -- Your config here
+    })
+  end,
+})
+```
 
 Using [packer.nvim](https://github.com/wbthomason/packer.nvim):
 
@@ -44,6 +61,9 @@ colorscheme everforest
 ```lua
 -- In Lua
 vim.cmd([[colorscheme everforest]])
+
+-- Alternatively
+require("everforest").load()
 ```
 
 To enable the everforest theme for LuaLine, you can specify it as such:
@@ -136,8 +156,8 @@ require("everforest").setup({
 - [vim-sneak](https://github.com/justinmk/vim-sneak)
 - [yanky.nvim](https://github.com/gbprod/yanky.nvim)
 
-See [the wiki](https://github.com/neanias/everforest-nvim/wiki) for the full list of plugins that
-have highlights.
+See [the wiki](https://github.com/neanias/everforest-nvim/wiki) for the full
+list of plugins that have highlights.
 
 ## Still TODO
 
