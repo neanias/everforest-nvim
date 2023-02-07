@@ -162,6 +162,22 @@ list of plugins that have highlights.
 ## Still TODO
 
 - [ ] Colour scheme configuration
+  - [x] `background`
+  - [x] `transparent_background`
+  - [ ] `dim_inactive_windows`
+  - [x] `disable_italic_comments`
+  - [x] `enable_italic`
+  - [ ] ~`cursor`~
+  - [ ] `sign_column_background`
+  - [ ] `spell_foreground`
+  - [ ] `ui_contrast`
+  - [ ] `show_eob`
+  - [ ] `current_word`
+  - [ ] `diagnostic_text_highlight`
+  - [ ] `diagnostic_line_highlight`
+  - [ ] `diagnostic_virtual_text`
+  - [ ] `disable_terminal_colours`
+  - [ ] `colours_override`
 - [x] Transparent backgrounds
 - [x] Different colour scheme "weights"
 
