@@ -44,14 +44,25 @@ highlights.generate_syntax = function(palette, options)
   -- All other italics are disabled by default
   local optional_italics = options.italics and { styles.italic } or {}
 
+  ---This respects the transparency settings of the user.
+  ---@param colour_to_set string The intended background if transparency is disabled
+  ---@return string
+  local function colour_respecting_options(colour_to_set)
+    if options.transparent_background_level > 0 then
+      return palette.none
+    else
+      return colour_to_set
+    end
+  end
+
   local syntax = {
-    Normal = syntax_entry(palette.fg, options.transparent_background_level > 0 and palette.none or palette.bg0),
-    Terminal = syntax_entry(palette.fg, options.transparent_background_level > 0 and palette.none or palette.bg0),
-    EndOfBuffer = syntax_entry(palette.bg4, options.transparent_background_level > 0 and palette.none or palette.bg0),
-    Folded = syntax_entry(palette.grey1, options.transparent_background_level > 0 and palette.none or palette.bg1),
+    Normal = syntax_entry(palette.fg, colour_respecting_options(palette.bg0)),
+    Terminal = syntax_entry(palette.fg, colour_respecting_options(palette.bg0)),
+    EndOfBuffer = syntax_entry(palette.bg4, colour_respecting_options(palette.bg0)),
+    Folded = syntax_entry(palette.grey1, colour_respecting_options(palette.bg1)),
     SignColumn = syntax_entry(palette.fg, palette.none),
     FoldColumn = syntax_entry(palette.bg5, palette.none),
-    ToolbarLine = syntax_entry(palette.fg, options.transparent_background_level > 0 and palette.none or palette.bg2),
+    ToolbarLine = syntax_entry(palette.fg, colour_respecting_options(palette.bg2)),
     IncSearch = syntax_entry(palette.bg0, palette.red),
     Search = syntax_entry(palette.bg0, palette.green),
     ColorColumn = syntax_entry(palette.none, palette.bg1),
@@ -235,13 +246,13 @@ highlights.generate_syntax = function(palette, options)
     PurpleItalic = syntax_entry(palette.purple, palette.none, optional_italics),
 
     -- Related to `transparent_background` and `sign_column_background`
-    RedSign = syntax_entry(palette.red, options.transparent_background_level > 0 and palette.none or palette.bg1),
-    OrangeSign = syntax_entry(palette.orange, options.transparent_background_level > 0 and palette.none or palette.bg1),
-    YellowSign = syntax_entry(palette.yellow, options.transparent_background_level > 0 and palette.none or palette.bg1),
-    GreenSign = syntax_entry(palette.green, options.transparent_background_level > 0 and palette.none or palette.bg1),
-    AquaSign = syntax_entry(palette.aqua, options.transparent_background_level > 0 and palette.none or palette.bg1),
-    BlueSign = syntax_entry(palette.blue, options.transparent_background_level > 0 and palette.none or palette.bg1),
-    PurpleSign = syntax_entry(palette.purple, options.transparent_background_level > 0 and palette.none or palette.bg1),
+    RedSign = syntax_entry(palette.red, colour_respecting_options(palette.bg1)),
+    OrangeSign = syntax_entry(palette.orange, colour_respecting_options(palette.bg1)),
+    YellowSign = syntax_entry(palette.yellow, colour_respecting_options(palette.bg1)),
+    GreenSign = syntax_entry(palette.green, colour_respecting_options(palette.bg1)),
+    AquaSign = syntax_entry(palette.aqua, colour_respecting_options(palette.bg1)),
+    BlueSign = syntax_entry(palette.blue, colour_respecting_options(palette.bg1)),
+    PurpleSign = syntax_entry(palette.purple, colour_respecting_options(palette.bg1)),
 
     -- Configuration based on `diagnostic_text_highlight` option
     ErrorText = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.red),
@@ -1405,11 +1416,7 @@ highlights.generate_syntax = function(palette, options)
     NoiceCompletionItemKindSnippet = syntax_entry(palette.grey1, palette.none),
 
     -- nullchilly/fsread.nvim
-    FSPrefix = syntax_entry(
-      palette.fg,
-      options.transparent_background_level > 0 and palette.none or palette.bg0,
-      { styles.bold }
-    ),
+    FSPrefix = syntax_entry(palette.fg, colour_respecting_options(palette.bg0), { styles.bold }),
     FSSuffix = syntax_entry(palette.grey1, palette.none),
 
     -- Language specific settings
