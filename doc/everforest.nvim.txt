@@ -16,7 +16,7 @@ Table of Contents                          *everforest.nvim-table-of-contents*
 1. Everforest.nvim                           *everforest.nvim-everforest.nvim*
 
 <img
-src='https://img.shields.io/github/workflow/status/neanias/everforest-nvim/default?style=for-the-badge'
+src='https://img.shields.io/github/actions/workflow/status/neanias/everforest-nvim/default?style=for-the-badge'
 title=''/> <img
 src='https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua'
 title=''/>
