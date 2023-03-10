@@ -1,16 +1,16 @@
-*everforest.nvim.txt*     For Neovim >= 0.8.0    Last change: 2023 February 08
+*everforest.nvim.txt*      For Neovim >= 0.8.0      Last change: 2023 March 10
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
 
 1. Everforest.nvim                           |everforest.nvim-everforest.nvim|
-  - Features                                        |everforest.nvim-features|
-  - Installation                                |everforest.nvim-installation|
-  - Usage                                              |everforest.nvim-usage|
-  - Configuration                              |everforest.nvim-configuration|
-  - Plugin support                            |everforest.nvim-plugin-support|
-  - Still TODO                                    |everforest.nvim-still-todo|
-  - Inspiration                                  |everforest.nvim-inspiration|
+  - Features                        |everforest.nvim-everforest.nvim-features|
+  - Installation                |everforest.nvim-everforest.nvim-installation|
+  - Usage                              |everforest.nvim-everforest.nvim-usage|
+  - Configuration              |everforest.nvim-everforest.nvim-configuration|
+  - Plugin support            |everforest.nvim-everforest.nvim-plugin-support|
+  - Still TODO                    |everforest.nvim-everforest.nvim-still-todo|
+  - Inspiration                  |everforest.nvim-everforest.nvim-inspiration|
 
 ==============================================================================
 1. Everforest.nvim                           *everforest.nvim-everforest.nvim*
@@ -18,7 +18,8 @@ Table of Contents                          *everforest.nvim-table-of-contents*
 A Lua port of the everforest <https://github.com/sainnhe/everforest> colour
 scheme. For screenshots, please see the everforest repo.
 
-FEATURES                                            *everforest.nvim-features*
+
+FEATURES                            *everforest.nvim-everforest.nvim-features*
 
 
 - 100% Lua, supports Treesitter & LSP
@@ -26,9 +27,9 @@ FEATURES                                            *everforest.nvim-features*
 - **Lualine** theme
 
 
-INSTALLATION                                    *everforest.nvim-installation*
+INSTALLATION                    *everforest.nvim-everforest.nvim-installation*
 
-Using lazy.nvim <https://github.com/folke/lazy.nvim>:
+Using lazy.nvim <https://github.com/folke/lazy.nvim>
 
 >lua
     require("lazy").setup({
@@ -45,8 +46,7 @@ Using lazy.nvim <https://github.com/folke/lazy.nvim>:
     })
 <
 
-
-Using packer.nvim <https://github.com/wbthomason/packer.nvim>:
+Usingpacker.nvim <https://github.com/wbthomason/packer.nvim>
 
 >lua
     use({
@@ -58,15 +58,14 @@ Using packer.nvim <https://github.com/wbthomason/packer.nvim>:
     })
 <
 
-
-Using vim-plug <https://github.com/junegunn/vim-plug>:
+Usingvim-plug <https://github.com/junegunn/vim-plug>
 
 >viml
     Plug 'neanias/everforest-nvim', { 'branch': 'main' }
 <
 
 
-USAGE                                                  *everforest.nvim-usage*
+USAGE                                  *everforest.nvim-everforest.nvim-usage*
 
 >viml
     " In VimL
@@ -74,7 +73,6 @@ USAGE                                                  *everforest.nvim-usage*
     " This has both light & dark modes to match your background setting.
     colorscheme everforest
 <
-
 
 >lua
     -- In Lua
@@ -84,8 +82,7 @@ USAGE                                                  *everforest.nvim-usage*
     require("everforest").load()
 <
 
-
-To enable the everforest theme for LuaLine, you can specify it as such:
+Toenable the everforest theme for LuaLine, you can specify it as such:
 
 >lua
     require("lualine").setup({
@@ -97,13 +94,11 @@ To enable the everforest theme for LuaLine, you can specify it as such:
 <
 
 
-CONFIGURATION                                  *everforest.nvim-configuration*
+CONFIGURATION                  *everforest.nvim-everforest.nvim-configuration*
 
 
   Configuration options aren’t as comprehensive as the original everforest
   theme yet.
-
-
 This colour scheme has a light and a dark mode which are configured using the
 vim background setting: `:set background=light` or `vim.o.background=dark` as
 appropriate.
@@ -130,7 +125,7 @@ This is the default config:
 <
 
 
-PLUGIN SUPPORT                                *everforest.nvim-plugin-support*
+PLUGIN SUPPORT                *everforest.nvim-everforest.nvim-plugin-support*
 
 
 - ALE <https://github.com/dense-analysis/ale>
@@ -171,6 +166,7 @@ PLUGIN SUPPORT                                *everforest.nvim-plugin-support*
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
 - nvim-notify <https://github.com/rcarriga/nvim-notify>
 - nvim-ts-rainbow <https://github.com/p00f/nvim-ts-rainbow>
+- nvim-ts-rainbow2 <https://github.com/HiPhish/nvim-ts-rainbow2>
 - packer.nvim <https://github.com/wbthomason/packer.nvim>
 - symbols-outline.nvim <https://github.com/simrat39/symbols-outline.nvim>
 - undotree <https://github.com/mbbill/undotree>
@@ -180,11 +176,11 @@ PLUGIN SUPPORT                                *everforest.nvim-plugin-support*
 - vim-sneak <https://github.com/justinmk/vim-sneak>
 - yanky.nvim <https://github.com/gbprod/yanky.nvim>
 
-
 See the wiki <https://github.com/neanias/everforest-nvim/wiki> for the full
 list of plugins that have highlights.
 
-STILL TODO                                        *everforest.nvim-still-todo*
+
+STILL TODO                        *everforest.nvim-everforest.nvim-still-todo*
 
 
 - Colour scheme configuration
@@ -193,7 +189,7 @@ STILL TODO                                        *everforest.nvim-still-todo*
     - `dim_inactive_windows`
     - `disable_italic_comments`
     - `enable_italic`
-    - _`cursor`
+    - _cursor
     - `sign_column_background`
     - `spell_foreground`
     - `ui_contrast`
@@ -208,13 +204,12 @@ STILL TODO                                        *everforest.nvim-still-todo*
 - Different colour scheme "weights"
 
 
-INSPIRATION                                      *everforest.nvim-inspiration*
+INSPIRATION                      *everforest.nvim-everforest.nvim-inspiration*
 
 
 - everforest <https://github.com/sainnhe/everforest> (obviously)
 - NeoSolarized.nvim <https://github.com/Tsuzat/NeoSolarized.nvim>
 - Tokyo Night <https://github.com/folke/tokyonight.nvim>
-
 
 Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
 
