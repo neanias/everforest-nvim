@@ -504,6 +504,15 @@ highlights.generate_syntax = function(palette, options)
     rainbowcol6 = syntax_entry(palette.blue, palette.none),
     rainbowcol7 = syntax_entry(palette.purple, palette.none),
 
+    -- HiPhish/nvim-ts-rainbow2
+    TSRainbowRed = { link = "rainbowcol1" },
+    TSRainbowOrange = { link = "rainbowcol2" },
+    TSRainbowYellow = { link = "rainbowcol3" },
+    TSRainbowGreen = { link = "rainbowcol4" },
+    TSRainbowCyan = { link = "rainbowcol5" },
+    TSRainbowBlue = { link = "rainbowcol6" },
+    TSRainbowViolet = { link = "rainbowcol7" },
+
     -- Diff
     diffAdded = { link = "Green" },
     diffRemoved = { link = "Red" },

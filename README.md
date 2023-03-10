@@ -144,6 +144,7 @@ require("everforest").setup({
 - [nvim-navic](https://github.com/SmiteshP/nvim-navic)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [nvim-ts-rainbow](https://github.com/p00f/nvim-ts-rainbow)
+- [nvim-ts-rainbow2](https://github.com/HiPhish/nvim-ts-rainbow2)
 - [packer.nvim](https://github.com/wbthomason/packer.nvim)
 - [symbols-outline.nvim](https://github.com/simrat39/symbols-outline.nvim)
 - [undotree](https://github.com/mbbill/undotree)
