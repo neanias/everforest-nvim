@@ -496,13 +496,22 @@ highlights.generate_syntax = function(palette, options)
     ["@variable.builtin"] = { link = "TSVariableBuiltin" },
 
     -- LSP Semantic token highlights
+    ["@lsp.type.class"] = { link = "@type" },
     ["@lsp.type.comment"] = { link = "@comment" },
+    ["@lsp.type.decorator"] = { link = "@function" },
+    ["@lsp.type.function"] = { link = "@function" },
     ["@lsp.type.enum"] = { link = "@type" },
-    ["@lsp.type.interface"] = { link = "Identifier" },
+    ["@lsp.type.enumMember"] = { link = "@constant" },
+    ["@lsp.type.interface"] = { link = "Structure" },
     ["@lsp.type.keyword"] = { link = "@keyword" },
+    ["@lsp.type.macro"] = { link = "@macro" },
+    ["@lsp.type.method"] = { link = "@method" },
     ["@lsp.type.namespace"] = { link = "@namespace" },
     ["@lsp.type.parameter"] = { link = "@parameter" },
     ["@lsp.type.property"] = { link = "@property" },
+    ["@lsp.type.struct"] = { link = "Structure" },
+    ["@lsp.type.type"] = { link = "@type" },
+    ["@lsp.type.typeParameter"] = { link = "@type.definition" },
     ["@lsp.type.variable"] = {}, -- use treesitter styles for regular variables
     ["@lsp.typemod.method.defaultLibrary"] = { link = "@function.builtin" },
     ["@lsp.typemod.function.defaultLibrary"] = { link = "@function.builtin" },
