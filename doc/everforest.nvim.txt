@@ -1,4 +1,4 @@
-*everforest.nvim.txt*      For Neovim >= 0.8.0      Last change: 2023 April 12
+*everforest.nvim.txt*       For Neovim >= 0.8.0       Last change: 2023 May 11
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
@@ -20,7 +20,6 @@ scheme. For screenshots, please see the everforest repo.
 
 
 FEATURES                            *everforest.nvim-everforest.nvim-features*
-
 
 - 100% Lua, supports Treesitter & LSP
 - Vim terminal colours
@@ -127,7 +126,6 @@ This is the default config:
 
 PLUGIN SUPPORT                *everforest.nvim-everforest.nvim-plugin-support*
 
-
 - ALE <https://github.com/dense-analysis/ale>
 - Barbar <https://github.com/romgrk/barbar.nvim>
 - BufferLine <https://github.com/akinsho/nvim-bufferline.lua>
@@ -182,7 +180,6 @@ list of plugins that have highlights.
 
 STILL TODO                        *everforest.nvim-everforest.nvim-still-todo*
 
-
 - Colour scheme configuration
     - `background`
     - `transparent_background`
@@ -205,7 +202,6 @@ STILL TODO                        *everforest.nvim-everforest.nvim-still-todo*
 
 
 INSPIRATION                      *everforest.nvim-everforest.nvim-inspiration*
-
 
 - everforest <https://github.com/sainnhe/everforest> (obviously)
 - NeoSolarized.nvim <https://github.com/Tsuzat/NeoSolarized.nvim>
