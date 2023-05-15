@@ -74,6 +74,17 @@ require("lualine").setup({
 })
 ```
 
+### LspSaga information
+
+Please note that LspSaga uses `Diagnostic{Warning,Error,Info,Hint}` highlight
+groups to define its borders for diagnostic pop-ups, especially in
+`diagnostic_jump_{next,prev}`. As discussed in the [Sonokai
+repo](https://github.com/sainnhe/sonokai/issues/87), this is not a good idea
+and there is no plan to change core highlights for one plugin.
+
+**To prevent the problem of squiggly lines in LspSaga diagnostic windows,
+please set the `diagnostic.border_follow` configuration option to `false`.**
+
 ## Configuration
 
 > Configuration options aren't as comprehensive as the original everforest
