@@ -1872,8 +1872,8 @@ highlights.generate_syntax = function(palette, options)
     header = { "fg", "Grey" },
   }
   -- junegunn/limelight.vim
-  vim.g.limelight_conceal_ctermfg = palette.grey0[1]
-  vim.g.limelight_conceal_guifg = palette.grey0[0]
+  vim.g.limelight_conceal_ctermfg = palette.grey0
+  vim.g.limelight_conceal_guifg = palette.grey0
 
   return syntax
 end
