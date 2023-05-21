@@ -1838,22 +1838,22 @@ highlights.generate_syntax = function(palette, options)
   end
 
   -- Consider adding configuration options for this
-  vim.g.terminal_color_0 = terminal.black[0]
-  vim.g.terminal_color_1 = terminal.red[0]
-  vim.g.terminal_color_2 = terminal.green[0]
-  vim.g.terminal_color_3 = terminal.yellow[0]
-  vim.g.terminal_color_4 = terminal.blue[0]
-  vim.g.terminal_color_5 = terminal.purple[0]
-  vim.g.terminal_color_6 = terminal.cyan[0]
-  vim.g.terminal_color_7 = terminal.white[0]
-  vim.g.terminal_color_8 = terminal.black[0]
-  vim.g.terminal_color_9 = terminal.red[0]
-  vim.g.terminal_color_10 = terminal.green[0]
-  vim.g.terminal_color_11 = terminal.yellow[0]
-  vim.g.terminal_color_12 = terminal.blue[0]
-  vim.g.terminal_color_13 = terminal.purple[0]
-  vim.g.terminal_color_14 = terminal.cyan[0]
-  vim.g.terminal_color_15 = terminal.white[0]
+  vim.g.terminal_color_0 = terminal.black
+  vim.g.terminal_color_1 = terminal.red
+  vim.g.terminal_color_2 = terminal.green
+  vim.g.terminal_color_3 = terminal.yellow
+  vim.g.terminal_color_4 = terminal.blue
+  vim.g.terminal_color_5 = terminal.purple
+  vim.g.terminal_color_6 = terminal.cyan
+  vim.g.terminal_color_7 = terminal.white
+  vim.g.terminal_color_8 = terminal.black
+  vim.g.terminal_color_9 = terminal.red
+  vim.g.terminal_color_10 = terminal.green
+  vim.g.terminal_color_11 = terminal.yellow
+  vim.g.terminal_color_12 = terminal.blue
+  vim.g.terminal_color_13 = terminal.purple
+  vim.g.terminal_color_14 = terminal.cyan
+  vim.g.terminal_color_15 = terminal.white
 
   -- junegunn/fzf.vim
   vim.g.fzf_colors = {
