@@ -11,6 +11,14 @@ local styles = {
   nocombine = "nocombine",
 }
 
+---@class Highlight
+---@field fg string|nil
+---@field bg string|nil
+---@field sp string|nil
+---@field style string|nil|Highlight
+
+---@alias Highlights table<string,Highlight>
+
 ---Generates a table that can be accepted by nvim_set_hl
 ---@param fg string
 ---@param bg string
@@ -37,7 +45,7 @@ end
 ---Generates the various highlight groups for this colour scheme to be used by Neovim.
 ---@param palette Palette
 ---@param options Config
----@return table
+---@return Highlights
 highlights.generate_syntax = function(palette, options)
   -- Comments are italic by default
   local comment_italics = options.disable_italic_comments and {} or { styles.italic }
