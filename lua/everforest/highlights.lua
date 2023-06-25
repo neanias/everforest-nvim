@@ -55,7 +55,7 @@ highlights.generate_syntax = function(palette, options)
   ---This respects the transparency settings of the user.
   ---@param colour_to_set string The intended background if transparency is disabled
   ---@return string
-  local function colour_respecting_options(colour_to_set)
+  local function transparency_respecting_colour(colour_to_set)
     if options.transparent_background_level > 0 then
       return palette.none
     else
@@ -63,26 +63,75 @@ highlights.generate_syntax = function(palette, options)
     end
   end
 
+  ---Set the background colour for the signs column.
+  ---
+  ---This isn't an easy logic pairing to use composition for, so we just roll a
+  ---specific function for it to make inline code easier.
+  ---
+  ---@param colour_to_set string The intended colour if the sign column background is grey
+  ---@return string
+  local function set_signs_background_colour(colour_to_set)
+    if options.transparent_background_level > 0 or options.sign_column_background == "none" then
+      return palette.none
+    else
+      return colour_to_set
+    end
+  end
+
+  ---Sets the colour, respecting the `sign_column_background` settings of the user.
+  ---If the `sign_column_background` is `"none"`, then it'll return `palette.none`, otherwise
+  ---whichever colour was passed in.
+  ---@param colour_to_set string
+  ---@return string
+  local function sign_column_respecting_colour(colour_to_set)
+    if options.sign_column_background == "none" then
+      return palette.none
+    else
+      return colour_to_set
+    end
+  end
+
+  local function set_colour_based_on_ui_contrast(low_contrast_colour, other_colour)
+    if options.ui_contrast == "low" then
+      return low_contrast_colour
+    else
+      return other_colour
+    end
+  end
+
+  ---@type Highlights
   local syntax = {
-    Normal = syntax_entry(palette.fg, colour_respecting_options(palette.bg0)),
-    NormalNC = syntax_entry(palette.fg, colour_respecting_options(palette.bg0)),
-    Terminal = syntax_entry(palette.fg, colour_respecting_options(palette.bg0)),
-    EndOfBuffer = syntax_entry(palette.bg4, colour_respecting_options(palette.bg0)),
-    Folded = syntax_entry(palette.grey1, colour_respecting_options(palette.bg1)),
-    SignColumn = syntax_entry(palette.fg, palette.none),
-    FoldColumn = syntax_entry(palette.bg5, palette.none),
-    ToolbarLine = syntax_entry(palette.fg, colour_respecting_options(palette.bg2)),
+    Normal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
+    NormalNC = syntax_entry(
+      palette.fg,
+      transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
+    ),
+    Terminal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
+    EndOfBuffer = syntax_entry(
+      palette.bg4,
+      transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
+    ),
+    Folded = syntax_entry(palette.grey1, transparency_respecting_colour(palette.bg1)),
+    SignColumn = syntax_entry(palette.fg, sign_column_respecting_colour(palette.bg1)),
+    FoldColumn = syntax_entry(
+      (options.sign_column_background == "grey" and palette.grey2) or palette.bg5,
+      sign_column_respecting_colour(palette.bg1)
+    ),
+    ToolbarLine = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg2)),
     IncSearch = syntax_entry(palette.bg0, palette.red),
     Search = syntax_entry(palette.bg0, palette.green),
     ColorColumn = syntax_entry(palette.none, palette.bg1),
-    Conceal = syntax_entry(palette.bg5, palette.none),
+    Conceal = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
     Cursor = syntax_entry(palette.none, palette.none, { styles.reverse }),
     lCursor = { link = "Cursor" },
     CursorIM = { link = "Cursor" },
     CursorLine = syntax_entry(palette.none, palette.bg1),
     CursorColumn = syntax_entry(palette.none, palette.bg1),
-    LineNr = syntax_entry(palette.bg5, palette.none),
-    CursorLineNr = syntax_entry(palette.grey1, palette.none),
+    LineNr = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
+    CursorLineNr = syntax_entry(
+      set_colour_based_on_ui_contrast(palette.grey1, palette.grey2),
+      sign_column_respecting_colour(palette.bg1)
+    ),
 
     DiffAdd = syntax_entry(palette.none, palette.bg_green),
     DiffChange = syntax_entry(palette.none, palette.bg_blue),
@@ -106,10 +155,30 @@ highlights.generate_syntax = function(palette, options)
     FloatBorder = syntax_entry(palette.grey1, palette.bg2),
     Question = syntax_entry(palette.yellow, palette.none),
 
-    SpellBad = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.red),
-    SpellCap = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.blue),
-    SpellLocal = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.aqua),
-    SpellRare = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.purple),
+    SpellBad = syntax_entry(
+      options.spell_foreground and palette.red or palette.none,
+      palette.none,
+      { styles.undercurl },
+      palette.red
+    ),
+    SpellCap = syntax_entry(
+      options.spell_foreground and palette.blue or palette.none,
+      palette.none,
+      { styles.undercurl },
+      palette.blue
+    ),
+    SpellLocal = syntax_entry(
+      options.spell_foreground and palette.aqua or palette.none,
+      palette.none,
+      { styles.undercurl },
+      palette.aqua
+    ),
+    SpellRare = syntax_entry(
+      options.spell_foreground and palette.purple or palette.none,
+      palette.none,
+      { styles.undercurl },
+      palette.purple
+    ),
 
     StatusLine = syntax_entry(palette.grey1, options.transparent_background_level == 2 and palette.none or palette.bg2),
     StatusLineTerm = syntax_entry(
@@ -130,7 +199,7 @@ highlights.generate_syntax = function(palette, options)
       options.transparent_background_level == 2 and palette.none or palette.bg1
     ),
     TabLineSel = syntax_entry(palette.bg0, palette.statusline1),
-    VertSplit = syntax_entry(palette.bg4, palette.none),
+    VertSplit = syntax_entry(palette.bg4, (options.dim_inactive_windows and palette.bg_dim) or palette.none),
     WinSeparator = { link = "VertSplit" },
 
     Visual = syntax_entry(palette.none, palette.bg_visual),
@@ -254,26 +323,50 @@ highlights.generate_syntax = function(palette, options)
     BlueItalic = syntax_entry(palette.blue, palette.none, optional_italics),
     PurpleItalic = syntax_entry(palette.purple, palette.none, optional_italics),
 
-    -- Related to `transparent_background` and `sign_column_background`
-    RedSign = syntax_entry(palette.red, colour_respecting_options(palette.bg1)),
-    OrangeSign = syntax_entry(palette.orange, colour_respecting_options(palette.bg1)),
-    YellowSign = syntax_entry(palette.yellow, colour_respecting_options(palette.bg1)),
-    GreenSign = syntax_entry(palette.green, colour_respecting_options(palette.bg1)),
-    AquaSign = syntax_entry(palette.aqua, colour_respecting_options(palette.bg1)),
-    BlueSign = syntax_entry(palette.blue, colour_respecting_options(palette.bg1)),
-    PurpleSign = syntax_entry(palette.purple, colour_respecting_options(palette.bg1)),
+    RedSign = syntax_entry(palette.red, set_signs_background_colour(palette.bg1)),
+    OrangeSign = syntax_entry(palette.orange, set_signs_background_colour(palette.bg1)),
+    YellowSign = syntax_entry(palette.yellow, set_signs_background_colour(palette.bg1)),
+    GreenSign = syntax_entry(palette.green, set_signs_background_colour(palette.bg1)),
+    AquaSign = syntax_entry(palette.aqua, set_signs_background_colour(palette.bg1)),
+    BlueSign = syntax_entry(palette.blue, set_signs_background_colour(palette.bg1)),
+    PurpleSign = syntax_entry(palette.purple, set_signs_background_colour(palette.bg1)),
 
     -- Configuration based on `diagnostic_text_highlight` option
-    ErrorText = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.red),
-    WarningText = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.yellow),
-    InfoText = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.blue),
-    HintText = syntax_entry(palette.none, palette.none, { styles.undercurl }, palette.green),
+    ErrorText = syntax_entry(
+      palette.none,
+      options.diagnostic_text_highlight and palette.bg_red or palette.none,
+      { styles.undercurl },
+      palette.red
+    ),
+    WarningText = syntax_entry(
+      palette.none,
+      options.diagnostic_text_highlight and palette.bg_yellow or palette.none,
+      { styles.undercurl },
+      palette.yellow
+    ),
+    InfoText = syntax_entry(
+      palette.none,
+      options.diagnostic_text_highlight and palette.bg_blue or palette.none,
+      { styles.undercurl },
+      palette.blue
+    ),
+    HintText = syntax_entry(
+      palette.none,
+      options.diagnostic_text_highlight and palette.bg_green or palette.none,
+      { styles.undercurl },
+      palette.green
+    ),
+
+    ErrorLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_red) or {},
+    WarningLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_yellow) or {},
+    InfoLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_blue) or {},
+    HintLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_green) or {},
 
     -- Configuration based on `diagnostic_virtual_text` option
-    VirtualTextWarning = { link = "Yellow" },
-    VirtualTextError = { link = "Red" },
-    VirtualTextInfo = { link = "Blue" },
-    VirtualTextHint = { link = "Green" },
+    VirtualTextWarning = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Yellow" },
+    VirtualTextError = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Red" },
+    VirtualTextInfo = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Blue" },
+    VirtualTextHint = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Green" },
 
     ErrorFloat = syntax_entry(palette.red, palette.bg2),
     WarningFloat = syntax_entry(palette.yellow, palette.bg2),
@@ -1025,6 +1118,7 @@ highlights.generate_syntax = function(palette, options)
 
     -- lukas-reineke/indent-blankline.nvim
     IndentBlanklineContextChar = syntax_entry(palette.grey1, palette.none, { styles.nocombine }),
+    IndentBlanklineContextStart = syntax_entry(palette.none, palette.bg2),
     IndentBlanklineChar = syntax_entry(palette.bg5, palette.none, { styles.nocombine }),
     IndentBlanklineSpaceChar = { link = "IndentBlanklineChar" },
     IndentBlanklineSpaceCharBlankline = { link = "IndentBlanklineChar" },
@@ -1507,7 +1601,7 @@ highlights.generate_syntax = function(palette, options)
     NoiceCompletionItemKindSnippet = syntax_entry(palette.grey1, palette.none),
 
     -- nullchilly/fsread.nvim
-    FSPrefix = syntax_entry(palette.fg, colour_respecting_options(palette.bg0), { styles.bold }),
+    FSPrefix = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0), { styles.bold }),
     FSSuffix = syntax_entry(palette.grey1, palette.none),
 
     -- Language specific settings
@@ -1882,6 +1976,8 @@ highlights.generate_syntax = function(palette, options)
   -- junegunn/limelight.vim
   vim.g.limelight_conceal_ctermfg = palette.grey0
   vim.g.limelight_conceal_guifg = palette.grey0
+
+  options.on_highlights(syntax, palette)
 
   return syntax
 end
