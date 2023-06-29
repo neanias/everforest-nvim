@@ -1110,6 +1110,10 @@ highlights.generate_syntax = function(palette, options)
     HopNextKey2 = { link = "Green" },
     HopUnmatched = { link = "Grey" },
 
+    -- folke/flash.nvim
+    FlashBackdrop = syntax_entry(palette.grey1, palette.none),
+    FlashLabel = syntax_entry(palette.fg, palette.purple, { styles.bold }),
+
     -- ggandor/leap.nvim
     LeapMatch = syntax_entry(palette.fg, palette.purple, { styles.bold }),
     LeapLabelPrimary = syntax_entry(palette.purple, palette.none, { styles.bold }),
