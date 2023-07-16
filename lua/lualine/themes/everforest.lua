@@ -1,10 +1,10 @@
 local palettes = require("everforest.colours")
-local palette
+local config = require("everforest").config
 
-if vim.o.background == "dark" then
-  palette = palettes.dark
-else
-  palette = palettes.light
+local palette = palettes.generate_palette(config, vim.o.background)
+
+if config.transparent_background_level == 2 then
+  palette.bg1 = palette.none
 end
 
 return {
