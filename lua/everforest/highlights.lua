@@ -658,6 +658,15 @@ highlights.generate_syntax = function(palette, options)
     TSRainbowBlue = { link = "rainbowcol6" },
     TSRainbowViolet = { link = "rainbowcol7" },
 
+    -- HiPhish/rainbow-delimiters
+    RainbowDelimiterRed = { link = "rainbowcol1" },
+    RainbowDelimiterOrange = { link = "rainbowcol2" },
+    RainbowDelimiterYellow = { link = "rainbowcol3" },
+    RainbowDelimiterGreen = { link = "rainbowcol4" },
+    RainbowDelimiterCyan = { link = "rainbowcol5" },
+    RainbowDelimiterBlue = { link = "rainbowcol6" },
+    RainbowDelimiterViolet = { link = "rainbowcol7" },
+
     -- Diff
     diffAdded = { link = "Green" },
     diffRemoved = { link = "Red" },
