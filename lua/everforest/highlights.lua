@@ -16,6 +16,7 @@ local styles = {
 ---@field bg string|nil
 ---@field sp string|nil
 ---@field style string|nil|Highlight
+---@field link string|nil
 
 ---@alias Highlights table<string,Highlight>
 

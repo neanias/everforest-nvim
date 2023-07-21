@@ -1,5 +1,42 @@
 local M = {}
 
+---@class PaletteBackground
+---@field bg_dim string
+---@field bg0 string
+---@field bg1 string
+---@field bg2 string
+---@field bg3 string
+---@field bg4 string
+---@field bg5 string
+---@field bg_visual string
+---@field bg_red string
+---@field bg_green string
+---@field bg_blue string
+---@field bg_yellow string
+
+---@class PaletteBase
+---@field fg string
+---@field red string
+---@field orange string
+---@field yellow string
+---@field green string
+---@field aqua string
+---@field blue string
+---@field purple string
+---@field grey0 string
+---@field grey1 string
+---@field grey2 string
+---@field statusline1 string
+---@field statusline2 string
+---@field statusline3 string
+---@field none string
+
+---@class Palette: PaletteBase,PaletteBackground
+
+---@alias Backgrounds "light" | "dark"
+---@alias PaletteBackgrounds table<Backgrounds, PaletteBackground>
+
+---@type PaletteBackgrounds
 local hard_background = {
   dark = {
     bg_dim = "#1e2326",
@@ -31,6 +68,7 @@ local hard_background = {
   },
 }
 
+---@type PaletteBackgrounds
 local medium_background = {
   dark = {
     bg_dim = "#232a2e",
@@ -62,6 +100,7 @@ local medium_background = {
   },
 }
 
+---@type PaletteBackgrounds
 local soft_background = {
   dark = {
     bg_dim = "#293136",
@@ -93,6 +132,7 @@ local soft_background = {
   },
 }
 
+---@type table<Backgrounds, PaletteBase>
 local base_palette = {
   light = {
     fg = "#5c6a72",
@@ -130,35 +170,6 @@ local base_palette = {
   },
 }
 
----@class Palette
----@field bg_dim string
----@field bg0 string
----@field bg1 string
----@field bg2 string
----@field bg3 string
----@field bg4 string
----@field bg5 string
----@field bg_visual string
----@field bg_red string
----@field bg_green string
----@field bg_blue string
----@field bg_yellow string
----@field fg string
----@field red string
----@field orange string
----@field yellow string
----@field green string
----@field aqua string
----@field blue string
----@field purple string
----@field grey0 string
----@field grey1 string
----@field grey2 string
----@field statusline1 string
----@field statusline2 string
----@field statusline3 string
----@field none string
-
 ---Generates the colour palette based on the user's config
 ---@param options Config The package configuration table
 ---@param theme "light" | "dark" The user's background preference
@@ -166,6 +177,7 @@ local base_palette = {
 M.generate_palette = function(options, theme)
   local background = options.background or "medium"
   local base = base_palette[theme]
+  ---@type PaletteBackground
   local background_palette
 
   if background == "soft" then
