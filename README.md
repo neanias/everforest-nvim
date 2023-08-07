@@ -116,6 +116,11 @@ require("everforest").setup({
   ---`"low"` (default).
   ui_contrast = "low",
   ---Dim inactive windows. Only works in Neovim. Can look a bit weird with Telescope.
+  ---
+  ---When this option is used in conjunction with show_eob set to `false`, the
+  ---end of the buffer will only be hidden inside the active window. Inside
+  ---inactive windows, the end of buffer filler characters will be visible in
+  ---dimmed symbols. This is due to the way Vim and Neovim handle `EndOfBuffer`.
   dim_inactive_windows = false,
   ---Some plugins support highlighting error/warning/info/hint texts, by
   ---default these texts are only underlined, but you can use this option to
@@ -130,6 +135,8 @@ require("everforest").setup({
   ---colored under curls will be used. If you also want to colour the foreground,
   ---set this option to `true`.
   spell_foreground = false,
+  ---Whether to show the EndOfBuffer highlight.
+  show_eob = true,
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights
@@ -231,7 +238,7 @@ list of plugins that have highlights.
   - [x] `sign_column_background`
   - [x] `spell_foreground`
   - [x] `ui_contrast`
-  - [ ] `show_eob`
+  - [x] `show_eob`
   - [ ] `current_word`
   - [x] `diagnostic_text_highlight`
   - [x] `diagnostic_line_highlight`

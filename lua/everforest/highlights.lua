@@ -109,8 +109,8 @@ highlights.generate_syntax = function(palette, options)
     ),
     Terminal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
     EndOfBuffer = syntax_entry(
-      palette.bg4,
-      transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
+      (options.show_eob and palette.bg4) or palette.bg0,
+      palette.none
     ),
     Folded = syntax_entry(palette.grey1, transparency_respecting_colour(palette.bg1)),
     SignColumn = syntax_entry(palette.fg, sign_column_respecting_colour(palette.bg1)),

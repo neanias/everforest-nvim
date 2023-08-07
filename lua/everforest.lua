@@ -16,6 +16,7 @@ local M = {}
 ---@field diagnostic_virtual_text "coloured" | "grey"
 ---@field diagnostic_line_highlight boolean
 ---@field spell_foreground boolean
+---@field show_eob boolean
 ---@field on_highlights fun(highlight_groups: Highlights, palette: Palette)
 M.config = {
   ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
@@ -36,6 +37,12 @@ M.config = {
   ---`"low"` (default).
   ui_contrast = "low",
   ---Dim inactive windows. Only works in Neovim. Can look a bit weird with Telescope.
+  ---
+  ---When this option is used in conjunction with show_eob set to `false`, the
+  ---end of the buffer will only be hidden inside the active window. Inside
+  ---inactive windows, the end of buffer filler characters will be visible in
+  ---dimmed symbols. This is due to the way Vim and Neovim handle
+  ---`EndOfBuffer`.
   dim_inactive_windows = false,
   ---Some plugins support highlighting error/warning/info/hint texts, by
   ---default these texts are only underlined, but you can use this option to
@@ -50,6 +57,8 @@ M.config = {
   ---colored under curls will be used. If you also want to colour the foreground,
   ---set this option to `true`.
   spell_foreground = false,
+  ---Whether to show the EndOfBuffer highlight.
+  show_eob = true,
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights
