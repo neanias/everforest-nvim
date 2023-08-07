@@ -369,10 +369,11 @@ highlights.generate_syntax = function(palette, options)
     VirtualTextInfo = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Blue" },
     VirtualTextHint = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Green" },
 
-    ErrorFloat = syntax_entry(palette.red, palette.bg2),
-    WarningFloat = syntax_entry(palette.yellow, palette.bg2),
-    InfoFloat = syntax_entry(palette.blue, palette.bg2),
-    HintFloat = syntax_entry(palette.green, palette.bg2),
+    -- Diagnostic text inherits the background of the floating window, which is Neovim's default.
+    ErrorFloat = syntax_entry(palette.red, palette.none),
+    WarningFloat = syntax_entry(palette.yellow, palette.none),
+    InfoFloat = syntax_entry(palette.blue, palette.none),
+    HintFloat = syntax_entry(palette.green, palette.none),
     CurrentWord = syntax_entry(palette.none, palette.none, { styles.bold }),
 
     -- Git commit colours
