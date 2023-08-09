@@ -1194,6 +1194,7 @@ highlights.generate_syntax = function(palette, options)
     NavicSeparator = syntax_entry(palette.fg, palette.none),
 
     -- rcarriga/nvim-notify
+    NotifyBackground = syntax_entry(palette.fg, palette.bg0),
     -- Borders
     NotifyDEBUGBorder = { link = "Grey" },
     NotifyERRORBorder = { link = "Red" },
