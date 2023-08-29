@@ -115,7 +115,7 @@ This colour scheme has a light and a dark mode which are configured using the
 vim background setting: `:set background=light` or `vim.o.background=dark` as
 appropriate.
 
-This is the default config:
+The default configuration used by the colour scheme ~
 
 >lua
     require("everforest").setup({
