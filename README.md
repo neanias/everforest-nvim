@@ -94,7 +94,8 @@ This colour scheme has a light and a dark mode which are configured using the
 vim background setting: `:set background=light` or `vim.o.background=dark` as
 appropriate.
 
-This is the default config:
+<details>
+    <summary>The default configuration used by the colour scheme</summary>
 
 ```lua
 require("everforest").setup({
@@ -144,6 +145,8 @@ require("everforest").setup({
   on_highlights = function(highlight_groups, palette) end,
 })
 ```
+
+</details>
 
 ## Overriding Highlight Groups
 
