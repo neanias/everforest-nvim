@@ -184,11 +184,11 @@ highlights.generate_syntax = function(palette, options)
       options.transparent_background_level == 2 and palette.none or palette.bg1
     ),
     StatusLineNC = syntax_entry(
-      palette.grey1,
+      options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
       options.transparent_background_level == 2 and palette.none or palette.bg1
     ),
     StatusLineTermNC = syntax_entry(
-      palette.grey1,
+      options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
       options.transparent_background_level == 2 and palette.none or palette.bg0
     ),
     TabLine = syntax_entry(palette.grey2, palette.bg3),
