@@ -1,4 +1,4 @@
-*everforest.nvim.txt*      For Neovim >= 0.8.0     Last change: 2023 August 29
+*everforest.nvim.txt*    For Neovim >= 0.8.0    Last change: 2023 September 06
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
@@ -9,7 +9,8 @@ Table of Contents                          *everforest.nvim-table-of-contents*
   - Usage                              |everforest.nvim-everforest.nvim-usage|
   - Configuration              |everforest.nvim-everforest.nvim-configuration|
   - Overriding Highlight Groups|everforest.nvim-everforest.nvim-overriding-highlight-groups|
-  - Pluginsupport              |everforest.nvim-everforest.nvim-pluginsupport|
+  - Overridingcolours in the palette|everforest.nvim-everforest.nvim-overridingcolours-in-the-palette|
+  - Plugin support            |everforest.nvim-everforest.nvim-plugin-support|
   - Still TODO                    |everforest.nvim-everforest.nvim-still-todo|
   - Inspiration                  |everforest.nvim-everforest.nvim-inspiration|
 
@@ -163,6 +164,11 @@ The default configuration used by the colour scheme ~
       ---@param highlight_groups Highlights
       ---@param palette Palette
       on_highlights = function(highlight_groups, palette) end,
+      ---You can override colours in the palette to use different hex colours.
+      ---This function will be called once the base and background colours have
+      ---been mixed on the palette.
+      ---@param palette Palette
+      colours_override = function(palette) end,
     })
 <
 
@@ -197,7 +203,24 @@ To clear any highlight groups, simply set them to `{}`
 <
 
 
-PLUGINSUPPORT                  *everforest.nvim-everforest.nvim-pluginsupport*
+OVERRIDINGCOLOURS IN THE PALETTE*everforest.nvim-everforest.nvim-overridingcolours-in-the-palette*
+
+To find the existing palette colours, please see `colours.lua`
+<lua/everforest/colours.lua>.
+
+For instance, if you use a dark background and want to use a darker hue for
+red, you could use the following configuration:
+
+>lua
+    require("everforest").setup({
+      colours_override = function (palette)
+        palette.red = "b86466"
+      end
+    })
+<
+
+
+PLUGIN SUPPORT                *everforest.nvim-everforest.nvim-plugin-support*
 
 - ALE <https://github.com/dense-analysis/ale>
 - Barbar <https://github.com/romgrk/barbar.nvim>
