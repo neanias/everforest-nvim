@@ -64,6 +64,11 @@ M.config = {
   ---@param highlight_groups Highlights
   ---@param palette Palette
   on_highlights = function(highlight_groups, palette) end,
+  ---You can override colours in the palette to use different hex colours.
+  ---This function will be called once the base and background colours have
+  ---been mixed on the palette.
+  ---@param palette Palette
+  colours_override = function(palette) end,
 }
 
 ---@param opts Config | nil

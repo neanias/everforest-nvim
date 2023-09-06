@@ -188,7 +188,11 @@ M.generate_palette = function(options, theme)
     background_palette = medium_background[theme]
   end
 
-  return vim.tbl_extend("force", base, background_palette)
+  ---@type Palette
+  local combined_palette = vim.tbl_extend("force", base, background_palette)
+  options.colours_override(combined_palette)
+
+  return combined_palette
 end
 
 return M

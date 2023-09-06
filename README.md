@@ -143,6 +143,11 @@ require("everforest").setup({
   ---@param highlight_groups Highlights
   ---@param palette Palette
   on_highlights = function(highlight_groups, palette) end,
+  ---You can override colours in the palette to use different hex colours.
+  ---This function will be called once the base and background colours have
+  ---been mixed on the palette.
+  ---@param palette Palette
+  colours_override = function(palette) end,
 })
 ```
 
@@ -172,6 +177,21 @@ To clear any highlight groups, simply set them to `{}`:
 require("everforest").setup({
   on_highlights = function (hl, palette)
     hl.TSDanger = {}
+  end
+})
+```
+
+## Overriding colours in the palette
+
+To find the existing palette colours, please see [`colours.lua`](lua/everforest/colours.lua).
+
+For instance, if you use a dark background and want to use a darker hue for red,
+you could use the following configuration:
+
+```lua
+require("everforest").setup({
+  colours_override = function (palette)
+    palette.red = "#b86466"
   end
 })
 ```
@@ -247,7 +267,7 @@ list of plugins that have highlights.
   - [x] `diagnostic_line_highlight`
   - [x] `diagnostic_virtual_text`
   - [ ] `disable_terminal_colours`
-  - [ ] `colours_override`
+  - [x] `colours_override`
 - [x] Transparent backgrounds
 - [x] Different colour scheme "weights"
 
