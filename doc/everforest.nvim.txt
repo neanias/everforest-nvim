@@ -1,4 +1,4 @@
-*everforest.nvim.txt*    For Neovim >= 0.8.0    Last change: 2023 September 06
+*everforest.nvim.txt*     For Neovim >= 0.8.0    Last change: 2023 November 06
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
@@ -214,7 +214,7 @@ red, you could use the following configuration:
 >lua
     require("everforest").setup({
       colours_override = function (palette)
-        palette.red = "b86466"
+        palette.red = "#b86466"
       end
     })
 <
