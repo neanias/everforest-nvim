@@ -737,7 +737,7 @@ highlights.generate_syntax = function(palette, options)
     CocHintLine = { link = "HintLine" },
     CocCodeLens = { link = "Grey" },
     CocFadeOut = { link = "Grey" },
-    CocStrikeThrough = { link = "Grey" },
+    CocStrikeThrough = { link = "TSStrike" },
     CocListMode = { link = "StatusLine" },
     CocListPath = { link = "StatusLine" },
     CocSelectedText = { link = "Orange" },
