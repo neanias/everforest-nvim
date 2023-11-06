@@ -8,6 +8,7 @@ local styles = {
   undercurl = "undercurl",
   underline = "underline",
   standout = "standout",
+  strikethrough = "strikethrough",
   nocombine = "nocombine",
 }
 
@@ -407,6 +408,7 @@ highlights.generate_syntax = function(palette, options)
     TSStrong = syntax_entry(palette.none, palette.none, { styles.bold }),
     TSEmphasis = syntax_entry(palette.none, palette.none, { styles.italic }),
     TSUnderline = syntax_entry(palette.none, palette.none, { styles.underline }),
+    TSStrike = syntax_entry(palette.none, palette.none, { styles.strikethrough }),
     TSNote = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
     TSWarning = syntax_entry(palette.bg0, palette.yellow, { styles.bold }),
     TSDanger = syntax_entry(palette.bg0, palette.red, { styles.bold }),
@@ -459,7 +461,6 @@ highlights.generate_syntax = function(palette, options)
     TSRepeat = { link = "Red" },
     TSStorageClass = { link = "Orange" },
     TSStorageClassLifetime = { link = "Orange" },
-    TSStrike = { link = "Grey" },
     TSString = { link = "Aqua" },
     TSStringEscape = { link = "Green" },
     TSStringRegex = { link = "Green" },
@@ -599,6 +600,7 @@ highlights.generate_syntax = function(palette, options)
     ["@text.todo.checked"] = { link = "Green" },
     ["@text.todo.unchecked"] = { link = "Ignore" },
     ["@text.underline"] = { link = "TSUnderline" },
+    ["@text.strike"] = { link = "TSStrike" },
     ["@text.uri"] = { link = "TSURI" },
     ["@text.warning"] = { link = "TSWarning" },
     ["@todo"] = { link = "TSTodo" },
