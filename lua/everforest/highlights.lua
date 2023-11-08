@@ -150,8 +150,13 @@ highlights.generate_syntax = function(palette, options)
     PmenuSel = syntax_entry(palette.bg0, palette.statusline1),
     WildMenu = { link = "PmenuSel" },
     PmenuThumb = syntax_entry(palette.none, palette.grey0),
-    NormalFloat = syntax_entry(palette.fg, palette.bg2),
-    FloatBorder = syntax_entry(palette.grey1, palette.bg2),
+    NormalFloat = syntax_entry(palette.fg, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
+    FloatBorder = syntax_entry(palette.grey1, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
+    FloatTitle = syntax_entry(
+      palette.grey1,
+      (options.float_style == "bright" and palette.bg2) or palette.bg_dim,
+      { styles.bold }
+    ),
     Question = syntax_entry(palette.yellow, palette.none),
 
     SpellBad = syntax_entry(
@@ -717,6 +722,7 @@ highlights.generate_syntax = function(palette, options)
     CocWarningFloat = { link = "WarningFloat" },
     CocInfoFloat = { link = "InfoFloat" },
     CocHintFloat = { link = "HintFloat" },
+    CocFloating = { link = "NormalFloat" },
     CocFloatDividingLine = { link = "Grey" },
     CocErrorHighlight = { link = "ErrorText" },
     CocWarningHighlight = { link = "WarningText" },

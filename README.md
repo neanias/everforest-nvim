@@ -138,6 +138,17 @@ require("everforest").setup({
   spell_foreground = false,
   ---Whether to show the EndOfBuffer highlight.
   show_eob = true,
+  ---Style used to make floating windows stand out from other windows. `"bright"`
+  ---makes the background of these windows lighter than |hl-Normal|, whereas
+  ---`"dim"` makes it darker.
+  ---
+  ---Floating windows include for instance diagnostic pop-ups, scrollable
+  ---documentation windows from completion engines, overlay windows from
+  ---installers, etc.
+  ---
+  ---NB: This is only significant for dark backgrounds as the light palettes
+  ---have the same colour for both values in the switch.
+  float_style = "bright",
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights
