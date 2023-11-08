@@ -1145,9 +1145,10 @@ highlights.generate_syntax = function(palette, options)
     LeapBackdrop = syntax_entry(palette.grey1, palette.none),
 
     -- lukas-reineke/indent-blankline.nvim
-    IndentBlanklineContextChar = syntax_entry(palette.grey1, palette.none, { styles.nocombine }),
-    IndentBlanklineContextStart = syntax_entry(palette.none, palette.bg2),
-    IndentBlanklineChar = syntax_entry(palette.bg5, palette.none, { styles.nocombine }),
+    IblScope = syntax_entry(palette.grey1, palette.none, { styles.nocombine }),
+    IblIndent = syntax_entry(palette.bg4, palette.none, { styles.nocombine }),
+    IndentBlanklineContextChar = { link = "IblScope" },
+    IndentBlanklineChar = { link = "IblIndent" },
     IndentBlanklineSpaceChar = { link = "IndentBlanklineChar" },
     IndentBlanklineSpaceCharBlankline = { link = "IndentBlanklineChar" },
 
