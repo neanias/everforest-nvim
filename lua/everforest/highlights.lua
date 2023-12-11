@@ -470,7 +470,7 @@ highlights.generate_syntax = function(palette, options)
     TSStringEscape = { link = "Green" },
     TSStringRegex = { link = "Green" },
     TSStringSpecial = { link = "SpecialChar" },
-    TSSymbol = { link = "Purple" },
+    TSSymbol = { link = "Fg" },
     TSTag = { link = "Orange" },
     TSTagAttribute = { link = "Green" },
     TSTagDelimiter = { link = "Green" },
