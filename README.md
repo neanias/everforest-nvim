@@ -187,14 +187,15 @@ colours that aren't changing as well as your new styles**. This is because the
 highlights defined in the `on_highlights` method will _override_ the default
 highlights.
 
-Here's an example of adding a **bold** styling to the `Boolean` highlight group:
+Here's an example of adding a **bold** styling to the `TSBoolean` highlight group:
 
 ```lua
 require("everforest").setup({
   on_highlights = function(hl, palette)
-    -- The default highlights for Boolean is fg purple, bg none. If we want to
-    -- just add a bold to the existing, we need to have the existing *and* the
-    -- bold style.
+    -- The default highlights for TSBoolean is linked to `Purple` which is fg
+    -- purple and bg none. If we want to just add a bold style to the existing,
+    -- we need to have the existing *and* the bold style. (We could link to
+    -- `PurpleBold` here otherwise.)
     hl.TSBoolean = { fg = palette.purple, bg = palette.none, bold = true }
   end,
 })
