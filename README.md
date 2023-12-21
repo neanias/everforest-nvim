@@ -195,7 +195,7 @@ require("everforest").setup({
     -- The default highlights for Boolean is fg purple, bg none. If we want to
     -- just add a bold to the existing, we need to have the existing *and* the
     -- bold style.
-    hl.Boolean = { fg = palette.purple, bg = palette.none, bold = true }
+    hl.TSBoolean = { fg = palette.purple, bg = palette.none, bold = true }
   end,
 })
 ```
@@ -285,7 +285,7 @@ list of plugins that have highlights.
   - [x] `transparent_background`
   - [x] `dim_inactive_windows`
   - [x] `disable_italic_comments`
-  - [x] `enable_italic`
+  - [x] `enable_italic` — this is `italic` in everforest-nvim
   - [ ] ~`cursor`~
   - [x] `sign_column_background`
   - [x] `spell_foreground`
