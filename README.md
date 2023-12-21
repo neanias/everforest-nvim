@@ -173,12 +173,30 @@ the undercurl:
 
 ```lua
 require("everforest").setup({
-  on_highlights = function (hl, palette)
+  on_highlights = function(hl, palette)
     hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
     hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
     hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
     hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
-  end
+  end,
+})
+```
+
+If you want to tweak or amend an existing highlight group you **need to add the
+colours that aren't changing as well as your new styles**. This is because the
+highlights defined in the `on_highlights` method will _override_ the default
+highlights.
+
+Here's an example of adding a **bold** styling to the `Boolean` highlight group:
+
+```lua
+require("everforest").setup({
+  on_highlights = function(hl, palette)
+    -- The default highlights for Boolean is fg purple, bg none. If we want to
+    -- just add a bold to the existing, we need to have the existing *and* the
+    -- bold style.
+    hl.Boolean = { fg = palette.purple, bg = palette.none, bold = true }
+  end,
 })
 ```
 
@@ -186,9 +204,9 @@ To clear any highlight groups, simply set them to `{}`:
 
 ```lua
 require("everforest").setup({
-  on_highlights = function (hl, palette)
+  on_highlights = function(hl, palette)
     hl.TSDanger = {}
-  end
+  end,
 })
 ```
 
