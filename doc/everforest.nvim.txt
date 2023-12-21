@@ -217,7 +217,7 @@ group:
         -- The default highlights for Boolean is fg purple, bg none. If we want to
         -- just add a bold to the existing, we need to have the existing *and* the
         -- bold style.
-        hl.Boolean = { fg = palette.purple, bg = palette.none, bold = true }
+        hl.TSBoolean = { fg = palette.purple, bg = palette.none, bold = true }
       end,
     })
 <
@@ -311,7 +311,7 @@ STILL TODO                        *everforest.nvim-everforest.nvim-still-todo*
     - `transparent_background`
     - `dim_inactive_windows`
     - `disable_italic_comments`
-    - `enable_italic`
+    - `enable_italic` — this is `italic` in everforest-nvim
     - _cursor
     - `sign_column_background`
     - `spell_foreground`
