@@ -302,7 +302,7 @@ highlights.generate_syntax = function(palette, options)
 
     Comment = syntax_entry(palette.grey1, palette.none, comment_italics),
     SpecialComment = syntax_entry(palette.grey1, palette.none, comment_italics),
-    Todo = syntax_entry(palette.purple, palette.none, comment_italics),
+    Todo = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
 
     Delimiter = syntax_entry(palette.fg, palette.none),
     Ignore = syntax_entry(palette.grey1, palette.none),
@@ -414,7 +414,7 @@ highlights.generate_syntax = function(palette, options)
     TSEmphasis = syntax_entry(palette.none, palette.none, { styles.italic }),
     TSUnderline = syntax_entry(palette.none, palette.none, { styles.underline }),
     TSStrike = syntax_entry(palette.none, palette.none, { styles.strikethrough }),
-    TSNote = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
+    TSNote = syntax_entry(palette.bg0, palette.green, { styles.bold }),
     TSWarning = syntax_entry(palette.bg0, palette.yellow, { styles.bold }),
     TSDanger = syntax_entry(palette.bg0, palette.red, { styles.bold }),
     TSAnnotation = { link = "Purple" },
