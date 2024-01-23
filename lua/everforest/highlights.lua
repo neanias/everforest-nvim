@@ -223,6 +223,7 @@ highlights.generate_syntax = function(palette, options)
     DiagnosticWarn = { link = "WarningText" },
     DiagnosticInfo = { link = "InfoText" },
     DiagnosticHint = { link = "HintText" },
+    DiagnosticUnnecessary = { link = "WarningText" },
     DiagnosticVirtualTextError = { link = "VirtualTextError" },
     DiagnosticVirtualTextWarn = { link = "VirtualTextWarning" },
     DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" },
