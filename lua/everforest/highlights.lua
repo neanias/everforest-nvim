@@ -592,6 +592,7 @@ highlights.generate_syntax = function(palette, options)
     ["@method"] = { link = "TSMethod" },
     ["@method.call"] = { link = "TSMethodCall" },
     ["@module"] = { link = "TSNamespace" },
+    ["@module.go"] = { link = "goTSNamespace" },
     ["@namespace"] = { link = "TSNamespace" },
     ["@namespace.go"] = { link = "goTSNamespace" },
     ["@none"] = { link = "TSNone" },
