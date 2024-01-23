@@ -566,6 +566,9 @@ highlights.generate_syntax = function(palette, options)
     ["@keyword.exception"] = { link = "TSException" },
     ["@keyword.function"] = { link = "TSKeywordFunction" },
     ["@keyword.import"] = { link = "TSInclude" },
+    ["@keyword.import.go"] = { link = "goTSInclude" },
+    ["@keyword.import.javascript"] = { link = "javascriptTSInclude" },
+    ["@keyword.import.typescript"] = { link = "typescriptTSInclude" },
     ["@keyword.operator"] = { link = "TSKeywordOperator" },
     ["@keyword.repeat"] = { link = "TSRepeat" },
     ["@keyword.return"] = { link = "TSKeywordReturn" },
@@ -614,6 +617,7 @@ highlights.generate_syntax = function(palette, options)
     ["@strike"] = { link = "TSStrike" },
     ["@string"] = { link = "TSString" },
     ["@string.escape"] = { link = "TSStringEscape" },
+    ["@string.escape.json"] = { link = "jsonTSStringEscape" },
     ["@string.escape.yaml"] = { link = "yamlTSStringEscape" },
     ["@string.json"] = { link = "jsonTSString" },
     ["@string.regex"] = { link = "TSStringRegex" },
@@ -658,6 +662,7 @@ highlights.generate_syntax = function(palette, options)
     ["@variable"] = { link = "TSVariable" },
     ["@variable.builtin"] = { link = "TSVariableBuiltin" },
     ["@variable.member"] = { link = "TSField" },
+    ["@variable.member.yaml"] = { link = "yamlTSField" },
     ["@variable.parameter"] = { link = "TSParameter" },
 
     -- LSP Semantic token highlights
