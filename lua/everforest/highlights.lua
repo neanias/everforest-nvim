@@ -582,6 +582,7 @@ highlights.generate_syntax = function(palette, options)
     ["@markup.list.checked"] = { link = "Green" },
     ["@markup.list.unchecked"] = { link = "Ignore" },
     ["@markup.math"] = { link = "TSMath" },
+    ["@markup.quote"] = { link = "Grey" },
     ["@markup.raw"] = { link = "TSLiteral" },
     ["@markup.strike"] = { link = "TSStrike" },
     ["@markup.strong"] = { link = "TSStrong" },
