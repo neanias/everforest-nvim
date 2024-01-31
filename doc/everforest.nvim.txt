@@ -1,4 +1,4 @@
-*everforest.nvim.txt*     For Neovim >= 0.8.0     Last change: 2024 January 23
+*everforest.nvim.txt*     For Neovim >= 0.8.0     Last change: 2024 January 31
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
@@ -18,7 +18,21 @@ Table of Contents                          *everforest.nvim-table-of-contents*
 1. Everforest.nvim                           *everforest.nvim-everforest.nvim*
 
 A Lua port of the everforest <https://github.com/sainnhe/everforest> colour
-scheme. For screenshots, please see the everforest repo.
+scheme.
+
+  -----------------------------------------------------------------------
+                                   Dark                    Light
+  ----------------------- ----------------------- -----------------------
+           Hard             [everforest colour       [eveforest colour
+                             scheme dark hard]      scheme light hard]
+
+     Medium (default)        [eveforest colour      [everforest colour
+                            scheme dark medium]    scheme light medium]
+
+           Soft             [everforest colour      [everforest colour
+                             scheme dark soft]      scheme light soft]
+  -----------------------------------------------------------------------
+_All screenshots taken from my personal config_
 
 
 FEATURES                            *everforest.nvim-everforest.nvim-features*
