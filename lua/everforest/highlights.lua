@@ -569,6 +569,7 @@ highlights.generate_syntax = function(palette, options)
     ["@keyword.import.go"] = { link = "goTSInclude" },
     ["@keyword.import.javascript"] = { link = "javascriptTSInclude" },
     ["@keyword.import.typescript"] = { link = "typescriptTSInclude" },
+    ["@keyword.modifier"] = { link = "TSTypeQualifier" },
     ["@keyword.operator"] = { link = "TSKeywordOperator" },
     ["@keyword.repeat"] = { link = "TSRepeat" },
     ["@keyword.return"] = { link = "TSKeywordReturn" },
