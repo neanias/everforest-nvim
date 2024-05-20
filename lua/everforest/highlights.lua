@@ -1663,7 +1663,7 @@ highlights.generate_syntax = function(palette, options)
 
     -- williamboman/mason.nvim
     MasonHeader = syntax_entry(palette.bg0, palette.green, { styles.bold }),
-    MasonHeaderSecondary = syntax_entry(palette.bg0, palette.orange, { styles.bold } ),
+    MasonHeaderSecondary = syntax_entry(palette.bg0, palette.orange, { styles.bold }),
     MasonHighlight = { link = "Green" },
     MasonHighlightSecondary = { link = "Yellow" },
     MasonHighlightBlock = syntax_entry(palette.bg0, palette.aqua),
