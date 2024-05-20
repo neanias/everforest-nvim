@@ -592,6 +592,7 @@ highlights.generate_syntax = function(palette, options)
     ["@markup.heading.4.marker.markdown"] = { link = "@conceal" },
     ["@markup.heading.5.marker.markdown"] = { link = "@conceal" },
     ["@markup.heading.6.marker.markdown"] = { link = "@conceal" },
+    ["@markup.italic"] = { link = "TSEmphasis" },
     ["@markup.link"] = { link = "TSTextReference" },
     ["@markup.link.label"] = { link = "TSStringSpecial" },
     ["@markup.link.url"] = { link = "TSURI" },
