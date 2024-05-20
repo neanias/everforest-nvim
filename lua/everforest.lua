@@ -18,6 +18,7 @@ local M = {}
 ---@field spell_foreground boolean
 ---@field show_eob boolean
 ---@field float_style "bright" | "dim"
+---@field inlay_hints_background "none" | "dimmed"
 ---@field on_highlights fun(highlight_groups: Highlights, palette: Palette)
 ---@field colours_override fun(palette: Palette)
 M.config = {
@@ -72,6 +73,12 @@ M.config = {
   ---NB: This is only significant for dark backgrounds as the light palettes
   ---have the same colour for both values in the switch.
   float_style = "bright",
+  ---Inlay hints are special markers that are displayed inline with the code to
+  ---provide you with additional information. You can use this option to customize
+  ---the background color of inlay hints.
+  ---
+  ---Options are `"none"` or `"dimmed"`.
+  inlay_hints_background = "none",
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights

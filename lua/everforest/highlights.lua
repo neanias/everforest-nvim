@@ -258,6 +258,7 @@ highlights.generate_syntax = function(palette, options)
     LspDiagnosticsSignWarning = { link = "DiagnosticSignWarn" },
     LspDiagnosticsSignInformation = { link = "DiagnosticSignInfo" },
     LspDiagnosticsSignHint = { link = "DiagnosticSignHint" },
+    LspInlayHint = { link = "InlayHints" },
     LspReferenceText = { link = "CurrentWord" },
     LspReferenceRead = { link = "CurrentWord" },
     LspReferenceWrite = { link = "CurrentWord" },
@@ -797,7 +798,7 @@ highlights.generate_syntax = function(palette, options)
     CocMenuSel = { link = "PmenuSel" },
     CocDisabled = { link = "Grey" },
     CocSnippetVisual = { link = "DiffAdd" },
-    CocInlayHint = { link = "LineNr" },
+    CocInlayHint = { link = "InlayHints" },
     CocNotificationProgress = { link = "Green" },
     CocNotificationButton = { link = "PmenuSel" },
     CocSemClass = { link = "TSType" },
@@ -898,8 +899,8 @@ highlights.generate_syntax = function(palette, options)
     LspInformationHighlight = { link = "InfoText" },
     LspHintHighlight = { link = "HintText" },
     lspReference = { link = "CurrentWord" },
-    lspInlayHintsType = { link = "LineNr" },
-    lspInlayHintsParameter = { link = "LineNr" },
+    lspInlayHintsType = { link = "InlayHints" },
+    lspInlayHintsParameter = { link = "InlayHints" },
     LspSemanticType = { link = "TSType" },
     LspSemanticClass = { link = "TSType" },
     LspSemanticEnum = { link = "TSType" },
@@ -928,7 +929,7 @@ highlights.generate_syntax = function(palette, options)
     YcmWarningLine = { link = "WarningLine" },
     YcmErrorSection = { link = "ErrorText" },
     YcmWarningSection = { link = "WarningText" },
-    YcmInlayHint = { link = "LineNr" },
+    YcmInlayHint = { link = "InlayHints" },
 
     -- dense-analysis/ale
     ALEError = { link = "ErrorText" },
@@ -1990,6 +1991,12 @@ highlights.generate_syntax = function(palette, options)
     syntax["NeoTreeNormal"] = syntax_entry(palette.fg, palette.bg_dim)
     syntax["NeoTreeEndOfBuffer"] = syntax_entry(palette.bg_dim, palette.bg_dim)
     syntax["NeoTreeVertSplit"] = syntax_entry(palette.bg0, palette.bg0)
+  end
+
+  if options.inlay_hints_background == "none" then
+    syntax["InlayHints"] = { link = "LineNr" }
+  elseif options.inlay_hints_background == "dimmed" then
+    syntax["InlayHints"] = syntax_entry(palette.grey1, palette.bg_dim)
   end
 
   local lsp_kind_colours = {
