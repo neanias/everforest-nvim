@@ -782,6 +782,8 @@ highlights.generate_syntax = function(palette, options)
     -- machakann/vim-highlightedyank
     HighlightedyankRegion = { link = "Visual" },
 
+    CopilotSuggestion = { link = "Grey" },
+
     -- Coc.nvim
     CocHoverRange = syntax_entry(palette.none, palette.none, { styles.bold, styles.underline }),
     CocSearch = syntax_entry(palette.green, palette.none, { styles.bold }),
