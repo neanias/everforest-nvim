@@ -483,7 +483,7 @@ highlights.generate_syntax = function(palette, options)
     TSTypeBuiltin = { link = "YellowItalic" },
     TSTypeDefinition = { link = "YellowItalic" },
     TSTypeQualifier = { link = "Orange" },
-    TSURI = { link = "markdownUrl" },
+    TSURI = syntax_entry(palette.blue, palette.none, { styles.underline }),
     TSVariable = { link = "Fg" },
     TSVariableBuiltin = { link = "PurpleItalic" },
 
@@ -1698,7 +1698,7 @@ highlights.generate_syntax = function(palette, options)
     markdownH4 = syntax_entry(palette.green, palette.none, { styles.bold }),
     markdownH5 = syntax_entry(palette.blue, palette.none, { styles.bold }),
     markdownH6 = syntax_entry(palette.purple, palette.none, { styles.bold }),
-    markdownUrl = syntax_entry(palette.blue, palette.none, { styles.underline }),
+    markdownUrl = { link = "TSURI" },
     markdownItalic = syntax_entry(palette.none, palette.none, { styles.italic }),
     markdownBold = syntax_entry(palette.none, palette.none, { styles.bold }),
     markdownItalicDelimiter = syntax_entry(palette.grey1, palette.none, { styles.italic }),
