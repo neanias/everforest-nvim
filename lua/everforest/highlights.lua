@@ -1659,6 +1659,18 @@ highlights.generate_syntax = function(palette, options)
     NoiceCompletionItemKindOperator = syntax_entry(palette.green, palette.none),
     NoiceCompletionItemKindSnippet = syntax_entry(palette.grey1, palette.none),
 
+    -- williamboman/mason.nvim
+    MasonHeader = syntax_entry(palette.bg0, palette.green, { styles.bold }),
+    MasonHeaderSecondary = syntax_entry(palette.bg0, palette.orange, { styles.bold } ),
+    MasonHighlight = { link = "Green" },
+    MasonHighlightSecondary = { link = "Yellow" },
+    MasonHighlightBlock = syntax_entry(palette.bg0, palette.aqua),
+    MasonHighlightBlockBold = syntax_entry(palette.bg0, palette.aqua, { styles.bold }),
+    MasonHighlightBlockSecondary = syntax_entry(palette.bg0, palette.yellow),
+    MasonHighlightBlockBoldSecondary = syntax_entry(palette.bg0, palette.yellow, { styles.bold }),
+    MasonMuted = syntax_entry(palette.grey0, palette.none),
+    MasonMutedBlock = syntax_entry(palette.bg0, palette.grey0),
+
     -- nullchilly/fsread.nvim
     FSPrefix = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0), { styles.bold }),
     FSSuffix = syntax_entry(palette.grey1, palette.none),
