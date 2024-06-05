@@ -12,12 +12,7 @@ local styles = {
   nocombine = "nocombine",
 }
 
----@class Highlight
----@field fg string|nil
----@field bg string|nil
----@field sp string|nil
----@field style string|nil|Highlight
----@field link string|nil
+---@alias Highlight vim.api.keyset.highlight
 
 ---@alias Highlights table<string,Highlight>
 
