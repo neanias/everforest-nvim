@@ -98,53 +98,44 @@ highlights.generate_syntax = function(palette, options)
 
   ---@type Highlights
   local syntax = {
-    Normal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
-    NormalNC = syntax_entry(
-      palette.fg,
-      transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
-    ),
-    Terminal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
-    EndOfBuffer = syntax_entry((options.show_eob and palette.bg4) or palette.bg0, palette.none),
-    Folded = syntax_entry(palette.grey1, transparency_respecting_colour(palette.bg1)),
-    SignColumn = syntax_entry(palette.fg, sign_column_respecting_colour(palette.bg1)),
-    FoldColumn = syntax_entry(
-      (options.sign_column_background == "grey" and palette.grey2) or palette.bg5,
-      sign_column_respecting_colour(palette.bg1)
-    ),
-    ToolbarLine = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg2)),
-    IncSearch = syntax_entry(palette.bg0, palette.red),
-    Search = syntax_entry(palette.bg0, palette.green),
     ColorColumn = syntax_entry(palette.none, palette.bg1),
     Conceal = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
+    CurSearch = { link = "IncSearch" },
     Cursor = syntax_entry(palette.none, palette.none, { styles.reverse }),
     lCursor = { link = "Cursor" },
     CursorIM = { link = "Cursor" },
-    CursorLine = syntax_entry(palette.none, palette.bg1),
     CursorColumn = syntax_entry(palette.none, palette.bg1),
-    LineNr = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
-    CursorLineNr = syntax_entry(
-      set_colour_based_on_ui_contrast(palette.grey1, palette.grey2),
-      sign_column_respecting_colour(palette.bg1)
-    ),
-
+    CursorLine = syntax_entry(palette.none, palette.bg1),
+    Directory = syntax_entry(palette.green, palette.none),
     DiffAdd = syntax_entry(palette.none, palette.bg_green),
     DiffChange = syntax_entry(palette.none, palette.bg_blue),
     DiffDelete = syntax_entry(palette.none, palette.bg_red),
     DiffText = syntax_entry(palette.bg0, palette.blue),
-    Directory = syntax_entry(palette.green, palette.none),
+    EndOfBuffer = syntax_entry((options.show_eob and palette.bg4) or palette.bg0, palette.none),
+    TermCursor = { link = "Cursor" },
+    TermCursorNC = { link = "Cursor" },
     ErrorMsg = syntax_entry(palette.red, palette.none, { styles.bold, styles.underline }),
-    WarningMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
+    WinSeparator = { link = "VertSplit" },
+    Folded = syntax_entry(palette.grey1, transparency_respecting_colour(palette.bg1)),
+    FoldColumn = syntax_entry(
+      (options.sign_column_background == "grey" and palette.grey2) or palette.bg5,
+      sign_column_respecting_colour(palette.bg1)
+    ),
+    SignColumn = syntax_entry(palette.fg, sign_column_respecting_colour(palette.bg1)),
+    IncSearch = syntax_entry(palette.bg0, palette.red),
+    Substitute = syntax_entry(palette.bg0, palette.yellow),
+    LineNr = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
+    LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
+    LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
+    CursorLineNr = syntax_entry(
+      set_colour_based_on_ui_contrast(palette.grey1, palette.grey2),
+      sign_column_respecting_colour(palette.bg1)
+    ),
+    MatchParen = syntax_entry(palette.none, palette.bg4),
     ModeMsg = syntax_entry(palette.fg, palette.none, { styles.bold }),
     MoreMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-    MatchParen = syntax_entry(palette.none, palette.bg4),
     NonText = syntax_entry(palette.bg4, palette.none),
-    Whitespace = syntax_entry(palette.bg4, palette.none),
-    SpecialKey = syntax_entry(palette.bg3, palette.none),
-    Pmenu = syntax_entry(palette.fg, palette.bg2),
-    PmenuSbar = syntax_entry(palette.none, palette.bg2),
-    PmenuSel = syntax_entry(palette.bg0, palette.statusline1),
-    WildMenu = { link = "PmenuSel" },
-    PmenuThumb = syntax_entry(palette.none, palette.grey0),
+    Normal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
     NormalFloat = syntax_entry(palette.fg, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
     FloatBorder = syntax_entry(palette.grey1, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
     FloatTitle = syntax_entry(
@@ -152,8 +143,18 @@ highlights.generate_syntax = function(palette, options)
       (options.float_style == "bright" and palette.bg2) or palette.bg_dim,
       { styles.bold }
     ),
+    NormalNC = syntax_entry(
+      palette.fg,
+      transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
+    ),
+    Pmenu = syntax_entry(palette.fg, palette.bg2),
+    PmenuSbar = syntax_entry(palette.none, palette.bg2),
+    PmenuSel = syntax_entry(palette.bg0, palette.statusline1),
+    PmenuThumb = syntax_entry(palette.none, palette.grey0),
     Question = syntax_entry(palette.yellow, palette.none),
-
+    QuickFixLine = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    Search = syntax_entry(palette.bg0, palette.green),
+    SpecialKey = syntax_entry(palette.bg3, palette.none),
     SpellBad = syntax_entry(
       options.spell_foreground and palette.red or palette.none,
       palette.none,
@@ -178,19 +179,10 @@ highlights.generate_syntax = function(palette, options)
       { styles.undercurl },
       palette.purple
     ),
-
     StatusLine = syntax_entry(palette.grey1, options.transparent_background_level == 2 and palette.none or palette.bg2),
-    StatusLineTerm = syntax_entry(
-      palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg1
-    ),
     StatusLineNC = syntax_entry(
       options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
       options.transparent_background_level == 2 and palette.none or palette.bg1
-    ),
-    StatusLineTermNC = syntax_entry(
-      options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg0
     ),
     TabLine = syntax_entry(palette.grey2, palette.bg3),
     TabLineFill = syntax_entry(
@@ -198,19 +190,35 @@ highlights.generate_syntax = function(palette, options)
       options.transparent_background_level == 2 and palette.none or palette.bg1
     ),
     TabLineSel = syntax_entry(palette.bg0, palette.statusline1),
-    VertSplit = syntax_entry(palette.bg4, (options.dim_inactive_windows and palette.bg_dim) or palette.none),
-    WinSeparator = { link = "VertSplit" },
-
+    Title = syntax_entry(palette.orange, palette.none, { styles.bold }),
     Visual = syntax_entry(palette.none, palette.bg_visual),
     VisualNOS = syntax_entry(palette.none, palette.bg_visual),
-    QuickFixLine = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    WarningMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
+    Whitespace = syntax_entry(palette.bg4, palette.none),
+    WildMenu = { link = "PmenuSel" },
+    WinBar = { link = "StatusLine" },
+    WinBarNC = { link = "StatusLineNC" },
+    Terminal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
+    ToolbarLine = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg2)),
+
+    Added = { link = "Green" },
+    Changed = { link = "Yellow" },
+    Removed = { link = "Red" },
+
+    StatusLineTerm = syntax_entry(
+      palette.grey1,
+      options.transparent_background_level == 2 and palette.none or palette.bg1
+    ),
+    StatusLineTermNC = syntax_entry(
+      options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
+      options.transparent_background_level == 2 and palette.none or palette.bg0
+    ),
+    VertSplit = syntax_entry(palette.bg4, (options.dim_inactive_windows and palette.bg_dim) or palette.none),
+
     Debug = syntax_entry(palette.orange, palette.none),
     debugPC = syntax_entry(palette.bg0, palette.green),
     debugBreakpoint = syntax_entry(palette.bg0, palette.red),
     ToolbarButton = syntax_entry(palette.bg0, palette.green),
-    Substitute = syntax_entry(palette.bg0, palette.yellow),
-    WinBar = { link = "StatusLine" },
-    WinBarNC = { link = "StatusLineNC" },
     DiagnosticFloatingError = { link = "ErrorFloat" },
     DiagnosticFloatingWarn = { link = "WarningFloat" },
     DiagnosticFloatingInfo = { link = "InfoFloat" },
@@ -287,7 +295,6 @@ highlights.generate_syntax = function(palette, options)
     LspCodeLens = { link = "VirtualTextInfo" },
     LspCodeLensSeparator = { link = "VirtualTextHint" },
     LspSignatureActiveParameter = { link = "Search" },
-    TermCursor = { link = "Cursor" },
     healthError = { link = "Red" },
     healthSuccess = { link = "Green" },
     healthWarning = { link = "Yellow" },
@@ -313,7 +320,6 @@ highlights.generate_syntax = function(palette, options)
     Label = syntax_entry(palette.orange, palette.none),
     Structure = syntax_entry(palette.orange, palette.none),
     Operator = syntax_entry(palette.orange, palette.none),
-    Title = syntax_entry(palette.orange, palette.none, { styles.bold }),
     Special = syntax_entry(palette.yellow, palette.none),
     SpecialChar = syntax_entry(palette.yellow, palette.none),
     Type = syntax_entry(palette.yellow, palette.none),
