@@ -1362,6 +1362,9 @@ highlights.generate_syntax = function(palette, options)
     MiniStarterSection = { link = "Title" },
     MiniSurround = { link = "IncSearch" },
     MiniTablineFill = { link = "TabLineFill" },
+    MiniDiffSignAdd = { link = "GreenSign" },
+    MiniDiffSignChange = { link = "BlueSign" },
+    MiniDiffSignDelete = { link = "RedSign" },
 
     -- ggandor/lightspeed.nvim
     LightspeedLabel = syntax_entry(palette.red, palette.none, { styles.bold, styles.underline }),
