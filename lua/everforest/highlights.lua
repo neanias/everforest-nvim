@@ -220,19 +220,45 @@ highlights.generate_syntax = function(palette, options)
     DiagnosticFloatingWarn = { link = "WarningFloat" },
     DiagnosticFloatingInfo = { link = "InfoFloat" },
     DiagnosticFloatingHint = { link = "HintFloat" },
-    DiagnosticError = { link = "ErrorText" },
-    DiagnosticWarn = { link = "WarningText" },
-    DiagnosticInfo = { link = "InfoText" },
-    DiagnosticHint = { link = "HintText" },
+    DiagnosticError = syntax_entry(palette.red, options.diagnostic_text_highlight and palette.bg_red or palette.none),
+    DiagnosticWarn = syntax_entry(
+      palette.yellow,
+      options.diagnostic_text_highlight and palette.bg_yellow or palette.none
+    ),
+    DiagnosticInfo = syntax_entry(palette.blue, options.diagnostic_text_highlight and palette.bg_blue or palette.none),
+    DiagnosticHint = syntax_entry(
+      palette.green,
+      options.diagnostic_text_highlight and palette.bg_green or palette.none
+    ),
     DiagnosticUnnecessary = { link = "WarningText" },
     DiagnosticVirtualTextError = { link = "VirtualTextError" },
     DiagnosticVirtualTextWarn = { link = "VirtualTextWarning" },
     DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" },
     DiagnosticVirtualTextHint = { link = "VirtualTextHint" },
-    DiagnosticUnderlineError = { link = "ErrorText" },
-    DiagnosticUnderlineWarn = { link = "WarningText" },
-    DiagnosticUnderlineInfo = { link = "InfoText" },
-    DiagnosticUnderlineHint = { link = "HintText" },
+    DiagnosticUnderlineError = syntax_entry(
+      palette.red,
+      options.diagnostic_text_highlight and palette.bg_red or palette.none,
+      { styles.undercurl },
+      palette.red
+    ),
+    DiagnosticUnderlineWarn = syntax_entry(
+      palette.yellow,
+      options.diagnostic_text_highlight and palette.bg_yellow or palette.none,
+      { styles.undercurl },
+      palette.yellow
+    ),
+    DiagnosticUnderlineInfo = syntax_entry(
+      palette.blue,
+      options.diagnostic_text_highlight and palette.bg_blue or palette.none,
+      { styles.undercurl },
+      palette.blue
+    ),
+    DiagnosticUnderlineHint = syntax_entry(
+      palette.green,
+      options.diagnostic_text_highlight and palette.bg_green or palette.none,
+      { styles.undercurl },
+      palette.green
+    ),
     DiagnosticSignError = { link = "RedSign" },
     DiagnosticSignWarn = { link = "YellowSign" },
     DiagnosticSignInfo = { link = "BlueSign" },
