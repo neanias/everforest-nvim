@@ -196,8 +196,15 @@ highlights.generate_syntax = function(palette, options)
     WarningMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
     Whitespace = syntax_entry(palette.bg4, palette.none),
     WildMenu = { link = "PmenuSel" },
-    WinBar = { link = "StatusLine" },
-    WinBarNC = { link = "StatusLineNC" },
+    WinBar = syntax_entry(
+      palette.grey1,
+      options.transparent_background_level == 2 and palette.none or palette.bg2,
+      { styles.bold }
+    ),
+    WinBarNC = syntax_entry(
+      options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
+      options.transparent_background_level == 2 and palette.none or palette.bg1
+    ),
     Terminal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
     ToolbarLine = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg2)),
 
