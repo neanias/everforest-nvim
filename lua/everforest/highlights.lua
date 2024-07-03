@@ -233,7 +233,7 @@ highlights.generate_syntax = function(palette, options)
       palette.green,
       options.diagnostic_text_highlight and palette.bg_green or palette.none
     ),
-    DiagnosticUnnecessary = { link = "WarningText" },
+    DiagnosticUnnecessary = syntax_entry(palette.grey1, palette.none),
     DiagnosticVirtualTextError = { link = "VirtualTextError" },
     DiagnosticVirtualTextWarn = { link = "VirtualTextWarning" },
     DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" },
