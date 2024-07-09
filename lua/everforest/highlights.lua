@@ -154,7 +154,7 @@ highlights.generate_syntax = function(palette, options)
     Question = syntax_entry(palette.yellow, palette.none),
     QuickFixLine = syntax_entry(palette.purple, palette.none, { styles.bold }),
     Search = syntax_entry(palette.bg0, palette.green),
-    SpecialKey = syntax_entry(palette.bg3, palette.none),
+    SpecialKey = syntax_entry(palette.yellow, palette.none),
     SpellBad = syntax_entry(
       options.spell_foreground and palette.red or palette.none,
       palette.none,
