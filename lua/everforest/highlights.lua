@@ -1331,6 +1331,7 @@ highlights.generate_syntax = function(palette, options)
 
     -- echasnovski/mini.nvim
     MiniAnimateCursor = syntax_entry(palette.none, palette.none, { styles.reverse, styles.nocombine }),
+    MiniFilesFile = syntax_entry(palette.fg, palette.none),
     MiniFilesTitleFocused = syntax_entry(
       palette.green,
       options.float_style == "dim" and palette.bg_dim or palette.bg2,
@@ -1353,6 +1354,7 @@ highlights.generate_syntax = function(palette, options)
     MiniJump2dSpot = syntax_entry(palette.orange, palette.none, { styles.bold, styles.nocombine }),
     MiniJump2dSpotAhead = syntax_entry(palette.aqua, palette.none, { styles.nocombine }),
     MiniJump2dSpotUnique = syntax_entry(palette.yellow, palette.none, { styles.bold, styles.nocombine }),
+    MiniPickPrompt = syntax_entry(palette.blue, options.float_style == "dim" and palette.bg_dim or palette.bg2),
     MiniStarterCurrent = syntax_entry(palette.none, palette.none, { styles.nocombine }),
     MiniStatuslineDevinfo = syntax_entry(palette.grey1, palette.bg1),
     MiniStatuslineFileinfo = syntax_entry(palette.grey1, palette.bg1),
@@ -1405,7 +1407,6 @@ highlights.generate_syntax = function(palette, options)
     MiniFilesBorderModified = { link = "DiagnosticFloatingWarn" },
     MiniFilesCursorLine = { link = "CursorLine" },
     MiniFilesDirectory = { link = "Directory" },
-    MiniFilesFile = { link = "NormalFloat" },
     MiniFilesNormal = { link = "NormalFloat" },
     MiniFilesTitle = { link = "FloatTitle" },
     MiniIndentscopeSymbol = { link = "Grey" },
@@ -1431,7 +1432,6 @@ highlights.generate_syntax = function(palette, options)
     MiniPickNormal = { link = "NormalFloat" },
     MiniPickPreviewLine = { link = "CursorLine" },
     MiniPickPreviewRegion = { link = "IncSearch" },
-    MiniPickPrompt = { link = "DiagnosticFloatingInfo" },
     MiniStarterFooter = { link = "Orange" },
     MiniStarterHeader = { link = "Yellow" },
     MiniStarterInactive = { link = "Comment" },
