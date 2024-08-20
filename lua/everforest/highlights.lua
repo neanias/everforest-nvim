@@ -661,6 +661,7 @@ highlights.generate_syntax = function(palette, options)
     ["@punctuation.bracket.regex"] = { link = "TSStringRegex" },
     ["@punctuation.delimiter"] = { link = "TSPunctDelimiter" },
     ["@punctuation.special"] = { link = "TSPunctSpecial" },
+    ["@punctuation.special.typescript"] = { link = "TSOperator" },
     ["@repeat"] = { link = "TSRepeat" },
     ["@storageclass"] = { link = "TSStorageClass" },
     ["@storageclass.lifetime"] = { link = "TSStorageClassLifetime" },
