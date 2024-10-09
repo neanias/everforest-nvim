@@ -2127,6 +2127,10 @@ highlights.generate_syntax = function(palette, options)
     syntax["NeoTreeVertSplit"] = syntax_entry(palette.bg0, palette.bg0)
   end
 
+  if vim.o.background == "light" then
+    syntax["NeoTreeCursorLine"] = syntax_entry(palette.none, palette.bg0)
+  end
+
   if options.inlay_hints_background == "none" then
     syntax["InlayHints"] = { link = "LineNr" }
   elseif options.inlay_hints_background == "dimmed" then
