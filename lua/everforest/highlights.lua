@@ -2220,7 +2220,6 @@ highlights.generate_syntax = function(palette, options)
   vim.g.terminal_color_7 = terminal.white
   vim.g.terminal_color_15 = terminal.white
 
-
   -- junegunn/fzf.vim
   vim.g.fzf_colors = {
     fg = { "fg", "Normal" },
