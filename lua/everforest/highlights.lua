@@ -1,5 +1,7 @@
 local highlights = {}
 
+local ColourUtility = require("everforest.colour_utility")
+
 ---@enum Styles
 local styles = {
   bold = "bold",
@@ -2195,21 +2197,29 @@ highlights.generate_syntax = function(palette, options)
 
   -- Consider adding configuration options for this
   vim.g.terminal_color_0 = terminal.black
-  vim.g.terminal_color_1 = terminal.red
-  vim.g.terminal_color_2 = terminal.green
-  vim.g.terminal_color_3 = terminal.yellow
-  vim.g.terminal_color_4 = terminal.blue
-  vim.g.terminal_color_5 = terminal.purple
-  vim.g.terminal_color_6 = terminal.cyan
-  vim.g.terminal_color_7 = terminal.white
   vim.g.terminal_color_8 = terminal.black
-  vim.g.terminal_color_9 = terminal.red
-  vim.g.terminal_color_10 = terminal.green
-  vim.g.terminal_color_11 = terminal.yellow
-  vim.g.terminal_color_12 = terminal.blue
-  vim.g.terminal_color_13 = terminal.purple
-  vim.g.terminal_color_14 = terminal.cyan
+
+  vim.g.terminal_color_1 = terminal.red
+  vim.g.terminal_color_9 = ColourUtility.blend_fg(terminal.red, 0.5)
+
+  vim.g.terminal_color_2 = terminal.green
+  vim.g.terminal_color_10 = ColourUtility.blend_fg(terminal.green, 0.5)
+
+  vim.g.terminal_color_3 = terminal.yellow
+  vim.g.terminal_color_11 = ColourUtility.blend_fg(terminal.yellow, 0.5)
+
+  vim.g.terminal_color_4 = terminal.blue
+  vim.g.terminal_color_12 = ColourUtility.blend_fg(terminal.blue, 0.5)
+
+  vim.g.terminal_color_5 = terminal.purple
+  vim.g.terminal_color_13 = ColourUtility.blend_fg(terminal.purple, 0.5)
+
+  vim.g.terminal_color_6 = terminal.cyan
+  vim.g.terminal_color_14 = ColourUtility.blend_fg(terminal.cyan, 0.5)
+
+  vim.g.terminal_color_7 = terminal.white
   vim.g.terminal_color_15 = terminal.white
+
 
   -- junegunn/fzf.vim
   vim.g.fzf_colors = {
