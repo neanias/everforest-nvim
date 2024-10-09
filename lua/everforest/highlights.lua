@@ -2071,7 +2071,7 @@ highlights.generate_syntax = function(palette, options)
     shVarAssign = { link = "Orange" },
     shCmdSubRegion = { link = "Green" },
     shCommandSub = { link = "Orange" },
-    shFunctionOne = { link = "Green" },
+    shFunction = { link = "Green" },
     shFunctionKey = { link = "RedItalic" },
 
     -- ZSH
