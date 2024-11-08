@@ -1218,8 +1218,7 @@ highlights.generate_syntax = function(palette, options)
 
     -- ggandor/leap.nvim
     LeapMatch = syntax_entry(palette.fg, palette.purple, { styles.bold }),
-    LeapLabelPrimary = syntax_entry(palette.purple, palette.none, { styles.bold }),
-    LeapLabelSecondary = syntax_entry(palette.green, palette.none, { styles.bold }),
+    LeapLabel = syntax_entry(palette.purple, palette.none, { styles.bold }),
     LeapBackdrop = syntax_entry(palette.grey1, palette.none),
 
     -- lukas-reineke/indent-blankline.nvim
