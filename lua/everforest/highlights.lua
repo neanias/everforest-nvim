@@ -1269,6 +1269,9 @@ highlights.generate_syntax = function(palette, options)
     BufferTabpages = syntax_entry(palette.grey1, palette.bg_dim, { styles.bold }),
     BufferTabpageFill = syntax_entry(palette.bg_dim, palette.bg_dim),
 
+    BlinkCmpLabelMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
+    BlinkCmpKind = { link = "Yellow" },
+
     -- SmiteshP/nvim-navic
     NavicIconsFile = syntax_entry(palette.fg, palette.none),
     NavicIconsModule = syntax_entry(palette.yellow, palette.none),
@@ -2186,6 +2189,7 @@ highlights.generate_syntax = function(palette, options)
     syntax["CmpItemKind" .. kind] = { link = colour }
     syntax["CocSymbol" .. kind] = { link = colour }
     syntax["Aerial" .. kind .. "Icon"] = { link = colour }
+    syntax["BlinkCmpKind" .. kind] = { link = colour }
   end
 
   -- Terminal colours
