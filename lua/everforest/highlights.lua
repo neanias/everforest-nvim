@@ -928,10 +928,10 @@ highlights.generate_syntax = function(palette, options)
     CocExplorerFileHidden = { link = "Grey" },
 
     -- prabirshrestha/vim-lsp
-    LspErrorVirtual = { link = "VirtualTextError" },
-    LspWarningVirtual = { link = "VirtualTextWarning" },
-    LspInformationVirtual = { link = "VirtualTextInfo" },
-    LspHintVirtual = { link = "VirtualTextHint" },
+    LspErrorVirtualText = { link = "VirtualTextError" },
+    LspWarningVirtualText = { link = "VirtualTextWarning" },
+    LspInformationVirtualText = { link = "VirtualTextInfo" },
+    LspHintVirtualText = { link = "VirtualTextHint" },
     LspErrorHighlight = { link = "ErrorText" },
     LspWarningHighlight = { link = "WarningText" },
     LspInformationHighlight = { link = "InfoText" },
