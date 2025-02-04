@@ -78,7 +78,7 @@ local medium_background = {
     bg3 = "#475258",
     bg4 = "#4f585e",
     bg5 = "#56635f",
-    bg_visual = "#543a48",
+    bg_visual = "#384B55",
     bg_red = "#514045",
     bg_green = "#425047",
     bg_blue = "#3a515d",
@@ -110,7 +110,7 @@ local soft_background = {
     bg3 = "#4d5960",
     bg4 = "#555f66",
     bg5 = "#5d6b66",
-    bg_visual = "#5c3f4f",
+    bg_visual = "#384B55",
     bg_red = "#59464c",
     bg_green = "#48584e",
     bg_blue = "#3f5865",
@@ -175,7 +175,7 @@ local base_palette = {
 ---@param theme "light" | "dark" The user's background preference
 ---@return Palette
 M.generate_palette = function(options, theme)
-  local background = options.background or "medium"
+  local background = options.background or "hard"
   local base = base_palette[theme]
   ---@type PaletteBackground
   local background_palette
