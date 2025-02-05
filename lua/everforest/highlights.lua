@@ -960,6 +960,22 @@ highlights.generate_syntax = function(palette, options)
     LspSemanticRegexp = { link = "TSStringRegex" },
     LspSemanticOperator = { link = "TSOperator" },
 
+    -- yegappan/lsp
+    LspDiagInlineError = { link = "ErrorText" },
+    LspDiagInlineWarning = { link = "WarningText" },
+    LspDiagInlineInfo = { link = "InfoText" },
+    LspDiagInlineHint = { link = "HintText" },
+    LspDiagSignErrorText = { link = "RedSign" },
+    LspDiagSignWarningText = { link = "YellowSign" },
+    LspDiagSignInfoText = { link = "BlueSign" },
+    LspDiagSignHintText = { link = "GreenSign" },
+    LspDiagVirtualTextError = { link = "VirtualTextError" },
+    LspDiagVirtualTextWarning = { link = "VirtualTextWarning" },
+    LspDiagVirtualTextInfo = { link = "VirtualTextInfo" },
+    LspDiagVirtualTextHint = { link = "VirtualTextHint" },
+    LspInlayHintsParam = { link = "InlayHints" },
+    LspSigActiveParameter = { link = "DiffAdd" },
+
     -- ycm-core/YouCompleteMe
     YcmErrorSign = { link = "RedSign" },
     YcmWarningSign = { link = "YellowSign" },
