@@ -1210,6 +1210,21 @@ highlights.generate_syntax = function(palette, options)
     TelescopePromptPrefix = { link = "Orange" },
     TelescopeSelection = { link = "DiffAdd" },
 
+    -- folke/snacks.nvim {{{
+    SnacksPicker = { link = "Normal" },
+    SnacksPickerBorder = { link = "Grey" },
+    SnacksPickerTitle = { link = "Title" },
+    SnacksPickerFooter = { link = "SnacksPickerTitle" },
+    SnacksPickerPrompt = { link = "Orange" },
+    SnacksPickerInputCursorLine = { link = "DiffAdd" },
+    SnacksPickerMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
+    SnacksPickerToggle = { link = "CursorLine" },
+    SnacksPickerDir = { link = "Comment" },
+    SnacksPickerBufFlags = { link = "Grey" },
+    SnacksPickerSelected = { link = "Aqua" },
+    SnacksPickerKeymapRhs = { link = "Grey" },
+    -- }}}
+
     -- lewis6991/gitsigns.nvim
     GitSignsAdd = { link = "GreenSign" },
     GitSignsChange = { link = "BlueSign" },
