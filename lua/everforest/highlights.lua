@@ -1210,6 +1210,9 @@ highlights.generate_syntax = function(palette, options)
     TelescopePromptPrefix = { link = "Orange" },
     TelescopeSelection = { link = "DiffAdd" },
 
+    -- ighagwan/fzf-lua
+    FzfLuaBorder = { link = "Grey" },
+
     -- folke/snacks.nvim {{{
     SnacksPicker = { link = "Normal" },
     SnacksPickerBorder = { link = "Grey" },
