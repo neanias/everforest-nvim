@@ -210,10 +210,6 @@ highlights.generate_syntax = function(palette, options)
     Terminal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
     ToolbarLine = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg2)),
 
-    Added = { link = "Green" },
-    Changed = { link = "Yellow" },
-    Removed = { link = "Red" },
-
     StatusLineTerm = syntax_entry(
       palette.grey1,
       options.transparent_background_level == 2 and palette.none or palette.bg1
@@ -381,6 +377,10 @@ highlights.generate_syntax = function(palette, options)
     AquaSign = syntax_entry(palette.aqua, set_signs_background_colour(palette.bg1)),
     BlueSign = syntax_entry(palette.blue, set_signs_background_colour(palette.bg1)),
     PurpleSign = syntax_entry(palette.purple, set_signs_background_colour(palette.bg1)),
+
+    Added = { link = "Green" },
+    Removed = { link = "Red" },
+    Changed = { link = "Blue" },
 
     -- Configuration based on `diagnostic_text_highlight` option
     ErrorText = syntax_entry(
@@ -809,9 +809,9 @@ highlights.generate_syntax = function(palette, options)
     RainbowDelimiterViolet = { link = "Purple" },
 
     -- Diff
-    diffAdded = { link = "Green" },
-    diffRemoved = { link = "Red" },
-    diffChanged = { link = "Blue" },
+    diffAdded = { link = "Added" },
+    diffRemoved = { link = "Removed" },
+    diffChanged = { link = "Changed" },
     diffOldFile = { link = "Yellow" },
     diffNewFile = { link = "Orange" },
     diffFile = { link = "Aqua" },
@@ -959,6 +959,22 @@ highlights.generate_syntax = function(palette, options)
     LspSemanticNumber = { link = "TSNumber" },
     LspSemanticRegexp = { link = "TSStringRegex" },
     LspSemanticOperator = { link = "TSOperator" },
+
+    -- yegappan/lsp
+    LspDiagInlineError = { link = "ErrorText" },
+    LspDiagInlineWarning = { link = "WarningText" },
+    LspDiagInlineInfo = { link = "InfoText" },
+    LspDiagInlineHint = { link = "HintText" },
+    LspDiagSignErrorText = { link = "RedSign" },
+    LspDiagSignWarningText = { link = "YellowSign" },
+    LspDiagSignInfoText = { link = "BlueSign" },
+    LspDiagSignHintText = { link = "GreenSign" },
+    LspDiagVirtualTextError = { link = "VirtualTextError" },
+    LspDiagVirtualTextWarning = { link = "VirtualTextWarning" },
+    LspDiagVirtualTextInfo = { link = "VirtualTextInfo" },
+    LspDiagVirtualTextHint = { link = "VirtualTextHint" },
+    LspInlayHintsParam = { link = "InlayHints" },
+    LspSigActiveParameter = { link = "DiffAdd" },
 
     -- ycm-core/YouCompleteMe
     YcmErrorSign = { link = "RedSign" },
@@ -1194,6 +1210,25 @@ highlights.generate_syntax = function(palette, options)
     TelescopePromptPrefix = { link = "Orange" },
     TelescopeSelection = { link = "DiffAdd" },
 
+    -- ighagwan/fzf-lua
+    FzfLuaBorder = { link = "Grey" },
+
+    -- folke/snacks.nvim {{{
+    SnacksPicker = { link = "Normal" },
+    SnacksPickerBorder = { link = "Grey" },
+    SnacksPickerTitle = { link = "Title" },
+    SnacksPickerFooter = { link = "SnacksPickerTitle" },
+    SnacksPickerPrompt = { link = "Orange" },
+    SnacksPickerInputCursorLine = { link = "Normal" },
+    SnacksPickerListCursorLine = { link = "DiffAdd" },
+    SnacksPickerMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
+    SnacksPickerToggle = { link = "CursorLine" },
+    SnacksPickerDir = { link = "Comment" },
+    SnacksPickerBufFlags = { link = "Grey" },
+    SnacksPickerSelected = { link = "Aqua" },
+    SnacksPickerKeymapRhs = { link = "Grey" },
+    -- }}}
+
     -- lewis6991/gitsigns.nvim
     GitSignsAdd = { link = "GreenSign" },
     GitSignsChange = { link = "BlueSign" },
@@ -1420,8 +1455,8 @@ highlights.generate_syntax = function(palette, options)
     MiniCompletionActiveParameter = { link = "LspSignatureActiveParameter" },
     MiniCursorword = { link = "CurrentWord" },
     MiniCursorwordCurrent = { link = "CurrentWord" },
-    MiniDepsChangeAdded = { link = "diffAdded" },
-    MiniDepsChangeRemoved = { link = "diffRemoved" },
+    MiniDepsChangeAdded = { link = "Added" },
+    MiniDepsChangeRemoved = { link = "Removed" },
     MiniDepsHints = { link = "DiagnosticHint" },
     MiniDepsInfo = { link = "DiagnosticInfo" },
     MiniDepsMsgBreaking = { link = "DiagnosticWarn" },
