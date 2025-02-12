@@ -1,6 +1,6 @@
 local highlights = {}
 
-local ColourUtility = require("everforest.colour_utility")
+local ColourUtility = require("forestflower.colour_utility")
 
 ---@enum Styles
 local styles = {

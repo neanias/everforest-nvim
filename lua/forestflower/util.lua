@@ -25,7 +25,7 @@ util.load = function(generated_syntax)
   end
 
   vim.o.termguicolors = true
-  vim.g.colors_name = "everforest"
+  vim.g.colors_name = "forestflower"
 
   util.generate_highlights(generated_syntax)
 end

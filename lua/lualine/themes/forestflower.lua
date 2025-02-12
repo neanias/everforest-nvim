@@ -1,5 +1,5 @@
-local palettes = require("everforest.colours")
-local config = require("everforest").config
+local palettes = require("forestflower.colours")
+local config = require("forestflower").config
 
 local palette = palettes.generate_palette(config, vim.o.background)
 
