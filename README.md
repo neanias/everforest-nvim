@@ -9,7 +9,7 @@ scheme.
 |**Medium** (default)|![eveforest colour scheme dark medium](https://github.com/neanias/everforest-nvim/assets/5786847/7094683a-1030-4cfe-b573-210f0b7863b1)|![everforest colour scheme light medium](https://github.com/neanias/everforest-nvim/assets/5786847/cccd5514-40ff-4155-b264-ceeba7b40ebf)|
 |**Soft**|![everforest colour scheme dark soft](https://github.com/neanias/everforest-nvim/assets/5786847/affeb2a7-d934-4c55-a946-d03da01f389a)|![everforest colour scheme light soft](https://github.com/neanias/everforest-nvim/assets/5786847/570e23b2-0515-499b-a257-5a8afe80082e)|
 
-_All screenshots taken from [my personal config](https://github.com/neanias/config/blob/main/nvim/lua/settings/plugins/everforest.lua)_
+_All screenshots taken from [my personal config](https://github.com/YajanaRao/kickstart.nvim)_
 
 ## Features
 
@@ -34,24 +34,6 @@ require("lazy").setup({
     })
   end,
 })
-```
-
-Using [packer.nvim](https://github.com/wbthomason/packer.nvim):
-
-```lua
-use({
-  "neanias/everforest-nvim",
-  -- Optional; default configuration will be used if setup isn't called.
-  config = function()
-    require("everforest").setup()
-  end,
-})
-```
-
-Using [vim-plug](https://github.com/junegunn/vim-plug):
-
-```viml
-Plug 'neanias/everforest-nvim', { 'branch': 'main' }
 ```
 
 ## Usage
