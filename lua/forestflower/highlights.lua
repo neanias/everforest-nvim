@@ -129,10 +129,7 @@ highlights.generate_syntax = function(palette, options)
     LineNr = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
     LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
     LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
-    CursorLineNr = syntax_entry(
-      set_colour_based_on_ui_contrast(palette.grey1, palette.grey2),
-      sign_column_respecting_colour(palette.bg1)
-    ),
+    CursorLineNr = syntax_entry(palette.orange, palette.none, { styles.bold }),
     MatchParen = syntax_entry(palette.none, palette.bg4),
     ModeMsg = syntax_entry(palette.fg, palette.none, { styles.bold }),
     MoreMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
