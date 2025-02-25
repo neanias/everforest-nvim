@@ -1305,7 +1305,6 @@ highlights.generate_syntax = function(palette, options)
     BufferTabpageFill = syntax_entry(palette.bg_dim, palette.bg_dim),
 
     BlinkCmpLabelMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
-    BlinkCmpKind = { link = "Yellow" },
 
     -- SmiteshP/nvim-navic
     NavicIconsFile = syntax_entry(palette.fg, palette.none),
