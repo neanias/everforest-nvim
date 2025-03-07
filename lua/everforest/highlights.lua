@@ -755,6 +755,7 @@ highlights.generate_syntax = function(palette, options)
     ["@lsp.type.typeAlias"] = { link = "@type.definition" },
     ["@lsp.type.typeParameter"] = { link = "@type.definition" },
     ["@lsp.type.variable"] = { link = "@variable" },
+    ["@lsp.type.variable.lua"] = syntax_entry(palette.none, palette.none),
     ["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
     ["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
     ["@lsp.typemod.enumMember.defaultLibrary"] = { link = "@constant.builtin" },
