@@ -1,4 +1,4 @@
-*everforest.nvim.txt*     For Neovim >= 0.8.0    Last change: 2025 February 25
+*everforest.nvim.txt*      For Neovim >= 0.8.0      Last change: 2025 March 07
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
