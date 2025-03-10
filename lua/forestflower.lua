@@ -5,6 +5,7 @@ local highlights = require("forestflower.highlights")
 local M = {}
 
 ---@class Config
+---@field flavour "day" | "night"
 ---@field background "soft" | "medium" | "hard"
 ---@field transparent_background_level 0 | 1 | 2
 ---@field italics boolean

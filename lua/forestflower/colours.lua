@@ -38,9 +38,9 @@ local M = {}
 
 ---@type PaletteBackgrounds
 local hard_background = {
-  dark = {
+  night = {
     bg_dim = "#1e2326",
-    bg0 = "#000000",
+    bg0 = "#050505",
     bg1 = "#2e383c",
     bg2 = "#374145",
     bg3 = "#414b50",
@@ -52,7 +52,7 @@ local hard_background = {
     bg_blue = "#384b55",
     bg_yellow = "#45443c",
   },
-  light = {
+  day = {
     bg_dim = "#f2efdf",
     bg0 = "#fffbef",
     bg1 = "#f8f5e4",
@@ -68,73 +68,9 @@ local hard_background = {
   },
 }
 
----@type PaletteBackgrounds
-local medium_background = {
-  dark = {
-    bg_dim = "#232a2e",
-    bg0 = "#2d353b",
-    bg1 = "#343f44",
-    bg2 = "#3d484d",
-    bg3 = "#475258",
-    bg4 = "#4f585e",
-    bg5 = "#56635f",
-    bg_visual = "#384B55",
-    bg_red = "#514045",
-    bg_green = "#425047",
-    bg_blue = "#3a515d",
-    bg_yellow = "#4d4c43",
-  },
-  light = {
-    bg_dim = "#efebd4",
-    bg0 = "#fdf6e3",
-    bg1 = "#f4f0d9",
-    bg2 = "#efebd4",
-    bg3 = "#e6e2cc",
-    bg4 = "#e0dcc7",
-    bg5 = "#bdc3af",
-    bg_visual = "#eaedc8",
-    bg_red = "#fbe3da",
-    bg_green = "#f0f1d2",
-    bg_blue = "#e9f0e9",
-    bg_yellow = "#faedcd",
-  },
-}
-
----@type PaletteBackgrounds
-local soft_background = {
-  dark = {
-    bg_dim = "#293136",
-    bg0 = "#000000",
-    bg1 = "#3a464c",
-    bg2 = "#434f55",
-    bg3 = "#4d5960",
-    bg4 = "#555f66",
-    bg5 = "#5d6b66",
-    bg_visual = "#384B55",
-    bg_red = "#59464c",
-    bg_green = "#48584e",
-    bg_blue = "#3f5865",
-    bg_yellow = "#55544a",
-  },
-  light = {
-    bg_dim = "#e5dfc5",
-    bg0 = "#f3ead3",
-    bg1 = "#eae4ca",
-    bg2 = "#e5dfc5",
-    bg3 = "#ddd8be",
-    bg4 = "#d8d3ba",
-    bg5 = "#b9c0ab",
-    bg_visual = "#e1e4bd",
-    bg_red = "#f4dbd0",
-    bg_green = "#e5e6c5",
-    bg_blue = "#e1e7dd",
-    bg_yellow = "#f1e4c5",
-  },
-}
-
 ---@type table<Backgrounds, PaletteBase>
 local base_palette = {
-  light = {
+  day = {
     fg = "#5c6a72",
     red = "#f85552",
     orange = "#f57d26",
@@ -151,7 +87,7 @@ local base_palette = {
     statusline3 = "#e66868",
     none = "NONE",
   },
-  dark = {
+  night = {
     fg = "#d3c6aa",
     red = "#eb6f92",
     orange = "#e69875",
@@ -175,18 +111,10 @@ local base_palette = {
 ---@param theme "light" | "dark" The user's background preference
 ---@return Palette
 M.generate_palette = function(options, theme)
-  local background = options.background or "hard"
-  local base = base_palette[theme]
+  local flavour = options.flavour or "night"
+  local base = base_palette[flavour]
   ---@type PaletteBackground
-  local background_palette
-
-  if background == "soft" then
-    background_palette = soft_background[theme]
-  elseif background == "hard" then
-    background_palette = hard_background[theme]
-  else
-    background_palette = medium_background[theme]
-  end
+  local background_palette = hard_background[flavour]
 
   ---@type Palette
   local combined_palette = vim.tbl_extend("force", base, background_palette)
