@@ -63,7 +63,6 @@ highlights.generate_syntax = function(palette, options)
   end
 
   ---Set the background colour for the signs column.
-  ---
   ---This isn't an easy logic pairing to use composition for, so we just roll a
   ---specific function for it to make inline code easier.
   ---
@@ -1246,7 +1245,9 @@ highlights.generate_syntax = function(palette, options)
 
     -- folke/flash.nvim
     FlashBackdrop = syntax_entry(palette.grey1, palette.none),
-    FlashLabel = syntax_entry(palette.purple, palette.none, { styles.bold, styles.italic }),
+    FlashLabel = syntax_entry(palette.yellow, palette.none, { styles.bold, styles.italic }),
+    FlashMatch = syntax_entry(palette.yellow, palette.none, { styles.bold }),
+    FlashCurrent = syntax_entry(palette.yellow, palette.none, { styles.bold }),
 
     -- ggandor/leap.nvim
     LeapMatch = syntax_entry(palette.fg, palette.purple, { styles.bold }),
