@@ -294,9 +294,7 @@ highlights.generate_syntax = function(palette, options)
     LspDiagnosticsSignInformation = { link = "DiagnosticSignInfo" },
     LspDiagnosticsSignHint = { link = "DiagnosticSignHint" },
     LspInlayHint = { link = "InlayHints" },
-    LspReferenceText = { link = "CurrentWord" },
-    LspReferenceRead = { link = "CurrentWord" },
-    LspReferenceWrite = { link = "CurrentWord" },
+    -- LspReferenceText, Read, Write are handled below based on current_word_highlight option
     LspCodeLens = { link = "VirtualTextInfo" },
     LspCodeLensSeparator = { link = "VirtualTextHint" },
     LspSignatureActiveParameter = { link = "Search" },
@@ -424,7 +422,7 @@ highlights.generate_syntax = function(palette, options)
     WarningFloat = syntax_entry(palette.yellow, palette.none),
     InfoFloat = syntax_entry(palette.blue, palette.none),
     HintFloat = syntax_entry(palette.green, palette.none),
-    CurrentWord = syntax_entry(palette.none, palette.none, { styles.bold }),
+    -- CurrentWord is defined below based on current_word_highlight option
 
     -- Git commit colours
     gitcommitSummary = { link = "Green" },
@@ -1119,18 +1117,11 @@ highlights.generate_syntax = function(palette, options)
     -- rhysd/clever-f.vim
     CleverFDefaultLabel = { link = "Search" },
 
-    -- dominikduda/vim_current_word
-    CurrentWordTwins = { link = "CurrentWord" },
+    -- dominikduda/vim_current_word links handled above
 
-    -- RRethy/vim-illuminate
-    illuminatedWord = { link = "CurrentWord" },
-    IlluminatedWordText = { link = "CurrentWord" },
-    IlluminatedWordRead = { link = "CurrentWord" },
-    IlluminatedWordWrite = { link = "CurrentWord" },
+    -- RRethy/vim-illuminate links handled above
 
-    -- itchyny/vim-cursorword
-    CursorWord0 = { link = "CurrentWord" },
-    CursorWord1 = { link = "CurrentWord" },
+    -- itchyny/vim-cursorword links handled above
 
     -- thiagoalessio/rainbow_levels.vim
     RainbowLevel0 = { link = "Red" },
@@ -1454,8 +1445,8 @@ highlights.generate_syntax = function(palette, options)
     MiniClueSeparator = { link = "DiagnosticFloatingInfo" },
     MiniClueTitle = { link = "FloatTitle" },
     MiniCompletionActiveParameter = { link = "LspSignatureActiveParameter" },
-    MiniCursorword = { link = "CurrentWord" },
-    MiniCursorwordCurrent = { link = "CurrentWord" },
+    MiniCursorword = { link = "CurrentWord" }, -- Link handled above
+    MiniCursorwordCurrent = { link = "CurrentWord" }, -- Link handled above
     MiniDepsChangeAdded = { link = "Added" },
     MiniDepsChangeRemoved = { link = "Removed" },
     MiniDepsHints = { link = "DiagnosticHint" },
@@ -2156,6 +2147,34 @@ highlights.generate_syntax = function(palette, options)
     makeTarget = { link = "Blue" },
     makeCommands = { link = "Orange" },
   }
+
+  -- Handle current_word_highlight option
+  local current_word_hl = {}
+  if options.current_word_highlight == true then
+    current_word_hl = syntax_entry(palette.none, palette.bg_visual)
+  elseif options.current_word_highlight == "bold" then
+    current_word_hl = syntax_entry(palette.none, palette.none, { styles.bold })
+  elseif options.current_word_highlight == "italic" then
+    current_word_hl = syntax_entry(palette.none, palette.none, { styles.italic })
+  elseif options.current_word_highlight == "underline" then
+    current_word_hl = syntax_entry(palette.none, palette.none, { styles.underline })
+  elseif options.current_word_highlight == "grey" then
+    current_word_hl = syntax_entry(palette.none, palette.bg1)
+  else -- false or invalid value
+    current_word_hl = {} -- Use Neovim default or link below
+  end
+
+  syntax["CurrentWord"] = current_word_hl
+  syntax["LspReferenceText"] = current_word_hl
+  syntax["LspReferenceRead"] = current_word_hl
+  syntax["LspReferenceWrite"] = current_word_hl
+  syntax["illuminatedWord"] = current_word_hl
+  syntax["IlluminatedWordText"] = current_word_hl
+  syntax["IlluminatedWordRead"] = current_word_hl
+  syntax["IlluminatedWordWrite"] = current_word_hl
+  syntax["CursorWord0"] = current_word_hl
+  syntax["CursorWord1"] = current_word_hl
+  syntax["CurrentWordTwins"] = current_word_hl
 
   -- nathanaelkane/vim-indent-guides
   if vim.g.indent_guides_auto_colors == false then

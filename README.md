@@ -163,6 +163,9 @@ require("everforest").setup({
   ---
   ---Options are `"none"` or `"dimmed"`.
   inlay_hints_background = "none",
+  ---Highlight the word under the cursor. Options are `false`, `true`, `"bold"`,
+  ---`"italic"`, `"underline"`, or `"grey"`. `true` applies a background highlight.
+  current_word_highlight = false,
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights
@@ -306,7 +309,7 @@ list of plugins that have highlights.
   - [x] `spell_foreground`
   - [x] `ui_contrast`
   - [x] `show_eob`
-  - [ ] `current_word`
+  - [x] `current_word_highlight`
   - [x] `diagnostic_text_highlight`
   - [x] `diagnostic_line_highlight`
   - [x] `diagnostic_virtual_text`

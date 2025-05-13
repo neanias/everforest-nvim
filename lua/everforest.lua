@@ -19,6 +19,7 @@ local M = {}
 ---@field show_eob boolean
 ---@field float_style "bright" | "dim"
 ---@field inlay_hints_background "none" | "dimmed"
+---@field current_word_highlight boolean | "bold" | "italic" | "underline" | "grey"
 ---@field on_highlights fun(highlight_groups: Highlights, palette: Palette)
 ---@field colours_override fun(palette: Palette)
 M.config = {
@@ -79,6 +80,9 @@ M.config = {
   ---
   ---Options are `"none"` or `"dimmed"`.
   inlay_hints_background = "none",
+  ---Highlight the word under the cursor. Options are `false`, `true`, `"bold"`,
+  ---`"italic"`, `"underline"`, or `"grey"`. `true` applies a background highlight.
+  current_word_highlight = false,
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights
