@@ -424,7 +424,25 @@ highlights.generate_syntax = function(palette, options)
     WarningFloat = syntax_entry(palette.yellow, palette.none),
     InfoFloat = syntax_entry(palette.blue, palette.none),
     HintFloat = syntax_entry(palette.green, palette.none),
-    CurrentWord = syntax_entry(palette.none, palette.none, { styles.bold }),
+    CurrentWord = (function()
+      local current_word_style_option = options.current_word_style or "bold"
+      local current_word_styles = {}
+      if type(current_word_style_option) == "string" then
+        if styles[current_word_style_option] then
+          table.insert(current_word_styles, styles[current_word_style_option])
+        end
+      elseif type(current_word_style_option) == "table" then
+        for _, style_name in ipairs(current_word_style_option) do
+          if styles[style_name] then
+            table.insert(current_word_styles, styles[style_name])
+          end
+        end
+      end
+      if #current_word_styles == 0 and styles["bold"] then
+        table.insert(current_word_styles, styles["bold"])
+      end
+      return syntax_entry(palette.none, palette.none, current_word_styles)
+    end)(),
 
     -- Git commit colours
     gitcommitSummary = { link = "Green" },

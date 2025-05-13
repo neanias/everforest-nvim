@@ -79,6 +79,10 @@ M.config = {
   ---
   ---Options are `"none"` or `"dimmed"`.
   inlay_hints_background = "none",
+  ---Style used for the `CurrentWord` highlight group. Can be a string or a list of strings.
+  ---Valid options are: "bold", "italic", "reverse", "underline", "undercurl", "strikethrough".
+  ---Default is "underline".
+  current_word_style = "underline",
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights
