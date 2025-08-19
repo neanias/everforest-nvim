@@ -2196,6 +2196,12 @@ highlights.generate_syntax = function(palette, options)
     syntax["InlayHints"] = syntax_entry(palette.grey1, palette.bg_dim)
   end
 
+  if options.float_style == "none" then
+    syntax["NormalFloat"] = syntax_entry(palette.fg, palette.none)
+    syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.none)
+    syntax["FloatTitle"] = syntax_entry(palette.fg, palette.none, { styles.bold })
+  end
+
   local lsp_kind_colours = {
     Array = "Aqua",
     Boolean = "Aqua",

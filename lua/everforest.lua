@@ -17,7 +17,7 @@ local M = {}
 ---@field diagnostic_line_highlight boolean
 ---@field spell_foreground boolean
 ---@field show_eob boolean
----@field float_style "bright" | "dim"
+---@field float_style "bright" | "dim" | "none"
 ---@field inlay_hints_background "none" | "dimmed"
 ---@field on_highlights fun(highlight_groups: Highlights, palette: Palette)
 ---@field colours_override fun(palette: Palette)
@@ -65,6 +65,12 @@ M.config = {
   ---Style used to make floating windows stand out from other windows. `"bright"`
   ---makes the background of these windows lighter than |hl-Normal|, whereas
   ---`"dim"` makes it darker.
+  ---
+  ---The special value `"none"` causes floating windows to be displayed with the
+  ---same background as normal windows. Only use this style if Neovim is configured
+  ---with a non-empty |"winborder"|, otherwise floating windows will visually blend
+  ---into the main buffer. Plugins which create floating windows without border by
+  ---default may also need to be configured individually.
   ---
   ---Floating windows include for instance diagnostic pop-ups, scrollable
   ---documentation windows from completion engines, overlay windows from
