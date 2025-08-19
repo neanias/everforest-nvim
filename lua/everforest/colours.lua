@@ -67,7 +67,7 @@ local hard_background = {
     bg_green = "#f3f5d9",
     bg_blue = "#ecf5ed",
     bg_yellow = "#fef2d5",
-    bg_purple = "#f4edf0",
+    bg_purple = "#fceced",
   },
 }
 
@@ -97,11 +97,11 @@ local medium_background = {
     bg4 = "#e0dcc7",
     bg5 = "#bdc3af",
     bg_visual = "#eaedc8",
-    bg_red = "#fbe3da",
+    bg_red = "#fde3da",
     bg_green = "#f0f1d2",
     bg_blue = "#e9f0e9",
     bg_yellow = "#faedcd",
-    bg_purple = "#f2e9e5",
+    bg_purple = "#fae8e2",
   },
 }
 
@@ -131,11 +131,11 @@ local soft_background = {
     bg4 = "#d8d3ba",
     bg5 = "#b9c0ab",
     bg_visual = "#e1e4bd",
-    bg_red = "#f4dbd0",
+    bg_red = "#fadbd0",
     bg_green = "#e5e6c5",
     bg_blue = "#e1e7dd",
     bg_yellow = "#f1e4c5",
-    bg_purple = "#e9ded8",
+    bg_purple = "#f1ddd4",
   },
 }
 
