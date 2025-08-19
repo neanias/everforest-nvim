@@ -885,6 +885,7 @@ highlights.generate_syntax = function(palette, options)
     CocGitChangedSign = { link = "BlueSign" },
     CocGitRemovedSign = { link = "RedSign" },
     CocGitTopRemovedSign = { link = "RedSign" },
+    CocInlineVirtualText = { link = "Grey" },
     CocTreeOpenClose = { link = "Aqua" },
     CocTreeDescription = { link = "Grey" },
 
