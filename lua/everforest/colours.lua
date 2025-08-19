@@ -13,6 +13,7 @@ local M = {}
 ---@field bg_green string
 ---@field bg_blue string
 ---@field bg_yellow string
+---@field bg_purple string
 
 ---@class PaletteBase
 ---@field fg string
@@ -51,6 +52,7 @@ local hard_background = {
     bg_green = "#3c4841",
     bg_blue = "#384b55",
     bg_yellow = "#45443c",
+    bg_purple = "#463f48",
   },
   light = {
     bg_dim = "#f2efdf",
@@ -65,6 +67,7 @@ local hard_background = {
     bg_green = "#f3f5d9",
     bg_blue = "#ecf5ed",
     bg_yellow = "#fef2d5",
+    bg_purple = "#f4edf0",
   },
 }
 
@@ -83,6 +86,7 @@ local medium_background = {
     bg_green = "#425047",
     bg_blue = "#3a515d",
     bg_yellow = "#4d4c43",
+    bg_purple = "#4a444e",
   },
   light = {
     bg_dim = "#efebd4",
@@ -97,6 +101,7 @@ local medium_background = {
     bg_green = "#f0f1d2",
     bg_blue = "#e9f0e9",
     bg_yellow = "#faedcd",
+    bg_purple = "#f2e9e5",
   },
 }
 
@@ -115,6 +120,7 @@ local soft_background = {
     bg_green = "#48584e",
     bg_blue = "#3f5865",
     bg_yellow = "#55544a",
+    bg_purple = "#4e4953",
   },
   light = {
     bg_dim = "#e5dfc5",
@@ -129,6 +135,7 @@ local soft_background = {
     bg_green = "#e5e6c5",
     bg_blue = "#e1e7dd",
     bg_yellow = "#f1e4c5",
+    bg_purple = "#e9ded8",
   },
 }
 
