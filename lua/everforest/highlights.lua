@@ -241,6 +241,7 @@ highlights.generate_syntax = function(palette, options)
     ),
     DiagnosticOk = syntax_entry(palette.green, options.diagnostic_text_highlight and palette.bg_green or palette.none),
     DiagnosticUnnecessary = syntax_entry(palette.grey1, palette.none),
+    DiagnosticDeprecated = syntax_entry(palette.none, palette.none, { styles.strikethrough }, palette.fg),
     DiagnosticVirtualTextError = { link = "VirtualTextError" },
     DiagnosticVirtualTextWarn = { link = "VirtualTextWarning" },
     DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" },
