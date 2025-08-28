@@ -2225,6 +2225,49 @@ highlights.generate_syntax = function(palette, options)
     syntax["BlinkCmpKind" .. kind] = { link = colour }
   end
 
+  -- yetone/avante.nvim
+  syntax["AvanteTitle"] = syntax_entry(palette.bg0, palette.green, { styles.bold })
+  syntax["AvanteReversedTitle"] = syntax_entry(palette.green, palette.none)
+  syntax["AvanteSubtitle"] = syntax_entry(palette.bg0, palette.blue, { styles.bold })
+  syntax["AvanteReversedSubtitle"] = syntax_entry(palette.blue, palette.none)
+  syntax["AvanteThirdTitle"] = syntax_entry(palette.fg, palette.bg2, { styles.bold })
+  syntax["AvanteReversedThirdTitle"] = syntax_entry(palette.bg2, palette.none)
+  syntax["AvanteSuggestion"] = { link = "Comment" }
+  syntax["AvanteAnnotation"] = { link = "Comment" }
+  syntax["AvanteInlineHint"] = syntax_entry(palette.grey1, palette.none, { styles.italic })
+  syntax["AvantePopupHint"] = { link = "NormalFloat" }
+  syntax["AvanteConflictCurrent"] = syntax_entry(palette.none, palette.bg_red, { styles.bold })
+  syntax["AvanteConflictCurrentLabel"] = syntax_entry(ColourUtility.blend_bg(palette.red, 0.3), palette.bg_red)
+  syntax["AvanteConflictIncoming"] = syntax_entry(palette.none, palette.bg_blue, { styles.bold })
+  syntax["AvanteConflictIncomingLabel"] = syntax_entry(ColourUtility.blend_bg(palette.blue, 0.3), palette.bg_blue)
+  syntax["AvanteToBeDeleted"] = syntax_entry(palette.none, palette.bg_red, { styles.strikethrough })
+  syntax["AvanteToBeDeletedWOStrikethrough"] = syntax_entry(palette.none, palette.bg_red)
+  syntax["AvanteButtonDefault"] = syntax_entry(palette.bg0, palette.grey1)
+  syntax["AvanteButtonDefaultHover"] = syntax_entry(palette.bg0, palette.green)
+  syntax["AvanteButtonPrimary"] = syntax_entry(palette.bg0, palette.blue)
+  syntax["AvanteButtonPrimaryHover"] = syntax_entry(palette.bg0, palette.aqua)
+  syntax["AvanteButtonDanger"] = syntax_entry(palette.bg0, palette.red)
+  syntax["AvanteButtonDangerHover"] = syntax_entry(palette.fg, palette.red)
+  syntax["AvantePromptInput"] = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg1))
+  syntax["AvantePromptInputBorder"] = { link = "NormalFloat" }
+  syntax["AvanteConfirmTitle"] = syntax_entry(palette.bg0, palette.red, { styles.bold })
+  syntax["AvanteSidebarNormal"] = { link = "NormalFloat" }
+  syntax["AvanteSidebarWinSeparator"] = { link = "WinSeparator" }
+  syntax["AvanteSidebarWinHorizontalSeparator"] = syntax_entry(palette.grey0, transparency_respecting_colour(palette.bg1))
+  syntax["AvanteReversedNormal"] = syntax_entry(transparency_respecting_colour(palette.bg0), palette.fg)
+  syntax["AvanteCommentFg"] = { link = "Comment" }
+  syntax["AvanteStateSpinnerGenerating"] = syntax_entry(palette.bg0, palette.purple)
+  syntax["AvanteStateSpinnerToolCalling"] = syntax_entry(palette.bg0, palette.blue)
+  syntax["AvanteStateSpinnerFailed"] = syntax_entry(palette.bg0, palette.red)
+  syntax["AvanteStateSpinnerSucceeded"] = syntax_entry(palette.bg0, palette.green)
+  syntax["AvanteStateSpinnerSearching"] = syntax_entry(palette.bg0, palette.orange)
+  syntax["AvanteStateSpinnerThinking"] = syntax_entry(palette.bg0, palette.aqua)
+  syntax["AvanteStateSpinnerCompacting"] = syntax_entry(palette.bg0, palette.yellow)
+  syntax["AvanteTaskRunning"] = syntax_entry(palette.purple, transparency_respecting_colour(palette.bg0))
+  syntax["AvanteTaskCompleted"] = syntax_entry(palette.green, transparency_respecting_colour(palette.bg0))
+  syntax["AvanteTaskFailed"] = syntax_entry(palette.red, transparency_respecting_colour(palette.bg0))
+  syntax["AvanteThinking"] = syntax_entry(palette.aqua, transparency_respecting_colour(palette.bg0))
+
   -- Terminal colours
   local terminal = {
     red = palette.red,
