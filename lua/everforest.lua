@@ -4,23 +4,41 @@ local highlights = require("everforest.highlights")
 
 local M = {}
 
+---@class ConfigOpts
+---@field background? "soft" | "medium" | "hard"
+---@field transparent_background_level? 0 | 1 | 2
+---@field italics? boolean
+---@field disable_italic_comments? boolean
+---@field sign_column_background? "none" | "grey"
+---@field ui_contrast? "low" | "high"
+---@field dim_inactive_windows? boolean
+---@field diagnostic_text_highlight? boolean
+---@field diagnostic_virtual_text? "coloured" | "grey"
+---@field diagnostic_line_highlight? boolean
+---@field spell_foreground? boolean
+---@field show_eob? boolean
+---@field float_style? "bright" | "dim" | "none"
+---@field inlay_hints_background? "none" | "dimmed"
+---@field on_highlights? fun(highlight_groups: Highlights, palette: Palette)
+---@field colours_override? fun(palette: Palette)
+
 ---@class Config
----@field background "soft" | "medium" | "hard"?
----@field transparent_background_level 0 | 1 | 2?
----@field italics boolean?
----@field disable_italic_comments boolean?
----@field sign_column_background "none" | "grey"?
----@field ui_contrast "low" | "high"?
----@field dim_inactive_windows boolean?
----@field diagnostic_text_highlight boolean?
----@field diagnostic_virtual_text "coloured" | "grey"?
----@field diagnostic_line_highlight boolean?
----@field spell_foreground boolean?
----@field show_eob boolean?
----@field float_style "bright" | "dim" | "none"?
----@field inlay_hints_background "none" | "dimmed"?
----@field on_highlights fun(highlight_groups: Highlights, palette: Palette)?
----@field colours_override fun(palette: Palette)?
+---@field background "soft" | "medium" | "hard"
+---@field transparent_background_level 0 | 1 | 2
+---@field italics boolean
+---@field disable_italic_comments boolean
+---@field sign_column_background "none" | "grey"
+---@field ui_contrast "low" | "high"
+---@field dim_inactive_windows boolean
+---@field diagnostic_text_highlight boolean
+---@field diagnostic_virtual_text "coloured" | "grey"
+---@field diagnostic_line_highlight boolean
+---@field spell_foreground boolean
+---@field show_eob boolean
+---@field float_style "bright" | "dim" | "none"
+---@field inlay_hints_background "none" | "dimmed"
+---@field on_highlights fun(highlight_groups: Highlights, palette: Palette)
+---@field colours_override fun(palette: Palette)
 M.config = {
   ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   ---Default is "medium".
@@ -97,7 +115,7 @@ M.config = {
   colours_override = function(palette) end, ---@diagnostic disable-line: unused-local
 }
 
----@param opts Config | nil
+---@param opts ConfigOpts | nil
 M.setup = function(opts)
   M.config = vim.tbl_extend("force", M.config, opts or {})
 end
