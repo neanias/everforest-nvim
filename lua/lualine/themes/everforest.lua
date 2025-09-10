@@ -1,4 +1,6 @@
+---@type Everforest.Colours
 local palettes = require("everforest.colours")
+---@type Everforest.Config
 local config = require("everforest").config
 
 local palette = palettes.generate_palette(config, vim.o.background)

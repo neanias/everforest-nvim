@@ -1,5 +1,7 @@
+---@class Everforest.Highlighter
 local highlights = {}
 
+---@type Everforest.ColourUtility
 local ColourUtility = require("everforest.colour_utility")
 
 ---@enum Styles
@@ -13,10 +15,6 @@ local styles = {
   strikethrough = "strikethrough",
   nocombine = "nocombine",
 }
-
----@alias Highlight vim.api.keyset.highlight
-
----@alias Highlights table<string,Highlight>
 
 ---Generates a table that can be accepted by nvim_set_hl
 ---@param fg string
@@ -42,9 +40,6 @@ local function syntax_entry(fg, bg, stylings, sp)
 end
 
 ---Generates the various highlight groups for this colour scheme to be used by Neovim.
----@param palette Palette
----@param options Config
----@return Highlights
 highlights.generate_syntax = function(palette, options)
   -- Comments are italic by default
   local comment_italics = options.disable_italic_comments and {} or { styles.italic }
@@ -90,6 +85,10 @@ highlights.generate_syntax = function(palette, options)
     end
   end
 
+  ---Sets the UI contrast colour, respecting the `ui_contrast` setting of the user.
+  ---@param low_contrast_colour string
+  ---@param other_colour string
+  ---@return string
   local function set_colour_based_on_ui_contrast(low_contrast_colour, other_colour)
     if options.ui_contrast == "low" then
       return low_contrast_colour
@@ -98,7 +97,7 @@ highlights.generate_syntax = function(palette, options)
     end
   end
 
-  ---@type Highlights
+  ---@type Everforest.Highlights
   local syntax = {
     ColorColumn = syntax_entry(palette.none, palette.bg1),
     Conceal = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
