@@ -39,7 +39,6 @@
 ---@field on_highlights? fun(highlight_groups: Everforest.Highlights, palette: Everforest.Palette)
 ---@field colours_override? fun(palette: Everforest.Palette)
 
-
 ---@class Everforest.PaletteBackground
 ---@field bg_dim string
 ---@field bg0 string

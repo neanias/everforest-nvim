@@ -79,7 +79,7 @@ local M = {
     ---This function will be called once the base and background colours have
     ---been mixed on the palette.
     colours_override = function(palette) end, ---@diagnostic disable-line:unused-local
-  }
+  },
 }
 
 ---@type Everforest.Config
