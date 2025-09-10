@@ -1,6 +1,7 @@
 ---@class Everforest
 ---@field config Everforest.Config
 ---@field setup fun(opts: Everforest.SetupOptions?)
+---@field load fun()
 
 ---@class Everforest.Config
 ---@field background "soft" | "medium" | "hard"
