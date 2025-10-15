@@ -3,8 +3,6 @@
 A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour
 scheme with customization.
 
-> Recent breaking change: highlight definitions migrated to semantic role tables (`ui` & `syntax`). Direct `palette.*` usage in core has been reduced. Generic colour passthrough groups (Red, Green, etc.) remain intentionally for ecosystem compatibility.
-
 |                      |                                                                  Dark                                                                  |                                                                  Light                                                                   |
 | :------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
 |       **Hard**       |        ![forestflower colour scheme dark hard](https://github.com/user-attachments/assets/1174661f-2de3-4dd2-8e2f-6ee3df8afb9c)        |  ![eveforest colour scheme light hard](https://github.com/neanias/everforest-nvim/assets/5786847/acc83044-c9ec-4335-a1ab-2e5f3c9e7429)   |

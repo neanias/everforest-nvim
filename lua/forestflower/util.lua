@@ -1,6 +1,6 @@
 local M = {}
 
-local colors = require("forestflower.colors")
+local colors = require("forestflower.colours")
 
 ---@param c string
 ---@return table<number>
