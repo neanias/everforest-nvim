@@ -208,7 +208,7 @@ highlights.generate_syntax = function(theme, options)
       options.transparent_background_level == 2 and palette.none or ui.tab_fill_bg
     ),
     TabLineSel = syntax_entry(ui.background, ui.tab_active_bg),
-    Title = syntax_entry(palette.orange, palette.none, { styles.bold }),
+    Title = syntax_entry(palette.warning, palette.none, { styles.bold }),
     Visual = syntax_entry(palette.none, ui.selection),
     VisualNOS = syntax_entry(palette.none, ui.selection),
     WarningMsg = syntax_entry(status.warning, palette.none, { styles.bold }),
@@ -260,7 +260,7 @@ highlights.generate_syntax = function(theme, options)
       status.hint,
       options.diagnostic_text_highlight and status.hint_container or palette.none
     ),
-    DiagnosticUnnecessary = syntax_entry(palette.grey1, palette.none),
+    DiagnosticUnnecessary = syntax_entry(palette.on_surface_variant, palette.none),
     DiagnosticVirtualTextError = { link = "VirtualTextError" },
     DiagnosticVirtualTextWarn = { link = "VirtualTextWarning" },
     DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" },
@@ -326,71 +326,71 @@ highlights.generate_syntax = function(theme, options)
     healthSuccess = { link = "Green" },
     healthWarning = { link = "Yellow" },
 
-    Boolean = syntax_entry(palette.purple, palette.none),
-    Number = syntax_entry(palette.purple, palette.none),
-    Float = syntax_entry(palette.purple, palette.none),
+    Boolean = syntax_entry(palette.tertiary, palette.none),
+    Number = syntax_entry(palette.tertiary, palette.none),
+    Float = syntax_entry(palette.tertiary, palette.none),
 
-    PreProc = syntax_entry(palette.purple, palette.none, optional_italics),
-    PreCondit = syntax_entry(palette.purple, palette.none, optional_italics),
-    Include = syntax_entry(palette.purple, palette.none, optional_italics),
-    Define = syntax_entry(palette.purple, palette.none, optional_italics),
-    Conditional = syntax_entry(palette.red, palette.none, optional_italics),
-    Repeat = syntax_entry(palette.red, palette.none, optional_italics),
-    Keyword = syntax_entry(palette.red, palette.none, optional_italics),
-    Typedef = syntax_entry(palette.red, palette.none, optional_italics),
-    Exception = syntax_entry(palette.red, palette.none, optional_italics),
-    Statement = syntax_entry(palette.red, palette.none, optional_italics),
+    PreProc = syntax_entry(palette.tertiary, palette.none, optional_italics),
+    PreCondit = syntax_entry(palette.tertiary, palette.none, optional_italics),
+    Include = syntax_entry(palette.tertiary, palette.none, optional_italics),
+    Define = syntax_entry(palette.tertiary, palette.none, optional_italics),
+    Conditional = syntax_entry(palette.error, palette.none, optional_italics),
+    Repeat = syntax_entry(palette.error, palette.none, optional_italics),
+    Keyword = syntax_entry(palette.error, palette.none, optional_italics),
+    Typedef = syntax_entry(palette.error, palette.none, optional_italics),
+    Exception = syntax_entry(palette.error, palette.none, optional_italics),
+    Statement = syntax_entry(palette.error, palette.none, optional_italics),
 
-    Error = syntax_entry(palette.red, palette.none),
-    StorageClass = syntax_entry(palette.orange, palette.none),
-    Tag = syntax_entry(palette.orange, palette.none),
-    Label = syntax_entry(palette.orange, palette.none),
-    Structure = syntax_entry(palette.orange, palette.none),
-    Operator = syntax_entry(palette.orange, palette.none),
-    Special = syntax_entry(palette.yellow, palette.none),
-    SpecialChar = syntax_entry(palette.yellow, palette.none),
-    Type = syntax_entry(palette.yellow, palette.none),
+    Error = syntax_entry(palette.error, palette.none),
+    StorageClass = syntax_entry(palette.warning, palette.none),
+    Tag = syntax_entry(palette.warning, palette.none),
+    Label = syntax_entry(palette.warning, palette.none),
+    Structure = syntax_entry(palette.warning, palette.none),
+    Operator = syntax_entry(palette.warning, palette.none),
+    Special = syntax_entry(palette.warning, palette.none),
+    SpecialChar = syntax_entry(palette.warning, palette.none),
+    Type = syntax_entry(palette.warning, palette.none),
     Function = syntax_entry(syn["function"], palette.none), -- role-mapped syntax.function
     String = syntax_entry(syn.string, palette.none), -- role-mapped syntax.string
-    Character = syntax_entry(palette.green, palette.none),
+    Character = syntax_entry(palette.success, palette.none),
     Constant = syntax_entry(syn.constant, palette.none), -- role-mapped syntax.constant
-    Macro = syntax_entry(palette.aqua, palette.none),
+    Macro = syntax_entry(palette.secondary, palette.none),
     Identifier = syntax_entry(ui.fg, palette.none), -- role: ui.fg generic identifier
 
     Comment = syntax_entry(syn.comment, palette.none, comment_italics), -- role-mapped syntax.comment (supports dimming)
-    SpecialComment = syntax_entry(palette.grey1, palette.none, comment_italics),
-    Todo = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
+    SpecialComment = syntax_entry(palette.on_surface_variant, palette.none, comment_italics),
+    Todo = syntax_entry(palette.background, palette.info, { styles.bold }),
 
-    Delimiter = syntax_entry(palette.fg, palette.none),
-    Ignore = syntax_entry(palette.grey1, palette.none),
+    Delimiter = syntax_entry(palette.on_surface, palette.none),
+    Ignore = syntax_entry(palette.on_surface_variant, palette.none),
     Underlined = syntax_entry(palette.none, palette.none, { styles.underline }),
 
     -- Predefined highlight groups
-    Fg = syntax_entry(palette.fg, palette.none),
-    Grey = syntax_entry(palette.grey1, palette.none),
-    Red = syntax_entry(palette.red, palette.none),
-    Orange = syntax_entry(palette.orange, palette.none),
-    Yellow = syntax_entry(palette.yellow, palette.none),
-    Green = syntax_entry(palette.green, palette.none),
-    Aqua = syntax_entry(palette.aqua, palette.none),
-    Blue = syntax_entry(palette.blue, palette.none),
-    Purple = syntax_entry(palette.purple, palette.none),
+    Fg = syntax_entry(palette.on_surface, palette.none),
+    Grey = syntax_entry(palette.on_surface_variant, palette.none),
+    Red = syntax_entry(palette.error, palette.none),
+    Orange = syntax_entry(palette.warning, palette.none),
+    Yellow = syntax_entry(palette.warning, palette.none),
+    Green = syntax_entry(palette.success, palette.none),
+    Aqua = syntax_entry(palette.secondary, palette.none),
+    Blue = syntax_entry(palette.info, palette.none),
+    Purple = syntax_entry(palette.tertiary, palette.none),
 
-    RedItalic = syntax_entry(palette.red, palette.none, optional_italics),
-    OrangeItalic = syntax_entry(palette.orange, palette.none, optional_italics),
-    YellowItalic = syntax_entry(palette.yellow, palette.none, optional_italics),
-    GreenItalic = syntax_entry(palette.green, palette.none, optional_italics),
-    AquaItalic = syntax_entry(palette.aqua, palette.none, optional_italics),
-    BlueItalic = syntax_entry(palette.blue, palette.none, optional_italics),
-    PurpleItalic = syntax_entry(palette.purple, palette.none, optional_italics),
+    RedItalic = syntax_entry(palette.error, palette.none, optional_italics),
+    OrangeItalic = syntax_entry(palette.warning, palette.none, optional_italics),
+    YellowItalic = syntax_entry(palette.warning, palette.none, optional_italics),
+    GreenItalic = syntax_entry(palette.success, palette.none, optional_italics),
+    AquaItalic = syntax_entry(palette.secondary, palette.none, optional_italics),
+    BlueItalic = syntax_entry(palette.info, palette.none, optional_italics),
+    PurpleItalic = syntax_entry(palette.tertiary, palette.none, optional_italics),
 
-    RedBold = syntax_entry(palette.red, palette.none, { styles.bold }),
-    OrangeBold = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    YellowBold = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-    GreenBold = syntax_entry(palette.green, palette.none, { styles.bold }),
-    AquaBold = syntax_entry(palette.aqua, palette.none, { styles.bold }),
-    BlueBold = syntax_entry(palette.blue, palette.none, { styles.bold }),
-    PurpleBold = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    RedBold = syntax_entry(palette.error, palette.none, { styles.bold }),
+    OrangeBold = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    YellowBold = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    GreenBold = syntax_entry(palette.success, palette.none, { styles.bold }),
+    AquaBold = syntax_entry(palette.secondary, palette.none, { styles.bold }),
+    BlueBold = syntax_entry(palette.info, palette.none, { styles.bold }),
+    PurpleBold = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
 
     RedSign = syntax_entry(status.error, set_signs_background_colour(ui.surface_variant)),
     OrangeSign = syntax_entry(ui.primary, set_signs_background_colour(ui.surface_variant)),
@@ -460,11 +460,11 @@ highlights.generate_syntax = function(theme, options)
     gitcommitFile = { link = "Green" },
 
     -- Help colours
-    helpNote = syntax_entry(palette.purple, palette.none, { styles.bold }),
-    helpHeadline = syntax_entry(palette.red, palette.none, { styles.bold }),
-    helpHeader = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    helpURL = syntax_entry(palette.green, palette.none, { styles.underline }),
-    helpHyperTextEntry = syntax_entry(palette.yellow, palette.none, { styles.bold }),
+    helpNote = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
+    helpHeadline = syntax_entry(palette.error, palette.none, { styles.bold }),
+    helpHeader = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    helpURL = syntax_entry(palette.success, palette.none, { styles.underline }),
+    helpHyperTextEntry = syntax_entry(palette.warning, palette.none, { styles.bold }),
     helpHyperTextJump = { link = "Yellow" },
     helpCommand = { link = "Aqua" },
     helpExample = { link = "Green" },
@@ -476,9 +476,9 @@ highlights.generate_syntax = function(theme, options)
     TSEmphasis = syntax_entry(palette.none, palette.none, { styles.italic }),
     TSUnderline = syntax_entry(palette.none, palette.none, { styles.underline }),
     TSStrike = syntax_entry(palette.none, palette.none, { styles.strikethrough }),
-    TSNote = syntax_entry(palette.bg0, palette.green, { styles.bold }),
-    TSWarning = syntax_entry(palette.bg0, palette.yellow, { styles.bold }),
-    TSDanger = syntax_entry(palette.bg0, palette.red, { styles.bold }),
+    TSNote = syntax_entry(palette.background, palette.success, { styles.bold }),
+    TSWarning = syntax_entry(palette.background, palette.warning, { styles.bold }),
+    TSDanger = syntax_entry(palette.background, palette.error, { styles.bold }),
     TSAnnotation = { link = "Purple" },
     TSAttribute = { link = "Purple" },
     TSBoolean = { link = "Purple" },
@@ -544,7 +544,7 @@ highlights.generate_syntax = function(theme, options)
     TSTypeBuiltin = { link = "YellowItalic" },
     TSTypeDefinition = { link = "YellowItalic" },
     TSTypeQualifier = { link = "Orange" },
-    TSURI = syntax_entry(palette.blue, palette.none, { styles.underline }),
+    TSURI = syntax_entry(palette.info, palette.none, { styles.underline }),
     TSVariable = { link = "Identifier" },
     TSVariableBuiltin = { link = "Constant" },
 
@@ -848,10 +848,10 @@ highlights.generate_syntax = function(theme, options)
 
     -- Coc.nvim
     CocHoverRange = syntax_entry(palette.none, palette.none, { styles.bold, styles.underline }),
-    CocSearch = syntax_entry(palette.green, palette.none, { styles.bold }),
-    CocPumSearch = syntax_entry(palette.green, palette.none, { styles.bold }),
-    CocMarkdownHeader = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    CocMarkdownLink = syntax_entry(palette.green, palette.none, { styles.underline }),
+    CocSearch = syntax_entry(palette.success, palette.none, { styles.bold }),
+    CocPumSearch = syntax_entry(palette.success, palette.none, { styles.bold }),
+    CocMarkdownHeader = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    CocMarkdownLink = syntax_entry(palette.success, palette.none, { styles.underline }),
     CocMarkdownCode = { link = "Green" },
     CocPumShortcut = { link = "Grey" },
     CocPumVirtualText = { link = "Grey" },
@@ -1047,19 +1047,19 @@ highlights.generate_syntax = function(theme, options)
     SyntasticWarningLine = { link = "WarningLine" },
 
     -- liuchengxu/vim-clap
-    ClapSelected = syntax_entry(palette.red, palette.none, { styles.bold }),
-    ClapCurrentSelection = syntax_entry(palette.none, palette.bg1, { styles.bold }),
-    ClapSpinner = syntax_entry(palette.orange, palette.bg2, { styles.bold }),
-    ClapBlines = syntax_entry(palette.fg, palette.none),
-    ClapProviderId = syntax_entry(palette.fg, palette.none, { styles.bold }),
-    ClapMatches1 = syntax_entry(palette.red, palette.none, { styles.bold }),
-    ClapMatches2 = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    ClapMatches3 = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-    ClapMatches4 = syntax_entry(palette.aqua, palette.none, { styles.bold }),
-    ClapMatches5 = syntax_entry(palette.blue, palette.none, { styles.bold }),
-    ClapMatches6 = syntax_entry(palette.purple, palette.none, { styles.bold }),
-    ClapFuzzyMatches = syntax_entry(palette.green, palette.none, { styles.bold }),
-    ClapNoMatchesFound = syntax_entry(palette.red, palette.none, { styles.bold }),
+    ClapSelected = syntax_entry(palette.error, palette.none, { styles.bold }),
+    ClapCurrentSelection = syntax_entry(palette.none, palette.surface, { styles.bold }),
+    ClapSpinner = syntax_entry(palette.warning, palette.surface_variant, { styles.bold }),
+    ClapBlines = syntax_entry(palette.on_surface, palette.none),
+    ClapProviderId = syntax_entry(palette.on_surface, palette.none, { styles.bold }),
+    ClapMatches1 = syntax_entry(palette.error, palette.none, { styles.bold }),
+    ClapMatches2 = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    ClapMatches3 = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    ClapMatches4 = syntax_entry(palette.secondary, palette.none, { styles.bold }),
+    ClapMatches5 = syntax_entry(palette.info, palette.none, { styles.bold }),
+    ClapMatches6 = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
+    ClapFuzzyMatches = syntax_entry(palette.success, palette.none, { styles.bold }),
+    ClapNoMatchesFound = syntax_entry(palette.error, palette.none, { styles.bold }),
     ClapInput = { link = "Pmenu" },
     ClapDisplay = { link = "Pmenu" },
     ClapPreview = { link = "Pmenu" },
@@ -1082,20 +1082,20 @@ highlights.generate_syntax = function(theme, options)
     ClapSearchText = { link = "ClapFuzzyMatches" },
 
     -- Shougo/denite.nvim
-    deniteMatchedChar = syntax_entry(palette.green, palette.none, { styles.bold }),
-    deniteMatchedRange = syntax_entry(palette.green, palette.none, { styles.bold, styles.underline }),
-    deniteInput = syntax_entry(palette.green, palette.bg3, { styles.bold }),
-    deniteStatusLineNumber = syntax_entry(palette.purple, palette.bg3),
-    deniteStatusLinePath = syntax_entry(palette.fg, palette.bg3),
+    deniteMatchedChar = syntax_entry(palette.success, palette.none, { styles.bold }),
+    deniteMatchedRange = syntax_entry(palette.success, palette.none, { styles.bold, styles.underline }),
+    deniteInput = syntax_entry(palette.success, palette.outline, { styles.bold }),
+    deniteStatusLineNumber = syntax_entry(palette.tertiary, palette.outline),
+    deniteStatusLinePath = syntax_entry(palette.on_surface, palette.outline),
     deniteSelectedLin = { link = "Green" },
 
     -- kien/ctrlp.vim
-    CtrlPMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
-    CtrlPPrtBase = syntax_entry(palette.bg3, palette.none),
-    CtrlPLinePre = syntax_entry(palette.bg3, palette.none),
-    CtrlPMode1 = syntax_entry(palette.blue, palette.bg3, { styles.bold }),
-    CtrlPMode2 = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
-    CtrlPStats = syntax_entry(palette.grey1, palette.bg3, { styles.bold }),
+    CtrlPMatch = syntax_entry(palette.success, palette.none, { styles.bold }),
+    CtrlPPrtBase = syntax_entry(palette.outline, palette.none),
+    CtrlPLinePre = syntax_entry(palette.outline, palette.none),
+    CtrlPMode1 = syntax_entry(palette.info, palette.outline, { styles.bold }),
+    CtrlPMode2 = syntax_entry(palette.background, palette.info, { styles.bold }),
+    CtrlPStats = syntax_entry(palette.on_surface_variant, palette.outline, { styles.bold }),
     CtrlPNoEntries = { link = "Red" },
     CtrlPPrtCursor = { link = "Blue" },
 
@@ -1133,7 +1133,7 @@ highlights.generate_syntax = function(theme, options)
     EasyMotionShade = { link = "Grey" },
 
     -- justinmk/vim-sneak
-    SneakLabelMask = syntax_entry(palette.orange, palette.orange),
+    SneakLabelMask = syntax_entry(palette.warning, palette.warning),
     Sneak = { link = "Search" },
     SneakLabel = { link = "Search" },
     SneakScope = { link = "DiffText" },
@@ -1178,14 +1178,14 @@ highlights.generate_syntax = function(theme, options)
     -- folke/which-key.nvim
     WhichKey = { link = "Red" },
     WhichKeyDesc = { link = "Blue" },
-    WhichKeyFloat = syntax_entry(palette.none, palette.bg1),
+    WhichKeyFloat = syntax_entry(palette.none, palette.surface),
     WhichKeyGroup = { link = "Yellow" },
     WhichKeySeparator = { link = "Green" },
-    WhichKeyValue = syntax_entry(palette.fg, palette.none),
+    WhichKeyValue = syntax_entry(palette.on_surface, palette.none),
 
     -- unblevable/quick-scope
-    QuickScopePrimary = syntax_entry(palette.aqua, palette.none, { styles.underline }),
-    QuickScopeSecondary = syntax_entry(palette.blue, palette.none, { styles.underline }),
+    QuickScopePrimary = syntax_entry(palette.secondary, palette.none, { styles.underline }),
+    QuickScopeSecondary = syntax_entry(palette.info, palette.none, { styles.underline }),
 
     -- APZelos/blamer.nvim
     Blamer = { link = "Grey" },
@@ -1215,8 +1215,8 @@ highlights.generate_syntax = function(theme, options)
     BookmarkAnnotationLine = { link = "DiffAdd" },
 
     -- hrsh7th/nvim-cmp
-    CmpItemAbbrMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
-    CmpItemAbbrMatchFuzzy = syntax_entry(palette.green, palette.none, { styles.bold }),
+    CmpItemAbbrMatch = syntax_entry(palette.success, palette.none, { styles.bold }),
+    CmpItemAbbrMatchFuzzy = syntax_entry(palette.success, palette.none, { styles.bold }),
     CmpItemAbbr = { link = "Fg" },
     CmpItemAbbrDeprecated = { link = "Grey" },
     CmpItemMenu = { link = "Fg" },
@@ -1228,7 +1228,7 @@ highlights.generate_syntax = function(theme, options)
     TroubleCode = { link = "Grey" },
 
     -- nvim-telescope/telescope.nvim
-    TelescopeMatching = syntax_entry(palette.green, palette.none, { styles.bold }),
+    TelescopeMatching = syntax_entry(palette.success, palette.none, { styles.bold }),
     TelescopeBorder = { link = "Grey" },
     TelescopePromptPrefix = { link = "Orange" },
     TelescopeSelection = { link = "DiffAdd" },
@@ -1244,7 +1244,7 @@ highlights.generate_syntax = function(theme, options)
     SnacksPickerPrompt = { link = "Orange" },
     SnacksPickerInputCursorLine = { link = "Normal" },
     SnacksPickerListCursorLine = { link = "DiffAdd" },
-    SnacksPickerMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
+    SnacksPickerMatch = syntax_entry(palette.success, palette.none, { styles.bold }),
     SnacksPickerToggle = { link = "CursorLine" },
     SnacksPickerDir = { link = "Comment" },
     SnacksPickerBufFlags = { link = "Grey" },
@@ -1278,24 +1278,24 @@ highlights.generate_syntax = function(theme, options)
     GitSignsCurrentLineBlame = { link = "Grey" },
 
     -- phaazon/hop.nvim
-    HopNextKey = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    HopNextKey1 = syntax_entry(palette.green, palette.none, { styles.bold }),
+    HopNextKey = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    HopNextKey1 = syntax_entry(palette.success, palette.none, { styles.bold }),
     HopNextKey2 = { link = "Green" },
     HopUnmatched = { link = "Grey" },
 
     -- folke/flash.nvim
-    FlashBackdrop = syntax_entry(palette.grey1, palette.none),
-    FlashLabel = syntax_entry(palette.yellow, palette.none, { styles.bold, styles.italic }),
-    FlashMatch = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-    FlashCurrent = syntax_entry(palette.yellow, palette.none, { styles.bold }),
+    FlashBackdrop = syntax_entry(palette.on_surface_variant, palette.none),
+    FlashLabel = syntax_entry(palette.warning, palette.none, { styles.bold, styles.italic }),
+    FlashMatch = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    FlashCurrent = syntax_entry(palette.warning, palette.none, { styles.bold }),
 
     -- ggandor/leap.nvim
-    LeapMatch = syntax_entry(palette.fg, palette.purple, { styles.bold }),
-    LeapLabel = syntax_entry(palette.purple, palette.none, { styles.bold }),
-    LeapBackdrop = syntax_entry(palette.grey1, palette.none),
+    LeapMatch = syntax_entry(palette.on_surface, palette.tertiary, { styles.bold }),
+    LeapLabel = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
+    LeapBackdrop = syntax_entry(palette.on_surface_variant, palette.none),
 
     -- lukas-reineke/indent-blankline.nvim
-    IblScope = syntax_entry(palette.grey1, palette.none, { styles.nocombine }),
+    IblScope = syntax_entry(palette.on_surface_variant, palette.none, { styles.nocombine }),
     IblIndent = syntax_entry(palette.bg4, palette.none, { styles.nocombine }),
     IndentBlanklineContextChar = { link = "IblScope" },
     IndentBlanklineChar = { link = "IblIndent" },
@@ -1303,81 +1303,81 @@ highlights.generate_syntax = function(theme, options)
     IndentBlanklineSpaceCharBlankline = { link = "IndentBlanklineChar" },
 
     -- romgrk/barbar.nvim
-    BufferCurrent = syntax_entry(palette.fg, palette.bg0),
-    BufferCurrentIndex = syntax_entry(palette.fg, palette.bg0),
-    BufferCurrentMod = syntax_entry(palette.blue, palette.bg0),
-    BufferCurrentSign = syntax_entry(palette.statusline1, palette.bg0),
-    BufferCurrentTarget = syntax_entry(palette.red, palette.bg0, { styles.bold }),
-    BufferCurrentADDED = syntax_entry(palette.green, palette.bg0),
-    BufferCurrentCHANGED = syntax_entry(palette.blue, palette.bg0),
-    BufferCurrentDELETED = syntax_entry(palette.red, palette.bg0),
-    BufferCurrentERROR = syntax_entry(palette.red, palette.bg0),
-    BufferCurrentHINT = syntax_entry(palette.yellow, palette.bg0),
-    BufferCurrentINFO = syntax_entry(palette.aqua, palette.bg0),
-    BufferCurrentWARN = syntax_entry(palette.orange, palette.bg0),
-    BufferVisible = syntax_entry(palette.fg, palette.bg_dim),
-    BufferVisibleIndex = syntax_entry(palette.fg, palette.bg_dim),
-    BufferVisibleMod = syntax_entry(palette.blue, palette.bg_dim),
-    BufferVisibleSign = syntax_entry(palette.statusline1, palette.bg_dim),
-    BufferVisibleTarget = syntax_entry(palette.yellow, palette.bg_dim, { styles.bold }),
-    BufferVisibleADDED = syntax_entry(palette.green, palette.bg_dim),
-    BufferVisibleCHANGED = syntax_entry(palette.blue, palette.bg_dim),
-    BufferVisibleDELETED = syntax_entry(palette.red, palette.bg_dim),
-    BufferVisibleERROR = syntax_entry(palette.red, palette.bg_dim),
-    BufferVisibleHINT = syntax_entry(palette.yellow, palette.bg_dim),
-    BufferVisibleINFO = syntax_entry(palette.aqua, palette.bg_dim),
-    BufferVisibleWARN = syntax_entry(palette.orange, palette.bg_dim),
-    BufferInactive = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveIndex = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveMod = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveSign = syntax_entry(palette.grey0, palette.bg_dim),
-    BufferInactiveTarget = syntax_entry(palette.yellow, palette.bg_dim, { styles.bold }),
-    BufferInactiveADDED = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveCHANGED = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveDELETED = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveERROR = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveHINT = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveINFO = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveWARN = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferTabpages = syntax_entry(palette.grey1, palette.bg_dim, { styles.bold }),
-    BufferTabpageFill = syntax_entry(palette.bg_dim, palette.bg_dim),
+    BufferCurrent = syntax_entry(palette.on_surface, palette.background),
+    BufferCurrentIndex = syntax_entry(palette.on_surface, palette.background),
+    BufferCurrentMod = syntax_entry(palette.info, palette.background),
+    BufferCurrentSign = syntax_entry(palette.primary, palette.background),
+    BufferCurrentTarget = syntax_entry(palette.error, palette.background, { styles.bold }),
+    BufferCurrentADDED = syntax_entry(palette.success, palette.background),
+    BufferCurrentCHANGED = syntax_entry(palette.info, palette.background),
+    BufferCurrentDELETED = syntax_entry(palette.error, palette.background),
+    BufferCurrentERROR = syntax_entry(palette.error, palette.background),
+    BufferCurrentHINT = syntax_entry(palette.warning, palette.background),
+    BufferCurrentINFO = syntax_entry(palette.secondary, palette.background),
+    BufferCurrentWARN = syntax_entry(palette.warning, palette.background),
+    BufferVisible = syntax_entry(palette.on_surface, palette.background),
+    BufferVisibleIndex = syntax_entry(palette.on_surface, palette.background),
+    BufferVisibleMod = syntax_entry(palette.info, palette.background),
+    BufferVisibleSign = syntax_entry(palette.primary, palette.background),
+    BufferVisibleTarget = syntax_entry(palette.warning, palette.background, { styles.bold }),
+    BufferVisibleADDED = syntax_entry(palette.success, palette.background),
+    BufferVisibleCHANGED = syntax_entry(palette.info, palette.background),
+    BufferVisibleDELETED = syntax_entry(palette.error, palette.background),
+    BufferVisibleERROR = syntax_entry(palette.error, palette.background),
+    BufferVisibleHINT = syntax_entry(palette.warning, palette.background),
+    BufferVisibleINFO = syntax_entry(palette.secondary, palette.background),
+    BufferVisibleWARN = syntax_entry(palette.warning, palette.background),
+    BufferInactive = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveIndex = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveMod = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveSign = syntax_entry(palette.outline_variant, palette.background),
+    BufferInactiveTarget = syntax_entry(palette.warning, palette.background, { styles.bold }),
+    BufferInactiveADDED = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveCHANGED = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveDELETED = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveERROR = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveHINT = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveINFO = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferInactiveWARN = syntax_entry(palette.on_surface_variant, palette.background),
+    BufferTabpages = syntax_entry(palette.on_surface_variant, palette.background, { styles.bold }),
+    BufferTabpageFill = syntax_entry(palette.background, palette.background),
 
-    BlinkCmpLabelMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
+    BlinkCmpLabelMatch = syntax_entry(palette.success, palette.none, { styles.bold }),
     BlinkCmpKind = { link = "Yellow" },
 
     -- SmiteshP/nvim-navic
-    NavicIconsFile = syntax_entry(palette.fg, palette.none),
-    NavicIconsModule = syntax_entry(palette.yellow, palette.none),
-    NavicIconsNamespace = syntax_entry(palette.fg, palette.none),
-    NavicIconsPackage = syntax_entry(palette.fg, palette.none),
-    NavicIconsClass = syntax_entry(palette.orange, palette.none),
-    NavicIconsMethod = syntax_entry(palette.blue, palette.none),
-    NavicIconsProperty = syntax_entry(palette.green, palette.none),
-    NavicIconsField = syntax_entry(palette.green, palette.none),
-    NavicIconsConstructor = syntax_entry(palette.orange, palette.none),
-    NavicIconsEnum = syntax_entry(palette.orange, palette.none),
-    NavicIconsInterface = syntax_entry(palette.orange, palette.none),
-    NavicIconsFunction = syntax_entry(palette.blue, palette.none),
-    NavicIconsVariable = syntax_entry(palette.purple, palette.none),
-    NavicIconsConstant = syntax_entry(palette.purple, palette.none),
-    NavicIconsString = syntax_entry(palette.green, palette.none),
-    NavicIconsNumber = syntax_entry(palette.orange, palette.none),
-    NavicIconsBoolean = syntax_entry(palette.orange, palette.none),
-    NavicIconsArray = syntax_entry(palette.orange, palette.none),
-    NavicIconsObject = syntax_entry(palette.orange, palette.none),
-    NavicIconsKey = syntax_entry(palette.purple, palette.none),
-    NavicIconsKeyword = syntax_entry(palette.purple, palette.none),
-    NavicIconsNull = syntax_entry(palette.orange, palette.none),
-    NavicIconsEnumMember = syntax_entry(palette.green, palette.none),
-    NavicIconsStruct = syntax_entry(palette.orange, palette.none),
-    NavicIconsEvent = syntax_entry(palette.orange, palette.none),
-    NavicIconsOperator = syntax_entry(palette.fg, palette.none),
-    NavicIconsTypeParameter = syntax_entry(palette.green, palette.none),
-    NavicText = syntax_entry(palette.fg, palette.none),
-    NavicSeparator = syntax_entry(palette.fg, palette.none),
+    NavicIconsFile = syntax_entry(palette.on_surface, palette.none),
+    NavicIconsModule = syntax_entry(palette.warning, palette.none),
+    NavicIconsNamespace = syntax_entry(palette.on_surface, palette.none),
+    NavicIconsPackage = syntax_entry(palette.on_surface, palette.none),
+    NavicIconsClass = syntax_entry(palette.warning, palette.none),
+    NavicIconsMethod = syntax_entry(palette.info, palette.none),
+    NavicIconsProperty = syntax_entry(palette.success, palette.none),
+    NavicIconsField = syntax_entry(palette.success, palette.none),
+    NavicIconsConstructor = syntax_entry(palette.warning, palette.none),
+    NavicIconsEnum = syntax_entry(palette.warning, palette.none),
+    NavicIconsInterface = syntax_entry(palette.warning, palette.none),
+    NavicIconsFunction = syntax_entry(palette.info, palette.none),
+    NavicIconsVariable = syntax_entry(palette.tertiary, palette.none),
+    NavicIconsConstant = syntax_entry(palette.tertiary, palette.none),
+    NavicIconsString = syntax_entry(palette.success, palette.none),
+    NavicIconsNumber = syntax_entry(palette.warning, palette.none),
+    NavicIconsBoolean = syntax_entry(palette.warning, palette.none),
+    NavicIconsArray = syntax_entry(palette.warning, palette.none),
+    NavicIconsObject = syntax_entry(palette.warning, palette.none),
+    NavicIconsKey = syntax_entry(palette.tertiary, palette.none),
+    NavicIconsKeyword = syntax_entry(palette.tertiary, palette.none),
+    NavicIconsNull = syntax_entry(palette.warning, palette.none),
+    NavicIconsEnumMember = syntax_entry(palette.success, palette.none),
+    NavicIconsStruct = syntax_entry(palette.warning, palette.none),
+    NavicIconsEvent = syntax_entry(palette.warning, palette.none),
+    NavicIconsOperator = syntax_entry(palette.on_surface, palette.none),
+    NavicIconsTypeParameter = syntax_entry(palette.success, palette.none),
+    NavicText = syntax_entry(palette.on_surface, palette.none),
+    NavicSeparator = syntax_entry(palette.on_surface, palette.none),
 
     -- rcarriga/nvim-notify
-    NotifyBackground = syntax_entry(palette.none, palette.bg0),
+    NotifyBackground = syntax_entry(palette.none, palette.background),
     -- Borders
     NotifyDEBUGBorder = { link = "Grey" },
     NotifyERRORBorder = { link = "Red" },
@@ -1400,16 +1400,16 @@ highlights.generate_syntax = function(theme, options)
     NotifyWARNTitle = { link = "Yellow" },
 
     -- rcarriga/nvim-dap-ui
-    DapUIModifiedValue = syntax_entry(palette.blue, palette.none, { styles.bold }),
-    DapUIBreakpointsCurrentLine = syntax_entry(palette.blue, palette.none, { styles.bold }),
-    DapUIPlayPause = syntax_entry(palette.green, palette.bg2),
-    DapUIRestart = syntax_entry(palette.green, palette.bg2),
-    DapUIStop = syntax_entry(palette.red, palette.bg2),
-    DapUIUnavailable = syntax_entry(palette.grey1, palette.bg2),
-    DapUIStepOver = syntax_entry(palette.blue, palette.bg2),
-    DapUIStepInto = syntax_entry(palette.blue, palette.bg2),
-    DapUIStepBack = syntax_entry(palette.blue, palette.bg2),
-    DapUIStepOut = syntax_entry(palette.blue, palette.bg2),
+    DapUIModifiedValue = syntax_entry(palette.info, palette.none, { styles.bold }),
+    DapUIBreakpointsCurrentLine = syntax_entry(palette.info, palette.none, { styles.bold }),
+    DapUIPlayPause = syntax_entry(palette.success, palette.surface_variant),
+    DapUIRestart = syntax_entry(palette.success, palette.surface_variant),
+    DapUIStop = syntax_entry(palette.error, palette.surface_variant),
+    DapUIUnavailable = syntax_entry(palette.on_surface_variant, palette.surface_variant),
+    DapUIStepOver = syntax_entry(palette.info, palette.surface_variant),
+    DapUIStepInto = syntax_entry(palette.info, palette.surface_variant),
+    DapUIStepBack = syntax_entry(palette.info, palette.surface_variant),
+    DapUIStepOut = syntax_entry(palette.info, palette.surface_variant),
     DapUIScope = { link = "Blue" },
     DapUIType = { link = "Purple" },
     DapUIDecoration = { link = "Blue" },
@@ -1434,54 +1434,54 @@ highlights.generate_syntax = function(theme, options)
     SagaBorder = { link = "Blue" },
 
     -- b0o/incline.nvim
-    InclineNormalNC = syntax_entry(palette.grey1, palette.bg2),
+    InclineNormalNC = syntax_entry(palette.on_surface_variant, palette.surface_variant),
 
     -- echasnovski/mini.nvim
     MiniAnimateCursor = syntax_entry(palette.none, palette.none, { styles.reverse, styles.nocombine }),
-    MiniFilesFile = syntax_entry(palette.fg, palette.none),
+    MiniFilesFile = syntax_entry(palette.on_surface, palette.none),
     MiniFilesTitleFocused = syntax_entry(
-      palette.green,
-      options.float_style == "dim" and palette.bg_dim or palette.bg2,
+      palette.success,
+      options.float_style == "dim" and palette.background or palette.surface_variant,
       { styles.bold }
     ),
-    MiniHipatternsFixme = syntax_entry(palette.bg0, palette.red, { styles.bold }),
-    MiniHipatternsHack = syntax_entry(palette.bg0, palette.yellow, { styles.bold }),
-    MiniHipatternsNote = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
-    MiniHipatternsTodo = syntax_entry(palette.bg0, palette.green, { styles.bold }),
-    MiniIconsAzure = syntax_entry(palette.blue, palette.none),
-    MiniIconsBlue = syntax_entry(palette.blue, palette.none),
-    MiniIconsCyan = syntax_entry(palette.aqua, palette.none),
-    MiniIconsGreen = syntax_entry(palette.green, palette.none),
-    MiniIconsGrey = syntax_entry(palette.grey2, palette.none),
-    MiniIconsOrange = syntax_entry(palette.orange, palette.none),
-    MiniIconsPurple = syntax_entry(palette.purple, palette.none),
-    MiniIconsRed = syntax_entry(palette.red, palette.none),
-    MiniIconsYellow = syntax_entry(palette.yellow, palette.none),
+    MiniHipatternsFixme = syntax_entry(palette.background, palette.error, { styles.bold }),
+    MiniHipatternsHack = syntax_entry(palette.background, palette.warning, { styles.bold }),
+    MiniHipatternsNote = syntax_entry(palette.background, palette.info, { styles.bold }),
+    MiniHipatternsTodo = syntax_entry(palette.background, palette.success, { styles.bold }),
+    MiniIconsAzure = syntax_entry(palette.info, palette.none),
+    MiniIconsBlue = syntax_entry(palette.info, palette.none),
+    MiniIconsCyan = syntax_entry(palette.secondary, palette.none),
+    MiniIconsGreen = syntax_entry(palette.success, palette.none),
+    MiniIconsGrey = syntax_entry(palette.on_surface_variant, palette.none),
+    MiniIconsOrange = syntax_entry(palette.warning, palette.none),
+    MiniIconsPurple = syntax_entry(palette.tertiary, palette.none),
+    MiniIconsRed = syntax_entry(palette.error, palette.none),
+    MiniIconsYellow = syntax_entry(palette.warning, palette.none),
     MiniIndentscopePrefix = syntax_entry(palette.none, palette.none, { styles.nocombine }),
-    MiniJump2dSpot = syntax_entry(palette.orange, palette.none, { styles.bold, styles.nocombine }),
-    MiniJump2dSpotAhead = syntax_entry(palette.aqua, palette.none, { styles.nocombine }),
-    MiniJump2dSpotUnique = syntax_entry(palette.yellow, palette.none, { styles.bold, styles.nocombine }),
-    MiniPickPrompt = syntax_entry(palette.blue, options.float_style == "dim" and palette.bg_dim or palette.bg2),
+    MiniJump2dSpot = syntax_entry(palette.warning, palette.none, { styles.bold, styles.nocombine }),
+    MiniJump2dSpotAhead = syntax_entry(palette.secondary, palette.none, { styles.nocombine }),
+    MiniJump2dSpotUnique = syntax_entry(palette.warning, palette.none, { styles.bold, styles.nocombine }),
+    MiniPickPrompt = syntax_entry(palette.info, options.float_style == "dim" and palette.background or palette.surface_variant),
     MiniStarterCurrent = syntax_entry(palette.none, palette.none, { styles.nocombine }),
-    MiniStatuslineDevinfo = syntax_entry(palette.grey2, palette.bg1),
-    MiniStatuslineFilename = syntax_entry(palette.grey1, palette.bg1),
-    MiniStatuslineModeCommand = syntax_entry(palette.bg0, palette.aqua, { styles.bold }),
-    MiniStatuslineModeInsert = syntax_entry(palette.bg0, palette.statusline2, { styles.bold }),
-    MiniStatuslineModeNormal = syntax_entry(palette.bg0, palette.statusline1, { styles.bold }),
-    MiniStatuslineModeOther = syntax_entry(palette.bg0, palette.purple, { styles.bold }),
-    MiniStatuslineModeReplace = syntax_entry(palette.bg0, palette.orange, { styles.bold }),
-    MiniStatuslineModeVisual = syntax_entry(palette.bg0, palette.statusline3, { styles.bold }),
-    MiniTablineCurrent = syntax_entry(palette.green, palette.bg0, { styles.bold }),
-    MiniTablineHidden = syntax_entry(palette.grey1, palette.bg2),
-    MiniTablineModifiedCurrent = syntax_entry(palette.bg1, palette.green),
-    MiniTablineModifiedHidden = syntax_entry(palette.yellow, palette.bg2),
-    MiniTablineModifiedVisible = syntax_entry(palette.yellow, palette.bg2),
-    MiniTablineTabpagesection = syntax_entry(palette.bg0, palette.statusline1, { styles.bold }),
-    MiniTablineVisible = syntax_entry(palette.fg, palette.bg2),
+    MiniStatuslineDevinfo = syntax_entry(palette.on_surface_variant, palette.surface),
+    MiniStatuslineFilename = syntax_entry(palette.on_surface_variant, palette.surface),
+    MiniStatuslineModeCommand = syntax_entry(palette.background, palette.secondary, { styles.bold }),
+    MiniStatuslineModeInsert = syntax_entry(palette.background, palette.secondary, { styles.bold }),
+    MiniStatuslineModeNormal = syntax_entry(palette.background, palette.primary, { styles.bold }),
+    MiniStatuslineModeOther = syntax_entry(palette.background, palette.tertiary, { styles.bold }),
+    MiniStatuslineModeReplace = syntax_entry(palette.background, palette.warning, { styles.bold }),
+    MiniStatuslineModeVisual = syntax_entry(palette.background, palette.tertiary, { styles.bold }),
+    MiniTablineCurrent = syntax_entry(palette.success, palette.background, { styles.bold }),
+    MiniTablineHidden = syntax_entry(palette.on_surface_variant, palette.surface_variant),
+    MiniTablineModifiedCurrent = syntax_entry(palette.surface, palette.success),
+    MiniTablineModifiedHidden = syntax_entry(palette.warning, palette.surface_variant),
+    MiniTablineModifiedVisible = syntax_entry(palette.warning, palette.surface_variant),
+    MiniTablineTabpagesection = syntax_entry(palette.background, palette.primary, { styles.bold }),
+    MiniTablineVisible = syntax_entry(palette.on_surface, palette.surface_variant),
     MiniTestEmphasis = syntax_entry(palette.none, palette.none, { styles.bold }),
-    MiniTestFail = syntax_entry(palette.red, palette.none, { styles.bold }),
-    MiniTestPass = syntax_entry(palette.green, palette.none, { styles.bold }),
-    MiniTrailspace = syntax_entry(palette.none, palette.red),
+    MiniTestFail = syntax_entry(palette.error, palette.none, { styles.bold }),
+    MiniTestPass = syntax_entry(palette.success, palette.none, { styles.bold }),
+    MiniTrailspace = syntax_entry(palette.none, palette.error),
     MiniAnimateNormalFloat = { link = "NormalFloat" },
     MiniClueBorder = { link = "FloatBorder" },
     MiniClueDescGroup = { link = "DiagnosticFloatingWarn" },
@@ -1553,17 +1553,17 @@ highlights.generate_syntax = function(theme, options)
     MiniTablineFill = { link = "TabLineFill" },
 
     -- ggandor/lightspeed.nvim
-    LightspeedLabel = syntax_entry(palette.red, palette.none, { styles.bold, styles.underline }),
-    LightspeedLabelDistant = syntax_entry(palette.blue, palette.none, { styles.bold, styles.underline }),
-    LightspeedShortcut = syntax_entry(palette.bg0, palette.red, { styles.bold }),
-    LightspeedUnlabeledMatch = syntax_entry(palette.fg, palette.none, { styles.bold }),
-    LightspeedPendingOpArea = syntax_entry(palette.bg0, palette.green),
+    LightspeedLabel = syntax_entry(palette.error, palette.none, { styles.bold, styles.underline }),
+    LightspeedLabelDistant = syntax_entry(palette.info, palette.none, { styles.bold, styles.underline }),
+    LightspeedShortcut = syntax_entry(palette.background, palette.error, { styles.bold }),
+    LightspeedUnlabeledMatch = syntax_entry(palette.on_surface, palette.none, { styles.bold }),
+    LightspeedPendingOpArea = syntax_entry(palette.background, palette.success),
     LightspeedMaskedChar = { link = "Purple" },
     LightspeedGreyWash = { link = "Grey" },
 
     -- https://github.com/junegunn/vim-plug
-    plug1 = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    plugNumber = syntax_entry(palette.yellow, palette.none, { styles.bold }),
+    plug1 = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    plugNumber = syntax_entry(palette.warning, palette.none, { styles.bold }),
     plug2 = { link = "Green" },
     plugBracket = { link = "Grey" },
     plugName = { link = "Aqua" },
@@ -1696,19 +1696,19 @@ highlights.generate_syntax = function(theme, options)
     FernWindowSelectStatusLine = { link = "TabLine" },
 
     -- https://github.com/pwntester/octo.nvim
-    OctoViewer = syntax_entry(palette.bg0, palette.blue),
-    OctoGreenFloat = syntax_entry(palette.green, palette.bg2),
-    OctoRedFloat = syntax_entry(palette.red, palette.bg2),
-    OctoPurpleFloat = syntax_entry(palette.purple, palette.bg2),
-    OctoYellowFloat = syntax_entry(palette.yellow, palette.bg2),
-    OctoBlueFloat = syntax_entry(palette.blue, palette.bg2),
-    OctoGreyFloat = syntax_entry(palette.grey1, palette.bg2),
-    OctoBubbleGreen = syntax_entry(palette.bg0, palette.green),
-    OctoBubbleRed = syntax_entry(palette.bg0, palette.red),
-    OctoBubblePurple = syntax_entry(palette.bg0, palette.purple),
-    OctoBubbleYellow = syntax_entry(palette.bg0, palette.yellow),
-    OctoBubbleBlue = syntax_entry(palette.bg0, palette.blue),
-    OctoBubbleGrey = syntax_entry(palette.bg0, palette.grey1),
+    OctoViewer = syntax_entry(palette.background, palette.info),
+    OctoGreenFloat = syntax_entry(palette.success, palette.surface_variant),
+    OctoRedFloat = syntax_entry(palette.error, palette.surface_variant),
+    OctoPurpleFloat = syntax_entry(palette.tertiary, palette.surface_variant),
+    OctoYellowFloat = syntax_entry(palette.warning, palette.surface_variant),
+    OctoBlueFloat = syntax_entry(palette.info, palette.surface_variant),
+    OctoGreyFloat = syntax_entry(palette.on_surface_variant, palette.surface_variant),
+    OctoBubbleGreen = syntax_entry(palette.background, palette.success),
+    OctoBubbleRed = syntax_entry(palette.background, palette.error),
+    OctoBubblePurple = syntax_entry(palette.background, palette.tertiary),
+    OctoBubbleYellow = syntax_entry(palette.background, palette.warning),
+    OctoBubbleBlue = syntax_entry(palette.background, palette.info),
+    OctoBubbleGrey = syntax_entry(palette.background, palette.on_surface_variant),
     OctoGreen = { link = "Green" },
     OctoRed = { link = "Red" },
     OctoPurple = { link = "Purple" },
@@ -1754,7 +1754,7 @@ highlights.generate_syntax = function(theme, options)
     QuickmenuHeader = { link = "Orange" },
 
     -- mbbill/undotree
-    UndotreeSavedBig = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    UndotreeSavedBig = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
     UndotreeNode = { link = "Orange" },
     UndotreeNodeCurrent = { link = "Red" },
     UndotreeSeq = { link = "Green" },
@@ -1790,7 +1790,7 @@ highlights.generate_syntax = function(theme, options)
     NeogitNotificationError = { link = "ErrorFloat" },
     NeogitNotificationInfo = { link = "InfoFloat" },
     NeogitNotificationWarning = { link = "WarningFloat" },
-    NeogitObjectId = syntax_entry(palette.green, palette.none, { styles.italic, styles.bold }),
+    NeogitObjectId = syntax_entry(palette.success, palette.none, { styles.italic, styles.bold }),
     NeogitRecentCommits = { link = "AquaBold" },
     NeogitRemote = { link = "Purple" },
     NeogitStashes = { link = "BlueBold" },
@@ -1811,100 +1811,100 @@ highlights.generate_syntax = function(theme, options)
     NeotestFailed = { link = "RedSign" },
     NeotestSkipped = { link = "BlueSign" },
     NeotestNamespace = { link = "Purple" },
-    NeotestFocused = syntax_entry(palette.yellow, palette.none),
+    NeotestFocused = syntax_entry(palette.warning, palette.none),
     NeotestFile = { link = "Aqua" },
     NeotestDir = { link = "Directory" },
-    NeotestBorder = syntax_entry(palette.blue, palette.none),
+    NeotestBorder = syntax_entry(palette.info, palette.none),
     NeotestIndent = { link = "NonText" },
     NeotestExpandMarker = syntax_entry(palette.bg5, palette.none),
     NeotestAdapterName = { link = "Title" },
-    NeotestWinSelect = syntax_entry(palette.blue, palette.none),
+    NeotestWinSelect = syntax_entry(palette.info, palette.none),
     NeotestMarked = { link = "Orange" },
     NeotestTarget = { link = "Red" },
 
     -- lambdalisue/glyph-palette.vim
-    GlyphPalette1 = syntax_entry(palette.red, palette.none),
-    GlyphPalette2 = syntax_entry(palette.green, palette.none),
-    GlyphPalette3 = syntax_entry(palette.yellow, palette.none),
-    GlyphPalette4 = syntax_entry(palette.blue, palette.none),
-    GlyphPalette6 = syntax_entry(palette.green, palette.none),
-    GlyphPalette7 = syntax_entry(palette.fg, palette.none),
-    GlyphPalette9 = syntax_entry(palette.red, palette.none),
+    GlyphPalette1 = syntax_entry(palette.error, palette.none),
+    GlyphPalette2 = syntax_entry(palette.success, palette.none),
+    GlyphPalette3 = syntax_entry(palette.warning, palette.none),
+    GlyphPalette4 = syntax_entry(palette.info, palette.none),
+    GlyphPalette6 = syntax_entry(palette.success, palette.none),
+    GlyphPalette7 = syntax_entry(palette.on_surface, palette.none),
+    GlyphPalette9 = syntax_entry(palette.error, palette.none),
 
     -- akinsho/bufferline.nvim
     BufferLineIndicatorSelected = { link = "GreenSign" },
 
     -- petertriho/nvim-scrollbar
-    ScrollbarHandle = syntax_entry(palette.none, palette.bg1),
-    ScrollbarSearchHandle = syntax_entry(palette.orange, palette.bg1),
-    ScrollbarSearch = syntax_entry(palette.orange, palette.none),
-    ScrollbarErrorHandle = syntax_entry(palette.red, palette.bg1),
-    ScrollbarError = syntax_entry(palette.red, palette.none),
-    ScrollbarWarnHandle = syntax_entry(palette.yellow, palette.bg1),
-    ScrollbarWarn = syntax_entry(palette.yellow, palette.none),
-    ScrollbarInfoHandle = syntax_entry(palette.green, palette.bg1),
-    ScrollbarInfo = syntax_entry(palette.green, palette.none),
-    ScrollbarHintHandle = syntax_entry(palette.blue, palette.bg1),
-    ScrollbarHint = syntax_entry(palette.blue, palette.none),
-    ScrollbarMiscHandle = syntax_entry(palette.purple, palette.bg1),
-    ScrollbarMisc = syntax_entry(palette.purple, palette.none),
+    ScrollbarHandle = syntax_entry(palette.none, palette.surface),
+    ScrollbarSearchHandle = syntax_entry(palette.warning, palette.surface),
+    ScrollbarSearch = syntax_entry(palette.warning, palette.none),
+    ScrollbarErrorHandle = syntax_entry(palette.error, palette.surface),
+    ScrollbarError = syntax_entry(palette.error, palette.none),
+    ScrollbarWarnHandle = syntax_entry(palette.warning, palette.surface),
+    ScrollbarWarn = syntax_entry(palette.warning, palette.none),
+    ScrollbarInfoHandle = syntax_entry(palette.success, palette.surface),
+    ScrollbarInfo = syntax_entry(palette.success, palette.none),
+    ScrollbarHintHandle = syntax_entry(palette.info, palette.surface),
+    ScrollbarHint = syntax_entry(palette.info, palette.none),
+    ScrollbarMiscHandle = syntax_entry(palette.tertiary, palette.surface),
+    ScrollbarMisc = syntax_entry(palette.tertiary, palette.none),
 
     -- gbprod/yanky.nvim
     YankyPut = { link = "IncSearch" },
     YankyYanked = { link = "IncSearch" },
 
     -- folke/noice.nvim
-    NoiceCompletionItemKindDefault = syntax_entry(palette.grey1, palette.none),
-    NoiceCompletionItemKindKeyword = syntax_entry(palette.aqua, palette.none),
-    NoiceCompletionItemKindVariable = syntax_entry(palette.statusline3, palette.none),
-    NoiceCompletionItemKindConstant = syntax_entry(palette.statusline3, palette.none),
-    NoiceCompletionItemKindReference = syntax_entry(palette.statusline3, palette.none),
-    NoiceCompletionItemKindValue = syntax_entry(palette.statusline3, palette.none),
-    NoiceCompletionItemKindFunction = syntax_entry(palette.blue, palette.none),
-    NoiceCompletionItemKindMethod = syntax_entry(palette.blue, palette.none),
-    NoiceCompletionItemKindConstructor = syntax_entry(palette.blue, palette.none),
-    NoiceCompletionItemKindClass = syntax_entry(palette.orange, palette.none),
-    NoiceCompletionItemKindInterface = syntax_entry(palette.orange, palette.none),
-    NoiceCompletionItemKindStruct = syntax_entry(palette.orange, palette.none),
-    NoiceCompletionItemKindEvent = syntax_entry(palette.orange, palette.none),
-    NoiceCompletionItemKindEnum = syntax_entry(palette.orange, palette.none),
-    NoiceCompletionItemKindUnit = syntax_entry(palette.orange, palette.none),
-    NoiceCompletionItemKindModule = syntax_entry(palette.yellow, palette.none),
-    NoiceCompletionItemKindProperty = syntax_entry(palette.green, palette.none),
-    NoiceCompletionItemKindField = syntax_entry(palette.green, palette.none),
-    NoiceCompletionItemKindTypeParameter = syntax_entry(palette.green, palette.none),
-    NoiceCompletionItemKindEnumMember = syntax_entry(palette.green, palette.none),
-    NoiceCompletionItemKindOperator = syntax_entry(palette.green, palette.none),
-    NoiceCompletionItemKindSnippet = syntax_entry(palette.grey1, palette.none),
+    NoiceCompletionItemKindDefault = syntax_entry(palette.on_surface_variant, palette.none),
+    NoiceCompletionItemKindKeyword = syntax_entry(palette.secondary, palette.none),
+    NoiceCompletionItemKindVariable = syntax_entry(palette.tertiary, palette.none),
+    NoiceCompletionItemKindConstant = syntax_entry(palette.tertiary, palette.none),
+    NoiceCompletionItemKindReference = syntax_entry(palette.tertiary, palette.none),
+    NoiceCompletionItemKindValue = syntax_entry(palette.tertiary, palette.none),
+    NoiceCompletionItemKindFunction = syntax_entry(palette.info, palette.none),
+    NoiceCompletionItemKindMethod = syntax_entry(palette.info, palette.none),
+    NoiceCompletionItemKindConstructor = syntax_entry(palette.info, palette.none),
+    NoiceCompletionItemKindClass = syntax_entry(palette.warning, palette.none),
+    NoiceCompletionItemKindInterface = syntax_entry(palette.warning, palette.none),
+    NoiceCompletionItemKindStruct = syntax_entry(palette.warning, palette.none),
+    NoiceCompletionItemKindEvent = syntax_entry(palette.warning, palette.none),
+    NoiceCompletionItemKindEnum = syntax_entry(palette.warning, palette.none),
+    NoiceCompletionItemKindUnit = syntax_entry(palette.warning, palette.none),
+    NoiceCompletionItemKindModule = syntax_entry(palette.warning, palette.none),
+    NoiceCompletionItemKindProperty = syntax_entry(palette.success, palette.none),
+    NoiceCompletionItemKindField = syntax_entry(palette.success, palette.none),
+    NoiceCompletionItemKindTypeParameter = syntax_entry(palette.success, palette.none),
+    NoiceCompletionItemKindEnumMember = syntax_entry(palette.success, palette.none),
+    NoiceCompletionItemKindOperator = syntax_entry(palette.success, palette.none),
+    NoiceCompletionItemKindSnippet = syntax_entry(palette.on_surface_variant, palette.none),
 
     -- williamboman/mason.nvim
-    MasonHeader = syntax_entry(palette.bg0, palette.green, { styles.bold }),
-    MasonHeaderSecondary = syntax_entry(palette.bg0, palette.orange, { styles.bold }),
+    MasonHeader = syntax_entry(palette.background, palette.success, { styles.bold }),
+    MasonHeaderSecondary = syntax_entry(palette.background, palette.warning, { styles.bold }),
     MasonHighlight = { link = "Green" },
     MasonHighlightSecondary = { link = "Yellow" },
-    MasonHighlightBlock = syntax_entry(palette.bg0, palette.aqua),
-    MasonHighlightBlockBold = syntax_entry(palette.bg0, palette.aqua, { styles.bold }),
-    MasonHighlightBlockSecondary = syntax_entry(palette.bg0, palette.yellow),
-    MasonHighlightBlockBoldSecondary = syntax_entry(palette.bg0, palette.yellow, { styles.bold }),
-    MasonMuted = syntax_entry(palette.grey0, palette.none),
-    MasonMutedBlock = syntax_entry(palette.bg0, palette.grey0),
+    MasonHighlightBlock = syntax_entry(palette.background, palette.secondary),
+    MasonHighlightBlockBold = syntax_entry(palette.background, palette.secondary, { styles.bold }),
+    MasonHighlightBlockSecondary = syntax_entry(palette.background, palette.warning),
+    MasonHighlightBlockBoldSecondary = syntax_entry(palette.background, palette.warning, { styles.bold }),
+    MasonMuted = syntax_entry(palette.outline_variant, palette.none),
+    MasonMutedBlock = syntax_entry(palette.background, palette.outline_variant),
 
     -- nullchilly/fsread.nvim
-    FSPrefix = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0), { styles.bold }),
-    FSSuffix = syntax_entry(palette.grey1, palette.none),
+    FSPrefix = syntax_entry(palette.on_surface, transparency_respecting_colour(palette.background), { styles.bold }),
+    FSSuffix = syntax_entry(palette.on_surface_variant, palette.none),
 
     -- Language specific settings
     -- Markdown
-    markdownH1 = syntax_entry(palette.red, palette.none, { styles.bold }),
-    markdownH2 = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    markdownH3 = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-    markdownH4 = syntax_entry(palette.green, palette.none, { styles.bold }),
-    markdownH5 = syntax_entry(palette.blue, palette.none, { styles.bold }),
-    markdownH6 = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    markdownH1 = syntax_entry(palette.error, palette.none, { styles.bold }),
+    markdownH2 = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    markdownH3 = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    markdownH4 = syntax_entry(palette.success, palette.none, { styles.bold }),
+    markdownH5 = syntax_entry(palette.info, palette.none, { styles.bold }),
+    markdownH6 = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
     markdownUrl = { link = "TSURI" },
     markdownItalic = syntax_entry(palette.none, palette.none, { styles.italic }),
     markdownBold = syntax_entry(palette.none, palette.none, { styles.bold }),
-    markdownItalicDelimiter = syntax_entry(palette.grey1, palette.none, { styles.italic }),
+    markdownItalicDelimiter = syntax_entry(palette.on_surface_variant, palette.none, { styles.italic }),
     markdownCode = { link = "Green" },
     markdownCodeBlock = { link = "Aqua" },
     markdownCodeDelimiter = { link = "Aqua" },
@@ -1924,12 +1924,12 @@ highlights.generate_syntax = function(theme, options)
     markdownId = { link = "Yellow" },
 
     -- HTML
-    htmlH1 = syntax_entry(palette.red, palette.none, { styles.bold }),
-    htmlH2 = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    htmlH3 = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-    htmlH4 = syntax_entry(palette.green, palette.none, { styles.bold }),
-    htmlH5 = syntax_entry(palette.blue, palette.none, { styles.bold }),
-    htmlH6 = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    htmlH1 = syntax_entry(palette.error, palette.none, { styles.bold }),
+    htmlH2 = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    htmlH3 = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    htmlH4 = syntax_entry(palette.success, palette.none, { styles.bold }),
+    htmlH5 = syntax_entry(palette.info, palette.none, { styles.bold }),
+    htmlH6 = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
     htmlLink = syntax_entry(palette.none, palette.none, { styles.underline }),
     htmlBold = syntax_entry(palette.none, palette.none, { styles.bold }),
     htmlBoldUnderline = syntax_entry(palette.none, palette.none, { styles.bold, styles.underline }),
@@ -2196,28 +2196,28 @@ highlights.generate_syntax = function(theme, options)
 
   -- nathanaelkane/vim-indent-guides
   if vim.g.indent_guides_auto_colors == false then
-    syntax["IndentGuidesOdd"] = syntax_entry(palette.bg0, palette.bg1)
-    syntax["IndentGuidesEven"] = syntax_entry(palette.bg0, palette.bg2)
+    syntax["IndentGuidesOdd"] = syntax_entry(palette.background, palette.surface)
+    syntax["IndentGuidesEven"] = syntax_entry(palette.background, palette.surface_variant)
   end
 
   if options.transparent_background_level == 0 then
-    syntax["NvimTreeNormal"] = syntax_entry(palette.fg, palette.bg_dim)
-    syntax["NvimTreeEndOfBuffer"] = syntax_entry(palette.bg_dim, palette.bg_dim)
-    syntax["NvimTreeVertSplit"] = syntax_entry(palette.bg0, palette.bg0)
-    syntax["NvimTreeCursorLine"] = syntax_entry(palette.none, palette.bg0)
-    syntax["NeoTreeNormal"] = syntax_entry(palette.fg, palette.bg_dim)
-    syntax["NeoTreeEndOfBuffer"] = syntax_entry(palette.bg_dim, palette.bg_dim)
-    syntax["NeoTreeVertSplit"] = syntax_entry(palette.bg0, palette.bg0)
+    syntax["NvimTreeNormal"] = syntax_entry(palette.on_surface, palette.background)
+    syntax["NvimTreeEndOfBuffer"] = syntax_entry(palette.background, palette.background)
+    syntax["NvimTreeVertSplit"] = syntax_entry(palette.background, palette.background)
+    syntax["NvimTreeCursorLine"] = syntax_entry(palette.none, palette.background)
+    syntax["NeoTreeNormal"] = syntax_entry(palette.on_surface, palette.background)
+    syntax["NeoTreeEndOfBuffer"] = syntax_entry(palette.background, palette.background)
+    syntax["NeoTreeVertSplit"] = syntax_entry(palette.background, palette.background)
   end
 
   if vim.o.background == "light" then
-    syntax["NeoTreeCursorLine"] = syntax_entry(palette.none, palette.bg0)
+    syntax["NeoTreeCursorLine"] = syntax_entry(palette.none, palette.background)
   end
 
   if options.inlay_hints_background == "none" then
     syntax["InlayHints"] = { link = "LineNr" }
   elseif options.inlay_hints_background == "dimmed" then
-    syntax["InlayHints"] = syntax_entry(palette.grey1, palette.bg_dim)
+    syntax["InlayHints"] = syntax_entry(palette.on_surface_variant, palette.background)
   end
 
   local lsp_kind_colours = {
@@ -2266,65 +2266,65 @@ highlights.generate_syntax = function(theme, options)
   end
 
   -- yetone/avante.nvim
-  syntax["AvanteTitle"] = syntax_entry(palette.bg0, palette.green, { styles.bold })
-  syntax["AvanteReversedTitle"] = syntax_entry(palette.green, palette.none)
-  syntax["AvanteSubtitle"] = syntax_entry(palette.bg0, palette.blue, { styles.bold })
-  syntax["AvanteReversedSubtitle"] = syntax_entry(palette.blue, palette.none)
-  syntax["AvanteThirdTitle"] = syntax_entry(palette.fg, palette.bg2, { styles.bold })
-  syntax["AvanteReversedThirdTitle"] = syntax_entry(palette.bg2, palette.none)
+  syntax["AvanteTitle"] = syntax_entry(palette.background, palette.success, { styles.bold })
+  syntax["AvanteReversedTitle"] = syntax_entry(palette.success, palette.none)
+  syntax["AvanteSubtitle"] = syntax_entry(palette.background, palette.info, { styles.bold })
+  syntax["AvanteReversedSubtitle"] = syntax_entry(palette.info, palette.none)
+  syntax["AvanteThirdTitle"] = syntax_entry(palette.on_surface, palette.surface_variant, { styles.bold })
+  syntax["AvanteReversedThirdTitle"] = syntax_entry(palette.surface_variant, palette.none)
   syntax["AvanteSuggestion"] = { link = "Comment" }
   syntax["AvanteAnnotation"] = { link = "Comment" }
-  syntax["AvanteInlineHint"] = syntax_entry(palette.grey1, palette.none, { styles.italic })
+  syntax["AvanteInlineHint"] = syntax_entry(palette.on_surface_variant, palette.none, { styles.italic })
   syntax["AvantePopupHint"] = { link = "NormalFloat" }
-  syntax["AvanteConflictCurrent"] = syntax_entry(palette.none, palette.bg_red, { styles.bold })
-  syntax["AvanteConflictCurrentLabel"] = syntax_entry(ColourUtility.blend_bg(palette.red, 0.3), palette.bg_red)
-  syntax["AvanteConflictIncoming"] = syntax_entry(palette.none, palette.bg_blue, { styles.bold })
-  syntax["AvanteConflictIncomingLabel"] = syntax_entry(ColourUtility.blend_bg(palette.blue, 0.3), palette.bg_blue)
-  syntax["AvanteToBeDeleted"] = syntax_entry(palette.none, palette.bg_red, { styles.strikethrough })
-  syntax["AvanteToBeDeletedWOStrikethrough"] = syntax_entry(palette.none, palette.bg_red)
-  syntax["AvanteButtonDefault"] = syntax_entry(palette.bg0, palette.grey1)
-  syntax["AvanteButtonDefaultHover"] = syntax_entry(palette.bg0, palette.green)
-  syntax["AvanteButtonPrimary"] = syntax_entry(palette.bg0, palette.blue)
-  syntax["AvanteButtonPrimaryHover"] = syntax_entry(palette.bg0, palette.aqua)
-  syntax["AvanteButtonDanger"] = syntax_entry(palette.bg0, palette.red)
-  syntax["AvanteButtonDangerHover"] = syntax_entry(palette.fg, palette.red)
-  syntax["AvantePromptInput"] = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg1))
+  syntax["AvanteConflictCurrent"] = syntax_entry(palette.none, palette.error_container, { styles.bold })
+  syntax["AvanteConflictCurrentLabel"] = syntax_entry(ColourUtility.blend_bg(palette.error, 0.3), palette.error_container)
+  syntax["AvanteConflictIncoming"] = syntax_entry(palette.none, palette.info_container, { styles.bold })
+  syntax["AvanteConflictIncomingLabel"] = syntax_entry(ColourUtility.blend_bg(palette.info, 0.3), palette.info_container)
+  syntax["AvanteToBeDeleted"] = syntax_entry(palette.none, palette.error_container, { styles.strikethrough })
+  syntax["AvanteToBeDeletedWOStrikethrough"] = syntax_entry(palette.none, palette.error_container)
+  syntax["AvanteButtonDefault"] = syntax_entry(palette.background, palette.on_surface_variant)
+  syntax["AvanteButtonDefaultHover"] = syntax_entry(palette.background, palette.success)
+  syntax["AvanteButtonPrimary"] = syntax_entry(palette.background, palette.info)
+  syntax["AvanteButtonPrimaryHover"] = syntax_entry(palette.background, palette.secondary)
+  syntax["AvanteButtonDanger"] = syntax_entry(palette.background, palette.error)
+  syntax["AvanteButtonDangerHover"] = syntax_entry(palette.on_surface, palette.error)
+  syntax["AvantePromptInput"] = syntax_entry(palette.on_surface, transparency_respecting_colour(palette.surface))
   syntax["AvantePromptInputBorder"] = { link = "NormalFloat" }
-  syntax["AvanteConfirmTitle"] = syntax_entry(palette.bg0, palette.red, { styles.bold })
+  syntax["AvanteConfirmTitle"] = syntax_entry(palette.background, palette.error, { styles.bold })
   syntax["AvanteSidebarNormal"] = { link = "NormalFloat" }
   syntax["AvanteSidebarWinSeparator"] = { link = "WinSeparator" }
   syntax["AvanteSidebarWinHorizontalSeparator"] =
-    syntax_entry(palette.grey0, transparency_respecting_colour(palette.bg1))
-  syntax["AvanteReversedNormal"] = syntax_entry(transparency_respecting_colour(palette.bg0), palette.fg)
+    syntax_entry(palette.outline_variant, transparency_respecting_colour(palette.surface))
+  syntax["AvanteReversedNormal"] = syntax_entry(transparency_respecting_colour(palette.background), palette.on_surface)
   syntax["AvanteCommentFg"] = { link = "Comment" }
-  syntax["AvanteStateSpinnerGenerating"] = syntax_entry(palette.bg0, palette.purple)
-  syntax["AvanteStateSpinnerToolCalling"] = syntax_entry(palette.bg0, palette.blue)
-  syntax["AvanteStateSpinnerFailed"] = syntax_entry(palette.bg0, palette.red)
-  syntax["AvanteStateSpinnerSucceeded"] = syntax_entry(palette.bg0, palette.green)
-  syntax["AvanteStateSpinnerSearching"] = syntax_entry(palette.bg0, palette.orange)
-  syntax["AvanteStateSpinnerThinking"] = syntax_entry(palette.bg0, palette.aqua)
-  syntax["AvanteStateSpinnerCompacting"] = syntax_entry(palette.bg0, palette.yellow)
-  syntax["AvanteTaskRunning"] = syntax_entry(palette.purple, transparency_respecting_colour(palette.bg0))
-  syntax["AvanteTaskCompleted"] = syntax_entry(palette.green, transparency_respecting_colour(palette.bg0))
-  syntax["AvanteTaskFailed"] = syntax_entry(palette.red, transparency_respecting_colour(palette.bg0))
-  syntax["AvanteThinking"] = syntax_entry(palette.aqua, transparency_respecting_colour(palette.bg0))
+  syntax["AvanteStateSpinnerGenerating"] = syntax_entry(palette.background, palette.tertiary)
+  syntax["AvanteStateSpinnerToolCalling"] = syntax_entry(palette.background, palette.info)
+  syntax["AvanteStateSpinnerFailed"] = syntax_entry(palette.background, palette.error)
+  syntax["AvanteStateSpinnerSucceeded"] = syntax_entry(palette.background, palette.success)
+  syntax["AvanteStateSpinnerSearching"] = syntax_entry(palette.background, palette.warning)
+  syntax["AvanteStateSpinnerThinking"] = syntax_entry(palette.background, palette.secondary)
+  syntax["AvanteStateSpinnerCompacting"] = syntax_entry(palette.background, palette.warning)
+  syntax["AvanteTaskRunning"] = syntax_entry(palette.tertiary, transparency_respecting_colour(palette.background))
+  syntax["AvanteTaskCompleted"] = syntax_entry(palette.success, transparency_respecting_colour(palette.background))
+  syntax["AvanteTaskFailed"] = syntax_entry(palette.error, transparency_respecting_colour(palette.background))
+  syntax["AvanteThinking"] = syntax_entry(palette.secondary, transparency_respecting_colour(palette.background))
 
   -- Terminal colours
   local terminal = {
-    red = palette.red,
-    yellow = palette.yellow,
-    green = palette.green,
-    cyan = palette.aqua,
-    blue = palette.blue,
-    purple = palette.purple,
+    red = palette.error,
+    yellow = palette.warning,
+    green = palette.success,
+    cyan = palette.secondary,
+    blue = palette.info,
+    purple = palette.tertiary,
   }
 
   if vim.o.background == "dark" then
-    terminal.black = palette.fg
-    terminal.white = palette.bg3
+    terminal.black = palette.on_surface
+    terminal.white = palette.outline
   else
-    terminal.black = palette.bg3
-    terminal.white = palette.fg
+    terminal.black = palette.outline
+    terminal.white = palette.on_surface
   end
 
   -- Consider adding configuration options for this
@@ -2369,8 +2369,8 @@ highlights.generate_syntax = function(theme, options)
     header = { "fg", "Grey" },
   }
   -- junegunn/limelight.vim
-  vim.g.limelight_conceal_ctermfg = palette.grey0
-  vim.g.limelight_conceal_guifg = palette.grey0
+  vim.g.limelight_conceal_ctermfg = palette.outline_variant
+  vim.g.limelight_conceal_guifg = palette.outline_variant
 
   options.on_highlights(syntax, palette)
 

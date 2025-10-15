@@ -104,8 +104,7 @@ end
 ---@field ansi table
 
 ---@param p MaterialTokens
----@param opts Config
-local function build_ui_roles(p, opts)
+local function build_ui_roles(p)
   local ui = {
     background = p.background,
     surface = p.surface,
@@ -202,7 +201,7 @@ end
 ---@return ForestflowerTheme
 function M.get_theme(options, theme)
   local palette = M.generate_palette(options, theme)
-  local ui = build_ui_roles(palette, options)
+  local ui = build_ui_roles(palette)
   local syntax = build_syntax_roles(palette, ui, options)
   local ansi = build_ansi_roles(palette)
   if options.roles_override then
