@@ -1,4 +1,6 @@
 local highlights = {}
+-- BREAKING CHANGE: highlights now derive from role-based theme (ui + syntax).
+-- Previous direct palette key usage is deprecated in favour of theme tables.
 
 local ColourUtility = require("forestflower.colour_utility")
 
@@ -42,10 +44,13 @@ local function syntax_entry(fg, bg, stylings, sp)
 end
 
 ---Generates the various highlight groups for this colour scheme to be used by Neovim.
----@param palette Palette
+---@param theme ForestflowerTheme
 ---@param options Config
 ---@return Highlights
-highlights.generate_syntax = function(palette, options)
+highlights.generate_syntax = function(theme, options)
+  local palette = theme.palette
+  local ui = theme.ui
+  local syn = theme.syntax
   -- Comments are italic by default
   local comment_italics = options.disable_italic_comments and {} or { styles.italic }
   -- All other italics are disabled by default
@@ -98,15 +103,20 @@ highlights.generate_syntax = function(palette, options)
   end
 
   ---@type Highlights
+  -- NOTE: Most direct palette.* references have been migrated to role-based theme tables (ui.*, syntax.*)
+  -- Remaining raw palette usages below are intentional for:
+  --   1. Generic passthrough colour groups (Red/Green/Yellow/etc.) kept for ecosystem compatibility
+  --   2. Rainbow / delimiter / decorative multi-hue groups where semantic role does not apply
+  --   3. Plugin specific brand accents that deliberately want a precise palette token
   local syntax = {
-    ColorColumn = syntax_entry(palette.none, palette.bg1),
+    ColorColumn = syntax_entry(palette.none, ui.background_alt),
     Conceal = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
     CurSearch = { link = "IncSearch" },
     Cursor = syntax_entry(palette.none, palette.none, { styles.reverse }),
     lCursor = { link = "Cursor" },
     CursorIM = { link = "Cursor" },
     CursorColumn = syntax_entry(palette.none, palette.bg1),
-    CursorLine = syntax_entry(palette.none, palette.bg1),
+    CursorLine = syntax_entry(palette.none, ui.background_alt),
     Directory = syntax_entry(palette.green, palette.none),
     DiffAdd = syntax_entry(palette.none, palette.bg_green),
     DiffChange = syntax_entry(palette.none, palette.bg_blue),
@@ -133,25 +143,25 @@ highlights.generate_syntax = function(palette, options)
     ModeMsg = syntax_entry(palette.fg, palette.none, { styles.bold }),
     MoreMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
     NonText = syntax_entry(palette.bg4, palette.none),
-    Normal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
-    NormalFloat = syntax_entry(palette.fg, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
-    FloatBorder = syntax_entry(palette.grey1, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
+    Normal = syntax_entry(ui.fg, transparency_respecting_colour(ui.background)), -- role: base editor foreground/background
+    NormalFloat = syntax_entry(ui.fg, (options.float_style == "bright" and ui.float_background) or ui.float_background_dim),
+    FloatBorder = syntax_entry(ui.float_border, (options.float_style == "bright" and ui.float_background) or ui.float_background_dim),
     FloatTitle = syntax_entry(
-      palette.grey1,
-      (options.float_style == "bright" and palette.bg2) or palette.bg_dim,
+      ui.float_title,
+      (options.float_style == "bright" and ui.float_background) or ui.float_background_dim,
       { styles.bold }
     ),
     NormalNC = syntax_entry(
       palette.fg,
       transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
     ),
-    Pmenu = syntax_entry(palette.fg, palette.bg2),
-    PmenuSbar = syntax_entry(palette.none, palette.bg2),
-    PmenuSel = syntax_entry(palette.bg0, palette.statusline1),
-    PmenuThumb = syntax_entry(palette.none, palette.grey0),
+    Pmenu = syntax_entry(ui.fg, ui.popup_background),
+    PmenuSbar = syntax_entry(palette.none, ui.popup_background),
+    PmenuSel = syntax_entry(ui.background, ui.selection),
+    PmenuThumb = syntax_entry(palette.none, ui.scrollbar_thumb),
     Question = syntax_entry(palette.yellow, palette.none),
     QuickFixLine = syntax_entry(palette.purple, palette.none, { styles.bold }),
-    Search = syntax_entry(palette.bg0, palette.green),
+    Search = syntax_entry(ui.background, ui.primary), -- role: primary interactive highlight
     SpecialKey = syntax_entry(palette.yellow, palette.none),
     SpellBad = syntax_entry(
       options.spell_foreground and palette.red or palette.none,
@@ -177,17 +187,17 @@ highlights.generate_syntax = function(palette, options)
       { styles.undercurl },
       palette.purple
     ),
-    StatusLine = syntax_entry(palette.grey1, options.transparent_background_level == 2 and palette.none or palette.bg2),
+    StatusLine = syntax_entry(ui.statusline_fg, options.transparent_background_level == 2 and palette.none or ui.statusline_bg),
     StatusLineNC = syntax_entry(
-      options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg1
+      options.transparent_background_level == 2 and ui.statusline_nc_fg_alt or ui.statusline_nc_fg,
+      options.transparent_background_level == 2 and palette.none or ui.statusline_nc_bg
     ),
-    TabLine = syntax_entry(palette.grey2, palette.bg3),
+    TabLine = syntax_entry(ui.tab_inactive_fg, ui.tab_inactive_bg),
     TabLineFill = syntax_entry(
-      palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg1
+      ui.tab_fill_fg,
+      options.transparent_background_level == 2 and palette.none or ui.tab_fill_bg
     ),
-    TabLineSel = syntax_entry(palette.bg0, palette.statusline1),
+    TabLineSel = syntax_entry(ui.background, ui.tab_active_bg),
     Title = syntax_entry(palette.orange, palette.none, { styles.bold }),
     Visual = syntax_entry(palette.none, palette.bg_visual),
     VisualNOS = syntax_entry(palette.none, palette.bg_visual),
@@ -324,14 +334,14 @@ highlights.generate_syntax = function(palette, options)
     Special = syntax_entry(palette.yellow, palette.none),
     SpecialChar = syntax_entry(palette.yellow, palette.none),
     Type = syntax_entry(palette.yellow, palette.none),
-    Function = syntax_entry(palette.green, palette.none),
-    String = syntax_entry(palette.green, palette.none),
+    Function = syntax_entry(syn["function"], palette.none), -- role-mapped syntax.function
+    String = syntax_entry(syn.string, palette.none), -- role-mapped syntax.string
     Character = syntax_entry(palette.green, palette.none),
-    Constant = syntax_entry(palette.aqua, palette.none),
+    Constant = syntax_entry(syn.constant, palette.none), -- role-mapped syntax.constant
     Macro = syntax_entry(palette.aqua, palette.none),
-    Identifier = syntax_entry(palette.blue, palette.none),
+    Identifier = syntax_entry(ui.fg, palette.none), -- role: ui.fg generic identifier
 
-    Comment = syntax_entry(palette.grey1, palette.none, comment_italics),
+    Comment = syntax_entry(syn.comment, palette.none, comment_italics), -- role-mapped syntax.comment (supports dimming)
     SpecialComment = syntax_entry(palette.grey1, palette.none, comment_italics),
     Todo = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
 
@@ -459,7 +469,7 @@ highlights.generate_syntax = function(palette, options)
     TSCharacterSpecial = { link = "SpecialChar" },
     TSComment = { link = "Comment" },
     TSConditional = { link = "Red" },
-    TSConstBuiltin = { link = "PurpleItalic" },
+    TSConstBuiltin = { link = "Constant" },
     TSConstMacro = { link = "PurpleItalic" },
     TSConstant = { link = "Constant" },
     TSConstructor = { link = "Green" },
@@ -473,7 +483,7 @@ highlights.generate_syntax = function(palette, options)
     TSFloat = { link = "Purple" },
     TSFuncBuiltin = { link = "Green" },
     TSFuncMacro = { link = "Green" },
-    TSFunction = { link = "Green" },
+    TSFunction = { link = "Function" },
     TSFunctionCall = { link = "Green" },
     TSInclude = { link = "Red" },
     TSKeyword = { link = "RedItalic" },
@@ -501,7 +511,7 @@ highlights.generate_syntax = function(palette, options)
     TSRepeat = { link = "Red" },
     TSStorageClass = { link = "Orange" },
     TSStorageClassLifetime = { link = "Orange" },
-    TSString = { link = "Aqua" },
+    TSString = { link = "String" },
     TSStringEscape = { link = "Green" },
     TSStringRegex = { link = "Green" },
     TSStringSpecial = { link = "SpecialChar" },
@@ -518,8 +528,8 @@ highlights.generate_syntax = function(palette, options)
     TSTypeDefinition = { link = "YellowItalic" },
     TSTypeQualifier = { link = "Orange" },
     TSURI = syntax_entry(palette.blue, palette.none, { styles.underline }),
-    TSVariable = { link = "Fg" },
-    TSVariableBuiltin = { link = "PurpleItalic" },
+    TSVariable = { link = "Identifier" },
+    TSVariableBuiltin = { link = "Constant" },
 
     javascriptTSInclude = { link = "Purple" },
     typescriptTSInclude = { link = "Purple" },
@@ -1209,7 +1219,7 @@ highlights.generate_syntax = function(palette, options)
     -- ighagwan/fzf-lua
     FzfLuaBorder = { link = "Grey" },
 
-    -- folke/snacks.nvim {{{
+    -- folke/snacks.nvim
     SnacksPicker = { link = "Normal" },
     SnacksPickerBorder = { link = "Grey" },
     SnacksPickerTitle = { link = "Title" },
@@ -1223,7 +1233,20 @@ highlights.generate_syntax = function(palette, options)
     SnacksPickerBufFlags = { link = "Grey" },
     SnacksPickerSelected = { link = "Aqua" },
     SnacksPickerKeymapRhs = { link = "Grey" },
-    -- }}}
+
+    -- folke/sidekick.nvim
+    SidekickDiffAdd = "DiffAdd",
+    SidekickDiffContext = "DiffChange",
+    SidekickDiffDelete = "DiffDelete",
+    SidekickSignAdd = {
+      fg = "#449dab",
+    },
+    SidekickSignChange = {
+      fg = "#6183bb",
+    },
+    SidekickSignDelete = {
+      fg = "#914c54",
+    },
 
     -- lewis6991/gitsigns.nvim
     GitSignsAdd = { link = "GreenSign" },
@@ -2253,7 +2276,8 @@ highlights.generate_syntax = function(palette, options)
   syntax["AvanteConfirmTitle"] = syntax_entry(palette.bg0, palette.red, { styles.bold })
   syntax["AvanteSidebarNormal"] = { link = "NormalFloat" }
   syntax["AvanteSidebarWinSeparator"] = { link = "WinSeparator" }
-  syntax["AvanteSidebarWinHorizontalSeparator"] = syntax_entry(palette.grey0, transparency_respecting_colour(palette.bg1))
+  syntax["AvanteSidebarWinHorizontalSeparator"] =
+    syntax_entry(palette.grey0, transparency_respecting_colour(palette.bg1))
   syntax["AvanteReversedNormal"] = syntax_entry(transparency_respecting_colour(palette.bg0), palette.fg)
   syntax["AvanteCommentFg"] = { link = "Comment" }
   syntax["AvanteStateSpinnerGenerating"] = syntax_entry(palette.bg0, palette.purple)

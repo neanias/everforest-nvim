@@ -3,6 +3,8 @@
 A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour
 scheme with customization.
 
+> Recent breaking change: highlight definitions migrated to semantic role tables (`ui` & `syntax`). Direct `palette.*` usage in core has been reduced. Generic colour passthrough groups (Red, Green, etc.) remain intentionally for ecosystem compatibility.
+
 ||Dark|Light|
 |:-:|:-:|:-:|
 |**Hard**|![forestflower colour scheme dark hard](https://github.com/user-attachments/assets/1174661f-2de3-4dd2-8e2f-6ee3df8afb9c)|![eveforest colour scheme light hard](https://github.com/neanias/everforest-nvim/assets/5786847/acc83044-c9ec-4335-a1ab-2e5f3c9e7429)|
@@ -92,6 +94,8 @@ require("everforest").setup({
   ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   ---Default is "medium".
   background = "medium",
+  ---Theme flavour: "night" (dark) or "day" (light variant palette selection)
+  flavour = "night",
   ---How much of the background should be transparent. 2 will have more UI
   ---components be transparent (e.g. status line background)
   transparent_background_level = 0,
@@ -145,6 +149,12 @@ require("everforest").setup({
   ---
   ---Options are `"none"` or `"dimmed"`.
   inlay_hints_background = "none",
+  ---Dim comments by blending them toward background (requires dim_comments=true)
+  dim_comments = false,
+  ---Blend factor used when dimming comments (0..1, higher = closer to bg)
+  dim_intensity = 0.35,
+  ---Run a contrast audit (vim.notify) on load
+  contrast_audit = false,
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights
@@ -155,6 +165,10 @@ require("everforest").setup({
   ---been mixed on the palette.
   ---@param palette Palette
   colours_override = function(palette) end,
+  ---Override computed ui roles after they are built
+  roles_override = function(ui) end,
+  ---Override computed syntax roles after they are built
+  syntax_override = function(syntax) end,
 })
 ```
 
@@ -163,6 +177,7 @@ require("everforest").setup({
 ## Overriding Highlight Groups
 
 To find all possible palette colours, please see [`colours.lua`](lua/everforest/colours.lua).
+Role-based overrides: you can also inspect `require('forestflower').config.roles_override` & `syntax_override` hooks to adjust semantic roles (`ui` / `syntax`) instead of editing many highlight groups directly.
 
 For example, you could override the Diagnostic group of highlights to remove
 the undercurl:

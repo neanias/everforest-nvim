@@ -22,6 +22,11 @@ local M = {}
 ---@field inlay_hints_background "none" | "dimmed"
 ---@field on_highlights fun(highlight_groups: Highlights, palette: Palette)
 ---@field colours_override fun(palette: Palette)
+---@field roles_override fun(ui_roles: table)
+---@field syntax_override fun(syntax_roles: table)
+---@field dim_comments boolean
+---@field dim_intensity number
+---@field contrast_audit boolean
 M.config = {
   ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   ---Default is "medium".
@@ -90,6 +95,11 @@ M.config = {
   ---been mixed on the palette.
   ---@param palette Palette
   colours_override = function(palette) end,
+  roles_override = function(ui) end,
+  syntax_override = function(syntax) end,
+  dim_comments = false,
+  dim_intensity = 0.35, -- blend factor toward background (0..1)
+  contrast_audit = false,
 }
 
 ---@param opts Config | nil
@@ -98,9 +108,11 @@ M.setup = function(opts)
 end
 
 M.load = function()
-  local palette = colours.generate_palette(M.config, vim.o.background)
-  local generated_syntax = highlights.generate_syntax(palette, M.config)
-
+  local theme = colours.get_theme(M.config, vim.o.background)
+  local generated_syntax = highlights.generate_syntax(theme, M.config)
+  if M.config.contrast_audit then
+    require('forestflower.util').contrast_audit(theme)
+  end
   util.load(generated_syntax)
 end
 

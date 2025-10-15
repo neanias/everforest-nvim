@@ -124,4 +124,144 @@ M.generate_palette = function(options, theme)
   return combined_palette
 end
 
+---@class ForestflowerTheme
+---@field palette Palette
+---@field ui table
+---@field syntax table
+
+local function luminance(hex)
+  local r = tonumber(hex:sub(2,3),16)/255
+  local g = tonumber(hex:sub(4,5),16)/255
+  local b = tonumber(hex:sub(6,7),16)/255
+  local function lin(c)
+    if c <= 0.03928 then return c/12.92 else return ((c+0.055)/1.055)^2.4 end
+  end
+  r,g,b = lin(r),lin(g),lin(b)
+  return 0.2126*r + 0.7152*g + 0.0722*b
+end
+
+local function contrast(a,b)
+  local la, lb = luminance(a), luminance(b)
+  if la < lb then la, lb = lb, la end
+  return (la + 0.05) / (lb + 0.05)
+end
+
+---@param p Palette
+---@param opts Config
+local function build_ui_roles(p, opts)
+  local ui = {
+    background = p.bg0,
+    background_alt = p.bg1,
+    surface = p.bg2,
+    surface_muted = p.bg3,
+    surface_highlight = p.bg_visual,
+    border = p.bg4,
+    outline = p.bg5,
+    primary = p.green,
+    primary_container = p.bg_green,
+    success = p.green,
+    info = p.blue,
+    warn = p.yellow,
+    error = p.red,
+    git_add = p.green,
+    git_change = p.orange,
+    git_delete = p.red,
+    fg = p.fg,
+    fg_muted = p.grey1,
+    fg_faint = p.grey0,
+    -- Added role-based UI extensions
+    float_background = p.bg2,
+    float_background_dim = p.bg_dim,
+    float_border = p.bg4,
+    float_title = p.green,
+    popup_background = p.bg1,
+    selection = p.bg_visual,
+    scrollbar_thumb = p.bg3,
+    statusline_fg = p.fg,
+    statusline_bg = p.bg2,
+    statusline_nc_fg = p.grey1,
+    statusline_nc_fg_alt = p.grey0,
+    statusline_nc_bg = p.bg1,
+    tab_active_bg = p.bg2,
+    tab_inactive_bg = p.bg1,
+    tab_inactive_fg = p.grey1,
+    tab_fill_bg = p.bg0,
+    tab_fill_fg = p.grey0,
+  }
+
+  -- Basic contrast enforcement (optional, soft)
+  local min_text = 4.5
+  local min_muted = 3.5
+  if contrast(ui.fg, ui.background) < min_text then
+    ui.fg = p.grey2 -- fallback brighter neutral
+  end
+  if contrast(ui.fg_muted, ui.background) < min_muted then
+    ui.fg_muted = p.grey2
+  end
+  return ui
+end
+
+---@param p Palette
+---@param ui table
+---@param opts Config
+local function blend(fg, bg, alpha)
+  local function ch(hex, i) return tonumber(hex:sub(i,i+1),16) end
+  local r1,g1,b1 = ch(fg,2), ch(fg,4), ch(fg,6)
+  local r2,g2,b2 = ch(bg,2), ch(bg,4), ch(bg,6)
+  local r = math.floor(r1*(1-alpha) + r2*alpha + 0.5)
+  local g = math.floor(g1*(1-alpha) + g2*alpha + 0.5)
+  local b = math.floor(b1*(1-alpha) + b2*alpha + 0.5)
+  return string.format('#%02x%02x%02x', r,g,b)
+end
+
+local function build_syntax_roles(p, ui, opts)
+  local comment_base = ui.fg_muted
+  if opts.dim_comments then
+    comment_base = blend(comment_base, ui.background, opts.dim_intensity or 0.35)
+  end
+  local syntax = {
+    keyword = p.orange,
+    operator = p.grey2,
+    ["function"] = p.green,
+    method = p.green,
+    type = p.blue,
+    interface = p.blue,
+    enum = p.purple,
+    constant = p.yellow,
+    number = p.yellow,
+    boolean = p.yellow,
+    string = p.aqua, -- separated from function (green)
+    variable = ui.fg,
+    parameter = p.aqua,
+    property = p.blue,
+    field = p.blue,
+    namespace = p.purple,
+    comment = comment_base,
+    punctuation = p.grey2,
+    macro = p.purple,
+    special = p.purple,
+    todo = p.yellow,
+    hint = ui.info,
+    info = ui.info,
+    warn = ui.warn,
+    error = ui.error,
+  }
+  return syntax
+end
+
+---@param options Config
+---@param theme "light"|"dark"
+---@return ForestflowerTheme
+function M.get_theme(options, theme)
+  local palette = M.generate_palette(options, theme)
+  local ui = build_ui_roles(palette, options)
+  local syntax = build_syntax_roles(palette, ui, options)
+  if options.roles_override then options.roles_override(ui) end
+  if options.syntax_override then options.syntax_override(syntax) end
+  return { palette = palette, ui = ui, syntax = syntax }
+end
+
+M.build_ui_roles = build_ui_roles
+M.build_syntax_roles = build_syntax_roles
+
 return M
