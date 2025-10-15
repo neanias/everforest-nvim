@@ -6,6 +6,10 @@ M.fg = "#ffffff"
 ---@param c string
 ---@return table<number>
 local function rgb(c)
+  if not c or type(c) ~= "string" then
+    -- Return default black color if c is nil or not a string
+    return { 0, 0, 0 }
+  end
   c = string.lower(c)
   return { tonumber(c:sub(2, 3), 16), tonumber(c:sub(4, 5), 16), tonumber(c:sub(6, 7), 16) }
 end
