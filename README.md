@@ -19,7 +19,7 @@ _All screenshots taken from [my personal config](https://github.com/YajanaRao/ki
 - Vim terminal colours
 - **Lualine** theme
 
-## Installation (LazyVim Friendly)
+## Installation
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim) (basic):
 

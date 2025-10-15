@@ -1,5 +1,4 @@
 local util = require("forestflower.util")
-local colours = require("forestflower.colours")
 local highlights = require("forestflower.highlights")
 
 local M = {}
@@ -82,7 +81,7 @@ M.config = {
   ---the background color of inlay hints.
   ---
   ---Options are `"none"` or `"dimmed"`.
-  inlay_hints_background = "none",
+  inlay_hints_background = "dimmed",
   ---You can override specific highlights to use other groups or a hex colour.
   ---This function will be called with the highlights and colour palette tables.
   ---@param highlight_groups Highlights
@@ -104,10 +103,10 @@ M.setup = function(opts)
 end
 
 M.load = function()
-  local theme = colours.get_theme(M.config, vim.o.background)
+  local theme = util.get_theme(M.config, vim.o.background)
   local generated_syntax = highlights.generate_syntax(theme, M.config)
   if M.config.contrast_audit then
-    require("forestflower.util").contrast_audit(theme)
+    util.contrast_audit(theme)
   end
   util.load(generated_syntax, theme.ansi)
 end

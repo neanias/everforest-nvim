@@ -4,43 +4,43 @@ local config = require("forestflower").config
 local palette = util.generate_palette(config, vim.o.background)
 
 if config.transparent_background_level == 2 then
-  palette.bg1 = palette.none
+  palette.surface = palette.none
 end
 
 return {
   normal = {
-    a = { bg = palette.statusline1, fg = palette.bg0, gui = "bold" },
-    b = { bg = palette.bg3, fg = palette.grey2 },
-    c = { bg = palette.bg1, fg = palette.grey1 },
+    a = { bg = palette.primary, fg = palette.background, gui = "bold" },
+    b = { bg = palette.outline, fg = palette.on_surface_variant },
+    c = { bg = palette.surface, fg = palette.on_surface_variant },
   },
   insert = {
-    a = { bg = palette.statusline2, fg = palette.bg0, gui = "bold" },
-    b = { bg = palette.bg3, fg = palette.fg },
-    c = { bg = palette.bg1, fg = palette.fg },
+    a = { bg = palette.secondary, fg = palette.background, gui = "bold" },
+    b = { bg = palette.outline, fg = palette.on_surface },
+    c = { bg = palette.surface, fg = palette.on_surface },
   },
   visual = {
-    a = { bg = palette.statusline3, fg = palette.bg0, gui = "bold" },
-    b = { bg = palette.bg3, fg = palette.fg },
-    c = { bg = palette.bg1, fg = palette.fg },
+    a = { bg = palette.tertiary, fg = palette.background, gui = "bold" },
+    b = { bg = palette.outline, fg = palette.on_surface },
+    c = { bg = palette.surface, fg = palette.on_surface },
   },
   replace = {
-    a = { bg = palette.orange, fg = palette.bg0, gui = "bold" },
-    b = { bg = palette.bg3, fg = palette.fg },
-    c = { bg = palette.bg1, fg = palette.fg },
+    a = { bg = palette.warning, fg = palette.background, gui = "bold" },
+    b = { bg = palette.outline, fg = palette.on_surface },
+    c = { bg = palette.surface, fg = palette.on_surface },
   },
   command = {
-    a = { bg = palette.aqua, fg = palette.bg0, gui = "bold" },
-    b = { bg = palette.bg3, fg = palette.fg },
-    c = { bg = palette.bg1, fg = palette.fg },
+    a = { bg = palette.secondary, fg = palette.background, gui = "bold" },
+    b = { bg = palette.outline, fg = palette.on_surface },
+    c = { bg = palette.surface, fg = palette.on_surface },
   },
   terminal = {
-    a = { bg = palette.purple, fg = palette.bg0, gui = "bold" },
-    b = { bg = palette.bg3, fg = palette.fg },
-    c = { bg = palette.bg1, fg = palette.fg },
+    a = { bg = palette.tertiary, fg = palette.background, gui = "bold" },
+    b = { bg = palette.outline, fg = palette.on_surface },
+    c = { bg = palette.surface, fg = palette.on_surface },
   },
   inactive = {
-    a = { bg = palette.bg1, fg = palette.grey1 },
-    b = { bg = palette.bg1, fg = palette.grey1 },
-    c = { bg = palette.bg1, fg = palette.grey1 },
+    a = { bg = palette.surface, fg = palette.on_surface_variant },
+    b = { bg = palette.surface, fg = palette.on_surface_variant },
+    c = { bg = palette.surface, fg = palette.on_surface_variant },
   },
 }
