@@ -1,8 +1,6 @@
 local highlights = {}
--- BREAKING CHANGE: highlights now derive from role-based theme (ui + syntax).
--- Previous direct palette key usage is deprecated in favour of theme tables.
 
-local ColourUtility = require("forestflower.colour_utility")
+local util = require("forestflower.util")
 
 ---@enum Styles
 local styles = {
@@ -295,26 +293,7 @@ highlights.generate_syntax = function(theme, options)
     DiagnosticSignHint = { link = "GreenSign" },
 
     -- LSP colours
-    LspDiagnosticsFloatingError = { link = "DiagnosticFloatingError" },
-    LspDiagnosticsFloatingWarning = { link = "DiagnosticFloatingWarn" },
-    LspDiagnosticsFloatingInformation = { link = "DiagnosticFloatingInfo" },
-    LspDiagnosticsFloatingHint = { link = "DiagnosticFloatingHint" },
-    LspDiagnosticsDefaultError = { link = "DiagnosticError" },
-    LspDiagnosticsDefaultWarning = { link = "DiagnosticWarn" },
-    LspDiagnosticsDefaultInformation = { link = "DiagnosticInfo" },
-    LspDiagnosticsDefaultHint = { link = "DiagnosticHint" },
-    LspDiagnosticsVirtualTextError = { link = "DiagnosticVirtualTextError" },
-    LspDiagnosticsVirtualTextWarning = { link = "DiagnosticVirtualTextWarn" },
-    LspDiagnosticsVirtualTextInformation = { link = "DiagnosticVirtualTextInfo" },
-    LspDiagnosticsVirtualTextHint = { link = "DiagnosticVirtualTextHint" },
-    LspDiagnosticsUnderlineError = { link = "DiagnosticUnderlineError" },
-    LspDiagnosticsUnderlineWarning = { link = "DiagnosticUnderlineWarn" },
-    LspDiagnosticsUnderlineInformation = { link = "DiagnosticUnderlineInfo" },
-    LspDiagnosticsUnderlineHint = { link = "DiagnosticUnderlineHint" },
-    LspDiagnosticsSignError = { link = "DiagnosticSignError" },
-    LspDiagnosticsSignWarning = { link = "DiagnosticSignWarn" },
-    LspDiagnosticsSignInformation = { link = "DiagnosticSignInfo" },
-    LspDiagnosticsSignHint = { link = "DiagnosticSignHint" },
+    -- (Removed legacy LspDiagnostics* compatibility groups)
     LspInlayHint = { link = "InlayHints" },
     LspReferenceText = { link = "CurrentWord" },
     LspReferenceRead = { link = "CurrentWord" },
@@ -326,46 +305,46 @@ highlights.generate_syntax = function(theme, options)
     healthSuccess = { link = "Green" },
     healthWarning = { link = "Yellow" },
 
-    Boolean = syntax_entry(palette.tertiary, palette.none),
-    Number = syntax_entry(palette.tertiary, palette.none),
-    Float = syntax_entry(palette.tertiary, palette.none),
+    Boolean = syntax_entry(syn.boolean, palette.none),
+    Number = syntax_entry(syn.number, palette.none),
+    Float = syntax_entry(syn.number, palette.none),
 
-    PreProc = syntax_entry(palette.tertiary, palette.none, optional_italics),
-    PreCondit = syntax_entry(palette.tertiary, palette.none, optional_italics),
-    Include = syntax_entry(palette.tertiary, palette.none, optional_italics),
-    Define = syntax_entry(palette.tertiary, palette.none, optional_italics),
-    Conditional = syntax_entry(palette.error, palette.none, optional_italics),
-    Repeat = syntax_entry(palette.error, palette.none, optional_italics),
-    Keyword = syntax_entry(palette.error, palette.none, optional_italics),
-    Typedef = syntax_entry(palette.error, palette.none, optional_italics),
-    Exception = syntax_entry(palette.error, palette.none, optional_italics),
-    Statement = syntax_entry(palette.error, palette.none, optional_italics),
+    PreProc = syntax_entry(syn.keyword, palette.none, optional_italics),
+    PreCondit = syntax_entry(syn.keyword, palette.none, optional_italics),
+    Include = syntax_entry(syn.keyword, palette.none, optional_italics),
+    Define = syntax_entry(syn.keyword, palette.none, optional_italics),
+    Conditional = syntax_entry(syn.keyword, palette.none, optional_italics),
+    Repeat = syntax_entry(syn.keyword, palette.none, optional_italics),
+    Keyword = syntax_entry(syn.keyword, palette.none, optional_italics),
+    Typedef = syntax_entry(syn.type, palette.none, optional_italics),
+    Exception = syntax_entry(syn.keyword, palette.none, optional_italics),
+    Statement = syntax_entry(syn.keyword, palette.none, optional_italics),
 
-    Error = syntax_entry(palette.error, palette.none),
-    StorageClass = syntax_entry(palette.warning, palette.none),
-    Tag = syntax_entry(palette.warning, palette.none),
-    Label = syntax_entry(palette.warning, palette.none),
-    Structure = syntax_entry(palette.warning, palette.none),
-    Operator = syntax_entry(palette.warning, palette.none),
-    Special = syntax_entry(palette.warning, palette.none),
-    SpecialChar = syntax_entry(palette.warning, palette.none),
-    Type = syntax_entry(palette.warning, palette.none),
-    Function = syntax_entry(syn["function"], palette.none), -- role-mapped syntax.function
-    String = syntax_entry(syn.string, palette.none), -- role-mapped syntax.string
-    Character = syntax_entry(palette.success, palette.none),
-    Constant = syntax_entry(syn.constant, palette.none), -- role-mapped syntax.constant
-    Macro = syntax_entry(palette.secondary, palette.none),
-    Identifier = syntax_entry(ui.fg, palette.none), -- role: ui.fg generic identifier
+    Error = syntax_entry(syn.error, palette.none),
+    StorageClass = syntax_entry(syn.type, palette.none),
+    Tag = syntax_entry(syn.type, palette.none),
+    Label = syntax_entry(syn.type, palette.none),
+    Structure = syntax_entry(syn.type, palette.none),
+    Operator = syntax_entry(syn.operator, palette.none),
+    Special = syntax_entry(syn.special, palette.none),
+    SpecialChar = syntax_entry(syn.special, palette.none),
+    Type = syntax_entry(syn.type, palette.none),
+    Function = syntax_entry(syn["function"], palette.none),
+    String = syntax_entry(syn.string, palette.none),
+    Character = syntax_entry(syn.string, palette.none),
+    Constant = syntax_entry(syn.constant, palette.none),
+    Macro = syntax_entry(syn.macro, palette.none),
+    Identifier = syntax_entry(ui.fg, palette.none),
+    Variable = syntax_entry(syn.variable, palette.none),
 
-    Comment = syntax_entry(syn.comment, palette.none, comment_italics), -- role-mapped syntax.comment (supports dimming)
-    SpecialComment = syntax_entry(palette.on_surface_variant, palette.none, comment_italics),
-    Todo = syntax_entry(palette.background, palette.info, { styles.bold }),
+    Comment = syntax_entry(syn.comment, palette.none, comment_italics),
+    SpecialComment = syntax_entry(syn.comment, palette.none, comment_italics),
+    Todo = syntax_entry(syn.todo, palette.none, { styles.bold }),
 
-    Delimiter = syntax_entry(palette.on_surface, palette.none),
-    Ignore = syntax_entry(palette.on_surface_variant, palette.none),
+    Delimiter = syntax_entry(syn.punctuation, palette.none),
+    Ignore = syntax_entry(syn.comment, palette.none),
     Underlined = syntax_entry(palette.none, palette.none, { styles.underline }),
 
-    -- Predefined highlight groups
     Fg = syntax_entry(palette.on_surface, palette.none),
     Grey = syntax_entry(palette.on_surface_variant, palette.none),
     Red = syntax_entry(palette.error, palette.none),
@@ -446,7 +425,7 @@ highlights.generate_syntax = function(theme, options)
     WarningFloat = syntax_entry(status.warning, palette.none),
     InfoFloat = syntax_entry(status.info, palette.none),
     HintFloat = syntax_entry(status.hint, palette.none),
-    InlayHints = syntax_entry(status.hint, palette.none),
+    InlayHints = syntax_entry(syn.comment, palette.none),
     CurrentWord = syntax_entry(palette.none, palette.none, { styles.bold }),
 
     -- Git commit colours
@@ -489,7 +468,7 @@ highlights.generate_syntax = function(theme, options)
     TSConstBuiltin = { link = "Constant" },
     TSConstMacro = { link = "PurpleItalic" },
     TSConstant = { link = "Constant" },
-    TSConstructor = { link = "Green" },
+    TSConstructor = { link = "Function" },
     TSDebug = { link = "Debug" },
     TSDefine = { link = "Define" },
     TSEnvironment = { link = "Macro" },
@@ -501,7 +480,7 @@ highlights.generate_syntax = function(theme, options)
     TSFuncBuiltin = { link = "Green" },
     TSFuncMacro = { link = "Green" },
     TSFunction = { link = "Function" },
-    TSFunctionCall = { link = "Green" },
+    TSFunctionCall = { link = "Function" },
     TSInclude = { link = "Red" },
     TSKeyword = { link = "RedItalic" },
     TSKeywordFunction = { link = "RedItalic" },
@@ -510,16 +489,16 @@ highlights.generate_syntax = function(theme, options)
     TSLabel = { link = "Orange" },
     TSLiteral = { link = "String" },
     TSMath = { link = "Blue" },
-    TSMethod = { link = "Green" },
-    TSMethodCall = { link = "Green" },
+    TSMethod = { link = "Function" },
+    TSMethodCall = { link = "Function" },
     TSModuleInfoGood = { link = "Green" },
     TSModuleInfoBad = { link = "Red" },
     TSNamespace = { link = "YellowItalic" },
     TSNone = { link = "Fg" },
     TSNumber = { link = "Purple" },
     TSOperator = { link = "Orange" },
-    TSParameter = { link = "Fg" },
-    TSParameterReference = { link = "Fg" },
+    TSParameter = { link = "Variable" },
+    TSParameterReference = { link = "Variable" },
     TSPreProc = { link = "PreProc" },
     TSProperty = { link = "Blue" },
     TSPunctBracket = { link = "Fg" },
@@ -533,19 +512,19 @@ highlights.generate_syntax = function(theme, options)
     TSStringRegex = { link = "Green" },
     TSStringSpecial = { link = "SpecialChar" },
     TSSymbol = { link = "Aqua" },
-    TSTag = { link = "Orange" },
-    TSTagAttribute = { link = "Green" },
-    TSTagDelimiter = { link = "Green" },
+    TSTag = syntax_entry(syn.jsx_component, palette.none),
+    TSTagAttribute = syntax_entry(syn.jsx_prop, palette.none),
+    TSTagDelimiter = syntax_entry(syn.punctuation, palette.none),
     TSText = { link = "Green" },
     TSTextReference = { link = "Constant" },
     TSTitle = { link = "Title" },
     TSTodo = { link = "Todo" },
-    TSType = { link = "YellowItalic" },
-    TSTypeBuiltin = { link = "YellowItalic" },
-    TSTypeDefinition = { link = "YellowItalic" },
+    TSType = { link = "Type" },
+    TSTypeBuiltin = { link = "Type" },
+    TSTypeDefinition = { link = "Type" },
     TSTypeQualifier = { link = "Orange" },
     TSURI = syntax_entry(palette.info, palette.none, { styles.underline }),
-    TSVariable = { link = "Identifier" },
+    TSVariable = { link = "Variable" },
     TSVariableBuiltin = { link = "Constant" },
 
     javascriptTSInclude = { link = "Purple" },
@@ -707,6 +686,7 @@ highlights.generate_syntax = function(theme, options)
     ["@tag"] = { link = "TSTag" },
     ["@tag.attribute"] = { link = "TSTagAttribute" },
     ["@tag.delimiter"] = { link = "TSTagDelimiter" },
+    ["@constructor"] = syntax_entry(syn.jsx_component, palette.none),
     ["@text"] = { link = "TSText" },
     ["@text.danger"] = { link = "TSDanger" },
     ["@text.diff.add"] = { link = "diffAdded" },
@@ -804,25 +784,7 @@ highlights.generate_syntax = function(theme, options)
     ["@lsp.typemod.variable.injected"] = { link = "@variable" },
     ["@lsp.typemod.variable.static"] = { link = "Red" },
 
-    -- p00f/ts-rainbow
-    rainbowcol1 = { link = "Red" },
-    rainbowcol2 = { link = "Orange" },
-    rainbowcol3 = { link = "Yellow" },
-    rainbowcol4 = { link = "Green" },
-    rainbowcol5 = { link = "Aqua" },
-    rainbowcol6 = { link = "Blue" },
-    rainbowcol7 = { link = "Purple" },
-
-    -- HiPhish/nvim-ts-rainbow2
-    TSRainbowRed = { link = "Red" },
-    TSRainbowOrange = { link = "Orange" },
-    TSRainbowYellow = { link = "Yellow" },
-    TSRainbowGreen = { link = "Green" },
-    TSRainbowCyan = { link = "Aqua" },
-    TSRainbowBlue = { link = "Blue" },
-    TSRainbowViolet = { link = "Purple" },
-
-    -- HiPhish/rainbow-delimiters
+    -- HiPhish/rainbow-delimiters (kept)
     RainbowDelimiterRed = { link = "Red" },
     RainbowDelimiterOrange = { link = "Orange" },
     RainbowDelimiterYellow = { link = "Yellow" },
@@ -846,334 +808,13 @@ highlights.generate_syntax = function(theme, options)
 
     CopilotSuggestion = { link = "Grey" },
 
-    -- Coc.nvim
-    CocHoverRange = syntax_entry(palette.none, palette.none, { styles.bold, styles.underline }),
-    CocSearch = syntax_entry(palette.success, palette.none, { styles.bold }),
-    CocPumSearch = syntax_entry(palette.success, palette.none, { styles.bold }),
-    CocMarkdownHeader = syntax_entry(palette.warning, palette.none, { styles.bold }),
-    CocMarkdownLink = syntax_entry(palette.success, palette.none, { styles.underline }),
-    CocMarkdownCode = { link = "Green" },
-    CocPumShortcut = { link = "Grey" },
-    CocPumVirtualText = { link = "Grey" },
-    CocPumMenu = { link = "Pmenu" },
-    CocMenuSel = { link = "PmenuSel" },
-    CocDisabled = { link = "Grey" },
-    CocSnippetVisual = { link = "DiffAdd" },
-    CocInlayHint = { link = "InlayHints" },
-    CocNotificationProgress = { link = "Green" },
-    CocNotificationButton = { link = "PmenuSel" },
-    CocSemClass = { link = "TSType" },
-    CocSemEnum = { link = "TSType" },
-    CocSemInterface = { link = "TSType" },
-    CocSemStruct = { link = "TSType" },
-    CocSemTypeParameter = { link = "TSType" },
-    CocSemVariable = { link = "TSVariable" },
-    CocSemEnumMember = { link = "TSVariableBuiltin" },
-    CocSemEvent = { link = "TSLabel" },
-    CocSemModifier = { link = "TSOperator" },
-    CocErrorFloat = { link = "ErrorFloat" },
-    CocWarningFloat = { link = "WarningFloat" },
-    CocInfoFloat = { link = "InfoFloat" },
-    CocHintFloat = { link = "HintFloat" },
-    CocFloating = { link = "NormalFloat" },
-    CocFloatDividingLine = { link = "Grey" },
-    CocErrorHighlight = { link = "ErrorText" },
-    CocWarningHighlight = { link = "WarningText" },
-    CocInfoHighlight = { link = "InfoText" },
-    CocHintHighlight = { link = "HintText" },
-    CocHighlightText = { link = "CurrentWord" },
-    CocErrorSign = { link = "RedSign" },
-    CocWarningSign = { link = "YellowSign" },
-    CocInfoSign = { link = "BlueSign" },
-    CocHintSign = { link = "GreenSign" },
-    CocWarningVirtualText = { link = "VirtualTextWarning" },
-    CocErrorVirtualText = { link = "VirtualTextError" },
-    CocInfoVirtualText = { link = "VirtualTextInfo" },
-    CocHintVirtualText = { link = "VirtualTextHint" },
-    CocErrorLine = { link = "ErrorLine" },
-    CocWarningLine = { link = "WarningLine" },
-    CocInfoLine = { link = "InfoLine" },
-    CocHintLine = { link = "HintLine" },
-    CocCodeLens = { link = "Grey" },
-    CocFadeOut = { link = "Grey" },
-    CocStrikeThrough = { link = "TSStrike" },
-    CocListMode = { link = "StatusLine" },
-    CocListPath = { link = "StatusLine" },
-    CocSelectedText = { link = "Orange" },
-    CocListsLine = { link = "Fg" },
-    CocListsDesc = { link = "Grey" },
-    CocGitAddedSign = { link = "GreenSign" },
-    CocGitChangeRemovedSign = { link = "PurpleSign" },
-    CocGitChangedSign = { link = "BlueSign" },
-    CocGitRemovedSign = { link = "RedSign" },
-    CocGitTopRemovedSign = { link = "RedSign" },
-    CocTreeOpenClose = { link = "Aqua" },
-    CocTreeDescription = { link = "Grey" },
-
-    -- https://github.com/weirongxu/coc-explorer
-    CocExplorerBufferRoot = { link = "Orange" },
-    CocExplorerBufferExpandIcon = { link = "Aqua" },
-    CocExplorerBufferBufnr = { link = "Purple" },
-    CocExplorerBufferModified = { link = "Yellow" },
-    CocExplorerBufferReadonly = { link = "Red" },
-    CocExplorerBufferBufname = { link = "Grey" },
-    CocExplorerBufferFullpath = { link = "Grey" },
-    CocExplorerFileRoot = { link = "Orange" },
-    CocExplorerFileRootName = { link = "Green" },
-    CocExplorerFileExpandIcon = { link = "Aqua" },
-    CocExplorerFileFullpath = { link = "Grey" },
-    CocExplorerFileDirectory = { link = "Green" },
-    CocExplorerFileGitStaged = { link = "Purple" },
-    CocExplorerFileGitUnstaged = { link = "Yellow" },
-    CocExplorerFileGitRootStaged = { link = "Purple" },
-    CocExplorerFileGitRootUnstaged = { link = "Yellow" },
-    CocExplorerGitPathChange = { link = "Fg" },
-    CocExplorerGitContentChange = { link = "Fg" },
-    CocExplorerGitRenamed = { link = "Purple" },
-    CocExplorerGitCopied = { link = "Fg" },
-    CocExplorerGitAdded = { link = "Green" },
-    CocExplorerGitUntracked = { link = "Blue" },
-    CocExplorerGitUnmodified = { link = "Fg" },
-    CocExplorerGitUnmerged = { link = "Orange" },
-    CocExplorerGitMixed = { link = "Aqua" },
-    CocExplorerGitModified = { link = "Yellow" },
-    CocExplorerGitDeleted = { link = "Red" },
-    CocExplorerGitIgnored = { link = "Grey" },
-    CocExplorerFileSize = { link = "Blue" },
-    CocExplorerTimeAccessed = { link = "Aqua" },
-    CocExplorerTimeCreated = { link = "Aqua" },
-    CocExplorerTimeModified = { link = "Aqua" },
-    CocExplorerIndentLine = { link = "Conceal" },
-    CocExplorerHelpDescription = { link = "Grey" },
-    CocExplorerHelpHint = { link = "Grey" },
-    CocExplorerDiagnosticError = { link = "Red" },
-    CocExplorerDiagnosticWarning = { link = "Yellow" },
-    CocExplorerFileHidden = { link = "Grey" },
-
-    -- prabirshrestha/vim-lsp
-    LspErrorVirtualText = { link = "VirtualTextError" },
-    LspWarningVirtualText = { link = "VirtualTextWarning" },
-    LspInformationVirtualText = { link = "VirtualTextInfo" },
-    LspHintVirtualText = { link = "VirtualTextHint" },
-    LspErrorHighlight = { link = "ErrorText" },
-    LspWarningHighlight = { link = "WarningText" },
-    LspInformationHighlight = { link = "InfoText" },
-    LspHintHighlight = { link = "HintText" },
-    lspReference = { link = "CurrentWord" },
-    lspInlayHintsType = { link = "InlayHints" },
-    lspInlayHintsParameter = { link = "InlayHints" },
-    LspSemanticType = { link = "TSType" },
-    LspSemanticClass = { link = "TSType" },
-    LspSemanticEnum = { link = "TSType" },
-    LspSemanticInterface = { link = "TSType" },
-    LspSemanticStruct = { link = "TSType" },
-    LspSemanticTypeParameter = { link = "TSType" },
-    LspSemanticParameter = { link = "TSParameter" },
-    LspSemanticVariable = { link = "TSVariable" },
-    LspSemanticProperty = { link = "TSProperty" },
-    LspSemanticEnumMember = { link = "TSVariableBuiltin" },
-    LspSemanticEvents = { link = "TSLabel" },
-    LspSemanticFunction = { link = "TSFunction" },
-    LspSemanticMethod = { link = "TSMethod" },
-    LspSemanticKeyword = { link = "TSKeyword" },
-    LspSemanticModifier = { link = "TSOperator" },
-    LspSemanticComment = { link = "TSComment" },
-    LspSemanticString = { link = "TSString" },
-    LspSemanticNumber = { link = "TSNumber" },
-    LspSemanticRegexp = { link = "TSStringRegex" },
-    LspSemanticOperator = { link = "TSOperator" },
-
-    -- yegappan/lsp
-    LspDiagInlineError = { link = "ErrorText" },
-    LspDiagInlineWarning = { link = "WarningText" },
-    LspDiagInlineInfo = { link = "InfoText" },
-    LspDiagInlineHint = { link = "HintText" },
-    LspDiagSignErrorText = { link = "RedSign" },
-    LspDiagSignWarningText = { link = "YellowSign" },
-    LspDiagSignInfoText = { link = "BlueSign" },
-    LspDiagSignHintText = { link = "GreenSign" },
-    LspDiagVirtualTextError = { link = "VirtualTextError" },
-    LspDiagVirtualTextWarning = { link = "VirtualTextWarning" },
-    LspDiagVirtualTextInfo = { link = "VirtualTextInfo" },
-    LspDiagVirtualTextHint = { link = "VirtualTextHint" },
-    LspInlayHintsParam = { link = "InlayHints" },
-    LspSigActiveParameter = { link = "DiffAdd" },
-
-    -- ycm-core/YouCompleteMe
-    YcmErrorSign = { link = "RedSign" },
-    YcmWarningSign = { link = "YellowSign" },
-    YcmErrorLine = { link = "ErrorLine" },
-    YcmWarningLine = { link = "WarningLine" },
-    YcmErrorSection = { link = "ErrorText" },
-    YcmWarningSection = { link = "WarningText" },
-    YcmInlayHint = { link = "InlayHints" },
-
-    -- dense-analysis/ale
-    ALEError = { link = "ErrorText" },
-    ALEWarning = { link = "WarningText" },
-    ALEInfo = { link = "InfoText" },
-    ALEErrorSign = { link = "RedSign" },
-    ALEWarningSign = { link = "YellowSign" },
-    ALEInfoSign = { link = "BlueSign" },
-    ALEErrorLine = { link = "ErrorLine" },
-    ALEWarningLine = { link = "WarningLine" },
-    ALEInfoLine = { link = "InfoLine" },
-    ALEVirtualTextError = { link = "VirtualTextError" },
-    ALEVirtualTextWarning = { link = "VirtualTextWarning" },
-    ALEVirtualTextInfo = { link = "VirtualTextInfo" },
-    ALEVirtualTextStyleError = { link = "VirtualTextHint" },
-    ALEVirtualTextStyleWarning = { link = "VirtualTextHint" },
-
-    -- neomake/neomake
-    NeomakeError = { link = "ErrorText" },
-    NeomakeWarning = { link = "WarningText" },
-    NeomakeInfo = { link = "InfoText" },
-    NeomakeMessage = { link = "HintText" },
-    NeomakeErrorSign = { link = "RedSign" },
-    NeomakeWarningSign = { link = "YellowSign" },
-    NeomakeInfoSign = { link = "BlueSign" },
-    NeomakeMessageSign = { link = "AquaSign" },
-    NeomakeVirtualtextError = { link = "VirtualTextError" },
-    NeomakeVirtualtextWarning = { link = "VirtualTextWarning" },
-    NeomakeVirtualtextInfo = { link = "VirtualTextInfo" },
-    NeomakeVirtualtextMessag = { link = "VirtualTextHint" },
-
-    -- vim-syntastic/syntastic
-    SyntasticError = { link = "ErrorText" },
-    SyntasticWarning = { link = "WarningText" },
-    SyntasticErrorSign = { link = "RedSign" },
-    SyntasticWarningSign = { link = "YellowSign" },
-    SyntasticErrorLine = { link = "ErrorLine" },
-    SyntasticWarningLine = { link = "WarningLine" },
-
-    -- liuchengxu/vim-clap
-    ClapSelected = syntax_entry(palette.error, palette.none, { styles.bold }),
-    ClapCurrentSelection = syntax_entry(palette.none, palette.surface, { styles.bold }),
-    ClapSpinner = syntax_entry(palette.warning, palette.surface_variant, { styles.bold }),
-    ClapBlines = syntax_entry(palette.on_surface, palette.none),
-    ClapProviderId = syntax_entry(palette.on_surface, palette.none, { styles.bold }),
-    ClapMatches1 = syntax_entry(palette.error, palette.none, { styles.bold }),
-    ClapMatches2 = syntax_entry(palette.warning, palette.none, { styles.bold }),
-    ClapMatches3 = syntax_entry(palette.warning, palette.none, { styles.bold }),
-    ClapMatches4 = syntax_entry(palette.secondary, palette.none, { styles.bold }),
-    ClapMatches5 = syntax_entry(palette.info, palette.none, { styles.bold }),
-    ClapMatches6 = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
-    ClapFuzzyMatches = syntax_entry(palette.success, palette.none, { styles.bold }),
-    ClapNoMatchesFound = syntax_entry(palette.error, palette.none, { styles.bold }),
-    ClapInput = { link = "Pmenu" },
-    ClapDisplay = { link = "Pmenu" },
-    ClapPreview = { link = "Pmenu" },
-    ClapFuzzyMatches1 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches2 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches3 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches4 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches5 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches6 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches7 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches8 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches9 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches10 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches11 = { link = "ClapFuzzyMatches" },
-    ClapFuzzyMatches12 = { link = "ClapFuzzyMatches" },
-    ClapBlinesLineNr = { link = "Grey" },
-    ClapProviderColon = { link = "ClapBlines" },
-    ClapProviderAbout = { link = "ClapBlines" },
-    ClapFile = { link = "Fg" },
-    ClapSearchText = { link = "ClapFuzzyMatches" },
-
-    -- Shougo/denite.nvim
-    deniteMatchedChar = syntax_entry(palette.success, palette.none, { styles.bold }),
-    deniteMatchedRange = syntax_entry(palette.success, palette.none, { styles.bold, styles.underline }),
-    deniteInput = syntax_entry(palette.success, palette.outline, { styles.bold }),
-    deniteStatusLineNumber = syntax_entry(palette.tertiary, palette.outline),
-    deniteStatusLinePath = syntax_entry(palette.on_surface, palette.outline),
-    deniteSelectedLin = { link = "Green" },
-
-    -- kien/ctrlp.vim
-    CtrlPMatch = syntax_entry(palette.success, palette.none, { styles.bold }),
-    CtrlPPrtBase = syntax_entry(palette.outline, palette.none),
-    CtrlPLinePre = syntax_entry(palette.outline, palette.none),
-    CtrlPMode1 = syntax_entry(palette.info, palette.outline, { styles.bold }),
-    CtrlPMode2 = syntax_entry(palette.background, palette.info, { styles.bold }),
-    CtrlPStats = syntax_entry(palette.on_surface_variant, palette.outline, { styles.bold }),
-    CtrlPNoEntries = { link = "Red" },
-    CtrlPPrtCursor = { link = "Blue" },
-
-    -- airblade/vim-gitgutter
-    GitGutterAdd = { link = "GreenSign" },
-    GitGutterChange = { link = "BlueSign" },
-    GitGutterDelete = { link = "RedSign" },
-    GitGutterChangeDelete = { link = "PurpleSign" },
-    GitGutterAddLine = { link = "DiffAdd" },
-    GitGutterChangeLine = { link = "DiffChange" },
-    GitGutterDeleteLine = { link = "DiffDelete" },
-    GitGutterChangeDeleteLine = { link = "DiffChange" },
-    GitGutterAddLineNr = { link = "Green" },
-    GitGutterChangeLineNr = { link = "Blue" },
-    GitGutterDeleteLineNr = { link = "Red" },
-    GitGutterChangeDeleteLineNr = { link = "Purple" },
-
-    -- mhinz/vim-signify
-    SignifySignAdd = { link = "GreenSign" },
-    SignifySignChange = { link = "BlueSign" },
-    SignifySignDelete = { link = "RedSign" },
-    SignifySignChangeDelete = { link = "PurpleSign" },
-    SignifyLineAdd = { link = "DiffAdd" },
-    SignifyLineChange = { link = "DiffChange" },
-    SignifyLineChangeDelete = { link = "DiffChange" },
-    SignifyLineDelete = { link = "DiffDelete" },
-
-    -- andymass/vim-matchup
-    MatchParenCur = syntax_entry(palette.none, palette.none, { styles.bold }),
-    MatchWord = syntax_entry(palette.none, palette.none, { styles.underline }),
-    MatchWordCur = syntax_entry(palette.none, palette.none, { styles.underline }),
-
-    -- easymotion/vim-easymotion
-    EasyMotionTarget = { link = "Search" },
-    EasyMotionShade = { link = "Grey" },
-
-    -- justinmk/vim-sneak
-    SneakLabelMask = syntax_entry(palette.warning, palette.warning),
-    Sneak = { link = "Search" },
-    SneakLabel = { link = "Search" },
-    SneakScope = { link = "DiffText" },
-
-    -- rhysd/clever-f.vim
-    CleverFDefaultLabel = { link = "Search" },
-
     -- dominikduda/vim_current_word
     CurrentWordTwins = { link = "CurrentWord" },
 
-    -- RRethy/vim-illuminate
-    illuminatedWord = { link = "CurrentWord" },
+    -- RRethy/vim-illuminate (kept minimal)
     IlluminatedWordText = { link = "CurrentWord" },
     IlluminatedWordRead = { link = "CurrentWord" },
     IlluminatedWordWrite = { link = "CurrentWord" },
-
-    -- itchyny/vim-cursorword
-    CursorWord0 = { link = "CurrentWord" },
-    CursorWord1 = { link = "CurrentWord" },
-
-    -- thiagoalessio/rainbow_levels.vim
-    RainbowLevel0 = { link = "Red" },
-    RainbowLevel1 = { link = "Orange" },
-    RainbowLevel2 = { link = "Yellow" },
-    RainbowLevel3 = { link = "Green" },
-    RainbowLevel4 = { link = "Aqua" },
-    RainbowLevel5 = { link = "Blue" },
-    RainbowLevel6 = { link = "Purple" },
-    RainbowLevel7 = { link = "Yellow" },
-    RainbowLevel8 = { link = "Green" },
-
-    -- kshenoy/vim-signature
-    SignatureMarkText = { link = "BlueSign" },
-    SignatureMarkerText = { link = "PurpleSign" },
-
-    -- ap/vim-buftabline
-    BufTabLineCurrent = { link = "TabLineSel" },
-    BufTabLineActive = { link = "TabLine" },
-    BufTabLineHidden = { link = "TabLineFill" },
-    BufTabLineFill = { link = "TabLineFill" },
 
     -- folke/which-key.nvim
     WhichKey = { link = "Red" },
@@ -1187,32 +828,8 @@ highlights.generate_syntax = function(theme, options)
     QuickScopePrimary = syntax_entry(palette.secondary, palette.none, { styles.underline }),
     QuickScopeSecondary = syntax_entry(palette.info, palette.none, { styles.underline }),
 
-    -- APZelos/blamer.nvim
+    -- APZelos/blamer.nvim (kept)
     Blamer = { link = "Grey" },
-
-    -- cohama/agit.vim
-    agitTree = { link = "Grey" },
-    agitDate = { link = "Green" },
-    agitRemote = { link = "Red" },
-    agitHead = { link = "Orange" },
-    agitRef = { link = "Aqua" },
-    agitTag = { link = "Orange" },
-    agitStatFile = { link = "Blue" },
-    agitStatRemoved = { link = "Red" },
-    agitStatAdded = { link = "Green" },
-    agitStatMessage = { link = "Orange" },
-    agitDiffRemove = { link = "Red" },
-    agitDiffAdd = { link = "Green" },
-    agitDiffHeader = { link = "Purple" },
-
-    -- voldikss/vim-floaterm
-    FloatermBorder = { link = "Grey" },
-
-    -- MattesGroeger/vim-bookmarks
-    BookmarkSign = { link = "BlueSign" },
-    BookmarkAnnotationSign = { link = "GreenSign" },
-    BookmarkLine = { link = "DiffChange" },
-    BookmarkAnnotationLine = { link = "DiffAdd" },
 
     -- hrsh7th/nvim-cmp
     CmpItemAbbrMatch = syntax_entry(palette.success, palette.none, { styles.bold }),
@@ -1277,19 +894,13 @@ highlights.generate_syntax = function(theme, options)
     GitSignsDeleteLn = { link = "DiffDelete" },
     GitSignsCurrentLineBlame = { link = "Grey" },
 
-    -- phaazon/hop.nvim
-    HopNextKey = syntax_entry(palette.warning, palette.none, { styles.bold }),
-    HopNextKey1 = syntax_entry(palette.success, palette.none, { styles.bold }),
-    HopNextKey2 = { link = "Green" },
-    HopUnmatched = { link = "Grey" },
-
     -- folke/flash.nvim
     FlashBackdrop = syntax_entry(palette.on_surface_variant, palette.none),
     FlashLabel = syntax_entry(palette.warning, palette.none, { styles.bold, styles.italic }),
     FlashMatch = syntax_entry(palette.warning, palette.none, { styles.bold }),
     FlashCurrent = syntax_entry(palette.warning, palette.none, { styles.bold }),
 
-    -- ggandor/leap.nvim
+    -- ggandor/leap.nvim (kept)
     LeapMatch = syntax_entry(palette.on_surface, palette.tertiary, { styles.bold }),
     LeapLabel = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
     LeapBackdrop = syntax_entry(palette.on_surface_variant, palette.none),
@@ -1302,77 +913,12 @@ highlights.generate_syntax = function(theme, options)
     IndentBlanklineSpaceChar = { link = "IndentBlanklineChar" },
     IndentBlanklineSpaceCharBlankline = { link = "IndentBlanklineChar" },
 
-    -- romgrk/barbar.nvim
-    BufferCurrent = syntax_entry(palette.on_surface, palette.background),
-    BufferCurrentIndex = syntax_entry(palette.on_surface, palette.background),
-    BufferCurrentMod = syntax_entry(palette.info, palette.background),
-    BufferCurrentSign = syntax_entry(palette.primary, palette.background),
-    BufferCurrentTarget = syntax_entry(palette.error, palette.background, { styles.bold }),
-    BufferCurrentADDED = syntax_entry(palette.success, palette.background),
-    BufferCurrentCHANGED = syntax_entry(palette.info, palette.background),
-    BufferCurrentDELETED = syntax_entry(palette.error, palette.background),
-    BufferCurrentERROR = syntax_entry(palette.error, palette.background),
-    BufferCurrentHINT = syntax_entry(palette.warning, palette.background),
-    BufferCurrentINFO = syntax_entry(palette.secondary, palette.background),
-    BufferCurrentWARN = syntax_entry(palette.warning, palette.background),
-    BufferVisible = syntax_entry(palette.on_surface, palette.background),
-    BufferVisibleIndex = syntax_entry(palette.on_surface, palette.background),
-    BufferVisibleMod = syntax_entry(palette.info, palette.background),
-    BufferVisibleSign = syntax_entry(palette.primary, palette.background),
-    BufferVisibleTarget = syntax_entry(palette.warning, palette.background, { styles.bold }),
-    BufferVisibleADDED = syntax_entry(palette.success, palette.background),
-    BufferVisibleCHANGED = syntax_entry(palette.info, palette.background),
-    BufferVisibleDELETED = syntax_entry(palette.error, palette.background),
-    BufferVisibleERROR = syntax_entry(palette.error, palette.background),
-    BufferVisibleHINT = syntax_entry(palette.warning, palette.background),
-    BufferVisibleINFO = syntax_entry(palette.secondary, palette.background),
-    BufferVisibleWARN = syntax_entry(palette.warning, palette.background),
-    BufferInactive = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveIndex = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveMod = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveSign = syntax_entry(palette.outline_variant, palette.background),
-    BufferInactiveTarget = syntax_entry(palette.warning, palette.background, { styles.bold }),
-    BufferInactiveADDED = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveCHANGED = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveDELETED = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveERROR = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveHINT = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveINFO = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferInactiveWARN = syntax_entry(palette.on_surface_variant, palette.background),
-    BufferTabpages = syntax_entry(palette.on_surface_variant, palette.background, { styles.bold }),
-    BufferTabpageFill = syntax_entry(palette.background, palette.background),
+    -- romgrk/barbar.nvim (removed legacy barbar groups)
 
     BlinkCmpLabelMatch = syntax_entry(palette.success, palette.none, { styles.bold }),
     BlinkCmpKind = { link = "Yellow" },
 
-    -- SmiteshP/nvim-navic
-    NavicIconsFile = syntax_entry(palette.on_surface, palette.none),
-    NavicIconsModule = syntax_entry(palette.warning, palette.none),
-    NavicIconsNamespace = syntax_entry(palette.on_surface, palette.none),
-    NavicIconsPackage = syntax_entry(palette.on_surface, palette.none),
-    NavicIconsClass = syntax_entry(palette.warning, palette.none),
-    NavicIconsMethod = syntax_entry(palette.info, palette.none),
-    NavicIconsProperty = syntax_entry(palette.success, palette.none),
-    NavicIconsField = syntax_entry(palette.success, palette.none),
-    NavicIconsConstructor = syntax_entry(palette.warning, palette.none),
-    NavicIconsEnum = syntax_entry(palette.warning, palette.none),
-    NavicIconsInterface = syntax_entry(palette.warning, palette.none),
-    NavicIconsFunction = syntax_entry(palette.info, palette.none),
-    NavicIconsVariable = syntax_entry(palette.tertiary, palette.none),
-    NavicIconsConstant = syntax_entry(palette.tertiary, palette.none),
-    NavicIconsString = syntax_entry(palette.success, palette.none),
-    NavicIconsNumber = syntax_entry(palette.warning, palette.none),
-    NavicIconsBoolean = syntax_entry(palette.warning, palette.none),
-    NavicIconsArray = syntax_entry(palette.warning, palette.none),
-    NavicIconsObject = syntax_entry(palette.warning, palette.none),
-    NavicIconsKey = syntax_entry(palette.tertiary, palette.none),
-    NavicIconsKeyword = syntax_entry(palette.tertiary, palette.none),
-    NavicIconsNull = syntax_entry(palette.warning, palette.none),
-    NavicIconsEnumMember = syntax_entry(palette.success, palette.none),
-    NavicIconsStruct = syntax_entry(palette.warning, palette.none),
-    NavicIconsEvent = syntax_entry(palette.warning, palette.none),
-    NavicIconsOperator = syntax_entry(palette.on_surface, palette.none),
-    NavicIconsTypeParameter = syntax_entry(palette.success, palette.none),
+    -- SmiteshP/nvim-navic (kept)
     NavicText = syntax_entry(palette.on_surface, palette.none),
     NavicSeparator = syntax_entry(palette.on_surface, palette.none),
 
@@ -1424,16 +970,9 @@ highlights.generate_syntax = function(theme, options)
     DapUIBreakpointsPath = { link = "Blue" },
     DapUIBreakpointsInfo = { link = "Green" },
 
-    -- glepnir/lspsaga.nvim
-    CodeActionBorder = { link = "Purple" },
-    DiagnosticBorder = { link = "Orange" },
-    DiagnosticShowBorder = { link = "Orange" },
-    DiagnosticSource = { link = "Orange" },
-    HoverBorder = { link = "Green" },
-    RenameBorder = { link = "Purple" },
-    SagaBorder = { link = "Blue" },
+    -- (Removed lspsaga legacy groups)
 
-    -- b0o/incline.nvim
+    -- b0o/incline.nvim (kept)
     InclineNormalNC = syntax_entry(palette.on_surface_variant, palette.surface_variant),
 
     -- echasnovski/mini.nvim
@@ -1448,6 +987,7 @@ highlights.generate_syntax = function(theme, options)
     MiniHipatternsHack = syntax_entry(palette.background, palette.warning, { styles.bold }),
     MiniHipatternsNote = syntax_entry(palette.background, palette.info, { styles.bold }),
     MiniHipatternsTodo = syntax_entry(palette.background, palette.success, { styles.bold }),
+    -- mini.nvim icons (subset kept)
     MiniIconsAzure = syntax_entry(palette.info, palette.none),
     MiniIconsBlue = syntax_entry(palette.info, palette.none),
     MiniIconsCyan = syntax_entry(palette.secondary, palette.none),
@@ -1461,7 +1001,10 @@ highlights.generate_syntax = function(theme, options)
     MiniJump2dSpot = syntax_entry(palette.warning, palette.none, { styles.bold, styles.nocombine }),
     MiniJump2dSpotAhead = syntax_entry(palette.secondary, palette.none, { styles.nocombine }),
     MiniJump2dSpotUnique = syntax_entry(palette.warning, palette.none, { styles.bold, styles.nocombine }),
-    MiniPickPrompt = syntax_entry(palette.info, options.float_style == "dim" and palette.background or palette.surface_variant),
+    MiniPickPrompt = syntax_entry(
+      palette.info,
+      options.float_style == "dim" and palette.background or palette.surface_variant
+    ),
     MiniStarterCurrent = syntax_entry(palette.none, palette.none, { styles.nocombine }),
     MiniStatuslineDevinfo = syntax_entry(palette.on_surface_variant, palette.surface),
     MiniStatuslineFilename = syntax_entry(palette.on_surface_variant, palette.surface),
@@ -1552,258 +1095,8 @@ highlights.generate_syntax = function(theme, options)
     MiniSurround = { link = "IncSearch" },
     MiniTablineFill = { link = "TabLineFill" },
 
-    -- ggandor/lightspeed.nvim
-    LightspeedLabel = syntax_entry(palette.error, palette.none, { styles.bold, styles.underline }),
-    LightspeedLabelDistant = syntax_entry(palette.info, palette.none, { styles.bold, styles.underline }),
-    LightspeedShortcut = syntax_entry(palette.background, palette.error, { styles.bold }),
-    LightspeedUnlabeledMatch = syntax_entry(palette.on_surface, palette.none, { styles.bold }),
-    LightspeedPendingOpArea = syntax_entry(palette.background, palette.success),
-    LightspeedMaskedChar = { link = "Purple" },
-    LightspeedGreyWash = { link = "Grey" },
-
-    -- https://github.com/junegunn/vim-plug
-    plug1 = syntax_entry(palette.warning, palette.none, { styles.bold }),
-    plugNumber = syntax_entry(palette.warning, palette.none, { styles.bold }),
-    plug2 = { link = "Green" },
-    plugBracket = { link = "Grey" },
-    plugName = { link = "Aqua" },
-    plugDash = { link = "Orange" },
-    plugError = { link = "Red" },
-    plugNotLoaded = { link = "Grey" },
-    plugRelDate = { link = "Grey" },
-    plugH2 = { link = "Orange" },
-    plugMessage = { link = "Orange" },
-    plugStar = { link = "Red" },
-    plugUpdate = { link = "Blue" },
-    plugDeleted = { link = "Grey" },
-    plugEdge = { link = "Yellow" },
-    plugSha = { link = "Green" },
-
-    -- https://github.com/wbthomason/packer.nvim
-    packerSuccess = { link = "Aqua" },
-    packerFail = { link = "Red" },
-    packerStatusSuccess = { link = "Fg" },
-    packerStatusFail = { link = "Fg" },
-    packerWorking = { link = "Yellow" },
-    packerString = { link = "Yellow" },
-    packerPackageNotLoaded = { link = "Grey" },
-    packerRelDate = { link = "Grey" },
-    packerPackageName = { link = "Green" },
-    packerOutput = { link = "Orange" },
-    packerHash = { link = "Green" },
-    packerTimeTrivial = { link = "Blue" },
-    packerTimeHigh = { link = "Red" },
-    packerTimeMedium = { link = "Yellow" },
-    packerTimeLow = { link = "Green" },
-
-    -- https://github.com/majutsushi/tagbar
-    TagbarFoldIcon = { link = "Green" },
-    TagbarSignature = { link = "Green" },
-    TagbarKind = { link = "Red" },
-    TagbarScope = { link = "Orange" },
-    TagbarNestedKind = { link = "Aqua" },
-    TagbarVisibilityPrivate = { link = "Red" },
-    TagbarVisibilityPublic = { link = "Blue" },
-
-    -- https://github.com/liuchengxu/vista.vim
-    VistaBracket = { link = "Grey" },
-    VistaChildrenNr = { link = "Orange" },
-    VistaScope = { link = "Red" },
-    VistaTag = { link = "Green" },
-    VistaPrefix = { link = "Grey" },
-    VistaIcon = { link = "Orange" },
-    VistaScopeKind = { link = "Yellow" },
-    VistaColon = { link = "Grey" },
-    VistaLineNr = { link = "Grey" },
-    VistaHeadNr = { link = "Fg" },
-    VistaPublic = { link = "Green" },
-    VistaProtected = { link = "Yellow" },
-    VistaPrivate = { link = "Red" },
-
     -- https://github.com/simrat39/symbols-outline.nvim
     FocusedSymbol = { link = "NormalFloat" },
-
-    -- https://github.com/preservim/nerdtree
-    NERDTreeDir = { link = "Green" },
-    NERDTreeDirSlash = { link = "Aqua" },
-    NERDTreeOpenable = { link = "Orange" },
-    NERDTreeClosable = { link = "Orange" },
-    NERDTreeFile = { link = "Fg" },
-    NERDTreeExecFile = { link = "Yellow" },
-    NERDTreeUp = { link = "Grey" },
-    NERDTreeCWD = { link = "Aqua" },
-    NERDTreeHelp = { link = "LightGrey" },
-    NERDTreeToggleOn = { link = "Green" },
-    NERDTreeToggleOff = { link = "Red" },
-    NERDTreeFlags = { link = "Orange" },
-    NERDTreeLinkFile = { link = "Grey" },
-    NERDTreeLinkTarget = { link = "Green" },
-
-    -- https://github.com/justinmk/vim-dirvish
-    DirvishPathTail = { link = "Aqua" },
-    DirvishArg = { link = "Yellow" },
-
-    -- https://github.com/kyazdani42/nvim-tree.lua
-    NvimTreeSymlink = { link = "Fg" },
-    NvimTreeFolderName = { link = "Green" },
-    NvimTreeRootFolder = { link = "Grey" },
-    NvimTreeFolderIcon = { link = "Orange" },
-    NvimTreeEmptyFolderName = { link = "Green" },
-    NvimTreeOpenedFolderName = { link = "Green" },
-    NvimTreeExecFile = { link = "Fg" },
-    NvimTreeOpenedFile = { link = "Fg" },
-    NvimTreeSpecialFile = { link = "Fg" },
-    NvimTreeImageFile = { link = "Fg" },
-    NvimTreeMarkdownFile = { link = "Fg" },
-    NvimTreeIndentMarker = { link = "Grey" },
-    NvimTreeGitDirty = { link = "Yellow" },
-    NvimTreeGitStaged = { link = "Blue" },
-    NvimTreeGitMerge = { link = "Orange" },
-    NvimTreeGitRenamed = { link = "Purple" },
-    NvimTreeGitNew = { link = "Aqua" },
-    NvimTreeGitDeleted = { link = "Red" },
-    NvimTreeLspDiagnosticsError = { link = "RedSign" },
-    NvimTreeLspDiagnosticsWarning = { link = "YellowSign" },
-    NvimTreeLspDiagnosticsInformation = { link = "BlueSign" },
-    NvimTreeLspDiagnosticsHint = { link = "GreenSign" },
-
-    -- nvim-neo-tree/neo-tree.nvim
-    NeoTreeDirectoryIcon = { link = "Orange" },
-    NeoTreeGitAdded = { link = "Green" },
-    NeoTreeGitConflict = { link = "Yellow" },
-    NeoTreeGitDeleted = { link = "Red" },
-    NeoTreeGitIgnored = { link = "Grey" },
-    NeoTreeGitModified = { link = "Blue" },
-    NeoTreeGitUnstaged = { link = "Purple" },
-    NeoTreeGitUntracked = { link = "Fg" },
-    NeoTreeGitStaged = { link = "Purple" },
-    NeoTreeDimText = { link = "Grey" },
-    NeoTreeIndentMarker = { link = "NonText" },
-    NeoTreeNormalNC = { link = "NeoTreeNormal" },
-    NeoTreeSignColumn = { link = "NeoTreeNormal" },
-    NeoTreeRootName = { link = "Title" },
-
-    -- https://github.com/lambdalisue/fern.vim
-    FernMarkedLine = { link = "Purple" },
-    FernMarkedText = { link = "Purple" },
-    FernRootSymbol = { link = "FernRootText" },
-    FernRootText = { link = "Orange" },
-    FernLeafSymbol = { link = "FernLeafText" },
-    FernLeafText = { link = "Fg" },
-    FernBranchSymbol = { link = "FernBranchText" },
-    FernBranchText = { link = "Green" },
-    FernWindowSelectIndicator = { link = "TabLineSel" },
-    FernWindowSelectStatusLine = { link = "TabLine" },
-
-    -- https://github.com/pwntester/octo.nvim
-    OctoViewer = syntax_entry(palette.background, palette.info),
-    OctoGreenFloat = syntax_entry(palette.success, palette.surface_variant),
-    OctoRedFloat = syntax_entry(palette.error, palette.surface_variant),
-    OctoPurpleFloat = syntax_entry(palette.tertiary, palette.surface_variant),
-    OctoYellowFloat = syntax_entry(palette.warning, palette.surface_variant),
-    OctoBlueFloat = syntax_entry(palette.info, palette.surface_variant),
-    OctoGreyFloat = syntax_entry(palette.on_surface_variant, palette.surface_variant),
-    OctoBubbleGreen = syntax_entry(palette.background, palette.success),
-    OctoBubbleRed = syntax_entry(palette.background, palette.error),
-    OctoBubblePurple = syntax_entry(palette.background, palette.tertiary),
-    OctoBubbleYellow = syntax_entry(palette.background, palette.warning),
-    OctoBubbleBlue = syntax_entry(palette.background, palette.info),
-    OctoBubbleGrey = syntax_entry(palette.background, palette.on_surface_variant),
-    OctoGreen = { link = "Green" },
-    OctoRed = { link = "Red" },
-    OctoPurple = { link = "Purple" },
-    OctoYellow = { link = "Yellow" },
-    OctoBlue = { link = "Blue" },
-    OctoGrey = { link = "Grey" },
-    OctoBubbleDelimiterGreen = { link = "Green" },
-    OctoBubbleDelimiterRed = { link = "Red" },
-    OctoBubbleDelimiterPurple = { link = "Purple" },
-    OctoBubbleDelimiterYellow = { link = "Yellow" },
-    OctoBubbleDelimiterBlue = { link = "Blue" },
-    OctoBubbleDelimiterGrey = { link = "Grey" },
-
-    -- netrw
-    netrwDir = { link = "Green" },
-    netrwClassify = { link = "Green" },
-    netrwLink = { link = "Grey" },
-    netrwSymLink = { link = "Fg" },
-    netrwExe = { link = "Yellow" },
-    netrwComment = { link = "Grey" },
-    netrwList = { link = "Aqua" },
-    netrwHelpCmd = { link = "Blue" },
-    netrwCmdSep = { link = "Grey" },
-    netrwVersion = { link = "Orange" },
-
-    -- https://github.com/mhinz/vim-startify
-    StartifyBracket = { link = "Grey" },
-    StartifyFile = { link = "Fg" },
-    StartifyNumber = { link = "Orange" },
-    StartifyPath = { link = "Green" },
-    StartifySlash = { link = "Green" },
-    StartifySection = { link = "Yellow" },
-    StartifyHeader = { link = "Aqua" },
-    StartifySpecial = { link = "Grey" },
-    StartifyFooter = { link = "Grey" },
-
-    -- https://github.com/skywind3000/quickmenu.vim
-    QuickmenuOption = { link = "Green" },
-    QuickmenuNumber = { link = "Red" },
-    QuickmenuBracket = { link = "Grey" },
-    QuickmenuHelp = { link = "Green" },
-    QuickmenuSpecial = { link = "Purple" },
-    QuickmenuHeader = { link = "Orange" },
-
-    -- mbbill/undotree
-    UndotreeSavedBig = syntax_entry(palette.tertiary, palette.none, { styles.bold }),
-    UndotreeNode = { link = "Orange" },
-    UndotreeNodeCurrent = { link = "Red" },
-    UndotreeSeq = { link = "Green" },
-    UndotreeNext = { link = "Blue" },
-    UndotreeTimeStamp = { link = "Grey" },
-    UndotreeHead = { link = "Yellow" },
-    UndotreeBranch = { link = "Yellow" },
-    UndotreeCurrent = { link = "Aqua" },
-    UndotreeSavedSmall = { link = "Purple" },
-
-    -- NeogitOrg/neogit
-    NeogitBranch = { link = "Green" },
-    NeogitChangeAdded = { link = "GreenBold" },
-    NeogitChangeBothModified = { link = "YellowBold" },
-    NeogitChangeCopied = { link = "AquaBold" },
-    NeogitChangeDeleted = { link = "RedBold" },
-    NeogitChangeModified = { link = "OrangeBold" },
-    NeogitChangeNewFile = { link = "GreenBold" },
-    NeogitChangeRenamed = { link = "BlueBold" },
-    NeogitChangeUpdated = { link = "YellowBold" },
-    NeogitCommandCodeError = { link = "Red" },
-    NeogitCommandCodeNormal = { link = "Green" },
-    NeogitCommitViewHeader = { link = "Purple" },
-    NeogitDiffAdd = { link = "DiffAdd" },
-    NeogitDiffAddHighlight = { link = "DiffAdd" },
-    NeogitDiffContextHighlight = { link = "CursorLine" },
-    NeogitDiffDelete = { link = "DiffDelete" },
-    NeogitDiffDeleteHighlight = { link = "DiffDelete" },
-    NeogitFilePath = { link = "Aqua" },
-    NeogitFold = { link = "FoldColumn" },
-    NeogitHunkHeader = { link = "TabLineFill" },
-    NeogitHunkHeaderHighlight = { link = "TabLine" },
-    NeogitNotificationError = { link = "ErrorFloat" },
-    NeogitNotificationInfo = { link = "InfoFloat" },
-    NeogitNotificationWarning = { link = "WarningFloat" },
-    NeogitObjectId = syntax_entry(palette.success, palette.none, { styles.italic, styles.bold }),
-    NeogitRecentCommits = { link = "AquaBold" },
-    NeogitRemote = { link = "Purple" },
-    NeogitStashes = { link = "BlueBold" },
-    NeogitUnmergedInto = { link = "PurpleItalic" },
-    NeogitUnpushedTo = { link = "PurpleItalic" },
-    NeogitUnstagedchanges = { link = "Aqua" },
-    NeogitUntrackedfiles = { link = "PurpleItalic" },
-
-    -- glepnir/dashboard-nvim
-    DashboardHeader = { link = "Yellow" },
-    DashboardCenter = { link = "Green" },
-    DashboardShortcut = { link = "Red" },
-    DashboardFooter = { link = "Orange" },
 
     -- nvim-neotest/neotest
     NeotestPassed = { link = "GreenSign" },
@@ -1822,14 +1115,7 @@ highlights.generate_syntax = function(theme, options)
     NeotestMarked = { link = "Orange" },
     NeotestTarget = { link = "Red" },
 
-    -- lambdalisue/glyph-palette.vim
-    GlyphPalette1 = syntax_entry(palette.error, palette.none),
-    GlyphPalette2 = syntax_entry(palette.success, palette.none),
-    GlyphPalette3 = syntax_entry(palette.warning, palette.none),
-    GlyphPalette4 = syntax_entry(palette.info, palette.none),
-    GlyphPalette6 = syntax_entry(palette.success, palette.none),
-    GlyphPalette7 = syntax_entry(palette.on_surface, palette.none),
-    GlyphPalette9 = syntax_entry(palette.error, palette.none),
+    -- (Removed glyph-palette legacy groups)
 
     -- akinsho/bufferline.nvim
     BufferLineIndicatorSelected = { link = "GreenSign" },
@@ -1889,7 +1175,7 @@ highlights.generate_syntax = function(theme, options)
     MasonMuted = syntax_entry(palette.outline_variant, palette.none),
     MasonMutedBlock = syntax_entry(palette.background, palette.outline_variant),
 
-    -- nullchilly/fsread.nvim
+    -- nullchilly/fsread.nvim (kept)
     FSPrefix = syntax_entry(palette.on_surface, transparency_respecting_colour(palette.background), { styles.bold }),
     FSSuffix = syntax_entry(palette.on_surface_variant, palette.none),
 
@@ -2024,16 +1310,6 @@ highlights.generate_syntax = function(theme, options)
     lessVariable = { link = "Blue" },
     lessAmpersandChar = { link = "Orange" },
     lessFunction = { link = "Yellow" },
-
-    -- JS/X
-    javaScriptNull = { link = "Aqua" },
-    javaScriptNumber = { link = "Number" },
-    javaScriptIdentifier = { link = "Orange" },
-    javaScriptGlobal = { link = "Purple" },
-    javaScriptMessage = { link = "Yellow" },
-    javaScriptFunction = { link = "Keyword" },
-    javaScriptOperator = { link = "Orange" },
-    javaScriptMember = { link = "Aqua" },
 
     -- Python
     pythonBuiltin = { link = "Yellow" },
@@ -2201,23 +1477,21 @@ highlights.generate_syntax = function(theme, options)
   end
 
   if options.transparent_background_level == 0 then
-    syntax["NvimTreeNormal"] = syntax_entry(palette.on_surface, palette.background)
-    syntax["NvimTreeEndOfBuffer"] = syntax_entry(palette.background, palette.background)
-    syntax["NvimTreeVertSplit"] = syntax_entry(palette.background, palette.background)
-    syntax["NvimTreeCursorLine"] = syntax_entry(palette.none, palette.background)
-    syntax["NeoTreeNormal"] = syntax_entry(palette.on_surface, palette.background)
-    syntax["NeoTreeEndOfBuffer"] = syntax_entry(palette.background, palette.background)
-    syntax["NeoTreeVertSplit"] = syntax_entry(palette.background, palette.background)
+    -- reserved for plugin-specific backgrounds
   end
 
   if vim.o.background == "light" then
-    syntax["NeoTreeCursorLine"] = syntax_entry(palette.none, palette.background)
+    -- reserved for light-specific adjustments
   end
 
   if options.inlay_hints_background == "none" then
     syntax["InlayHints"] = { link = "LineNr" }
   elseif options.inlay_hints_background == "dimmed" then
-    syntax["InlayHints"] = syntax_entry(palette.on_surface_variant, palette.background)
+    syntax["InlayHints"] = syntax_entry(palette.on_surface_variant, palette.surface)
+  elseif options.inlay_hints_background == "soft" then
+    -- Blend surface towards background for a mid-tone capsule (~60% toward surface)
+    local soft_bg = util.blend(palette.surface, 0.60, palette.background)
+    syntax["InlayHints"] = syntax_entry(palette.on_surface_variant, soft_bg)
   end
 
   local lsp_kind_colours = {
@@ -2260,7 +1534,6 @@ highlights.generate_syntax = function(theme, options)
 
   for kind, colour in pairs(lsp_kind_colours) do
     syntax["CmpItemKind" .. kind] = { link = colour }
-    syntax["CocSymbol" .. kind] = { link = colour }
     syntax["Aerial" .. kind .. "Icon"] = { link = colour }
     syntax["BlinkCmpKind" .. kind] = { link = colour }
   end
@@ -2277,9 +1550,9 @@ highlights.generate_syntax = function(theme, options)
   syntax["AvanteInlineHint"] = syntax_entry(palette.on_surface_variant, palette.none, { styles.italic })
   syntax["AvantePopupHint"] = { link = "NormalFloat" }
   syntax["AvanteConflictCurrent"] = syntax_entry(palette.none, palette.error_container, { styles.bold })
-  syntax["AvanteConflictCurrentLabel"] = syntax_entry(ColourUtility.blend_bg(palette.error, 0.3), palette.error_container)
+  syntax["AvanteConflictCurrentLabel"] = syntax_entry(util.darken(palette.error, 0.3), palette.error_container)
   syntax["AvanteConflictIncoming"] = syntax_entry(palette.none, palette.info_container, { styles.bold })
-  syntax["AvanteConflictIncomingLabel"] = syntax_entry(ColourUtility.blend_bg(palette.info, 0.3), palette.info_container)
+  syntax["AvanteConflictIncomingLabel"] = syntax_entry(util.darken(palette.info, 0.3), palette.info_container)
   syntax["AvanteToBeDeleted"] = syntax_entry(palette.none, palette.error_container, { styles.strikethrough })
   syntax["AvanteToBeDeletedWOStrikethrough"] = syntax_entry(palette.none, palette.error_container)
   syntax["AvanteButtonDefault"] = syntax_entry(palette.background, palette.on_surface_variant)
@@ -2332,22 +1605,22 @@ highlights.generate_syntax = function(theme, options)
   vim.g.terminal_color_8 = terminal.black
 
   vim.g.terminal_color_1 = terminal.red
-  vim.g.terminal_color_9 = ColourUtility.blend_fg(terminal.red, 0.5)
+  vim.g.terminal_color_9 = util.lighten(terminal.red, 0.5)
 
   vim.g.terminal_color_2 = terminal.green
-  vim.g.terminal_color_10 = ColourUtility.blend_fg(terminal.green, 0.5)
+  vim.g.terminal_color_10 = util.lighten(terminal.green, 0.5)
 
   vim.g.terminal_color_3 = terminal.yellow
-  vim.g.terminal_color_11 = ColourUtility.blend_fg(terminal.yellow, 0.5)
+  vim.g.terminal_color_11 = util.lighten(terminal.yellow, 0.5)
 
   vim.g.terminal_color_4 = terminal.blue
-  vim.g.terminal_color_12 = ColourUtility.blend_fg(terminal.blue, 0.5)
+  vim.g.terminal_color_12 = util.lighten(terminal.blue, 0.5)
 
   vim.g.terminal_color_5 = terminal.purple
-  vim.g.terminal_color_13 = ColourUtility.blend_fg(terminal.purple, 0.5)
+  vim.g.terminal_color_13 = util.lighten(terminal.purple, 0.5)
 
   vim.g.terminal_color_6 = terminal.cyan
-  vim.g.terminal_color_14 = ColourUtility.blend_fg(terminal.cyan, 0.5)
+  vim.g.terminal_color_14 = util.lighten(terminal.cyan, 0.5)
 
   vim.g.terminal_color_7 = terminal.white
   vim.g.terminal_color_15 = terminal.white
