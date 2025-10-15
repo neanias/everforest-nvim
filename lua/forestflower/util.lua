@@ -201,7 +201,8 @@ function M.build_ui_roles(p)
     float_border = p.outline,
     float_title = p.primary,
     popup_background = p.surface_variant,
-    selection = p.primary,
+    -- Dedicated selection colour (was p.primary). Chosen muted green for neutrality.
+    selection = "#4d6b5f",
     scrollbar_thumb = p.surface_variant,
     statusline_fg = p.on_surface,
     statusline_bg = p.surface_variant,

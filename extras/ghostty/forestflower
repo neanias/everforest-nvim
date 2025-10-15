@@ -1,7 +1,3 @@
-# Forestflower Ghostty theme (generated from current palette)
-# ANSI 0-7  : surface_variant, error, success, warning, info, tertiary, secondary, on_surface
-# ANSI 8-15 : bright variants approximated (lightened)
-
 palette = 0=#2d3338
 palette = 1=#f85552
 palette = 2=#a7c080

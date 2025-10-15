@@ -207,7 +207,9 @@ highlights.generate_syntax = function(theme, options)
     ),
     TabLineSel = syntax_entry(ui.background, ui.tab_active_bg),
     Title = syntax_entry(palette.warning, palette.none, { styles.bold }),
+    -- Use dedicated selection colour; inherit foreground for syntax retention
     Visual = syntax_entry(palette.none, ui.selection),
+    -- Non-owning selection variant
     VisualNOS = syntax_entry(palette.none, ui.selection),
     WarningMsg = syntax_entry(status.warning, palette.none, { styles.bold }),
     Whitespace = syntax_entry(ui.surface_variant, palette.none),
@@ -915,7 +917,7 @@ highlights.generate_syntax = function(theme, options)
 
     -- romgrk/barbar.nvim (removed legacy barbar groups)
 
-    BlinkCmpLabelMatch = syntax_entry(palette.primary, palette.primary_container, { styles.bold }),
+    BlinkCmpLabelMatch = syntax_entry(palette.none, palette.primary_container, { styles.bold }),
     BlinkCmpKind = { link = "Yellow" },
 
     -- SmiteshP/nvim-navic (kept)
