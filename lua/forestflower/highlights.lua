@@ -1252,9 +1252,9 @@ highlights.generate_syntax = function(theme, options)
     SnacksPickerKeymapRhs = { link = "Grey" },
 
     -- folke/sidekick.nvim
-    SidekickDiffAdd = "DiffAdd",
-    SidekickDiffContext = "DiffChange",
-    SidekickDiffDelete = "DiffDelete",
+    SidekickDiffAdd = { link = "DiffAdd" },
+    SidekickDiffContext = { link = "DiffChange" },
+    SidekickDiffDelete = { link = "DiffDelete" },
     SidekickSignAdd = {
       fg = "#449dab",
     },
