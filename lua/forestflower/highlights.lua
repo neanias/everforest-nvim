@@ -915,7 +915,7 @@ highlights.generate_syntax = function(theme, options)
 
     -- romgrk/barbar.nvim (removed legacy barbar groups)
 
-    BlinkCmpLabelMatch = syntax_entry(palette.success, palette.none, { styles.bold }),
+    BlinkCmpLabelMatch = syntax_entry(palette.primary, palette.primary_container, { styles.bold }),
     BlinkCmpKind = { link = "Yellow" },
 
     -- SmiteshP/nvim-navic (kept)

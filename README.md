@@ -19,18 +19,131 @@ _All screenshots taken from [my personal config](https://github.com/YajanaRao/ki
 - Vim terminal colours
 - **Lualine** theme
 
-## Installation
+## Installation (LazyVim Friendly)
 
-Using [lazy.nvim](https://github.com/folke/lazy.nvim):
+Using [lazy.nvim](https://github.com/folke/lazy.nvim) (basic):
 
 ```lua
 require("lazy").setup({
-  "YajanaRao/forestflower",
-  version = false,
-  lazy = false,
-  priority = 1000,
+  {
+    "YajanaRao/forestflower",
+    priority = 1000, -- load first so everything can inherit
+    lazy = false,    -- force load during startup
+    opts = {         -- override any default (all shown below)
+      background = "medium", -- "soft" | "medium" | "hard"
+      transparent_background_level = 0, -- 0 | 1 | 2
+      italics = false,
+      disable_italic_comments = false,
+      sign_column_background = "none", -- "none" | "grey"
+      ui_contrast = "low", -- "low" | "high"
+      dim_inactive_windows = false,
+      diagnostic_text_highlight = false,
+      diagnostic_virtual_text = "coloured", -- "coloured" | "grey"
+      diagnostic_line_highlight = false,
+      spell_foreground = false,
+      show_eob = true,
+      float_style = "bright", -- "bright" | "dim"
+      inlay_hints_background = "dimmed", -- "none" | "dimmed" ("soft" experimental)
+      contrast_audit = false,
+      on_highlights = function(hl, palette) end,
+      colours_override = function(p) end,
+      roles_override = function(ui) end,
+      syntax_override = function(s) end,
+    },
+    config = function(_, opts)
+      require("forestflower").setup(opts)
+      vim.cmd.colorscheme("forestflower")
+    end,
+  },
 })
 ```
+
+### LazyVim specific
+
+If you are using LazyVim and want this to be your colorscheme, create (or edit) a spec file:
+
+```lua
+-- lua/plugins/colorscheme.lua
+return {
+  {
+    "YajanaRao/forestflower",
+    priority = 1000,
+    lazy = false,
+    opts = { background = "medium" },
+    config = function(_, opts)
+      require("forestflower").setup(opts)
+      vim.cmd.colorscheme("forestflower")
+    end,
+  },
+}
+```
+
+### Minimal setup
+
+```lua
+vim.cmd.colorscheme("forestflower")
+```
+
+### Options
+
+| Option | Type | Default | Description |
+|-------|------|---------|-------------|
+| background | string | "medium" | Hardness of base background: "soft", "medium", "hard" |
+| transparent_background_level | integer | 0 | 0: normal, 1: editor bg transparent, 2: more UI chrome transparent |
+| italics | boolean | false | Enable italics for keywords etc. |
+| disable_italic_comments | boolean | false | Force comments non-italic |
+| sign_column_background | string | "none" | "none" or "grey" background for sign column |
+| ui_contrast | string | "low" | Affects subtle UI accents (line numbers/indent guides) |
+| dim_inactive_windows | boolean | false | Dim non-current windows |
+| diagnostic_text_highlight | boolean | false | Fill diagnostic virtual text background |
+| diagnostic_virtual_text | string | "coloured" | "coloured" or "grey" diagnostic virtual text colour |
+| diagnostic_line_highlight | boolean | false | Background highlight for entire diagnostic lines |
+| spell_foreground | boolean | false | Also colour foreground of spell-corrected words |
+| show_eob | boolean | true | Show end-of-buffer tildes |
+| float_style | string | "bright" | Floating win bg lighter ("bright") or darker ("dim") |
+| inlay_hints_background | string | "dimmed" | Background style for inlay hints: "none" or "dimmed" |
+| contrast_audit | boolean | false | Run contrast audit and report via vim.notify |
+| on_highlights | function | noop | (hl, palette) mutate final highlight groups |
+| colours_override | function | noop | (palette) edit raw material-ish tokens before roles applied |
+| roles_override | function | noop | (ui) modify ui role mapping |
+| syntax_override | function | noop | (syntax) modify syntax role mapping |
+
+### Override examples
+
+Darken selection, tweak palette & add custom group.
+
+```lua
+require("forestflower").setup({
+  roles_override = function(ui)
+    ui.selection = "#445566" -- custom selection bg
+  end,
+  colours_override = function(p)
+    p.primary = "#98c379" -- change primary accent
+  end,
+  on_highlights = function(hl, palette)
+    hl.MyTitle = { fg = palette.primary, bold = true }
+  end,
+})
+vim.cmd.colorscheme("forestflower")
+```
+
+### Contrast audit
+
+Enable `contrast_audit = true` to receive a summary of WCAG-ish contrast ratios for core roles. Useful while theming or adjusting roles.
+
+### FAQ
+
+Q: Treesitter highlight group names changed?
+A: Forest Flower maps both legacy TS* groups and new *@* captures; you can safely migrate gradually.
+
+Q: Can I safely link to Red/Green groups?
+A: Yes. These generic groups deliberately persist for plugin compatibility.
+
+Q: Light mode?
+A: Set `:set background=light` before loading the colourscheme (palettes implement both day & night). You may also set `flavour = "day"` soon (planned prop alignment).
+
+Q: Soft background washed out with transparency?
+A: Try `transparent_background_level = 1` only, or move to `medium` hardness.
 
 ## Inspiration
 

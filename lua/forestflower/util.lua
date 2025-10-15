@@ -201,8 +201,7 @@ function M.build_ui_roles(p)
     float_border = p.outline,
     float_title = p.primary,
     popup_background = p.surface_variant,
-    -- Use a neutral accent (tertiary_container) for generic selection rather than success/primary green
-    selection = p.tertiary_container,
+    selection = p.primary,
     scrollbar_thumb = p.surface_variant,
     statusline_fg = p.on_surface,
     statusline_bg = p.surface_variant,

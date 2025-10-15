@@ -1,7 +1,7 @@
-local palettes = require("forestflower.colours")
+local util = require("forestflower.util")
 local config = require("forestflower").config
 
-local palette = palettes.generate_palette(config, vim.o.background)
+local palette = util.generate_palette(config, vim.o.background)
 
 if config.transparent_background_level == 2 then
   palette.bg1 = palette.none
