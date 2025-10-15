@@ -51,6 +51,7 @@ highlights.generate_syntax = function(theme, options)
   local palette = theme.palette
   local ui = theme.ui
   local syn = theme.syntax
+  local status = theme.status
   -- Comments are italic by default
   local comment_italics = options.disable_italic_comments and {} or { styles.italic }
   -- All other italics are disabled by default
@@ -109,85 +110,94 @@ highlights.generate_syntax = function(theme, options)
   --   2. Rainbow / delimiter / decorative multi-hue groups where semantic role does not apply
   --   3. Plugin specific brand accents that deliberately want a precise palette token
   local syntax = {
-    ColorColumn = syntax_entry(palette.none, ui.background_alt),
-    Conceal = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
+    ColorColumn = syntax_entry(palette.none, ui.surface_variant),
+    Conceal = syntax_entry(set_colour_based_on_ui_contrast(ui.outline_variant or ui.outline, ui.outline), palette.none),
     CurSearch = { link = "IncSearch" },
     Cursor = syntax_entry(palette.none, palette.none, { styles.reverse }),
     lCursor = { link = "Cursor" },
     CursorIM = { link = "Cursor" },
-    CursorColumn = syntax_entry(palette.none, palette.bg1),
-    CursorLine = syntax_entry(palette.none, ui.background_alt),
-    Directory = syntax_entry(palette.green, palette.none),
-    DiffAdd = syntax_entry(palette.none, palette.bg_green),
-    DiffChange = syntax_entry(palette.none, palette.bg_blue),
-    DiffDelete = syntax_entry(palette.none, palette.bg_red),
-    DiffText = syntax_entry(palette.bg0, palette.blue),
-    EndOfBuffer = syntax_entry((options.show_eob and palette.bg4) or palette.bg0, palette.none),
+    CursorColumn = syntax_entry(palette.none, ui.surface),
+    CursorLine = syntax_entry(palette.none, ui.surface_variant),
+    Directory = syntax_entry(ui.success, palette.none),
+    DiffAdd = syntax_entry(palette.none, status.success_container),
+    DiffChange = syntax_entry(palette.none, status.info_container),
+    DiffDelete = syntax_entry(palette.none, status.error_container),
+    DiffText = syntax_entry(ui.background, ui.primary),
+    EndOfBuffer = syntax_entry((options.show_eob and ui.surface_variant) or ui.background, palette.none),
     TermCursor = { link = "Cursor" },
     TermCursorNC = { link = "Cursor" },
-    ErrorMsg = syntax_entry(palette.red, palette.none, { styles.bold, styles.underline }),
+    ErrorMsg = syntax_entry(status.error, palette.none, { styles.bold, styles.underline }),
     WinSeparator = { link = "VertSplit" },
-    Folded = syntax_entry(palette.grey1, transparency_respecting_colour(palette.bg1)),
+    Folded = syntax_entry(ui.on_surface_variant, transparency_respecting_colour(ui.surface)),
     FoldColumn = syntax_entry(
-      (options.sign_column_background == "grey" and palette.grey2) or palette.bg5,
-      sign_column_respecting_colour(palette.bg1)
+      (options.sign_column_background == "grey" and ui.on_surface_variant) or ui.outline,
+      sign_column_respecting_colour(ui.surface)
     ),
-    SignColumn = syntax_entry(palette.fg, sign_column_respecting_colour(palette.bg1)),
-    IncSearch = syntax_entry(palette.bg0, palette.red),
-    Substitute = syntax_entry(palette.bg0, palette.yellow),
-    LineNr = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
-    LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
-    LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
-    CursorLineNr = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    MatchParen = syntax_entry(palette.none, palette.bg4),
-    ModeMsg = syntax_entry(palette.fg, palette.none, { styles.bold }),
-    MoreMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-    NonText = syntax_entry(palette.bg4, palette.none),
+    SignColumn = syntax_entry(ui.on_surface, sign_column_respecting_colour(ui.surface)),
+    IncSearch = syntax_entry(ui.background, ui.primary),
+    Substitute = syntax_entry(ui.background, status.warning),
+    LineNr = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none),
+    LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none),
+    LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none),
+    CursorLineNr = syntax_entry(ui.primary, palette.none, { styles.bold }),
+    MatchParen = syntax_entry(palette.none, ui.surface_variant),
+    ModeMsg = syntax_entry(ui.fg, palette.none, { styles.bold }),
+    MoreMsg = syntax_entry(status.warning, palette.none, { styles.bold }),
+    NonText = syntax_entry(ui.surface_variant, palette.none),
     Normal = syntax_entry(ui.fg, transparency_respecting_colour(ui.background)), -- role: base editor foreground/background
-    NormalFloat = syntax_entry(ui.fg, (options.float_style == "bright" and ui.float_background) or ui.float_background_dim),
-    FloatBorder = syntax_entry(ui.float_border, (options.float_style == "bright" and ui.float_background) or ui.float_background_dim),
+    NormalFloat = syntax_entry(
+      ui.fg,
+      (options.float_style == "bright" and ui.float_background) or ui.float_background_dim
+    ),
+    FloatBorder = syntax_entry(
+      ui.float_border,
+      (options.float_style == "bright" and ui.float_background) or ui.float_background_dim
+    ),
     FloatTitle = syntax_entry(
       ui.float_title,
       (options.float_style == "bright" and ui.float_background) or ui.float_background_dim,
       { styles.bold }
     ),
     NormalNC = syntax_entry(
-      palette.fg,
-      transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
+      ui.fg,
+      transparency_respecting_colour((options.dim_inactive_windows and ui.surface) or ui.background)
     ),
     Pmenu = syntax_entry(ui.fg, ui.popup_background),
     PmenuSbar = syntax_entry(palette.none, ui.popup_background),
     PmenuSel = syntax_entry(ui.background, ui.selection),
     PmenuThumb = syntax_entry(palette.none, ui.scrollbar_thumb),
-    Question = syntax_entry(palette.yellow, palette.none),
-    QuickFixLine = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    Question = syntax_entry(status.warning, palette.none),
+    QuickFixLine = syntax_entry(status.tertiary, palette.none, { styles.bold }),
     Search = syntax_entry(ui.background, ui.primary), -- role: primary interactive highlight
-    SpecialKey = syntax_entry(palette.yellow, palette.none),
+    SpecialKey = syntax_entry(status.warning, palette.none),
     SpellBad = syntax_entry(
-      options.spell_foreground and palette.red or palette.none,
+      options.spell_foreground and status.error or palette.none,
       palette.none,
       { styles.undercurl },
-      palette.red
+      status.error
     ),
     SpellCap = syntax_entry(
-      options.spell_foreground and palette.blue or palette.none,
+      options.spell_foreground and status.info or palette.none,
       palette.none,
       { styles.undercurl },
-      palette.blue
+      status.info
     ),
     SpellLocal = syntax_entry(
-      options.spell_foreground and palette.aqua or palette.none,
+      options.spell_foreground and status.secondary or palette.none,
       palette.none,
       { styles.undercurl },
-      palette.aqua
+      status.secondary
     ),
     SpellRare = syntax_entry(
-      options.spell_foreground and palette.purple or palette.none,
+      options.spell_foreground and status.tertiary or palette.none,
       palette.none,
       { styles.undercurl },
-      palette.purple
+      status.tertiary
     ),
-    StatusLine = syntax_entry(ui.statusline_fg, options.transparent_background_level == 2 and palette.none or ui.statusline_bg),
+    StatusLine = syntax_entry(
+      ui.statusline_fg,
+      options.transparent_background_level == 2 and palette.none or ui.statusline_bg
+    ),
     StatusLineNC = syntax_entry(
       options.transparent_background_level == 2 and ui.statusline_nc_fg_alt or ui.statusline_nc_fg,
       options.transparent_background_level == 2 and palette.none or ui.statusline_nc_bg
@@ -199,50 +209,56 @@ highlights.generate_syntax = function(theme, options)
     ),
     TabLineSel = syntax_entry(ui.background, ui.tab_active_bg),
     Title = syntax_entry(palette.orange, palette.none, { styles.bold }),
-    Visual = syntax_entry(palette.none, palette.bg_visual),
-    VisualNOS = syntax_entry(palette.none, palette.bg_visual),
-    WarningMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-    Whitespace = syntax_entry(palette.bg4, palette.none),
+    Visual = syntax_entry(palette.none, ui.selection),
+    VisualNOS = syntax_entry(palette.none, ui.selection),
+    WarningMsg = syntax_entry(status.warning, palette.none, { styles.bold }),
+    Whitespace = syntax_entry(ui.surface_variant, palette.none),
     WildMenu = { link = "PmenuSel" },
     WinBar = syntax_entry(
-      palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg2,
+      ui.on_surface_variant,
+      options.transparent_background_level == 2 and palette.none or ui.surface,
       { styles.bold }
     ),
     WinBarNC = syntax_entry(
-      options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg1
+      options.transparent_background_level == 2 and ui.outline or ui.on_surface_variant,
+      options.transparent_background_level == 2 and palette.none or ui.surface_variant
     ),
-    Terminal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
-    ToolbarLine = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg2)),
+    Terminal = syntax_entry(ui.fg, transparency_respecting_colour(ui.background)),
+    ToolbarLine = syntax_entry(ui.fg, transparency_respecting_colour(ui.surface)),
 
     StatusLineTerm = syntax_entry(
-      palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg1
+      ui.on_surface_variant,
+      options.transparent_background_level == 2 and palette.none or ui.surface_variant
     ),
     StatusLineTermNC = syntax_entry(
-      options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg0
+      options.transparent_background_level == 2 and ui.outline or ui.on_surface_variant,
+      options.transparent_background_level == 2 and palette.none or ui.background
     ),
-    VertSplit = syntax_entry(palette.bg4, (options.dim_inactive_windows and palette.bg_dim) or palette.none),
+    VertSplit = syntax_entry(ui.surface_variant, (options.dim_inactive_windows and ui.surface) or palette.none),
 
-    Debug = syntax_entry(palette.orange, palette.none),
-    debugPC = syntax_entry(palette.bg0, palette.green),
-    debugBreakpoint = syntax_entry(palette.bg0, palette.red),
-    ToolbarButton = syntax_entry(palette.bg0, palette.green),
+    Debug = syntax_entry(ui.primary, palette.none),
+    debugPC = syntax_entry(ui.background, status.success),
+    debugBreakpoint = syntax_entry(ui.background, status.error),
+    ToolbarButton = syntax_entry(ui.background, status.success),
     DiagnosticFloatingError = { link = "ErrorFloat" },
     DiagnosticFloatingWarn = { link = "WarningFloat" },
     DiagnosticFloatingInfo = { link = "InfoFloat" },
     DiagnosticFloatingHint = { link = "HintFloat" },
-    DiagnosticError = syntax_entry(palette.red, options.diagnostic_text_highlight and palette.bg_red or palette.none),
-    DiagnosticWarn = syntax_entry(
-      palette.yellow,
-      options.diagnostic_text_highlight and palette.bg_yellow or palette.none
+    DiagnosticError = syntax_entry(
+      status.error,
+      options.diagnostic_text_highlight and status.error_container or palette.none
     ),
-    DiagnosticInfo = syntax_entry(palette.blue, options.diagnostic_text_highlight and palette.bg_blue or palette.none),
+    DiagnosticWarn = syntax_entry(
+      status.warning,
+      options.diagnostic_text_highlight and status.warning_container or palette.none
+    ),
+    DiagnosticInfo = syntax_entry(
+      status.info,
+      options.diagnostic_text_highlight and status.info_container or palette.none
+    ),
     DiagnosticHint = syntax_entry(
-      palette.green,
-      options.diagnostic_text_highlight and palette.bg_green or palette.none
+      status.hint,
+      options.diagnostic_text_highlight and status.hint_container or palette.none
     ),
     DiagnosticUnnecessary = syntax_entry(palette.grey1, palette.none),
     DiagnosticVirtualTextError = { link = "VirtualTextError" },
@@ -250,28 +266,28 @@ highlights.generate_syntax = function(theme, options)
     DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" },
     DiagnosticVirtualTextHint = { link = "VirtualTextHint" },
     DiagnosticUnderlineError = syntax_entry(
-      palette.red,
-      options.diagnostic_text_highlight and palette.bg_red or palette.none,
+      status.error,
+      options.diagnostic_text_highlight and status.error_container or palette.none,
       { styles.undercurl },
-      palette.red
+      status.error
     ),
     DiagnosticUnderlineWarn = syntax_entry(
-      palette.yellow,
-      options.diagnostic_text_highlight and palette.bg_yellow or palette.none,
+      status.warning,
+      options.diagnostic_text_highlight and status.warning_container or palette.none,
       { styles.undercurl },
-      palette.yellow
+      status.warning
     ),
     DiagnosticUnderlineInfo = syntax_entry(
-      palette.blue,
-      options.diagnostic_text_highlight and palette.bg_blue or palette.none,
+      status.info,
+      options.diagnostic_text_highlight and status.info_container or palette.none,
       { styles.undercurl },
-      palette.blue
+      status.info
     ),
     DiagnosticUnderlineHint = syntax_entry(
-      palette.green,
-      options.diagnostic_text_highlight and palette.bg_green or palette.none,
+      status.success,
+      options.diagnostic_text_highlight and status.success_container or palette.none,
       { styles.undercurl },
-      palette.green
+      status.success
     ),
     DiagnosticSignError = { link = "RedSign" },
     DiagnosticSignWarn = { link = "YellowSign" },
@@ -376,13 +392,13 @@ highlights.generate_syntax = function(theme, options)
     BlueBold = syntax_entry(palette.blue, palette.none, { styles.bold }),
     PurpleBold = syntax_entry(palette.purple, palette.none, { styles.bold }),
 
-    RedSign = syntax_entry(palette.red, set_signs_background_colour(palette.bg1)),
-    OrangeSign = syntax_entry(palette.orange, set_signs_background_colour(palette.bg1)),
-    YellowSign = syntax_entry(palette.yellow, set_signs_background_colour(palette.bg1)),
-    GreenSign = syntax_entry(palette.green, set_signs_background_colour(palette.bg1)),
-    AquaSign = syntax_entry(palette.aqua, set_signs_background_colour(palette.bg1)),
-    BlueSign = syntax_entry(palette.blue, set_signs_background_colour(palette.bg1)),
-    PurpleSign = syntax_entry(palette.purple, set_signs_background_colour(palette.bg1)),
+    RedSign = syntax_entry(status.error, set_signs_background_colour(ui.surface_variant)),
+    OrangeSign = syntax_entry(ui.primary, set_signs_background_colour(ui.surface_variant)),
+    YellowSign = syntax_entry(status.warning, set_signs_background_colour(ui.surface_variant)),
+    GreenSign = syntax_entry(status.success, set_signs_background_colour(ui.surface_variant)),
+    AquaSign = syntax_entry(status.secondary, set_signs_background_colour(ui.surface_variant)),
+    BlueSign = syntax_entry(status.info, set_signs_background_colour(ui.surface_variant)),
+    PurpleSign = syntax_entry(status.tertiary, set_signs_background_colour(ui.surface_variant)),
 
     Added = { link = "Green" },
     Removed = { link = "Red" },
@@ -391,33 +407,33 @@ highlights.generate_syntax = function(theme, options)
     -- Configuration based on `diagnostic_text_highlight` option
     ErrorText = syntax_entry(
       palette.none,
-      options.diagnostic_text_highlight and palette.bg_red or palette.none,
+      options.diagnostic_text_highlight and status.error_container or palette.none,
       { styles.undercurl },
-      palette.red
+      status.error
     ),
     WarningText = syntax_entry(
       palette.none,
-      options.diagnostic_text_highlight and palette.bg_yellow or palette.none,
+      options.diagnostic_text_highlight and status.warning_container or palette.none,
       { styles.undercurl },
-      palette.yellow
+      status.warning
     ),
     InfoText = syntax_entry(
       palette.none,
-      options.diagnostic_text_highlight and palette.bg_blue or palette.none,
+      options.diagnostic_text_highlight and status.info_container or palette.none,
       { styles.undercurl },
-      palette.blue
+      status.info
     ),
     HintText = syntax_entry(
       palette.none,
-      options.diagnostic_text_highlight and palette.bg_green or palette.none,
+      options.diagnostic_text_highlight and status.hint_container or palette.none,
       { styles.undercurl },
-      palette.green
+      status.hint
     ),
 
-    ErrorLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_red) or {},
-    WarningLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_yellow) or {},
-    InfoLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_blue) or {},
-    HintLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_green) or {},
+    ErrorLine = options.diagnostic_line_highlight and syntax_entry(palette.none, status.error_container) or {},
+    WarningLine = options.diagnostic_line_highlight and syntax_entry(palette.none, status.warning_container) or {},
+    InfoLine = options.diagnostic_line_highlight and syntax_entry(palette.none, status.info_container) or {},
+    HintLine = options.diagnostic_line_highlight and syntax_entry(palette.none, status.hint_container) or {},
 
     -- Configuration based on `diagnostic_virtual_text` option
     VirtualTextWarning = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Yellow" },
@@ -426,10 +442,11 @@ highlights.generate_syntax = function(theme, options)
     VirtualTextHint = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Green" },
 
     -- Diagnostic text inherits the background of the floating window, which is Neovim's default.
-    ErrorFloat = syntax_entry(palette.red, palette.none),
-    WarningFloat = syntax_entry(palette.yellow, palette.none),
-    InfoFloat = syntax_entry(palette.blue, palette.none),
-    HintFloat = syntax_entry(palette.green, palette.none),
+    ErrorFloat = syntax_entry(status.error, palette.none),
+    WarningFloat = syntax_entry(status.warning, palette.none),
+    InfoFloat = syntax_entry(status.info, palette.none),
+    HintFloat = syntax_entry(status.hint, palette.none),
+    InlayHints = syntax_entry(status.hint, palette.none),
     CurrentWord = syntax_entry(palette.none, palette.none, { styles.bold }),
 
     -- Git commit colours

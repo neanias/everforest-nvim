@@ -19,7 +19,8 @@ util.generate_highlights = function(syntax_entries)
 end
 
 ---@param generated_syntax Highlights
-util.load = function(generated_syntax)
+---@param ansi table
+util.load = function(generated_syntax, ansi)
   if vim.g.colors_name then
     vim.cmd([[highlight clear]])
   end
@@ -27,23 +28,41 @@ util.load = function(generated_syntax)
   vim.o.termguicolors = true
   vim.g.colors_name = "forestflower"
 
+  -- Set terminal ANSI colors
+  vim.g.terminal_color_0 = ansi.black
+  vim.g.terminal_color_1 = ansi.red
+  vim.g.terminal_color_2 = ansi.green
+  vim.g.terminal_color_3 = ansi.yellow
+  vim.g.terminal_color_4 = ansi.blue
+  vim.g.terminal_color_5 = ansi.magenta
+  vim.g.terminal_color_6 = ansi.cyan
+  vim.g.terminal_color_7 = ansi.white
+
   util.generate_highlights(generated_syntax)
 end
 
 ---@param a string @hex
 ---@param b string @hex
-function util.contrast(a,b)
+function util.contrast(a, b)
   local function lum(hex)
-    local r = tonumber(hex:sub(2,3),16)/255
-    local g = tonumber(hex:sub(4,5),16)/255
-    local b = tonumber(hex:sub(6,7),16)/255
-    local function lin(c) if c <= 0.03928 then return c/12.92 else return ((c+0.055)/1.055)^2.4 end end
-    r,g,b = lin(r),lin(g),lin(b)
-    return 0.2126*r + 0.7152*g + 0.0722*b
+    local r = tonumber(hex:sub(2, 3), 16) / 255
+    local g = tonumber(hex:sub(4, 5), 16) / 255
+    local b = tonumber(hex:sub(6, 7), 16) / 255
+    local function lin(c)
+      if c <= 0.03928 then
+        return c / 12.92
+      else
+        return ((c + 0.055) / 1.055) ^ 2.4
+      end
+    end
+    r, g, b = lin(r), lin(g), lin(b)
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
   end
   local la, lb = lum(a), lum(b)
-  if la < lb then la, lb = lb, la end
-  return (la + 0.05)/(lb + 0.05)
+  if la < lb then
+    la, lb = lb, la
+  end
+  return (la + 0.05) / (lb + 0.05)
 end
 
 ---@param theme ForestflowerTheme
@@ -55,26 +74,26 @@ function util.contrast_audit(theme)
   local classifications = {}
   local function classify(name, fg, tier)
     local ratio = util.contrast(fg, bg)
-    local min = tier == 'critical' and critical_min or (tier == 'secondary' and secondary_min or decorative_min)
+    local min = tier == "critical" and critical_min or (tier == "secondary" and secondary_min or decorative_min)
     local status
     if ratio >= min then
-      status = 'PASS'
-    elseif tier == 'decorative' then
-      status = 'WARN'
+      status = "PASS"
+    elseif tier == "decorative" then
+      status = "WARN"
     else
-      status = 'FAIL'
+      status = "FAIL"
     end
-    table.insert(classifications, string.format('%-12s %s %5.2f %s', name, fg, ratio, status))
+    table.insert(classifications, string.format("%-12s %s %5.2f %s", name, fg, ratio, status))
   end
-  classify('fg', theme.ui.fg, 'critical')
-  classify('fg_muted', theme.ui.fg_muted, 'secondary')
-  classify('keyword', theme.syntax.keyword, 'critical')
-  classify('function', theme.syntax['function'], 'critical')
-  classify('string', theme.syntax.string, 'critical')
-  classify('number', theme.syntax.number, 'critical')
-  classify('comment', theme.syntax.comment, 'decorative')
+  classify("fg", theme.ui.fg, "critical")
+  classify("fg_muted", theme.ui.fg_muted, "secondary")
+  classify("keyword", theme.syntax.keyword, "critical")
+  classify("function", theme.syntax["function"], "critical")
+  classify("string", theme.syntax.string, "critical")
+  classify("number", theme.syntax.number, "critical")
+  classify("comment", theme.syntax.comment, "decorative")
   vim.schedule(function()
-    vim.notify('forestflower contrast audit:\n' .. table.concat(classifications, '\n'), vim.log.levels.INFO)
+    vim.notify("forestflower contrast audit:\n" .. table.concat(classifications, "\n"), vim.log.levels.INFO)
   end)
 end
 
