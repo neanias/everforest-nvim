@@ -30,7 +30,7 @@ return function(theme, config)
     VisualNOS = link("Visual"),
     
     -- Line numbers
-    LineNr = create(ui.on_surface_variant, palette.none),
+    LineNr = create(ui.outline, palette.none),
     LineNrAbove = link("LineNr"),
     LineNrBelow = link("LineNr"),
     CursorLineNr = create(ui.primary, palette.none, { styles.bold }),
@@ -76,7 +76,8 @@ return function(theme, config)
     -- Windows
     WinBar = create(ui.on_surface_variant, config.transparent_background_level == 2 and palette.none or ui.surface, { styles.bold }),
     WinBarNC = create(ui.on_surface_variant, config.transparent_background_level == 2 and palette.none or ui.surface_variant),
-    WinSeparator = link("VertSplit"),
+    WinSeparator = create(ui.border, palette.none),
+    VertSplit = link("WinSeparator"),
     
     -- Borders
     FloatBorder = create(ui.float_border, config.float_style == "bright" and ui.float_background or ui.float_background_dim),
