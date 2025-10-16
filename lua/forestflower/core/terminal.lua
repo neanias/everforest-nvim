@@ -10,40 +10,25 @@ local M = {}
 ---@param palette ColorPalette
 ---@param background string
 function M.setup(palette, background)
-  local terminal = {
-    red = palette.error,
-    yellow = palette.warning,
-    green = palette.success,
-    cyan = palette.secondary,
-    blue = palette.info,
-    purple = palette.tertiary,
-  }
+  -- Base ANSI colors (0-7)
+  vim.g.terminal_color_0 = palette.surface_variant
+  vim.g.terminal_color_1 = palette.error
+  vim.g.terminal_color_2 = palette.success
+  vim.g.terminal_color_3 = palette.warning
+  vim.g.terminal_color_4 = palette.info
+  vim.g.terminal_color_5 = palette.tertiary
+  vim.g.terminal_color_6 = palette.secondary
+  vim.g.terminal_color_7 = palette.on_surface
 
-  if background == "dark" then
-    terminal.black = palette.on_surface
-    terminal.white = palette.outline
-  else
-    terminal.black = palette.outline
-    terminal.white = palette.on_surface
-  end
-
-  -- Set ANSI colors
-  vim.g.terminal_color_0 = terminal.black
-  vim.g.terminal_color_8 = terminal.black
-  vim.g.terminal_color_1 = terminal.red
-  vim.g.terminal_color_9 = util.lighten(terminal.red, 0.5)
-  vim.g.terminal_color_2 = terminal.green
-  vim.g.terminal_color_10 = util.lighten(terminal.green, 0.5)
-  vim.g.terminal_color_3 = terminal.yellow
-  vim.g.terminal_color_11 = util.lighten(terminal.yellow, 0.5)
-  vim.g.terminal_color_4 = terminal.blue
-  vim.g.terminal_color_12 = util.lighten(terminal.blue, 0.5)
-  vim.g.terminal_color_5 = terminal.purple
-  vim.g.terminal_color_13 = util.lighten(terminal.purple, 0.5)
-  vim.g.terminal_color_6 = terminal.cyan
-  vim.g.terminal_color_14 = util.lighten(terminal.cyan, 0.5)
-  vim.g.terminal_color_7 = terminal.white
-  vim.g.terminal_color_15 = terminal.white
+  -- Bright ANSI colors (8-15)
+  vim.g.terminal_color_8 = palette.outline_variant
+  vim.g.terminal_color_9 = util.lighten(palette.error, 0.5)
+  vim.g.terminal_color_10 = util.lighten(palette.success, 0.5)
+  vim.g.terminal_color_11 = util.lighten(palette.warning, 0.5)
+  vim.g.terminal_color_12 = util.lighten(palette.info, 0.5)
+  vim.g.terminal_color_13 = util.lighten(palette.tertiary, 0.5)
+  vim.g.terminal_color_14 = util.lighten(palette.secondary, 0.5)
+  vim.g.terminal_color_15 = palette.on_surface       
 
   -- fzf.vim colors
   vim.g.fzf_colors = {

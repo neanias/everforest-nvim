@@ -177,9 +177,9 @@ function M.generate_highlights(syntax_entries)
   end
 end
 
----Load the colorscheme with terminal colors
+---Load the colorscheme
 ---@param generated_syntax Highlights Generated highlight groups
----@param ansi table ANSI color mappings
+---@param ansi table ANSI color mappings (kept for API compatibility)
 function M.load(generated_syntax, ansi)
   if vim.g.colors_name then
     vim.cmd([[highlight clear]])
@@ -188,16 +188,7 @@ function M.load(generated_syntax, ansi)
   vim.o.termguicolors = true
   vim.g.colors_name = "forestflower"
 
-  -- Set terminal ANSI colors
-  vim.g.terminal_color_0 = ansi.black
-  vim.g.terminal_color_1 = ansi.red
-  vim.g.terminal_color_2 = ansi.green
-  vim.g.terminal_color_3 = ansi.yellow
-  vim.g.terminal_color_4 = ansi.blue
-  vim.g.terminal_color_5 = ansi.magenta
-  vim.g.terminal_color_6 = ansi.cyan
-  vim.g.terminal_color_7 = ansi.white
-
+  -- Terminal colors are set by terminal.setup()
   M.generate_highlights(generated_syntax)
 end
 
