@@ -118,192 +118,194 @@ highlights.generate_syntax = function(theme, options)
   --   3. Plugin specific brand accents that deliberately want a precise palette token
   -- Removed enormous legacy syntax table; base & other modules already define these groups.
   -- Keep only terminal + global plugin variable assignments and user callback hook.
-  local syntax = syntax -- already populated by modules; do not redefine.
-    ColorColumn = syntax_entry(palette.none, ui.surface_variant),
-    Conceal = syntax_entry(set_colour_based_on_ui_contrast(ui.outline_variant or ui.outline, ui.outline), palette.none),
-    CurSearch = { link = "IncSearch" },
-    Cursor = syntax_entry(palette.none, palette.none, { styles.reverse }),
-    lCursor = { link = "Cursor" },
-    CursorIM = { link = "Cursor" },
-    CursorColumn = syntax_entry(palette.none, ui.surface),
-    CursorLine = syntax_entry(palette.none, ui.surface_variant),
-    Directory = syntax_entry(ui.success, palette.none),
-    DiffAdd = syntax_entry(palette.none, status.success_container),
-    DiffChange = syntax_entry(palette.none, status.info_container),
-    DiffDelete = syntax_entry(palette.none, status.error_container),
-    DiffText = syntax_entry(ui.background, ui.primary),
-    EndOfBuffer = syntax_entry((options.show_eob and ui.surface_variant) or ui.background, palette.none),
-    TermCursor = { link = "Cursor" },
-    TermCursorNC = { link = "Cursor" },
-    ErrorMsg = syntax_entry(status.error, palette.none, { styles.bold, styles.underline }),
-    WinSeparator = { link = "VertSplit" },
-    Folded = syntax_entry(ui.on_surface_variant, transparency_respecting_colour(ui.surface)),
-    FoldColumn = syntax_entry(
-      (options.sign_column_background == "grey" and ui.on_surface_variant) or ui.outline,
-      sign_column_respecting_colour(ui.surface)
-    ),
-    SignColumn = syntax_entry(ui.on_surface, sign_column_respecting_colour(ui.surface)),
-    IncSearch = syntax_entry(ui.background, ui.primary),
-    Substitute = syntax_entry(ui.background, status.warning),
-    LineNr = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none),
-    LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none),
-    LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none),
-    CursorLineNr = syntax_entry(ui.primary, palette.none, { styles.bold }),
-    MatchParen = syntax_entry(palette.none, ui.surface_variant),
-    ModeMsg = syntax_entry(ui.fg, palette.none, { styles.bold }),
-    MoreMsg = syntax_entry(status.warning, palette.none, { styles.bold }),
-    NonText = syntax_entry(ui.surface_variant, palette.none),
-    Normal = syntax_entry(ui.fg, transparency_respecting_colour(ui.background)), -- role: base editor foreground/background
-    NormalFloat = syntax_entry(
-      ui.fg,
-      (options.float_style == "bright" and ui.float_background) or ui.float_background_dim
-    ),
-    FloatBorder = syntax_entry(
-      ui.float_border,
-      (options.float_style == "bright" and ui.float_background) or ui.float_background_dim
-    ),
-    FloatTitle = syntax_entry(
-      ui.float_title,
-      (options.float_style == "bright" and ui.float_background) or ui.float_background_dim,
-      { styles.bold }
-    ),
-    NormalNC = syntax_entry(
-      ui.fg,
-      transparency_respecting_colour((options.dim_inactive_windows and ui.surface) or ui.background)
-    ),
-    Pmenu = syntax_entry(ui.fg, ui.popup_background),
-    PmenuSbar = syntax_entry(palette.none, ui.popup_background),
-    PmenuSel = syntax_entry(ui.background, ui.selection),
-    PmenuThumb = syntax_entry(palette.none, ui.scrollbar_thumb),
-    Question = syntax_entry(status.warning, palette.none),
-    QuickFixLine = syntax_entry(status.tertiary, palette.none, { styles.bold }),
-    Search = syntax_entry(ui.background, ui.primary), -- role: primary interactive highlight
-    SpecialKey = syntax_entry(status.warning, palette.none),
-    SpellBad = syntax_entry(
-      options.spell_foreground and status.error or palette.none,
-      palette.none,
-      { styles.undercurl },
-      status.error
-    ),
-    SpellCap = syntax_entry(
-      options.spell_foreground and status.info or palette.none,
-      palette.none,
-      { styles.undercurl },
-      status.info
-    ),
-    SpellLocal = syntax_entry(
-      options.spell_foreground and status.secondary or palette.none,
-      palette.none,
-      { styles.undercurl },
-      status.secondary
-    ),
-    SpellRare = syntax_entry(
-      options.spell_foreground and status.tertiary or palette.none,
-      palette.none,
-      { styles.undercurl },
-      status.tertiary
-    ),
-    StatusLine = syntax_entry(
-      ui.statusline_fg,
-      options.transparent_background_level == 2 and palette.none or ui.statusline_bg
-    ),
-    StatusLineNC = syntax_entry(
-      options.transparent_background_level == 2 and ui.statusline_nc_fg_alt or ui.statusline_nc_fg,
-      options.transparent_background_level == 2 and palette.none or ui.statusline_nc_bg
-    ),
-    TabLine = syntax_entry(ui.tab_inactive_fg, ui.tab_inactive_bg),
-    TabLineFill = syntax_entry(
-      ui.tab_fill_fg,
-      options.transparent_background_level == 2 and palette.none or ui.tab_fill_bg
-    ),
-    TabLineSel = syntax_entry(ui.background, ui.tab_active_bg),
-    Title = syntax_entry(palette.warning, palette.none, { styles.bold }),
-    -- Use dedicated selection colour; inherit foreground for syntax retention
-    Visual = syntax_entry(palette.none, ui.selection),
-    -- Non-owning selection variant
-    VisualNOS = syntax_entry(palette.none, ui.selection),
-    WarningMsg = syntax_entry(status.warning, palette.none, { styles.bold }),
-    Whitespace = syntax_entry(ui.surface_variant, palette.none),
-    WildMenu = { link = "PmenuSel" },
-    WinBar = syntax_entry(
-      ui.on_surface_variant,
-      options.transparent_background_level == 2 and palette.none or ui.surface,
-      { styles.bold }
-    ),
-    WinBarNC = syntax_entry(
-      options.transparent_background_level == 2 and ui.outline or ui.on_surface_variant,
-      options.transparent_background_level == 2 and palette.none or ui.surface_variant
-    ),
-    Terminal = syntax_entry(ui.fg, transparency_respecting_colour(ui.background)),
-    ToolbarLine = syntax_entry(ui.fg, transparency_respecting_colour(ui.surface)),
+  -- syntax already populated by modules; avoid redefining here.
+  local syntax = syntax  -- already built by modules
+  -- (previous giant inline table removed; add only supplemental groups here if truly missing)
 
-    StatusLineTerm = syntax_entry(
-      ui.on_surface_variant,
-      options.transparent_background_level == 2 and palette.none or ui.surface_variant
-    ),
-    StatusLineTermNC = syntax_entry(
-      options.transparent_background_level == 2 and ui.outline or ui.on_surface_variant,
-      options.transparent_background_level == 2 and palette.none or ui.background
-    ),
-    VertSplit = syntax_entry(ui.surface_variant, (options.dim_inactive_windows and ui.surface) or palette.none),
+  -- Add supplemental legacy compat groups not yet modularised:
+  syntax.CurSearch = { link = "IncSearch" }
+  syntax.Cursor = syntax_entry(palette.none, palette.none, { styles.reverse })
+  syntax.lCursor = { link = "Cursor" }
+  syntax.CursorIM = { link = "Cursor" }
+  syntax.CursorColumn = syntax_entry(palette.none, ui.surface)
+  syntax.CursorLine = syntax_entry(palette.none, ui.surface_variant)
+  syntax.Directory = syntax_entry(ui.success, palette.none)
+  syntax.DiffAdd = syntax_entry(palette.none, status.success_container)
+  syntax.DiffChange = syntax_entry(palette.none, status.info_container)
+  syntax.DiffDelete = syntax_entry(palette.none, status.error_container)
+  syntax.DiffText = syntax_entry(ui.background, ui.primary)
+  syntax.EndOfBuffer = syntax_entry((options.show_eob and ui.surface_variant) or ui.background, palette.none)
+  syntax.TermCursor = { link = "Cursor" }
+  syntax.TermCursorNC = { link = "Cursor" }
+  syntax.ErrorMsg = syntax_entry(status.error, palette.none, { styles.bold, styles.underline })
+  syntax.WinSeparator = { link = "VertSplit" }
+  syntax.Folded = syntax_entry(ui.on_surface_variant, transparency_respecting_colour(ui.surface))
+  syntax.FoldColumn = syntax_entry(
+    (options.sign_column_background == "grey" and ui.on_surface_variant) or ui.outline,
+    sign_column_respecting_colour(ui.surface)
+  )
+  syntax.SignColumn = syntax_entry(ui.on_surface, sign_column_respecting_colour(ui.surface))
+  syntax.IncSearch = syntax_entry(ui.background, ui.primary)
+  syntax.Substitute = syntax_entry(ui.background, status.warning)
+  syntax.LineNr = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none)
+  syntax.LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none)
+  syntax.LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(ui.on_surface_variant, ui.outline), palette.none)
+  syntax.CursorLineNr = syntax_entry(ui.primary, palette.none, { styles.bold })
+  syntax.MatchParen = syntax_entry(palette.none, ui.surface_variant)
+  syntax.ModeMsg = syntax_entry(ui.fg, palette.none, { styles.bold })
+  syntax.MoreMsg = syntax_entry(status.warning, palette.none, { styles.bold })
+  syntax.NonText = syntax_entry(ui.surface_variant, palette.none)
+  syntax.Normal = syntax_entry(ui.fg, transparency_respecting_colour(ui.background)) -- role: base editor foreground/background
+  syntax.NormalFloat = syntax_entry(
+    ui.fg,
+    (options.float_style == "bright" and ui.float_background) or ui.float_background_dim
+  )
+  syntax.FloatBorder = syntax_entry(
+    ui.float_border,
+    (options.float_style == "bright" and ui.float_background) or ui.float_background_dim
+  )
+  syntax.FloatTitle = syntax_entry(
+    ui.float_title,
+    (options.float_style == "bright" and ui.float_background) or ui.float_background_dim,
+    { styles.bold }
+  )
+  syntax.NormalNC = syntax_entry(
+    ui.fg,
+    transparency_respecting_colour((options.dim_inactive_windows and ui.surface) or ui.background)
+  )
+  syntax.Pmenu = syntax_entry(ui.fg, ui.popup_background)
+  syntax.PmenuSbar = syntax_entry(palette.none, ui.popup_background)
+  syntax.PmenuSel = syntax_entry(ui.background, ui.selection)
+  syntax.PmenuThumb = syntax_entry(palette.none, ui.scrollbar_thumb)
+  syntax.Question = syntax_entry(status.warning, palette.none)
+  syntax.QuickFixLine = syntax_entry(status.tertiary, palette.none, { styles.bold })
+  syntax.Search = syntax_entry(ui.background, ui.primary) -- role: primary interactive highlight
+  syntax.SpecialKey = syntax_entry(status.warning, palette.none)
+  syntax.SpellBad = syntax_entry(
+    options.spell_foreground and status.error or palette.none,
+    palette.none,
+    { styles.undercurl },
+    status.error
+  )
+  syntax.SpellCap = syntax_entry(
+    options.spell_foreground and status.info or palette.none,
+    palette.none,
+    { styles.undercurl },
+    status.info
+  )
+  syntax.SpellLocal = syntax_entry(
+    options.spell_foreground and status.secondary or palette.none,
+    palette.none,
+    { styles.undercurl },
+    status.secondary
+  )
+  syntax.SpellRare = syntax_entry(
+    options.spell_foreground and status.tertiary or palette.none,
+    palette.none,
+    { styles.undercurl },
+    status.tertiary
+  )
+  syntax.StatusLine = syntax_entry(
+    ui.statusline_fg,
+    options.transparent_background_level == 2 and palette.none or ui.statusline_bg
+  )
+  syntax.StatusLineNC = syntax_entry(
+    options.transparent_background_level == 2 and ui.statusline_nc_fg_alt or ui.statusline_nc_fg,
+    options.transparent_background_level == 2 and palette.none or ui.statusline_nc_bg
+  )
+  syntax.TabLine = syntax_entry(ui.tab_inactive_fg, ui.tab_inactive_bg)
+  syntax.TabLineFill = syntax_entry(
+    ui.tab_fill_fg,
+    options.transparent_background_level == 2 and palette.none or ui.tab_fill_bg
+  )
+  syntax.TabLineSel = syntax_entry(ui.background, ui.tab_active_bg)
+  syntax.Title = syntax_entry(palette.warning, palette.none, { styles.bold })
+  -- Use dedicated selection colour; inherit foreground for syntax retention
+  syntax.Visual = syntax_entry(palette.none, ui.selection)
+  -- Non-owning selection variant
+  syntax.VisualNOS = syntax_entry(palette.none, ui.selection)
+  syntax.WarningMsg = syntax_entry(status.warning, palette.none, { styles.bold })
+  syntax.Whitespace = syntax_entry(ui.surface_variant, palette.none)
+  syntax.WildMenu = { link = "PmenuSel" }
+  syntax.WinBar = syntax_entry(
+    ui.on_surface_variant,
+    options.transparent_background_level == 2 and palette.none or ui.surface,
+    { styles.bold }
+  )
+  syntax.WinBarNC = syntax_entry(
+    options.transparent_background_level == 2 and ui.outline or ui.on_surface_variant,
+    options.transparent_background_level == 2 and palette.none or ui.surface_variant
+  )
+  syntax.Terminal = syntax_entry(ui.fg, transparency_respecting_colour(ui.surface))
+  syntax.ToolbarLine = syntax_entry(ui.fg, transparency_respecting_colour(ui.surface))
 
-    Debug = syntax_entry(ui.primary, palette.none),
-    debugPC = syntax_entry(ui.background, status.success),
-    debugBreakpoint = syntax_entry(ui.background, status.error),
-    ToolbarButton = syntax_entry(ui.background, status.success),
-    DiagnosticFloatingError = { link = "ErrorFloat" },
-    DiagnosticFloatingWarn = { link = "WarningFloat" },
-    DiagnosticFloatingInfo = { link = "InfoFloat" },
-    DiagnosticFloatingHint = { link = "HintFloat" },
-    DiagnosticError = syntax_entry(
-      status.error,
-      options.diagnostic_text_highlight and status.error_container or palette.none
-    ),
-    DiagnosticWarn = syntax_entry(
-      status.warning,
-      options.diagnostic_text_highlight and status.warning_container or palette.none
-    ),
-    DiagnosticInfo = syntax_entry(
-      status.info,
-      options.diagnostic_text_highlight and status.info_container or palette.none
-    ),
-    DiagnosticHint = syntax_entry(
-      status.hint,
-      options.diagnostic_text_highlight and status.hint_container or palette.none
-    ),
-    DiagnosticUnnecessary = syntax_entry(palette.on_surface_variant, palette.none),
-    DiagnosticVirtualTextError = { link = "VirtualTextError" },
-    DiagnosticVirtualTextWarn = { link = "VirtualTextWarning" },
-    DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" },
-    DiagnosticVirtualTextHint = { link = "VirtualTextHint" },
-    DiagnosticUnderlineError = syntax_entry(
-      status.error,
-      options.diagnostic_text_highlight and status.error_container or palette.none,
-      { styles.undercurl },
-      status.error
-    ),
-    DiagnosticUnderlineWarn = syntax_entry(
-      status.warning,
-      options.diagnostic_text_highlight and status.warning_container or palette.none,
-      { styles.undercurl },
-      status.warning
-    ),
-    DiagnosticUnderlineInfo = syntax_entry(
-      status.info,
-      options.diagnostic_text_highlight and status.info_container or palette.none,
-      { styles.undercurl },
-      status.info
-    ),
-    DiagnosticUnderlineHint = syntax_entry(
-      status.success,
-      options.diagnostic_text_highlight and status.success_container or palette.none,
-      { styles.undercurl },
-      status.success
-    ),
-    DiagnosticSignError = { link = "RedSign" },
-    DiagnosticSignWarn = { link = "YellowSign" },
-    DiagnosticSignInfo = { link = "BlueSign" },
-    DiagnosticSignHint = { link = "GreenSign" },
+  syntax.StatusLineTerm = syntax_entry(
+    ui.on_surface_variant,
+    options.transparent_background_level == 2 and palette.none or ui.surface_variant
+  )
+  syntax.StatusLineTermNC = syntax_entry(
+    options.transparent_background_level == 2 and ui.outline or ui.on_surface_variant,
+    options.transparent_background_level == 2 and palette.none or ui.background
+  )
+  syntax.VertSplit = syntax_entry(ui.surface_variant, (options.dim_inactive_windows and ui.surface) or palette.none)
+
+  syntax.Debug = syntax_entry(ui.primary, palette.none)
+  syntax.debugPC = syntax_entry(ui.background, status.success)
+  syntax.debugBreakpoint = syntax_entry(ui.background, status.error)
+  syntax.ToolbarButton = syntax_entry(ui.background, status.success)
+  syntax.DiagnosticFloatingError = { link = "ErrorFloat" }
+  syntax.DiagnosticFloatingWarn = { link = "WarningFloat" }
+  syntax.DiagnosticFloatingInfo = { link = "InfoFloat" }
+  syntax.DiagnosticFloatingHint = { link = "HintFloat" }
+  syntax.DiagnosticError = syntax_entry(
+    status.error,
+    options.diagnostic_text_highlight and status.error_container or palette.none
+  )
+  syntax.DiagnosticWarn = syntax_entry(
+    status.warning,
+    options.diagnostic_text_highlight and status.warning_container or palette.none
+  )
+  syntax.DiagnosticInfo = syntax_entry(
+    status.info,
+    options.diagnostic_text_highlight and status.info_container or palette.none
+  )
+  syntax.DiagnosticHint = syntax_entry(
+    status.hint,
+    options.diagnostic_text_highlight and status.hint_container or palette.none
+  )
+  syntax.DiagnosticUnnecessary = syntax_entry(palette.on_surface_variant, palette.none)
+  syntax.DiagnosticVirtualTextError = { link = "VirtualTextError" }
+  syntax.DiagnosticVirtualTextWarn = { link = "VirtualTextWarning" }
+  syntax.DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" }
+  syntax.DiagnosticVirtualTextHint = { link = "VirtualTextHint" }
+  syntax.DiagnosticUnderlineError = syntax_entry(
+    status.error,
+    options.diagnostic_text_highlight and status.error_container or palette.none,
+    { styles.undercurl },
+    status.error
+  )
+  syntax.DiagnosticUnderlineWarn = syntax_entry(
+    status.warning,
+    options.diagnostic_text_highlight and status.warning_container or palette.none,
+    { styles.undercurl },
+    status.warning
+  )
+  syntax.DiagnosticUnderlineInfo = syntax_entry(
+    status.info,
+    options.diagnostic_text_highlight and status.info_container or palette.none,
+    { styles.undercurl },
+    status.info
+  )
+  syntax.DiagnosticUnderlineHint = syntax_entry(
+    status.success,
+    options.diagnostic_text_highlight and status.success_container or palette.none,
+    { styles.undercurl },
+    status.success
+  )
+  syntax.DiagnosticSignError = { link = "RedSign" }
+  syntax.DiagnosticSignWarn = { link = "YellowSign" }
+  syntax.DiagnosticSignInfo = { link = "BlueSign" }
+  syntax.DiagnosticSignHint = { link = "GreenSign" }
 
     -- LSP colours
     LspInlayHint = { link = "InlayHints" },
