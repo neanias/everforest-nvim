@@ -55,7 +55,7 @@ M.config = {
   ---also highlight the background of them.
   diagnostic_text_highlight = false,
   ---Which colour the diagnostic text should be. Options are `"grey"` or `"coloured"` (default)
-  diagnostic_virtual_text = "coloured",
+  diagnostic_virtual_text = "grey",
   ---Some plugins support highlighting error/warning/info/hint lines, but this
   ---feature is disabled by default in this colour scheme.
   diagnostic_line_highlight = false,
@@ -93,8 +93,8 @@ M.config = {
   ---@param palette Palette
   colours_override = function(palette) end,
   roles_override = function(ui) end,
-   syntax_override = function(syntax) end,
-   contrast_audit = false,
+  syntax_override = function(syntax) end,
+  contrast_audit = false,
 }
 
 ---@param opts Config | nil
@@ -114,3 +114,4 @@ end
 M.colorscheme = M.load
 
 return M
+

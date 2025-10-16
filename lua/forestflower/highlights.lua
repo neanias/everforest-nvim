@@ -295,7 +295,6 @@ highlights.generate_syntax = function(theme, options)
     DiagnosticSignHint = { link = "GreenSign" },
 
     -- LSP colours
-    -- (Removed legacy LspDiagnostics* compatibility groups)
     LspInlayHint = { link = "InlayHints" },
     LspReferenceText = { link = "CurrentWord" },
     LspReferenceRead = { link = "CurrentWord" },
@@ -348,7 +347,7 @@ highlights.generate_syntax = function(theme, options)
     Underlined = syntax_entry(palette.none, palette.none, { styles.underline }),
 
     Fg = syntax_entry(palette.on_surface, palette.none),
-    Grey = syntax_entry(palette.on_surface_variant, palette.none),
+    Grey = syntax_entry(palette.success, palette.none),
     Red = syntax_entry(palette.error, palette.none),
     Orange = syntax_entry(palette.warning, palette.none),
     Yellow = syntax_entry(palette.warning, palette.none),
@@ -809,7 +808,11 @@ highlights.generate_syntax = function(theme, options)
     HighlightedyankRegion = { link = "Visual" },
 
     -- Increase contrast for Copilot ghost suggestions
-    CopilotSuggestion = syntax_entry(util.lighten(palette.on_surface_variant, 0.35, palette.background), palette.none, { styles.italic }),
+    -- Inline AI ghost text (Copilot / native LSP suggestion ghost)
+    -- Use a mid-contrast foreground distinct from Normal fg & CursorLine bg.
+    -- palette.outline was too faint on some surfaces; switch to ui.on_surface_variant for better legibility.
+    CopilotSuggestion = syntax_entry(ui.primary, palette.error_container, { styles.italic, styles.nocombine }),
+    ComplHint = syntax_entry(ui.on_surface_variant, palette.none, { styles.italic, styles.nocombine }),
 
     -- dominikduda/vim_current_word
     CurrentWordTwins = { link = "CurrentWord" },
@@ -915,8 +918,6 @@ highlights.generate_syntax = function(theme, options)
     IndentBlanklineChar = { link = "IblIndent" },
     IndentBlanklineSpaceChar = { link = "IndentBlanklineChar" },
     IndentBlanklineSpaceCharBlankline = { link = "IndentBlanklineChar" },
-
-    -- romgrk/barbar.nvim (removed legacy barbar groups)
 
     BlinkCmpLabelMatch = syntax_entry(palette.none, palette.primary_container, { styles.bold }),
     BlinkCmpKind = { link = "Yellow" },
@@ -1182,7 +1183,9 @@ highlights.generate_syntax = function(theme, options)
     FSPrefix = syntax_entry(palette.on_surface, transparency_respecting_colour(palette.background), { styles.bold }),
     FSSuffix = syntax_entry(palette.on_surface_variant, palette.none),
 
-    -- Language specific settings
+    -- Language specific settings (trimmed: prefer semantic Tree-sitter & LSP groups)
+    -- Removed most per-language legacy groups for portability & reduced maintenance.
+    -- Retained only markdown headings & link/url for readability; others can be mapped via TS captures.
     -- Markdown
     markdownH1 = syntax_entry(palette.error, palette.none, { styles.bold }),
     markdownH2 = syntax_entry(palette.warning, palette.none, { styles.bold }),
@@ -1381,44 +1384,6 @@ highlights.generate_syntax = function(theme, options)
     phpMethodsVar = { link = "Aqua" },
     phpMemberSelector = { link = "Green" },
 
-    -- Ruby
-    rubyKeywordAsMethod = { link = "Green" },
-    rubyInterpolation = { link = "Yellow" },
-    rubyInterpolationDelimiter = { link = "Yellow" },
-    rubyStringDelimiter = { link = "Green" },
-    rubyBlockParameterList = { link = "Blue" },
-    rubyDefine = { link = "RedItalic" },
-    rubyModuleName = { link = "Purple" },
-    rubyAccess = { link = "Orange" },
-    rubyAttribute = { link = "Yellow" },
-    rubyMacro = { link = "RedItalic" },
-
-    -- Elixir
-    elixirStringDelimiter = { link = "Green" },
-    elixirKeyword = { link = "Orange" },
-    elixirInterpolation = { link = "Yellow" },
-    elixirInterpolationDelimiter = { link = "Yellow" },
-    elixirSelf = { link = "Purple" },
-    elixirPseudoVariable = { link = "Purple" },
-    elixirModuleDefine = { link = "PurpleItalic" },
-    elixirBlockDefinition = { link = "RedItalic" },
-    elixirDefine = { link = "RedItalic" },
-    elixirPrivateDefine = { link = "RedItalic" },
-    elixirGuard = { link = "RedItalic" },
-    elixirPrivateGuard = { link = "RedItalic" },
-    elixirProtocolDefine = { link = "RedItalic" },
-    elixirImplDefine = { link = "RedItalic" },
-    elixirRecordDefine = { link = "RedItalic" },
-    elixirPrivateRecordDefine = { link = "RedItalic" },
-    elixirMacroDefine = { link = "RedItalic" },
-    elixirPrivateMacroDefine = { link = "RedItalic" },
-    elixirDelegateDefine = { link = "RedItalic" },
-    elixirOverridableDefine = { link = "RedItalic" },
-    elixirExceptionDefine = { link = "RedItalic" },
-    elixirCallbackDefine = { link = "RedItalic" },
-    elixirStructDefine = { link = "RedItalic" },
-    elixirExUnitMacro = { link = "RedItalic" },
-
     -- sh/zsh
     shRange = { link = "Fg" },
     shTestOpr = { link = "Orange" },
@@ -1444,57 +1409,16 @@ highlights.generate_syntax = function(theme, options)
     zshDeref = { link = "Blue" },
     zshTypes = { link = "Orange" },
     zshVariableDef = { link = "Blue" },
-
-    -- VimL
-    vimLet = { link = "Orange" },
-    vimFunction = { link = "Green" },
-    vimIsCommand = { link = "Fg" },
-    vimUserFunc = { link = "Green" },
-    vimFuncName = { link = "Green" },
-    vimMap = { link = "PurpleItalic" },
-    vimNotation = { link = "Aqua" },
-    vimMapLhs = { link = "Green" },
-    vimMapRhs = { link = "Green" },
-    vimSetEqual = { link = "Yellow" },
-    vimOption = { link = "Aqua" },
-    vimUserAttrbKey = { link = "Yellow" },
-    vimUserAttrb = { link = "Green" },
-    vimAutoCmdSfxList = { link = "Aqua" },
-    vimSynType = { link = "Orange" },
-    vimHiBang = { link = "Orange" },
-    vimSet = { link = "Yellow" },
-    vimSetSep = { link = "Grey" },
-    vimContinue = { link = "Grey" },
-
-    -- Make
-    makeIdent = { link = "Aqua" },
-    makeSpecTarget = { link = "Yellow" },
-    makeTarget = { link = "Blue" },
-    makeCommands = { link = "Orange" },
   }
-
-  -- nathanaelkane/vim-indent-guides
-  if vim.g.indent_guides_auto_colors == false then
-    syntax["IndentGuidesOdd"] = syntax_entry(palette.background, palette.surface)
-    syntax["IndentGuidesEven"] = syntax_entry(palette.background, palette.surface_variant)
-  end
-
-  if options.transparent_background_level == 0 then
-    -- reserved for plugin-specific backgrounds
-  end
-
-  if vim.o.background == "light" then
-    -- reserved for light-specific adjustments
-  end
 
   if options.inlay_hints_background == "none" then
     syntax["InlayHints"] = { link = "LineNr" }
   elseif options.inlay_hints_background == "dimmed" then
-    syntax["InlayHints"] = syntax_entry(palette.on_surface_variant, palette.surface)
+    syntax["InlayHints"] = syntax_entry(palette.outline, palette.surface)
   elseif options.inlay_hints_background == "soft" then
     -- Blend surface towards background for a mid-tone capsule (~60% toward surface)
     local soft_bg = util.blend(palette.surface, 0.60, palette.background)
-    syntax["InlayHints"] = syntax_entry(palette.on_surface_variant, soft_bg)
+    syntax["InlayHints"] = syntax_entry(palette.outline, soft_bg)
   end
 
   local lsp_kind_colours = {
