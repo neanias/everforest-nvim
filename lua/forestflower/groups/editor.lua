@@ -52,7 +52,26 @@ return function(theme, config)
     -- Tabs
     TabLine = create(ui.tab_inactive_fg, ui.tab_inactive_bg),
     TabLineFill = create(ui.tab_fill_fg, config.transparent_background_level == 2 and palette.none or ui.tab_fill_bg),
-    TabLineSel = create(ui.background, ui.tab_active_bg),
+    TabLineSel = create(ui.fg, ui.tab_active_bg, { styles.bold }),
+    
+    -- Tab modifications (unsaved changes)
+    TabLineModified = create(palette.primary, ui.tab_inactive_bg),
+    TabLineSelModified = create(palette.primary, ui.tab_active_bg, { styles.bold }),
+    
+    -- Tab separators and borders
+    TabLineClose = create(ui.on_surface_variant, ui.tab_inactive_bg),
+    TabLineSelClose = create(ui.fg, ui.tab_active_bg, { styles.bold }),
+    
+    -- Mini.tabline highlight groups
+    MiniTablineCurrent = create(ui.fg, ui.tab_active_bg, { styles.bold }),
+    MiniTablineVisible = create(ui.tab_inactive_fg, ui.tab_inactive_bg),
+    MiniTablineHidden = create(ui.on_surface_variant, ui.tab_inactive_bg),
+    MiniTablineModifiedCurrent = create(palette.primary, ui.tab_active_bg, { styles.bold }),
+    MiniTablineModifiedVisible = create(palette.primary, ui.tab_inactive_bg),
+    MiniTablineModifiedHidden = create(palette.primary, ui.tab_inactive_bg),
+    MiniTablineFill = create(ui.tab_fill_fg, config.transparent_background_level == 2 and palette.none or ui.tab_fill_bg),
+    MiniTablineTabpagesection = create(ui.on_surface_variant, ui.tab_inactive_bg),
+    MiniTablineTrunc = create(ui.on_surface_variant, ui.tab_inactive_bg),
     
     -- Windows
     WinBar = create(ui.on_surface_variant, config.transparent_background_level == 2 and palette.none or ui.surface, { styles.bold }),

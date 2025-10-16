@@ -70,7 +70,7 @@ local function build_ui_roles(palette)
     statusline_nc_bg = palette.surface,
     tab_active_bg = palette.surface_variant,
     tab_inactive_bg = palette.surface,
-    tab_inactive_fg = palette.on_surface_variant,
+    tab_inactive_fg = palette.on_surface,
     tab_fill_bg = palette.background,
     tab_fill_fg = palette.on_surface_variant,
   }

@@ -16,6 +16,7 @@ _All screenshots taken from [my personal config](https://github.com/YajanaRao/ki
 - 100% Lua, supports Treesitter & LSP
 - Vim terminal colours
 - **Lualine** theme
+- **Enhanced React/JSX/TSX support** with distinct colors for components, attributes, and hooks
 
 ## Installation
 
@@ -114,6 +115,47 @@ vim.cmd.colorscheme("forestflower")
 ### Contrast audit
 
 Enable `contrast_audit = true` to receive a summary of WCAG-ish contrast ratios for core roles. Useful while theming or adjusting roles.
+
+### React/JSX/TSX Highlighting
+
+Forest Flower provides enhanced syntax highlighting for React, JSX, and TSX with distinct colors for better visual differentiation:
+
+**Visual Hierarchy:**
+
+- 🔴 **React Components** (PascalCase): Coral `#dd7878` - Components like `<ChatWidget>`, `<Button>`
+- 🔵 **HTML Tags** (lowercase): Cyan `#74c7ec` - Native elements like `<div>`, `<span>`
+- 🟠 **JSX Attributes**: Orange `#f6c177` - Props like `onClick`, `className`, `css`
+- 🟣 **React Hooks**: Purple `#c4a7e7` - `useState`, `useEffect`, `useCallback`
+- 🟢 **Strings**: Green `#a7c080` - String values and text content
+
+**Example:**
+
+```tsx
+import { useState } from "react"; // Hook import
+
+const ChatWidget = ({ config }) => {
+  // Component (coral)
+  const [isOpen, setIsOpen] = useState(false); // Hook (purple)
+
+  return (
+    <FrameWrapper css={styles}>
+      {" "}
+      {/* Component (coral), Attribute (orange) */}
+      <div className="container">
+        {" "}
+        {/* HTML tag (cyan), Attribute (orange) */}
+        <ChatButton onClick={toggle}>
+          {" "}
+          {/* Component (coral), Attribute (orange) */}
+          Open Chat {/* String (green) */}
+        </ChatButton>
+      </div>
+    </FrameWrapper>
+  );
+};
+```
+
+This creates a clear visual hierarchy that makes React code easier to scan and understand at a glance.
 
 ### FAQ
 
