@@ -84,19 +84,19 @@ local palettes = {
 
 local syntax = {
   keyword = "#c4a7e7",
-  operator = "#9ccfd8",
+  operator = "#89b4fa",
   ["function"] = "#c4a7e7",
   method = "#c4a7e7",
-  type = "#9ccfd8",
-  interface = "#9ccfd8",
-  enum = "#9ccfd8",
+  type = "#74c7ec",
+  interface = "#74c7ec",
+  enum = "#74c7ec",
   constant = "#9d7cd8",
   number = "#ea9a97",
   boolean = "#ea9a97",
   string = "#a7c080",
   variable = "#e0def4",
-  parameter = "#9ccfd8",
-  property = "#9ccfd8",
+  parameter = "#94e2d5",
+  property = "#89dceb",
   field = "#e0def4",
   namespace = "#c4a7e7",
   comment = "#6e6a86",
@@ -108,8 +108,8 @@ local syntax = {
   info = "#9ccfd8",
   warn = "#f6c177",
   error = "#eb6f92",
-  jsx_component = "#c4a7e7",
-  jsx_prop = "#9ccfd8",
+  jsx_component = "#dd7878",
+  jsx_prop = "#cba6f7",
 }
 
 local M = {}
