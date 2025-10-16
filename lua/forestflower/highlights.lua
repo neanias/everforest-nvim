@@ -808,7 +808,8 @@ highlights.generate_syntax = function(theme, options)
     -- machakann/vim-highlightedyank
     HighlightedyankRegion = { link = "Visual" },
 
-    CopilotSuggestion = { link = "Grey" },
+    -- Increase contrast for Copilot ghost suggestions
+    CopilotSuggestion = syntax_entry(util.lighten(palette.on_surface_variant, 0.35, palette.background), palette.none, { styles.italic }),
 
     -- dominikduda/vim_current_word
     CurrentWordTwins = { link = "CurrentWord" },
