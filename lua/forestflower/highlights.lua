@@ -54,8 +54,8 @@ highlights.generate_syntax = function(theme, options)
   local palette = theme.palette
   local util = require("forestflower.util")
 
-  -- Additional legacy groups below retained for backward compatibility; consider migrating
-  -- them into modules (treesitter/languages/legacy) in a future cleanup pass.
+  -- Legacy monolithic highlight table removed. All groups now provided via modular loaders in lua/forestflower/groups/*.lua.
+  -- If a group is missing, add a new module or extend an existing one instead of reintroducing a monolith here.
 
   -- Remove local palette/ui/syn/status unpack used by old monolith (handled inside modules)
   local ui = theme.ui
@@ -116,7 +116,9 @@ highlights.generate_syntax = function(theme, options)
   --   1. Generic passthrough colour groups (Red/Green/Yellow/etc.) kept for ecosystem compatibility
   --   2. Rainbow / delimiter / decorative multi-hue groups where semantic role does not apply
   --   3. Plugin specific brand accents that deliberately want a precise palette token
-  local syntax = {
+  -- Removed enormous legacy syntax table; base & other modules already define these groups.
+  -- Keep only terminal + global plugin variable assignments and user callback hook.
+  local syntax = syntax -- already populated by modules; do not redefine.
     ColorColumn = syntax_entry(palette.none, ui.surface_variant),
     Conceal = syntax_entry(set_colour_based_on_ui_contrast(ui.outline_variant or ui.outline, ui.outline), palette.none),
     CurSearch = { link = "IncSearch" },
@@ -1420,105 +1422,11 @@ highlights.generate_syntax = function(theme, options)
     zshVariableDef = { link = "Blue" },
   }
 
-  if options.inlay_hints_background == "none" then
-    syntax["InlayHints"] = { link = "LineNr" }
-  elseif options.inlay_hints_background == "dimmed" then
-    syntax["InlayHints"] = syntax_entry(palette.outline, palette.surface)
-  elseif options.inlay_hints_background == "soft" then
-    -- Blend surface towards background for a mid-tone capsule (~60% toward surface)
-    local soft_bg = util.blend(palette.surface, 0.60, palette.background)
-    syntax["InlayHints"] = syntax_entry(palette.outline, soft_bg)
-  end
 
-  local lsp_kind_colours = {
-    Array = "Aqua",
-    Boolean = "Aqua",
-    Class = "Yellow",
-    Color = "Aqua",
-    Constant = "Blue",
-    Constructor = "Green",
-    Default = "Aqua",
-    Enum = "Yellow",
-    EnumMember = "Purple",
-    Event = "Orange",
-    Field = "Green",
-    File = "Green",
-    Folder = "Aqua",
-    Function = "Green",
-    Interface = "Yellow",
-    Key = "Red",
-    Keyword = "Red",
-    Method = "Green",
-    Module = "Yellow",
-    Namespace = "Purple",
-    Null = "Aqua",
-    Number = "Aqua",
-    Object = "Aqua",
-    Operator = "Orange",
-    Package = "Purple",
-    Property = "Blue",
-    Reference = "Aqua",
-    Snippet = "Aqua",
-    String = "Aqua",
-    Struct = "Yellow",
-    Text = "Fg",
-    TypeParameter = "Yellow",
-    Unit = "Purple",
-    Value = "Purple",
-    Variable = "Blue",
-  }
 
-  for kind, colour in pairs(lsp_kind_colours) do
-    syntax["CmpItemKind" .. kind] = { link = colour }
-    syntax["Aerial" .. kind .. "Icon"] = { link = colour }
-    syntax["BlinkCmpKind" .. kind] = { link = colour }
-  end
 
-  -- yetone/avante.nvim
-  syntax["AvanteTitle"] = syntax_entry(palette.background, palette.success, { styles.bold })
-  syntax["AvanteReversedTitle"] = syntax_entry(palette.success, palette.none)
-  syntax["AvanteSubtitle"] = syntax_entry(palette.background, palette.info, { styles.bold })
-  syntax["AvanteReversedSubtitle"] = syntax_entry(palette.info, palette.none)
-  syntax["AvanteThirdTitle"] = syntax_entry(palette.on_surface, palette.surface_variant, { styles.bold })
-  syntax["AvanteReversedThirdTitle"] = syntax_entry(palette.surface_variant, palette.none)
-  syntax["AvanteSuggestion"] = { link = "Comment" }
-  syntax["AvanteAnnotation"] = { link = "Comment" }
-  syntax["AvanteInlineHint"] = syntax_entry(palette.on_surface_variant, palette.none, { styles.italic })
-  syntax["AvantePopupHint"] = { link = "NormalFloat" }
-  syntax["AvanteConflictCurrent"] = syntax_entry(palette.none, palette.error_container, { styles.bold })
-  syntax["AvanteConflictCurrentLabel"] = syntax_entry(util.darken(palette.error, 0.3), palette.error_container)
-  syntax["AvanteConflictIncoming"] = syntax_entry(palette.none, palette.info_container, { styles.bold })
-  syntax["AvanteConflictIncomingLabel"] = syntax_entry(util.darken(palette.info, 0.3), palette.info_container)
-  syntax["AvanteToBeDeleted"] = syntax_entry(palette.none, palette.error_container, { styles.strikethrough })
-  syntax["AvanteToBeDeletedWOStrikethrough"] = syntax_entry(palette.none, palette.error_container)
-  syntax["AvanteButtonDefault"] = syntax_entry(palette.background, palette.on_surface_variant)
-  syntax["AvanteButtonDefaultHover"] = syntax_entry(palette.background, palette.success)
-  syntax["AvanteButtonPrimary"] = syntax_entry(palette.background, palette.info)
-  syntax["AvanteButtonPrimaryHover"] = syntax_entry(palette.background, palette.secondary)
-  syntax["AvanteButtonDanger"] = syntax_entry(palette.background, palette.error)
-  syntax["AvanteButtonDangerHover"] = syntax_entry(palette.on_surface, palette.error)
-  syntax["AvantePromptInput"] = syntax_entry(palette.on_surface, transparency_respecting_colour(palette.surface))
-  syntax["AvantePromptInputBorder"] = { link = "NormalFloat" }
-  syntax["AvanteConfirmTitle"] = syntax_entry(palette.background, palette.error, { styles.bold })
-  syntax["AvanteSidebarNormal"] = { link = "NormalFloat" }
-  syntax["AvanteSidebarWinSeparator"] = { link = "WinSeparator" }
-  syntax["AvanteSidebarWinHorizontalSeparator"] =
-    syntax_entry(palette.outline_variant, transparency_respecting_colour(palette.surface))
-  syntax["AvanteReversedNormal"] = syntax_entry(transparency_respecting_colour(palette.background), palette.on_surface)
-  syntax["AvanteCommentFg"] = { link = "Comment" }
-  syntax["AvanteStateSpinnerGenerating"] = syntax_entry(palette.background, palette.tertiary)
-  syntax["AvanteStateSpinnerToolCalling"] = syntax_entry(palette.background, palette.info)
-  syntax["AvanteStateSpinnerFailed"] = syntax_entry(palette.background, palette.error)
-  syntax["AvanteStateSpinnerSucceeded"] = syntax_entry(palette.background, palette.success)
-  syntax["AvanteStateSpinnerSearching"] = syntax_entry(palette.background, palette.warning)
-  syntax["AvanteStateSpinnerThinking"] = syntax_entry(palette.background, palette.secondary)
-  syntax["AvanteStateSpinnerCompacting"] = syntax_entry(palette.background, palette.warning)
-  syntax["AvanteTaskRunning"] = syntax_entry(palette.tertiary, transparency_respecting_colour(palette.background))
-  syntax["AvanteTaskCompleted"] = syntax_entry(palette.success, transparency_respecting_colour(palette.background))
-  syntax["AvanteTaskFailed"] = syntax_entry(palette.error, transparency_respecting_colour(palette.background))
-  syntax["AvanteThinking"] = syntax_entry(palette.secondary, transparency_respecting_colour(palette.background))
 
-  -- Terminal colours
+  -- Terminal colours (remain here since they use vim.g assignments rather than highlight groups)
   local terminal = {
     red = palette.error,
     yellow = palette.warning,
@@ -1561,7 +1469,7 @@ highlights.generate_syntax = function(theme, options)
   vim.g.terminal_color_7 = terminal.white
   vim.g.terminal_color_15 = terminal.white
 
-  -- junegunn/fzf.vim
+  -- junegunn/fzf.vim global colour overrides
   vim.g.fzf_colors = {
     fg = { "fg", "Normal" },
     bg = { "bg", "Normal" },
@@ -1581,6 +1489,7 @@ highlights.generate_syntax = function(theme, options)
   vim.g.limelight_conceal_ctermfg = palette.outline_variant
   vim.g.limelight_conceal_guifg = palette.outline_variant
 
+  -- Allow user callback final mutation
   if options.on_highlights then
     options.on_highlights(syntax, palette)
   end
