@@ -1,4 +1,6 @@
 local highlights = {}
+-- After refactor, generation logic delegated to groups aggregator.
+-- This file now focuses on helper utilities and the public API entrypoint for highlight generation.
 
 local util = require("forestflower.util")
 
@@ -46,10 +48,17 @@ end
 ---@param options Config
 ---@return Highlights
 highlights.generate_syntax = function(theme, options)
+  -- Refactored: delegate to groups aggregator modules.
+  local groups_builder = require("forestflower.groups")
+  local syntax = groups_builder.build(theme, options)
   local palette = theme.palette
+  local util = require("forestflower.util")
+
+  -- Additional legacy groups below retained for backward compatibility; consider migrating
+  -- them into modules (treesitter/languages/legacy) in a future cleanup pass.
+
+  -- Remove local palette/ui/syn/status unpack used by old monolith (handled inside modules)
   local ui = theme.ui
-  local syn = theme.syntax
-  local status = theme.status
   -- Comments are italic by default
   local comment_italics = options.disable_italic_comments and {} or { styles.italic }
   -- All other italics are disabled by default
@@ -1572,7 +1581,9 @@ highlights.generate_syntax = function(theme, options)
   vim.g.limelight_conceal_ctermfg = palette.outline_variant
   vim.g.limelight_conceal_guifg = palette.outline_variant
 
-  options.on_highlights(syntax, palette)
+  if options.on_highlights then
+    options.on_highlights(syntax, palette)
+  end
 
   return syntax
 end
