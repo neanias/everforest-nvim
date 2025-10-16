@@ -1,9 +1,57 @@
+---Utility functions for color manipulation and theme generation
+---@class UtilModule
 local M = {}
 
-local colors = require("forestflower.colours")
+local colors = require("forestflower.core.colors")
 
----@param c string
----@return table<number>
+---@enum HighlightStyles
+M.styles = {
+  bold = "bold",
+  italic = "italic",
+  reverse = "reverse",
+  undercurl = "undercurl",
+  underline = "underline",
+  standout = "standout",
+  strikethrough = "strikethrough",
+  nocombine = "nocombine",
+}
+
+---Generates a highlight entry that can be accepted by nvim_set_hl
+---@param fg string|nil Foreground color
+---@param bg string|nil Background color
+---@param stylings string[]|nil Array of style names (bold, italic, etc.)
+---@param sp string|nil Special color (for undercurl, etc.)
+---@return Highlight
+function M.syntax_entry(fg, bg, stylings, sp)
+  ---@type Highlight
+  local highlight = {}
+
+  if fg then
+    highlight.fg = fg
+  end
+
+  if bg then
+    highlight.bg = bg
+  end
+
+  if stylings then
+    for _, style in ipairs(stylings) do
+      if M.styles[style] then
+        highlight[M.styles[style]] = true
+      end
+    end
+  end
+
+  if sp then
+    highlight.sp = sp
+  end
+
+  return highlight
+end
+
+---Convert hex color string to RGB values
+---@param c string Hex color string (e.g., "#ff0000")
+---@return table<number> RGB values as {r, g, b}
 local function rgb(c)
   if not c or type(c) ~= "string" then
     -- return green default instead of black
@@ -14,10 +62,10 @@ local function rgb(c)
 end
 
 ---Blend two colors with alpha
----@param foreground string foreground color
----@param alpha number|string number between 0 and 1. 0 results in bg, 1 results in fg
----@param background string background color
----@return string
+---@param foreground string Foreground color (hex)
+---@param alpha number|string Alpha value between 0 and 1. 0 results in bg, 1 results in fg
+---@param background string Background color (hex)
+---@return string Blended color as hex string
 function M.blend(foreground, alpha, background)
   alpha = type(alpha) == "string" and (tonumber(alpha, 16) / 0xff) or alpha
   local bg = rgb(background)
@@ -31,30 +79,30 @@ function M.blend(foreground, alpha, background)
   return string.format("#%02x%02x%02x", blendChannel(1), blendChannel(2), blendChannel(3))
 end
 
----Blend color with background
----@param hex string
----@param amount number
----@param bg string
----@return string
+---Blend color with background to lighten it
+---@param hex string Color to lighten (hex)
+---@param amount number Lightening amount (0-1)
+---@param bg string|nil Background color (hex), defaults to white
+---@return string Lightened color as hex string
 function M.lighten(hex, amount, bg)
   local background = bg or "#ffffff"
   return M.blend(hex, amount, background)
 end
 
----Blend color with foreground
----@param hex string
----@param amount number
----@param fg string
----@return string
+---Blend color with foreground to darken it
+---@param hex string Color to darken (hex)
+---@param amount number Darkening amount (0-1)
+---@param fg string|nil Foreground color (hex), defaults to black
+---@return string Darkened color as hex string
 function M.darken(hex, amount, fg)
   local foreground = fg or "#000000"
   return M.blend(hex, amount, foreground)
 end
 
 ---Calculate contrast ratio between two colors
----@param a string @hex
----@param b string @hex
----@return number
+---@param a string First color (hex)
+---@param b string Second color (hex)
+---@return number Contrast ratio (1.0 = no contrast, 21.0 = maximum contrast)
 function M.contrast(a, b)
   local function lum(hex)
     local r = tonumber(hex:sub(2, 3), 16) / 255
@@ -76,8 +124,8 @@ function M.contrast(a, b)
   return (la + 0.05) / (lb + 0.05)
 end
 
----Audit contrast compliance for theme colors
----@param theme ForestflowerTheme
+---Audit contrast compliance for theme colors and report via vim.notify
+---@param theme ForestflowerTheme Theme to audit
 function M.contrast_audit(theme)
   local bg = theme.ui.background
   local critical_min = 4.5
@@ -110,8 +158,8 @@ function M.contrast_audit(theme)
 end
 
 ---Generate a single highlight group
----@param group string
----@param hl Highlight
+---@param group string Highlight group name
+---@param hl Highlight Highlight definition
 function M.generate_highlight(group, hl)
   -- We can't add a highlight without a group
   if not group then
@@ -122,7 +170,7 @@ function M.generate_highlight(group, hl)
 end
 
 ---Generate multiple highlight groups
----@param syntax_entries Highlights
+---@param syntax_entries Highlights Table of highlight group definitions
 function M.generate_highlights(syntax_entries)
   for group, highlights in pairs(syntax_entries) do
     M.generate_highlight(group, highlights)
@@ -130,8 +178,8 @@ function M.generate_highlights(syntax_entries)
 end
 
 ---Load the colorscheme with terminal colors
----@param generated_syntax Highlights
----@param ansi table
+---@param generated_syntax Highlights Generated highlight groups
+---@param ansi table ANSI color mappings
 function M.load(generated_syntax, ansi)
   if vim.g.colors_name then
     vim.cmd([[highlight clear]])
@@ -153,10 +201,10 @@ function M.load(generated_syntax, ansi)
   M.generate_highlights(generated_syntax)
 end
 
----Generate color palette
----@param options Config
----@param theme string
----@return MaterialTokens
+---Generate color palette from configuration
+---@param options Config Configuration options
+---@param theme string Theme name ("day" or "night")
+---@return MaterialTokens Generated palette
 function M.generate_palette(options, theme)
   local flavour = options.flavour or "night"
   local p = colors.palettes[flavour]
@@ -168,9 +216,9 @@ function M.generate_palette(options, theme)
   return p
 end
 
----Build UI role mappings
----@param p MaterialTokens
----@return table
+---Build UI role mappings from palette
+---@param p MaterialTokens Color palette
+---@return table UI role mappings
 function M.build_ui_roles(p)
   local ui = {
     background = p.background,
@@ -219,18 +267,12 @@ function M.build_ui_roles(p)
   return ui
 end
 
----Build syntax role mappings
----@param p MaterialTokens
----@param ui table
----@param opts Config
----@return table
-function M.build_syntax_roles(p, ui, opts)
-  return syntax
-end
+-- Removed build_syntax_roles - was dead code that returned unused 'syntax' variable
+-- Actual syntax colors come from colours.lua and are used via colors.syntax
 
----Build ANSI color mappings
----@param p MaterialTokens
----@return table
+---Build ANSI color mappings from palette
+---@param p MaterialTokens Color palette
+---@return table ANSI color mappings
 function M.build_ansi_roles(p)
   return {
     black = p.surface_variant,
@@ -251,10 +293,10 @@ end
 ---@field status MaterialTokens
 ---@field ansi table
 
----Generate complete theme
----@param options Config
----@param theme string
----@return ForestflowerTheme
+---Generate complete theme from configuration
+---@param options Config Configuration options
+---@param theme string Theme name ("day" or "night")
+---@return ForestflowerTheme Complete theme object
 function M.get_theme(options, theme)
   local palette = M.generate_palette(options, theme)
   local ui = M.build_ui_roles(palette)

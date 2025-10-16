@@ -1,4 +1,7 @@
----@class MaterialTokens
+---Core color system for Forest Flower colorscheme
+---Defines the base color palette and semantic color tokens
+
+---@class ColorPalette
 ---@field primary string
 ---@field primary_container string
 ---@field secondary string
@@ -25,7 +28,39 @@
 ---@field outline_variant string
 ---@field none string
 
-local palettes = {
+---@class SyntaxTokens
+---@field keyword string
+---@field operator string
+---@field function string
+---@field method string
+---@field type string
+---@field interface string
+---@field enum string
+---@field constant string
+---@field number string
+---@field boolean string
+---@field string string
+---@field variable string
+---@field parameter string
+---@field property string
+---@field field string
+---@field namespace string
+---@field comment string
+---@field punctuation string
+---@field macro string
+---@field special string
+---@field todo string
+---@field hint string
+---@field info string
+---@field warn string
+---@field error string
+---@field jsx_component string
+---@field jsx_prop string
+
+local M = {}
+
+---Color palettes for different themes
+M.palettes = {
   night = {
     primary = "#a7c080",
     primary_container = "#2d4d3a",
@@ -82,7 +117,8 @@ local palettes = {
   },
 }
 
-local syntax = {
+---Syntax highlighting tokens
+M.syntax = {
   keyword = "#c4a7e7",
   operator = "#89b4fa",
   ["function"] = "#c4a7e7",
@@ -112,8 +148,5 @@ local syntax = {
   jsx_prop = "#cba6f7",
 }
 
-local M = {}
-M.palettes = palettes
-M.syntax = syntax
-
 return M
+
