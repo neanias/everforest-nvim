@@ -1,5 +1,6 @@
-# Forestflower Slack theme values only.
-# Night (default)
-101010,1e2326,2d4d3a,2d3338,a7c080,a7c080,596267,f85552,7fbbb3
-# Day
-fffbef,f8f5e4,e8f5d5,edeada,5c6a72,8da101,9eac91,f85552,3a94c5
+# Forestflower Slack theme (Night) - 4 color modern Slack import
+# Format: sidebar_bg, item_active_bg, text_color, accent
+# Derived from night palette: background, primary_container, on_surface, primary
+# Paste only the line below into Slack's theme import dialog.
+# Night
+#101010,#2d4d3a,#a7c080,#a7c080
