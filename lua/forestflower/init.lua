@@ -71,6 +71,7 @@ local function load_highlight_groups(theme, config)
     "forestflower.groups.syntax", 
     "forestflower.groups.diagnostics",
     "forestflower.groups.plugins",
+    "forestflower.groups.snacks",
   }
   
   for _, module_name in ipairs(modules) do
