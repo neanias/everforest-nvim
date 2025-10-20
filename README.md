@@ -77,6 +77,29 @@ return {
 vim.cmd.colorscheme("forestflower")
 ```
 
+### Day and Night Variants
+
+Forest Flower provides dedicated colorscheme variants for quick theme switching:
+
+```lua
+-- Switch to night theme (dark)
+vim.cmd.colorscheme("forestflower-night")
+
+-- Switch to day theme (light)
+vim.cmd.colorscheme("forestflower-day")
+
+-- Use default (respects config, defaults to night)
+vim.cmd.colorscheme("forestflower")
+```
+
+These variants only override the flavour setting while preserving all other user configurations. This allows easy switching with the `:colorscheme` command or keybindings:
+
+```lua
+-- Example keybindings for theme switching
+vim.keymap.set("n", "<leader>td", "<cmd>colorscheme forestflower-day<cr>", { desc = "Theme: Day" })
+vim.keymap.set("n", "<leader>tn", "<cmd>colorscheme forestflower-night<cr>", { desc = "Theme: Night" })
+```
+
 ### Options
 
 | Option                       | Type     | Default    | Description                                                        |
@@ -166,7 +189,7 @@ Q: Can I safely link to Red/Green groups?
 A: Yes. These generic groups deliberately persist for plugin compatibility.
 
 Q: Light mode?
-A: Set `:set background=light` before loading the colourscheme (palettes implement both day & night). You may also set `flavour = "day"` soon (planned prop alignment).
+A: Use `:colorscheme forestflower-day` for the light theme or `:colorscheme forestflower-night` for the dark theme. You can also set `flavour = "day"` in your config, or use `:set background=light` before loading.
 
 Q: Soft background washed out with transparency?
 A: Try `transparent_background_level = 1` only, or move to `medium` hardness.

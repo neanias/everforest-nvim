@@ -19,7 +19,7 @@ return function(theme, config)
     -- Snacks Explorer
     ---------------------------------------------------------------------------
     SnacksExplorerNormal = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
-    SnacksExplorerBorder = create(ui.border, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerBorder = create(ui.surface, config.transparent_background_level > 0 and palette.none or ui.surface),
     SnacksExplorerTitle = create(
       ui.primary,
       config.transparent_background_level > 0 and palette.none or ui.surface,
@@ -54,11 +54,13 @@ return function(theme, config)
       config.transparent_background_level > 0 and palette.none or ui.surface,
       { styles.bold }
     ),
-    SnacksExplorerSelection = create(ui.background, ui.selection, { styles.bold }),
+    SnacksExplorerSelection = create(ui.primary, palette.non, { styles.bold }),
     SnacksExplorerCursorLine = create(palette.none, ui.surface_variant),
     SnacksExplorerSearch = link("Search"),
     SnacksExplorerMatch = link("IncSearch"),
     SnacksExplorerEndOfBuffer = link("EndOfBuffer"),
+    -- Icon colors in explorer (override default fallbacks)
+    SnacksExplorerIcon = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface),
 
     ---------------------------------------------------------------------------
     -- Snacks Picker
@@ -74,10 +76,13 @@ return function(theme, config)
     SnacksPickerMatch = create(ui.warn, float_bg, { styles.bold }),
     SnacksPickerList = create(ui.on_surface, float_bg),
     SnacksPickerCurrent = create(ui.primary, float_bg),
-    SnacksPickerIndex = create(ui.on_surface_variant, float_bg),
-    SnacksPickerFooter = create(ui.on_surface_variant, float_bg),
+    SnacksPickerIndex = create(ui.on_surface, float_bg),
+    SnacksPickerFooter = create(ui.on_surface, float_bg),
     SnacksPickerScrollbar = create(palette.none, float_bg),
     SnacksPickerScrollbarThumb = create(palette.none, ui.scrollbar_thumb),
+    -- Directory/path text in picker (Snacks uses Comment as fallback, override it)
+    SnacksPickerDir = create(ui.on_surface_variant, float_bg),
+    SnacksPickerPath = create(ui.on_surface_variant, float_bg),
 
     ---------------------------------------------------------------------------
     -- trouble.nvim

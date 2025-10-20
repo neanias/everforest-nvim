@@ -92,7 +92,7 @@ return function(theme, config)
       ui.on_surface_variant,
       config.transparent_background_level == 2 and palette.none or ui.surface_variant
     ),
-    WinSeparator = create(ui.border, palette.none),
+    WinSeparator = create(ui.background, ui.background),
     VertSplit = link("WinSeparator"),
 
     -- Borders
@@ -118,8 +118,8 @@ return function(theme, config)
 
     -- Special
     SpecialKey = create(palette.warning, palette.none),
-    NonText = create(ui.surface_variant, palette.none),
-    Whitespace = create(ui.surface_variant, palette.none),
+    NonText = create(ui.on_surface_variant, palette.none),
+    Whitespace = create(ui.on_surface_variant, palette.none),
     Directory = create(ui.success, palette.none),
     Title = create(palette.warning, palette.none, { styles.bold }),
 
@@ -144,7 +144,7 @@ return function(theme, config)
     MatchParen = create(palette.none, ui.surface_variant),
 
     -- Conceal
-    Conceal = create(ui.outline, palette.none),
+    Conceal = create(ui.on_surface_variant, palette.none),
 
     -- Color column
     ColorColumn = create(palette.none, ui.surface_variant),

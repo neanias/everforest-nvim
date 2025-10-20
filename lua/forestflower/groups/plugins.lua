@@ -18,7 +18,7 @@ return function(theme, config)
     TelescopeBorder = link("Grey"),
     TelescopePromptPrefix = link("Orange"),
     TelescopeSelection = link("DiffAdd"),
-    
+
     -- Which-key
     WhichKey = link("Red"),
     WhichKeyDesc = link("Blue"),
@@ -26,18 +26,18 @@ return function(theme, config)
     WhichKeyGroup = link("Yellow"),
     WhichKeySeparator = link("Green"),
     WhichKeyValue = create(ui.on_surface, palette.none),
-    
+
     -- Flash
     FlashBackdrop = create(ui.on_surface_variant, palette.none),
     FlashLabel = create(palette.warning, palette.none, { styles.bold, styles.italic }),
     FlashMatch = create(palette.warning, palette.none, { styles.bold }),
     FlashCurrent = create(palette.warning, palette.none, { styles.bold }),
-    
+
     -- Leap
     LeapMatch = create(ui.on_surface, palette.tertiary, { styles.bold }),
     LeapLabel = create(palette.tertiary, palette.none, { styles.bold }),
     LeapBackdrop = create(ui.on_surface_variant, palette.none),
-    
+
     -- Indent blankline
     IblScope = create(ui.on_surface_variant, palette.none, { styles.nocombine }),
     IblIndent = create(ui.surface_variant, palette.none, { styles.nocombine }),
@@ -45,11 +45,11 @@ return function(theme, config)
     IndentBlanklineChar = link("IblIndent"),
     IndentBlanklineSpaceChar = link("IndentBlanklineChar"),
     IndentBlanklineSpaceCharBlankline = link("IndentBlanklineChar"),
-    
+
     -- Navic
     NavicText = create(ui.on_surface, palette.none),
     NavicSeparator = create(ui.on_surface, palette.none),
-    
+
     -- Notify
     NotifyBackground = create(palette.none, palette.background),
     NotifyDEBUGBorder = link("Grey"),
@@ -67,13 +67,13 @@ return function(theme, config)
     NotifyINFOTitle = link("Green"),
     NotifyTRACETitle = link("Purple"),
     NotifyWARNTitle = link("Yellow"),
-    
+
     -- Incline
     InclineNormalNC = create(ui.on_surface_variant, ui.surface_variant),
-    
+
     -- Bufferline
     BufferLineIndicatorSelected = link("GreenSign"),
-    
+
     -- Scrollbar
     ScrollbarHandle = create(palette.none, palette.surface),
     ScrollbarSearchHandle = create(palette.warning, palette.surface),
@@ -88,23 +88,23 @@ return function(theme, config)
     ScrollbarHint = link("Blue"),
     ScrollbarMiscHandle = create(palette.tertiary, palette.surface),
     ScrollbarMisc = link("Purple"),
-    
+
     -- Yanky
     YankyPut = link("IncSearch"),
     YankyYanked = link("IncSearch"),
-    
+
     -- Highlighted yank
     HighlightedyankRegion = link("Visual"),
-    
+
     -- Current word
     CurrentWord = create(palette.none, palette.none, { styles.bold }),
     CurrentWordTwins = link("CurrentWord"),
-    
+
     -- Illuminate
     IlluminatedWordText = link("CurrentWord"),
     IlluminatedWordRead = link("CurrentWord"),
     IlluminatedWordWrite = link("CurrentWord"),
-    
+
     -- Quick scope
     QuickScopePrimary = create(palette.secondary, palette.none, { styles.underline }),
     QuickScopeSecondary = create(palette.info, palette.none, { styles.underline }),
