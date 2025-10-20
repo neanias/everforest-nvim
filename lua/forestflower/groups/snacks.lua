@@ -31,15 +31,16 @@ return function(theme, config)
       palette.secondary,
       config.transparent_background_level > 0 and palette.none or ui.surface
     ),
-    SnacksExplorerHidden = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface),
-    SnacksExplorerDim = create(ui.fg_faint, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerHidden = create(ui.fg, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerDim = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface),
     SnacksExplorerGitIgnored = create(
-      ui.fg_faint,
+      ui.fg_muted,
       config.transparent_background_level > 0 and palette.none or ui.surface
     ),
     SnacksExplorerGitUntracked = create(
       ui.success,
-      config.transparent_background_level > 0 and palette.none or ui.surface
+      config.transparent_background_level > 0 and palette.none or ui.surface,
+      { styles.bold }
     ),
     SnacksExplorerGitModified = create(ui.warn, config.transparent_background_level > 0 and palette.none or ui.surface),
     SnacksExplorerGitDeleted = create(ui.error, config.transparent_background_level > 0 and palette.none or ui.surface),
@@ -85,13 +86,13 @@ return function(theme, config)
     TroubleText = create(ui.fg, config.transparent_background_level > 0 and palette.none or ui.surface),
     TroubleFile = create(palette.secondary, config.transparent_background_level > 0 and palette.none or ui.surface),
     TroubleCount = create(ui.background, palette.tertiary, { styles.bold }),
-    TroubleIndent = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface),
-    TroubleLocation = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface),
-    TroubleLineNumber = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface),
-    TroubleFoldIcon = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface),
+    TroubleIndent = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleLocation = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleLineNumber = create(ui.primary, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleFoldIcon = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
     TroubleCode = create(ui.fg_muted, ui.surface_variant),
-    TroublePreview = create(ui.fg, ui.surface_variant),
-    TroubleSource = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface),
+    TroublePreview = create(ui.fg, ui.surface_variant, { styles.bold }),
+    TroubleSource = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
     TroubleError = link("Red"),
     TroubleWarning = link("Yellow"),
     TroubleHint = link("Blue"),
