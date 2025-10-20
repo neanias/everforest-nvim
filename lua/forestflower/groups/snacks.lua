@@ -18,23 +18,23 @@ return function(theme, config)
     ---------------------------------------------------------------------------
     -- Snacks Explorer
     ---------------------------------------------------------------------------
-    SnacksExplorerNormal = create(ui.fg, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerNormal = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
     SnacksExplorerBorder = create(ui.border, config.transparent_background_level > 0 and palette.none or ui.surface),
     SnacksExplorerTitle = create(
       ui.primary,
       config.transparent_background_level > 0 and palette.none or ui.surface,
       { styles.bold }
     ),
-    SnacksExplorerFile = create(ui.fg, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerFile = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
     SnacksExplorerDirectory = link("Directory"),
     SnacksExplorerSymlink = create(
       palette.secondary,
       config.transparent_background_level > 0 and palette.none or ui.surface
     ),
-    SnacksExplorerHidden = create(ui.fg, config.transparent_background_level > 0 and palette.none or ui.surface),
-    SnacksExplorerDim = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerHidden = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerDim = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface),
     SnacksExplorerGitIgnored = create(
-      ui.fg_muted,
+      ui.on_surface_variant,
       config.transparent_background_level > 0 and palette.none or ui.surface
     ),
     SnacksExplorerGitUntracked = create(
@@ -63,36 +63,36 @@ return function(theme, config)
     ---------------------------------------------------------------------------
     -- Snacks Picker
     ---------------------------------------------------------------------------
-    SnacksPickerNormal = create(ui.fg, float_bg),
+    SnacksPickerNormal = create(ui.on_surface, float_bg),
     SnacksPickerBorder = create(ui.float_border, float_bg),
     SnacksPickerTitle = create(ui.float_title, float_bg, { styles.bold }),
-    SnacksPickerPrompt = create(ui.fg, float_bg),
+    SnacksPickerPrompt = create(ui.on_surface, float_bg),
     SnacksPickerPromptPrefix = link("TelescopePromptPrefix"),
     SnacksPickerQuery = create(ui.primary, float_bg),
     SnacksPickerFilter = create(palette.secondary, float_bg),
     SnacksPickerSelection = create(ui.background, ui.selection),
     SnacksPickerMatch = create(ui.warn, float_bg, { styles.bold }),
-    SnacksPickerList = create(ui.fg, float_bg),
+    SnacksPickerList = create(ui.on_surface, float_bg),
     SnacksPickerCurrent = create(ui.primary, float_bg),
-    SnacksPickerIndex = create(ui.fg_muted, float_bg),
-    SnacksPickerFooter = create(ui.fg_muted, float_bg),
+    SnacksPickerIndex = create(ui.on_surface_variant, float_bg),
+    SnacksPickerFooter = create(ui.on_surface_variant, float_bg),
     SnacksPickerScrollbar = create(palette.none, float_bg),
     SnacksPickerScrollbarThumb = create(palette.none, ui.scrollbar_thumb),
 
     ---------------------------------------------------------------------------
     -- trouble.nvim
     ---------------------------------------------------------------------------
-    TroubleNormal = create(ui.fg, config.transparent_background_level > 0 and palette.none or ui.surface),
-    TroubleText = create(ui.fg, config.transparent_background_level > 0 and palette.none or ui.surface),
+    TroubleNormal = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
+    TroubleText = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
     TroubleFile = create(palette.secondary, config.transparent_background_level > 0 and palette.none or ui.surface),
     TroubleCount = create(ui.background, palette.tertiary, { styles.bold }),
-    TroubleIndent = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
-    TroubleLocation = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleIndent = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleLocation = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
     TroubleLineNumber = create(ui.primary, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
-    TroubleFoldIcon = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
-    TroubleCode = create(ui.fg_muted, ui.surface_variant),
-    TroublePreview = create(ui.fg, ui.surface_variant, { styles.bold }),
-    TroubleSource = create(ui.fg_muted, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleFoldIcon = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleCode = create(ui.on_surface_variant, ui.surface_variant),
+    TroublePreview = create(ui.on_surface, ui.surface_variant, { styles.bold }),
+    TroubleSource = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
     TroubleError = link("Red"),
     TroubleWarning = link("Yellow"),
     TroubleHint = link("Blue"),
@@ -105,25 +105,25 @@ return function(theme, config)
     ---------------------------------------------------------------------------
     -- noice.nvim
     ---------------------------------------------------------------------------
-    NoiceConfirm = create(ui.fg, float_bg),
+    NoiceConfirm = create(ui.on_surface, float_bg),
     NoiceConfirmBorder = create(ui.float_border, float_bg),
     NoiceConfirmTitle = create(ui.float_title, float_bg, { styles.bold }),
-    NoiceCmdline = create(ui.fg, float_bg),
+    NoiceCmdline = create(ui.on_surface, float_bg),
     NoiceCmdlineIcon = create(palette.secondary, float_bg),
-    NoiceCmdlinePopup = create(ui.fg, float_bg),
+    NoiceCmdlinePopup = create(ui.on_surface, float_bg),
     NoiceCmdlinePopupBorder = create(ui.float_border, float_bg),
     NoiceCmdlinePrompt = create(ui.warn, float_bg),
-    NoiceMini = create(ui.fg, float_bg),
-    NoicePopup = create(ui.fg, float_bg),
+    NoiceMini = create(ui.on_surface, float_bg),
+    NoicePopup = create(ui.on_surface, float_bg),
     NoicePopupBorder = create(ui.float_border, float_bg),
-    NoicePopupmenu = create(ui.fg, ui.popup_background),
+    NoicePopupmenu = create(ui.on_surface, ui.popup_background),
     NoicePopupmenuBorder = create(ui.float_border, ui.popup_background),
     NoicePopupmenuSelected = create(ui.background, ui.selection),
     NoiceScrollbar = create(palette.none, float_bg),
     NoiceScrollbarThumb = create(palette.none, ui.scrollbar_thumb),
-    NoiceVirtualText = create(ui.fg_muted, float_bg),
+    NoiceVirtualText = create(ui.on_surface_variant, float_bg),
     NoiceFormatProgressDone = create(ui.success, float_bg),
-    NoiceFormatProgressTodo = create(ui.fg_muted, float_bg),
+    NoiceFormatProgressTodo = create(ui.on_surface_variant, float_bg),
     NoiceFormatProgressBar = create(ui.primary, float_bg),
     NoiceLspProgressSpinner = create(ui.warn, float_bg),
     NoiceLspProgressClient = create(palette.secondary, float_bg),

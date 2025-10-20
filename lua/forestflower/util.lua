@@ -145,8 +145,8 @@ function M.contrast_audit(theme)
     end
     table.insert(classifications, string.format("%-12s %s %5.2f %s", name, fg, ratio, status))
   end
-  classify("fg", theme.ui.fg, "critical")
-  classify("fg_muted", theme.ui.fg_muted, "secondary")
+  classify("on_surface", theme.ui.on_surface, "critical")
+  classify("on_surface_variant", theme.ui.on_surface_variant, "secondary")
   classify("keyword", theme.syntax.keyword, "critical")
   classify("function", theme.syntax["function"], "critical")
   classify("string", theme.syntax.string, "critical")
@@ -232,9 +232,9 @@ function M.build_ui_roles(p)
     git_add = p.success,
     git_change = p.warning,
     git_delete = p.error,
-    fg = p.on_surface,
-    fg_muted = p.on_surface_variant,
-    fg_faint = p.on_surface_variant,
+    on_surface = p.on_surface,
+    on_surface_variant = p.on_surface_variant,
+    -- removed fg_faint; use outline_variant where needed
     float_background = p.surface,
     float_background_dim = p.surface_variant,
     float_border = p.outline,

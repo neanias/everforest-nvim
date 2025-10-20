@@ -53,9 +53,9 @@ local function build_ui_roles(palette)
     git_add = palette.success,
     git_change = palette.warning,
     git_delete = palette.error,
-    fg = palette.on_surface,
-    fg_muted = palette.on_surface_variant,
-    fg_faint = palette.outline_variant,  -- lower contrast than fg_muted
+    on_surface = palette.on_surface,
+    on_surface_variant = palette.on_surface_variant,
+    -- removed fg_faint; use outline_variant directly where needed
     float_background = palette.surface,
     float_background_dim = palette.surface_variant,
     float_border = palette.outline,
