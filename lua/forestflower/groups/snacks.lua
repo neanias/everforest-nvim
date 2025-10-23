@@ -18,7 +18,10 @@ return function(theme, config)
     ---------------------------------------------------------------------------
     -- Snacks Explorer
     ---------------------------------------------------------------------------
-    SnacksExplorerNormal = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerNormal = create(
+      ui.on_surface,
+      config.transparent_background_level > 0 and palette.none or ui.surface
+    ),
     SnacksExplorerBorder = create(ui.surface, config.transparent_background_level > 0 and palette.none or ui.surface),
     SnacksExplorerTitle = create(
       ui.primary,
@@ -31,8 +34,14 @@ return function(theme, config)
       palette.secondary,
       config.transparent_background_level > 0 and palette.none or ui.surface
     ),
-    SnacksExplorerHidden = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
-    SnacksExplorerDim = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerHidden = create(
+      ui.on_surface,
+      config.transparent_background_level > 0 and palette.none or ui.surface
+    ),
+    SnacksExplorerDim = create(
+      ui.on_surface_variant,
+      config.transparent_background_level > 0 and palette.none or ui.surface
+    ),
     SnacksExplorerGitIgnored = create(
       ui.on_surface_variant,
       config.transparent_background_level > 0 and palette.none or ui.surface
@@ -60,7 +69,10 @@ return function(theme, config)
     SnacksExplorerMatch = link("IncSearch"),
     SnacksExplorerEndOfBuffer = link("EndOfBuffer"),
     -- Icon colors in explorer (override default fallbacks)
-    SnacksExplorerIcon = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface),
+    SnacksExplorerIcon = create(
+      ui.on_surface_variant,
+      config.transparent_background_level > 0 and palette.none or ui.surface
+    ),
 
     ---------------------------------------------------------------------------
     -- Snacks Picker
@@ -73,16 +85,13 @@ return function(theme, config)
     SnacksPickerQuery = create(ui.primary, float_bg),
     SnacksPickerFilter = create(palette.secondary, float_bg),
     SnacksPickerSelection = create(ui.background, ui.selection),
-    SnacksPickerMatch = create(ui.warn, float_bg, { styles.bold }),
+    SnacksPickerMatch = create(ui.primary, palette.none, { styles.bold }),
     SnacksPickerList = create(ui.on_surface, float_bg),
     SnacksPickerCurrent = create(ui.primary, float_bg),
     SnacksPickerIndex = create(ui.on_surface, float_bg),
     SnacksPickerFooter = create(ui.on_surface, float_bg),
     SnacksPickerScrollbar = create(palette.none, float_bg),
     SnacksPickerScrollbarThumb = create(palette.none, ui.scrollbar_thumb),
-    -- Directory/path text in picker (Snacks uses Comment as fallback, override it)
-    SnacksPickerDir = create(ui.on_surface_variant, float_bg),
-    SnacksPickerPath = create(ui.on_surface_variant, float_bg),
 
     ---------------------------------------------------------------------------
     -- trouble.nvim
@@ -91,13 +100,28 @@ return function(theme, config)
     TroubleText = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.surface),
     TroubleFile = create(palette.secondary, config.transparent_background_level > 0 and palette.none or ui.surface),
     TroubleCount = create(ui.background, palette.tertiary, { styles.bold }),
-    TroubleIndent = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
-    TroubleLocation = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
-    TroubleLineNumber = create(ui.primary, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
-    TroubleFoldIcon = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleIndent = create(
+      ui.on_surface_variant,
+      config.transparent_background_level > 0 and palette.none or ui.surface_variant
+    ),
+    TroubleLocation = create(
+      ui.on_surface_variant,
+      config.transparent_background_level > 0 and palette.none or ui.surface_variant
+    ),
+    TroubleLineNumber = create(
+      ui.primary,
+      config.transparent_background_level > 0 and palette.none or ui.surface_variant
+    ),
+    TroubleFoldIcon = create(
+      ui.on_surface_variant,
+      config.transparent_background_level > 0 and palette.none or ui.surface_variant
+    ),
     TroubleCode = create(ui.on_surface_variant, ui.surface_variant),
     TroublePreview = create(ui.on_surface, ui.surface_variant, { styles.bold }),
-    TroubleSource = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface_variant),
+    TroubleSource = create(
+      ui.on_surface_variant,
+      config.transparent_background_level > 0 and palette.none or ui.surface_variant
+    ),
     TroubleError = link("Red"),
     TroubleWarning = link("Yellow"),
     TroubleHint = link("Blue"),
