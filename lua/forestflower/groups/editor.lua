@@ -15,7 +15,10 @@ return function(theme, config)
   return {
     -- Core editor
     Normal = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.background),
-    NormalFloat = create(ui.on_surface, config.float_style == "bright" and ui.float_background or ui.float_background_dim),
+    NormalFloat = create(
+      ui.on_surface,
+      config.float_style == "bright" and ui.float_background or ui.float_background_dim
+    ),
     NormalNC = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.background),
 
     -- Cursor
@@ -120,6 +123,10 @@ return function(theme, config)
     SpecialKey = create(palette.warning, palette.none),
     NonText = create(ui.on_surface_variant, palette.none),
     Whitespace = create(ui.on_surface_variant, palette.none),
+
+    -- Inline annotations
+    InlayHints = create(ui.hint, ui.hint_container),
+
     Directory = create(ui.success, palette.none),
     Title = create(palette.warning, palette.none, { styles.bold }),
 
