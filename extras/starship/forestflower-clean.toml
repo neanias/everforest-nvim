@@ -10,6 +10,7 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:#d9a85f)\
+$bun\
 $nodejs\
 $python\
 $rust\
@@ -52,6 +53,12 @@ style = "bg:#d9a85f fg:#101010"
 format = '[$all_status$ahead_behind ]($style)'
 
 # Language modules - Only show when detected
+[bun]
+symbol = "🍞"
+style = "bg:#89b4a8 fg:#101010"
+format = '[](bg:#89b4a8)[ $symbol ($version) ]($style)[](fg:#89b4a8)'
+detect_files = ['bun.lockb', 'bunfig.toml']
+
 [nodejs]
 symbol = ""
 style = "bg:#89b4a8 fg:#101010"
