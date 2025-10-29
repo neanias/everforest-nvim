@@ -3,21 +3,22 @@
 # Proper UTF-8 powerline arrows
 
 format = """
+[](#b4d494)\
 $username\
-[](bg:#d699b6 fg:#b4d494)\
+[](bg:#4d3d4a fg:#b4d494)\
 $directory\
-[](fg:#d699b6 bg:#7fbbb3)\
+[](fg:#4d3d4a bg:#2d4d4a)\
 $git_branch\
 $git_status\
-[](fg:#7fbbb3 bg:#89b4a8)\
+[](fg:#2d4d4a bg:#1e2326)\
 $bun\
 $nodejs\
 $python\
 $rust\
 $golang\
-[](fg:#89b4a8 bg:#d9a85f)\
+[](fg:#1e2326 bg:#1e2326)\
 $time\
-[ ](fg:#d9a85f)\
+[ ](fg:#1e2326)\
 """
 
 [username]
@@ -28,7 +29,7 @@ format = '[ $user ]($style)'
 disabled = false
 
 [directory]
-style = "bg:#d699b6 fg:#101010"
+style = "bg:#4d3d4a fg:#d699b6"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -43,43 +44,43 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#7fbbb3 fg:#101010"
+style = "bg:#2d4d4a fg:#7fbbb3"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#7fbbb3 fg:#101010"
+style = "bg:#2d4d4a fg:#7fbbb3"
 format = '[$all_status$ahead_behind ]($style)'
 
 # Language modules - show in sage segment when detected
 [bun]
 symbol = "🍞"
-style = "bg:#89b4a8 fg:#101010"
+style = "bg:#1e2326 fg:#89b4a8"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['bun.lockb', 'bunfig.toml']
 
 [nodejs]
 symbol = ""
-style = "bg:#89b4a8 fg:#101010"
+style = "bg:#1e2326 fg:#89b4a8"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['package.json', '.node-version', '.nvmrc']
 
 [python]
 symbol = " "
-style = "bg:#89b4a8 fg:#101010"
+style = "bg:#1e2326 fg:#89b4a8"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#89b4a8 fg:#101010"
+style = "bg:#1e2326 fg:#89b4a8"
 format = '[ $symbol ($version) ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#89b4a8 fg:#101010"
+style = "bg:#1e2326 fg:#89b4a8"
 format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:#d9a85f fg:#e6e1cf"
+style = "bg:#1e2326 fg:#d9a85f"
 format = '[ ♥ $time ]($style)'
