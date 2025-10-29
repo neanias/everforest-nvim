@@ -45,7 +45,7 @@ truncation_symbol = "…/"
 [git_branch]
 symbol = ""
 style = "bg:#2d4d4a fg:#7fbbb3"
-format = '[ $symbol $branch ]($style)'
+format = '[$symbol $branch ]($style)'
 
 [git_status]
 style = "bg:#2d4d4a fg:#7fbbb3"
@@ -55,32 +55,32 @@ format = '[$all_status$ahead_behind ]($style)'
 [bun]
 symbol = "🍞"
 style = "bg:#1e2326 fg:#89b4a8"
-format = '[ $symbol ($version) ]($style)'
+format = '[$symbol ($version) ]($style)'
 detect_files = ['bun.lockb', 'bunfig.toml']
 
 [nodejs]
 symbol = ""
 style = "bg:#1e2326 fg:#89b4a8"
-format = '[ $symbol ($version) ]($style)'
+format = '[$symbol ($version) ]($style)'
 detect_files = ['package.json', '.node-version', '.nvmrc']
 
 [python]
 symbol = " "
 style = "bg:#1e2326 fg:#89b4a8"
-format = '[ $symbol ($version) ]($style)'
+format = '[$symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
 style = "bg:#1e2326 fg:#89b4a8"
-format = '[ $symbol ($version) ]($style)'
+format = '[$symbol ($version) ]($style)'
 
 [golang]
 symbol = " "
 style = "bg:#1e2326 fg:#89b4a8"
-format = '[ $symbol ($version) ]($style)'
+format = '[$symbol ($version) ]($style)'
 
 [time]
 disabled = false
 time_format = "%R"
 style = "bg:#1e2326 fg:#d9a85f"
-format = '[ ♥ $time ]($style)'
+format = '[$time ]($style)'
