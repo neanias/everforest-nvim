@@ -1,37 +1,80 @@
-# Forest Flower
+# Forest Flower 🌺
 
-A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour
-scheme with customization.
+A nature-inspired Neovim colorscheme for mindful programming.
 
-## Design Philosophy & Identity
+**For developers who code in long sessions and value eye health, natural aesthetics, and conscious focus.**
 
-**Core Identity:** A nature-inspired colorscheme built around botanical greens and earthy tones, designed for extended coding sessions with reduced eye strain.
+---
 
-**Design Principles:**
-- **Natural Palette:** Muted, forest-inspired greens (#b4d494 range) as primary accents—never electric or neon
-- **Warm Neutrals:** Off-white text (#d3c6aa, #e6e1cf) on warm dark backgrounds for comfort during long sessions
-- **Moderate Contrast:** Deliberately softer than pure black/white to reduce eye fatigue over 8+ hour workdays
-- **Restrained Sophistication:** Earthy, calming tones over trendy, vibrant accents
-- **Layered Surfaces:** Subtle depth through distinct background, surface, and surface_variant levels
-- **Timeless over Trendy:** Resist chasing UI trends (Spotify green, Discord purple, etc.)
+## Design Philosophy
 
-**Color Philosophy:**
-- Greens evoke growth, focus, and nature
-- Warm tones reduce harshness of pure grayscale
-- Muted secondaries prevent visual competition with code
-- Clear but gentle hierarchy in text and surface layers
+### Core Values
 
-**When Considering Changes:**
-- Would this fit in a botanical garden or forest clearing?
-- Does it maintain comfort for marathon coding sessions?
-- Are we adding vibrancy or chasing trends?
-- Does it preserve our earthy, sophisticated identity?
+**Mindful Focus**  
+Conscious attention, relaxed intensity, sustained presence. Colors that support deep work states without artificial stimulation.
 
-|                      |                                                                  Dark                                                                  |                                                                  Light                                                                   |
-| :------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
-|       **Hard**       |        ![forestflower colour scheme dark hard](https://github.com/user-attachments/assets/1174661f-2de3-4dd2-8e2f-6ee3df8afb9c)        |  ![eveforest colour scheme light hard](https://github.com/neanias/everforest-nvim/assets/5786847/acc83044-c9ec-4335-a1ab-2e5f3c9e7429)   |
-| **Medium** (default) | ![eveforest colour scheme dark medium](https://github.com/neanias/everforest-nvim/assets/5786847/7094683a-1030-4cfe-b573-210f0b7863b1) | ![everforest colour scheme light medium](https://github.com/neanias/everforest-nvim/assets/5786847/cccd5514-40ff-4155-b264-ceeba7b40ebf) |
-|       **Soft**       | ![everforest colour scheme dark soft](https://github.com/neanias/everforest-nvim/assets/5786847/affeb2a7-d934-4c55-a946-d03da01f389a)  |  ![everforest colour scheme light soft](https://github.com/neanias/everforest-nvim/assets/5786847/570e23b2-0515-499b-a257-5a8afe80082e)  |
+**Health-First**  
+Warm tones and moderate contrast reduce eye strain. Optimized for 8+ hour sessions - because your eyes matter more than trends.
+
+**Nature-Inspired**  
+Colors drawn from flowers, plants, twilight skies. Vibrant yet organic, distinct yet harmonious. Never synthetic or mechanical.
+
+**Timeless Simplicity**  
+Minimum visual noise, maximum clarity. Natural colors don't go out of style.
+
+---
+
+## Color Architecture
+
+### Palette Philosophy
+- **UI elements** = Environment (sky, earth, natural light)  
+- **Syntax tokens** = Flora (flower-inspired names for memorability)
+
+### Structure
+- Warm golden undertones throughout (twilight-range temperature)
+- Distinct syntax colors for clarity (biodiversity principle)
+- Layered surfaces for depth (forest floor to canopy)
+- WCAG AA compliant for critical text
+
+**Specific values:** See `lua/forestflower/core/colors.lua`
+
+---
+
+## Design Principles
+
+**✅ Natural Colors Only**  
+Forest greens, sky blues, flower purples, sunset oranges, earth tones. No neon, electric, or corporate branding colors.
+
+**✅ Warm Over Cool**  
+Golden/amber undertones. Never cold, clinical, or harsh grayscale.
+
+**✅ Sustainable Contrast**  
+Moderate contrast for 8+ hours without headaches. Health over "maximum pop."
+
+**✅ Timeless Over Trendy**  
+Resist UI fads. Nature-based palette designed for years, not months.
+
+---
+
+## Brand Identity
+
+### What This Is
+A health-conscious, nature-inspired colorscheme for mindful programmers. Not for everyone - and that's intentional.
+
+### What This Is NOT
+- Maximum-contrast "productivity theater"
+- Trendy corporate aesthetics  
+- Chasing design fads
+- For quick context-switching or short sessions
+
+### Decision Framework
+Before changing colors, ask:
+1. **Natural?** Could this exist in nature?
+2. **Healthy?** Does it support 8+ hour sessions?
+3. **Mindful?** Calm focus or artificial stimulation?
+4. **Timeless?** Will this feel dated in 2 years?
+
+<img width="1918" height="1050" alt="image" src="https://github.com/user-attachments/assets/f4325305-5e9b-4688-aa4b-ae5995cd4b8e" />
 
 _All screenshots taken from [my personal config](https://github.com/YajanaRao/kickstart.nvim)_
 
