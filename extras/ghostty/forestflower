@@ -1,11 +1,12 @@
 # Forest Flower (Night) - Ghostty Theme
 # Source: lua/forestflower/core/colors.lua
+# Updated with warm palette changes
 
 # Base colors
-palette = 0=#2d3338
+palette = 0=#252a30
 palette = 1=#f85552
-palette = 2=#a7c080
-palette = 3=#f6c177
+palette = 2=#b4d494
+palette = 3=#d9a85f
 palette = 4=#7fbbb3
 palette = 5=#d699b6
 palette = 6=#7fbbb3
@@ -14,8 +15,8 @@ palette = 7=#e6e1cf
 # Bright colors
 palette = 8=#3d4247
 palette = 9=#fcaaa9
-palette = 10=#d3e0c0
-palette = 11=#fbe0bb
+palette = 10=#d3f0bb
+palette = 11=#f0d8a8
 palette = 12=#bfddd9
 palette = 13=#ebccdb
 palette = 14=#bfddd9
@@ -24,6 +25,6 @@ palette = 15=#e6e1cf
 # UI colors
 background = #101010
 foreground = #e6e1cf
-cursor-color = #a7c080
+cursor-color = #b4d494
 selection-background = #2d4d3a
 selection-foreground = #e6e1cf
