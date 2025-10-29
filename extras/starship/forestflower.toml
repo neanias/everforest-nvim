@@ -1,40 +1,26 @@
 # Forest Flower Powerline Preset for Starship
-# Inspired by Pastel Powerline with Forest Flower's warm, nature-based palette
-# Matches the lualine theme aesthetic
+# Full version with language detection
+# Proper UTF-8 powerline arrows
 
 format = """
-[](#c4a7e7)\
-$os\
+[](#c4a7e7)\
 $username\
-[](bg:#ea9a97 fg:#c4a7e7)\
+[](bg:#ea9a97 fg:#c4a7e7)\
 $directory\
-[](fg:#ea9a97 bg:#d9a85f)\
+[](fg:#ea9a97 bg:#d9a85f)\
 $git_branch\
 $git_status\
-[](fg:#d9a85f bg:#89b4a8)\
-$c\
-$elixir\
-$elm\
-$golang\
-$gradle\
-$haskell\
-$java\
-$julia\
+[](fg:#d9a85f bg:#89b4a8)\
+$bun\
 $nodejs\
-$nim\
+$python\
 $rust\
-$scala\
-[](fg:#89b4a8 bg:#8fb4b3)\
-$docker_context\
-[](fg:#8fb4b3 bg:#a67c52)\
+$golang\
+[](fg:#89b4a8 bg:#a67c52)\
 $time\
-[ ](fg:#a67c52)\
+[ ](fg:#a67c52)\
 """
 
-# Disable the blank line at the start of the prompt
-# add_newline = false
-
-# Username module - Kurinji purple background
 [username]
 show_always = true
 style_user = "bg:#c4a7e7 fg:#101010"
@@ -42,19 +28,12 @@ style_root = "bg:#c4a7e7 fg:#f85552"
 format = '[$user ]($style)'
 disabled = false
 
-# OS symbol - Kurinji purple background
-[os]
-style = "bg:#c4a7e7 fg:#101010"
-disabled = true # Disabled by default
-
-# Directory - Hibiscus coral background
 [directory]
 style = "bg:#ea9a97 fg:#101010"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-# Path substitutions with nature-themed icons
 [directory.substitutions]
 "Documents" = "󰈙 "
 "Downloads" = " "
@@ -63,69 +42,30 @@ truncation_symbol = "…/"
 "Code" = " "
 "Developer" = " "
 
-# Git branch - Champak gold background
 [git_branch]
 symbol = ""
 style = "bg:#d9a85f fg:#101010"
 format = '[ $symbol $branch ]($style)'
 
-# Git status - Champak gold background
 [git_status]
 style = "bg:#d9a85f fg:#101010"
 format = '[$all_status$ahead_behind ]($style)'
 
-# Programming languages - Warm sage background
-[c]
-symbol = " "
+# Language modules - show in sage segment when detected
+[bun]
+symbol = "🍞"
 style = "bg:#89b4a8 fg:#101010"
 format = '[ $symbol ($version) ]($style)'
-
-[cpp]
-symbol = " "
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
-
-[elixir]
-symbol = " "
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
-
-[elm]
-symbol = " "
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
-
-[golang]
-symbol = " "
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
-
-[gradle]
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
-
-[haskell]
-symbol = " "
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
-
-[java]
-symbol = " "
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
-
-[julia]
-symbol = " "
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
+detect_files = ['bun.lockb', 'bunfig.toml']
 
 [nodejs]
 symbol = ""
 style = "bg:#89b4a8 fg:#101010"
 format = '[ $symbol ($version) ]($style)'
+detect_files = ['package.json', '.node-version', '.nvmrc']
 
-[nim]
-symbol = "󰆥 "
+[python]
+symbol = " "
 style = "bg:#89b4a8 fg:#101010"
 format = '[ $symbol ($version) ]($style)'
 
@@ -134,25 +74,13 @@ symbol = ""
 style = "bg:#89b4a8 fg:#101010"
 format = '[ $symbol ($version) ]($style)'
 
-[scala]
+[golang]
 symbol = " "
 style = "bg:#89b4a8 fg:#101010"
 format = '[ $symbol ($version) ]($style)'
 
-[python]
-symbol = " "
-style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
-
-# Docker - Warm sky blue background
-[docker_context]
-symbol = " "
-style = "bg:#8fb4b3 fg:#101010"
-format = '[ $symbol $context ]($style)'
-
-# Time - Dark terracotta background
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"
 style = "bg:#a67c52 fg:#e6e1cf"
 format = '[ ♥ $time ]($style)'

@@ -1,17 +1,17 @@
 # Forest Flower Minimal Powerline for Starship
-# Simple, clean, always works - no language detection
+# Simple, reliable, proper UTF-8 powerline arrows
 
 format = """
-[](#c4a7e7)\
+[](#c4a7e7)\
 $username\
-[](bg:#ea9a97 fg:#c4a7e7)\
+[](bg:#ea9a97 fg:#c4a7e7)\
 $directory\
-[](fg:#ea9a97 bg:#d9a85f)\
+[](fg:#ea9a97 bg:#d9a85f)\
 $git_branch\
 $git_status\
-[](fg:#d9a85f bg:#a67c52)\
+[](fg:#d9a85f bg:#a67c52)\
 $time\
-[ ](fg:#a67c52)\
+[ ](fg:#a67c52)\
 """
 
 [username]
