@@ -84,54 +84,54 @@ M.palettes = {
     -- Primary: Forest greenery (living, growing)
     primary = "#b4d494",
     primary_container = "#2d4d3a",
-    
+
     -- Secondary: Sky at twilight (clear, spacious)
     secondary = "#7fbbb3",
     secondary_container = "#2d4d4a",
-    
+
     -- Tertiary: Sunset/flower tones (warm, delicate)
     tertiary = "#d699b6",
     tertiary_container = "#4d3d4a",
-    
+
     -- Semantic colors
     error = "#f85552",
     error_container = "#4d2d3a",
     success = "#b4d494",
     success_container = "#2d4d3a",
-    warning = "#f6c177",
+    warning = "#d9a85f",
     warning_container = "#4d4a2d",
     info = "#7fbbb3",
     info_container = "#2d4d4a",
     hint = "#5a5f6f",
     hint_container = "#1a1e23",
-    
+
     -- Surfaces: Forest floor to canopy layering
-    background = "#101010",        -- Deep earth with warm undertone
-    on_background = "#e6e1cf",     -- Warm natural light
-    surface = "#1e2326",           -- Forest floor
-    on_surface = "#d3c6aa",        -- Filtered sunlight
-    surface_variant = "#252a30",   -- Elevated surface (dappled light)
+    background = "#101010", -- Deep earth with warm undertone
+    on_background = "#e6e1cf", -- Warm natural light
+    surface = "#1e2326", -- Forest floor
+    on_surface = "#d3c6aa", -- Filtered sunlight
+    surface_variant = "#252a30", -- Elevated surface (dappled light)
     on_surface_variant = "#8a8a7a", -- Muted secondary text
-    
+
     -- Borders & outlines
     outline = "#3a3f47",
     outline_variant = "#3d4247",
-    
+
     none = "NONE",
   },
   day = {
     -- Primary: Sunlit greenery (vibrant, alive)
     primary = "#8da101",
     primary_container = "#e8f5d5",
-    
+
     -- Secondary: Warm sky blue (not corporate blue)
     secondary = "#5a9bb3",
     secondary_container = "#d5e8f5",
-    
+
     -- Tertiary: Flower pink (warm, natural)
     tertiary = "#df69ba",
     tertiary_container = "#f5d5e8",
-    
+
     -- Semantic colors
     error = "#f85552",
     error_container = "#f5d5d5",
@@ -143,7 +143,7 @@ M.palettes = {
     info_container = "#d5e8f5",
     hint = "#8a9199",
     hint_container = "#f8f5e4",
-    
+
     -- Surfaces: Sunlit warm tones
     background = "#fffbef",
     on_background = "#2d3338",
@@ -151,11 +151,11 @@ M.palettes = {
     on_surface = "#2d3338",
     surface_variant = "#edeada",
     on_surface_variant = "#5a5a5a",
-    
+
     -- Borders & outlines
     outline = "#8a9199",
     outline_variant = "#b1bca3",
-    
+
     none = "NONE",
   },
 }
@@ -164,32 +164,32 @@ M.palettes = {
 ---Each color represents a natural element for memorability and distinctness
 ---Warm-shifted palette aligned with twilight/nature identity
 M.syntax = {
-  keyword = "#c4a7e7",        -- Kurinji purple (distinctive bloom)
-  operator = "#8fb4b3",       -- Warm sky blue (twilight sky, not electric)
-  ["function"] = "#f6c177",   -- Champak gold (warm, inviting)
-  method = "#f6c177",         -- Champak gold
-  type = "#89b4a8",           -- Warm sage (between sky and earth)
-  interface = "#89b4a8",      -- Warm sage
-  enum = "#89b4a8",           -- Warm sage
-  constant = "#ea9a97",       -- Hibiscus coral (stands out)
-  number = "#ea9a97",         -- Hibiscus coral
-  boolean = "#ea9a97",        -- Hibiscus coral
-  string = "#a7c080",         -- Forest green (foundational)
-  variable = "#e0def4",       -- Jasmine white (soft, natural)
-  parameter = "#a8c9a8",      -- Warm mint (fresh, green-leaning)
-  property = "#a8c4b8",       -- Warm morning mist (subtle, clear)
-  field = "#e0def4",          -- Jasmine white
-  namespace = "#b8a89a",      -- Earth clay (grounded, natural)
-  comment = "#6e6a86",        -- Twilight gray (present but receded)
-  punctuation = "#9ab8b5",    -- Warm rain (connective, soft)
-  macro = "#dfa97a",          -- Sunset orange (between gold and coral)
-  special = "#9ab8b5",        -- Warm rain
-  todo = "#f6c177",           -- Champak gold (attention)
-  hint = "#9ab8b5",           -- Warm rain
-  info = "#9ab8b5",           -- Warm rain
-  warn = "#f6c177",           -- Champak gold
-  error = "#eb6f92",          -- Rose red (alert)
-  jsx_component = "#dd7878",  -- Coral (React component)
+  keyword = "#c4a7e7", -- Kurinji purple (distinctive bloom)
+  operator = "#8fb4b3", -- Warm sky blue (twilight sky, not electric)
+  ["function"] = "#d9a85f", -- Deep champak gold (warm, rich)
+  method = "#d9a85f", -- Deep champak gold
+  type = "#89b4a8", -- Warm sage (between sky and earth)
+  interface = "#89b4a8", -- Warm sage
+  enum = "#89b4a8", -- Warm sage
+  constant = "#ea9a97", -- Hibiscus coral (stands out)
+  number = "#ea9a97", -- Hibiscus coral
+  boolean = "#ea9a97", -- Hibiscus coral
+  string = "#a7c080", -- Forest green (foundational)
+  variable = "#e0def4", -- Jasmine white (soft, natural)
+  parameter = "#a8c9a8", -- Warm mint (fresh, green-leaning)
+  property = "#a8c4b8", -- Warm morning mist (subtle, clear)
+  field = "#e0def4", -- Jasmine white
+  namespace = "#b8a89a", -- Earth clay (grounded, natural)
+  comment = "#6e6a86", -- Twilight gray (present but receded)
+  punctuation = "#9ab8b5", -- Warm rain (connective, soft)
+  macro = "#dfa97a", -- Sunset orange (between gold and coral)
+  special = "#9ab8b5", -- Warm rain
+  todo = "#d9a85f", -- Deep champak gold (attention)
+  hint = "#9ab8b5", -- Warm rain
+  info = "#9ab8b5", -- Warm rain
+  warn = "#d9a85f", -- Deep champak gold
+  error = "#eb6f92", -- Rose red (alert)
+  jsx_component = "#dd7878", -- Coral (React component)
 }
 
 return M
