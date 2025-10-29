@@ -3,6 +3,30 @@
 A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour
 scheme with customization.
 
+## Design Philosophy & Identity
+
+**Core Identity:** A nature-inspired colorscheme built around botanical greens and earthy tones, designed for extended coding sessions with reduced eye strain.
+
+**Design Principles:**
+- **Natural Palette:** Muted, forest-inspired greens (#b4d494 range) as primary accents—never electric or neon
+- **Warm Neutrals:** Off-white text (#d3c6aa, #e6e1cf) on warm dark backgrounds for comfort during long sessions
+- **Moderate Contrast:** Deliberately softer than pure black/white to reduce eye fatigue over 8+ hour workdays
+- **Restrained Sophistication:** Earthy, calming tones over trendy, vibrant accents
+- **Layered Surfaces:** Subtle depth through distinct background, surface, and surface_variant levels
+- **Timeless over Trendy:** Resist chasing UI trends (Spotify green, Discord purple, etc.)
+
+**Color Philosophy:**
+- Greens evoke growth, focus, and nature
+- Warm tones reduce harshness of pure grayscale
+- Muted secondaries prevent visual competition with code
+- Clear but gentle hierarchy in text and surface layers
+
+**When Considering Changes:**
+- Would this fit in a botanical garden or forest clearing?
+- Does it maintain comfort for marathon coding sessions?
+- Are we adding vibrancy or chasing trends?
+- Does it preserve our earthy, sophisticated identity?
+
 |                      |                                                                  Dark                                                                  |                                                                  Light                                                                   |
 | :------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
 |       **Hard**       |        ![forestflower colour scheme dark hard](https://github.com/user-attachments/assets/1174661f-2de3-4dd2-8e2f-6ee3df8afb9c)        |  ![eveforest colour scheme light hard](https://github.com/neanias/everforest-nvim/assets/5786847/acc83044-c9ec-4335-a1ab-2e5f3c9e7429)   |
