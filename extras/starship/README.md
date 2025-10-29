@@ -1,143 +1,100 @@
-# Forest Flower Starship Configuration
+# Forest Flower Starship Configurations
 
-A warm, nature-inspired powerline prompt for [Starship](https://starship.rs/) that matches the Forest Flower colorscheme aesthetic.
+Two powerline configurations available:
 
-## Preview
+## 1. `forestflower.toml` - Full Version
 
-The prompt features a flowing powerline design with warm, natural colors:
-- 🟣 **Kurinji Purple** - User/OS
-- 🌺 **Hibiscus Coral** - Directory
-- 🌼 **Champak Gold** - Git info
-- 🌿 **Warm Sage** - Programming languages
-- 🌤️ **Warm Sky** - Docker/Tools
-- 🏺 **Dark Terracotta** - Time
+**Pros:**
+- Consistent segment spacing
+- Supports many languages (14+)
+- Predictable layout
+
+**Cons:**
+- Shows empty sage/blue segment when no language detected
+- More visual "weight"
+
+**Use if:** You like consistent spacing and work with many languages
+
+## 2. `forestflower-clean.toml` - Clean Version ⭐ **Recommended**
+
+**Pros:**
+- No empty segments (cleaner look)
+- Language segment only appears when detected
+- Simplified to common languages (Node, Python, Rust, Go)
+- Includes command prompt character
+
+**Cons:**
+- Variable prompt width (segments come/go)
+- Fewer language detectors
+
+**Use if:** You want a minimal, clean prompt without empty spaces
+
+## The Empty Segment Explained
+
+In your screenshot, the 4th **sage/blueish** segment is for **programming languages**.
+
+It appears empty because:
+1. Starship detected the directory structure
+2. But no language was found (or Node.js wasn't in PATH)
+3. The full config shows the segment background even when empty
 
 ## Installation
 
-### Prerequisites
-
-- [Starship](https://starship.rs/) installed
-- A [Nerd Font](https://www.nerdfonts.com/) installed and enabled in your terminal
-- Recommended: Ghostty with Forest Flower theme for full aesthetic match
-
-### Setup
-
-1. **Copy the configuration:**
-
+### Option 1: Clean Config (Recommended)
 ```bash
-# Option 1: Use as your main starship config
-cp forestflower.toml ~/.config/starship.toml
-
-# Option 2: Include in existing config (add to your starship.toml)
-# [insert content of forestflower.toml]
-```
-
-2. **For Ghostty users:**
-
-Add to your `~/.config/ghostty/config`:
-
-```conf
-# Load Forest Flower theme
-theme = forestflower
-
-# Optional: Starship integration
-command = /bin/zsh  # or your shell
-shell-integration = true
-```
-
-3. **Reload your shell:**
-
-```bash
+cp extras/starship/forestflower-clean.toml ~/.config/starship.toml
 exec $SHELL
 ```
 
-## Customization
-
-### Disable/Enable Sections
-
-```toml
-# Show OS symbol instead of username
-[username]
-disabled = true
-
-[os]
-disabled = false
-
-# Disable time
-[time]
-disabled = true
+### Option 2: Full Config
+```bash
+cp extras/starship/forestflower.toml ~/.config/starship.toml
+exec $SHELL
 ```
 
-### Adjust Truncation
+## Testing in Bento Directory
 
-```toml
-[directory]
-truncation_length = 5  # Show more path segments
-truncation_symbol = ".../"
+If `bento` has `package.json`, the Node.js icon should appear:
+
+```bash
+cd ~/Developer/bento
+# Should show:  Node v20.x.x (or your version)
 ```
 
-### Add More Languages
+If it doesn't show:
+1. Check Node.js is installed: `node --version`
+2. Check package.json exists: `ls package.json`
+3. Try clean config (better detection)
+
+## Customizing
+
+Add more languages to clean config:
 
 ```toml
-[python]
+[java]
 symbol = " "
 style = "bg:#89b4a8 fg:#101010"
-format = '[ $symbol ($version) ]($style)'
+format = '[](bg:#89b4a8)[ $symbol ($version) ]($style)[](fg:#89b4a8)'
 ```
 
-## Color Palette
+## Visual Comparison
 
-The configuration uses Forest Flower's warm, nature-inspired palette:
+**Full Config:**
+```
+🟣 user  🌺 ~/dir  🌼  branch  🌿 [empty]  🏺 14:30
+```
 
-| Element | Color | Hex | Inspiration |
-|---------|-------|-----|-------------|
-| User/OS | Kurinji purple | `#c4a7e7` | Purple wildflowers |
-| Directory | Hibiscus coral | `#ea9a97` | Coral hibiscus blooms |
-| Git | Champak gold | `#d9a85f` | Golden champak flowers |
-| Languages | Warm sage | `#89b4a8` | Sage leaves |
-| Docker/Tools | Warm sky | `#8fb4b3` | Twilight sky |
-| Time | Dark terracotta | `#a67c52` | Earth clay |
+**Clean Config:**
+```
+🟣 user  🌺 ~/dir  🌼  branch  🏺 14:30
+(no empty segment!)
+```
 
-## Philosophy
+**Clean Config with Node:**
+```
+🟣 user  🌺 ~/bento  🌼  main  🌿  v20.0.0  🏺 14:30
+```
 
-Like the Forest Flower colorscheme, this configuration follows:
-- **Warm tones** - Reduced eye strain, natural aesthetic
-- **Nature-inspired** - Colors from flowers and earth
-- **Mindful design** - Clean, focused information hierarchy
-- **Consistency** - Matches your Neovim lualine theme
+## Recommendation
 
-## Compatibility
-
-Works beautifully with:
-- ✅ Forest Flower Neovim theme
-- ✅ Forest Flower Ghostty theme
-- ✅ Forest Flower lualine theme
-- ✅ Any terminal supporting 24-bit color
-
-## Tips
-
-1. **Nerd Font Icons** - Ensure your font supports the icons (  etc.)
-2. **True Color** - Your terminal should support 24-bit color
-3. **Testing** - Try `starship config` to test changes before saving
-4. **Performance** - Disable language detection in large repos if needed
-
-## Troubleshooting
-
-**Icons not showing?**
-- Install a Nerd Font and configure your terminal to use it
-
-**Colors look wrong?**
-- Ensure your terminal supports true color (24-bit)
-- Check terminal theme isn't overriding colors
-
-**Prompt too long?**
-- Adjust `truncation_length` in directory section
-- Disable sections you don't use
-
-## Contributing
-
-Found an issue or want to improve the prompt? Submit a PR to the main Forest Flower repo!
-
-## License
-
-MIT - Same as Forest Flower colorscheme
+Start with `forestflower-clean.toml` - it gives you the Forest Flower aesthetic without empty segments.
