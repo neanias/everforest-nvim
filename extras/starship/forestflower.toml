@@ -3,33 +3,32 @@
 # Proper UTF-8 powerline arrows
 
 format = """
-[](#c4a7e7)\
 $username\
-[](bg:#ea9a97 fg:#c4a7e7)\
+[](bg:#d699b6 fg:#b4d494)\
 $directory\
-[](fg:#ea9a97 bg:#d9a85f)\
+[](fg:#d699b6 bg:#7fbbb3)\
 $git_branch\
 $git_status\
-[](fg:#d9a85f bg:#89b4a8)\
+[](fg:#7fbbb3 bg:#89b4a8)\
 $bun\
 $nodejs\
 $python\
 $rust\
 $golang\
-[](fg:#89b4a8 bg:#a67c52)\
+[](fg:#89b4a8 bg:#d9a85f)\
 $time\
-[ ](fg:#a67c52)\
+[ ](fg:#d9a85f)\
 """
 
 [username]
 show_always = true
-style_user = "bg:#c4a7e7 fg:#101010"
-style_root = "bg:#c4a7e7 fg:#f85552"
-format = '[$user ]($style)'
+style_user = "bg:#b4d494 fg:#101010"
+style_root = "bg:#b4d494 fg:#f85552"
+format = '[ $user ]($style)'
 disabled = false
 
 [directory]
-style = "bg:#ea9a97 fg:#101010"
+style = "bg:#d699b6 fg:#101010"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -44,11 +43,11 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#d9a85f fg:#101010"
+style = "bg:#7fbbb3 fg:#101010"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#d9a85f fg:#101010"
+style = "bg:#7fbbb3 fg:#101010"
 format = '[$all_status$ahead_behind ]($style)'
 
 # Language modules - show in sage segment when detected
@@ -82,5 +81,5 @@ format = '[ $symbol ($version) ]($style)'
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:#a67c52 fg:#e6e1cf"
+style = "bg:#d9a85f fg:#e6e1cf"
 format = '[ ♥ $time ]($style)'

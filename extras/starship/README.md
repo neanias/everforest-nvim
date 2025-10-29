@@ -1,100 +1,92 @@
-# Forest Flower Starship Configurations
+# Forest Flower Starship Configuration
 
-Two powerline configurations available:
+A clean, minimal powerline prompt for Starship using Forest Flower colors.
 
-## 1. `forestflower.toml` - Full Version
+## Features
 
-**Pros:**
-- Consistent segment spacing
-- Supports many languages (14+)
-- Predictable layout
-
-**Cons:**
-- Shows empty sage/blue segment when no language detected
-- More visual "weight"
-
-**Use if:** You like consistent spacing and work with many languages
-
-## 2. `forestflower-clean.toml` - Clean Version ⭐ **Recommended**
-
-**Pros:**
-- No empty segments (cleaner look)
-- Language segment only appears when detected
-- Simplified to common languages (Node, Python, Rust, Go)
-- Includes command prompt character
-
-**Cons:**
-- Variable prompt width (segments come/go)
-- Fewer language detectors
-
-**Use if:** You want a minimal, clean prompt without empty spaces
-
-## The Empty Segment Explained
-
-In your screenshot, the 4th **sage/blueish** segment is for **programming languages**.
-
-It appears empty because:
-1. Starship detected the directory structure
-2. But no language was found (or Node.js wasn't in PATH)
-3. The full config shows the segment background even when empty
+- **Clean 4-segment design:** Username, directory, git, and time
+- **No language detection:** Avoids empty segments
+- **Proper powerline arrows:** Uses Nerd Font glyphs for smooth transitions
+- **Nature-inspired colors:** Matches Forest Flower theme palette
 
 ## Installation
 
-### Option 1: Clean Config (Recommended)
-```bash
-cp extras/starship/forestflower-clean.toml ~/.config/starship.toml
-exec $SHELL
-```
-
-### Option 2: Full Config
 ```bash
 cp extras/starship/forestflower.toml ~/.config/starship.toml
 exec $SHELL
 ```
 
-## Testing in Bento Directory
-
-If `bento` has `package.json`, the Node.js icon should appear:
+Or use the provided install script from the project root:
 
 ```bash
-cd ~/Developer/bento
-# Should show:  Node v20.x.x (or your version)
+./install-configs.sh
 ```
 
-If it doesn't show:
-1. Check Node.js is installed: `node --version`
-2. Check package.json exists: `ls package.json`
-3. Try clean config (better detection)
+## Requirements
 
-## Customizing
+- **Starship:** Install from https://starship.rs
+- **Nerd Font:** Any Nerd Font (e.g., GeistMono Nerd Font, JetBrains Mono Nerd Font)
+- **Ghostty/Terminal:** Configure to use a Nerd Font
 
-Add more languages to clean config:
+## Segments
+
+1. **Username** (lavender/purple) - Your username
+2. **Directory** (rose/pink) - Current directory with icons
+3. **Git** (champak gold/yellow) - Branch and status
+4. **Time** (warm brown) - Current time with heart icon
+
+## Customization
+
+### Add Language Detection
+
+If you want to show programming language versions, add to the config:
 
 ```toml
-[java]
-symbol = " "
+# Add to format string (after $git_status):
+$nodejs\
+[](fg:#d9a85f bg:#89b4a8)\
+
+# Add module configuration:
+[nodejs]
+symbol = ""
 style = "bg:#89b4a8 fg:#101010"
-format = '[](bg:#89b4a8)[ $symbol ($version) ]($style)[](fg:#89b4a8)'
+format = '[ $symbol ($version) ]($style)'
 ```
 
-## Visual Comparison
+Supported languages: `nodejs`, `python`, `rust`, `golang`, `java`, `ruby`, etc.
 
-**Full Config:**
-```
-🟣 user  🌺 ~/dir  🌼  branch  🌿 [empty]  🏺 14:30
-```
+### Change Directory Icons
 
-**Clean Config:**
-```
-🟣 user  🌺 ~/dir  🌼  branch  🏺 14:30
-(no empty segment!)
-```
+Edit the `[directory.substitutions]` section:
 
-**Clean Config with Node:**
-```
-🟣 user  🌺 ~/bento  🌼  main  🌿  v20.0.0  🏺 14:30
+```toml
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Projects" = " "
 ```
 
-## Recommendation
+### Adjust Truncation
 
-Start with `forestflower-clean.toml` - it gives you the Forest Flower aesthetic without empty segments.
+Change how deep the directory path shows:
+
+```toml
+[directory]
+truncation_length = 3  # Show 3 levels
+truncation_symbol = "…/"
+```
+
+## Troubleshooting
+
+**Arrows show as boxes:**
+- Install a Nerd Font
+- Configure your terminal to use it
+- Test: `echo -e "\ue0b0 \ue0b2 \ue0b1"`
+
+**Prompt not updating:**
+- Run `exec $SHELL` to reload
+- Check config location: `echo $STARSHIP_CONFIG` (should be `~/.config/starship.toml`)
+
+**Colors look wrong:**
+- Ensure terminal supports 24-bit color
+- Check Ghostty theme is set: `theme = /path/to/forestflower/extras/ghostty/forestflower`
