@@ -5,18 +5,21 @@
 theme = /path/to/forestflower/extras/ghostty/forestflower
 cursor-invert-fg-bg = true
 
-# Shell Integration (Required for Starship powerline)
-shell-integration = true
+# Shell Integration (for Starship powerline symbols)
+# Valid values: none, detect, bash, elvish, fish, zsh
+shell-integration = detect
 
 # Optional: Window theming
 window-theme = ghostty
 
-# Optional: Font recommendations
-# Use a Nerd Font for proper icon rendering
-# font-family = "GeistMono Nerd Font"
+# Font recommendations - REQUIRED for Nerd Font icons/powerline
+# Use a Nerd Font for proper icon and arrow rendering
+font-family = "GeistMono Nerd Font"
+# Or try:
 # font-family = "JetBrainsMono Nerd Font"
 # font-family = "FiraCode Nerd Font"
-# font-size = 14
+# font-family = "CaskaydiaCove Nerd Font"
+font-size = 14
 
 # Optional: Padding for better aesthetics
 # window-padding-y = 2,0
