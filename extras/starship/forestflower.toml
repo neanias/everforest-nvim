@@ -4,7 +4,7 @@
 
 format = """
 [](#b4d494)\
-$username\
+$time\
 [](bg:#4d3d4a fg:#b4d494)\
 $directory\
 [](fg:#4d3d4a bg:#2d4d4a)\
@@ -16,16 +16,15 @@ $nodejs\
 $python\
 $rust\
 $golang\
-[](fg:#1e2326 bg:#1e2326)\
-$time\
-[ ](fg:#1e2326)\
+[](fg:#1e2326)\
 """
 
-[username]
-show_always = true
-style_user = "bg:#b4d494 fg:#101010"
-style_root = "bg:#b4d494 fg:#f85552"
-format = '[ $user ]($style)'
+[time]
+# show_always = true
+style = "bg:#b4d494 fg:#101010"
+# style = "bg:#b4d494 fg:#f85552"
+format = '[ $time ]($style)'
+time_format = "%R"
 disabled = false
 
 [directory]
@@ -36,11 +35,11 @@ truncation_symbol = "…/"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
-"Downloads" = " "
+"Downloads" = "󰇚 "
 "Music" = " "
 "Pictures" = " "
-"Code" = " "
-"Developer" = " "
+"Code" = "󰨞 "
+"Developer" = "󰨞 "
 
 [git_branch]
 symbol = ""
@@ -53,15 +52,15 @@ format = '[$all_status$ahead_behind ]($style)'
 
 # Language modules - show in sage segment when detected
 [bun]
-symbol = "🍞"
+symbol = ""
 style = "bg:#1e2326 fg:#89b4a8"
 format = '[$symbol ($version) ]($style)'
 detect_files = ['bun.lockb', 'bunfig.toml']
 
 [nodejs]
-symbol = ""
+symbol = "󰎙"
 style = "bg:#1e2326 fg:#89b4a8"
-format = '[$symbol ($version) ]($style)'
+format = '[ $symbol ($version) ]($style)'
 detect_files = ['package.json', '.node-version', '.nvmrc']
 
 [python]
@@ -79,8 +78,8 @@ symbol = " "
 style = "bg:#1e2326 fg:#89b4a8"
 format = '[$symbol ($version) ]($style)'
 
-[time]
-disabled = false
-time_format = "%R"
-style = "bg:#1e2326 fg:#d9a85f"
-format = '[$time ]($style)'
+# [time]
+# disabled = false
+# time_format = "%R"
+# style = "bg:#1e2326 fg:#d9a85f"
+# format = '[$time ]($style)'
