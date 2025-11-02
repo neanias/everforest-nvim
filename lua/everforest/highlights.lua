@@ -794,6 +794,9 @@ highlights.generate_syntax = function(palette, options)
     ["@lsp.typemod.variable.injected"] = { link = "@variable" },
     ["@lsp.typemod.variable.static"] = { link = "Red" },
 
+    -- nvim-treesitter/nvim-treesitter-context
+    TreesitterContext = syntax_entry(palette.fg, palette.bg2),
+
     -- p00f/ts-rainbow
     rainbowcol1 = { link = "Red" },
     rainbowcol2 = { link = "Orange" },
