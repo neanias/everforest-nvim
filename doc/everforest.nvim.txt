@@ -1,4 +1,4 @@
-*everforest.nvim.txt*    For Neovim >= 0.8.0    Last change: 2025 September 10
+*everforest.nvim.txt*     For Neovim >= 0.8.0    Last change: 2025 November 02
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
@@ -9,7 +9,7 @@ Table of Contents                          *everforest.nvim-table-of-contents*
   - Usage                              |everforest.nvim-everforest.nvim-usage|
   - Configuration              |everforest.nvim-everforest.nvim-configuration|
   - Overriding Highlight Groups|everforest.nvim-everforest.nvim-overriding-highlight-groups|
-  - Overridingcolours in the palette|everforest.nvim-everforest.nvim-overridingcolours-in-the-palette|
+  - Overriding colours in the palette|everforest.nvim-everforest.nvim-overriding-colours-in-the-palette|
   - Plugin support            |everforest.nvim-everforest.nvim-plugin-support|
   - Still TODO                    |everforest.nvim-everforest.nvim-still-todo|
   - Inspiration                  |everforest.nvim-everforest.nvim-inspiration|
@@ -44,7 +44,7 @@ FEATURES                            *everforest.nvim-everforest.nvim-features*
 
 INSTALLATION                    *everforest.nvim-everforest.nvim-installation*
 
-Using lazy.nvim <https://github.com/folke/lazy.nvim>
+Using lazy.nvim <https://github.com/folke/lazy.nvim>:
 
 >lua
     require("lazy").setup({
@@ -61,7 +61,7 @@ Using lazy.nvim <https://github.com/folke/lazy.nvim>
     })
 <
 
-Usingpacker.nvim <https://github.com/wbthomason/packer.nvim>
+Using packer.nvim <https://github.com/wbthomason/packer.nvim>:
 
 >lua
     use({
@@ -73,7 +73,7 @@ Usingpacker.nvim <https://github.com/wbthomason/packer.nvim>
     })
 <
 
-Usingvim-plug <https://github.com/junegunn/vim-plug>
+Using vim-plug <https://github.com/junegunn/vim-plug>:
 
 >viml
     Plug 'neanias/everforest-nvim', { 'branch': 'main' }
@@ -97,7 +97,7 @@ USAGE                                  *everforest.nvim-everforest.nvim-usage*
     require("everforest").load()
 <
 
-Toenable the everforest theme for LuaLine, you can specify it as such:
+To enable the everforest theme for LuaLine, you can specify it as such:
 
 >lua
     require("lualine").setup({
@@ -243,7 +243,7 @@ group:
     })
 <
 
-To clear any highlight groups, simply set them to `{}`
+To clear any highlight groups, simply set them to `{}`:
 
 >lua
     require("everforest").setup({
@@ -254,7 +254,7 @@ To clear any highlight groups, simply set them to `{}`
 <
 
 
-OVERRIDINGCOLOURS IN THE PALETTE*everforest.nvim-everforest.nvim-overridingcolours-in-the-palette*
+OVERRIDING COLOURS IN THE PALETTE*everforest.nvim-everforest.nvim-overriding-colours-in-the-palette*
 
 To find the existing palette colours, please see `colours.lua`
 <lua/everforest/colours.lua>.
