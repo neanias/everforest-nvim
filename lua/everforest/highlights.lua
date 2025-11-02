@@ -2200,9 +2200,9 @@ highlights.generate_syntax = function(palette, options)
   end
 
   if options.float_style == "none" then
-    syntax["NormalFloat"] = syntax_entry(palette.fg, palette.none)
-    syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.none)
-    syntax["FloatTitle"] = syntax_entry(palette.fg, palette.none, { styles.bold })
+    syntax["NormalFloat"] = syntax_entry(palette.fg, palette.bg0)
+    syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
+    syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg0, { styles.bold })
   end
 
   if
