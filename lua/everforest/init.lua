@@ -20,8 +20,11 @@ local M = {
     ---Disable italic fonts for comments. Comments are in italics by default, set
     ---this to `true` to make them _not_ italic!
     disable_italic_comments = false,
-    ---By default, the colour of the sign column background is the same as the as normal text
-    ---background, but you can use a grey background by setting this to `"grey"`.
+    ---By default, the background color of the sign and fold columns is the
+    ---same as the one of the normal text. `'grey'` turns the background of the
+    ---sign and fold columns grey. `'linenr'` applies a homogeneous grey
+    ---background across the sign, fold and line number columns. The latter is
+    ---particularly suitable for a usage with Neovim's |statuscolumn| option.
     sign_column_background = "none",
     ---The contrast of line numbers, indent lines, etc. Options are `"high"` or
     ---`"low"` (default).

@@ -8,7 +8,7 @@
 ---@field transparent_background_level 0 | 1 | 2
 ---@field italics boolean
 ---@field disable_italic_comments boolean
----@field sign_column_background "none" | "grey"
+---@field sign_column_background "none" | "grey" | "linenr"
 ---@field ui_contrast "low" | "high"
 ---@field dim_inactive_windows boolean
 ---@field diagnostic_text_highlight boolean
@@ -26,7 +26,7 @@
 ---@field transparent_background_level? 0 | 1 | 2
 ---@field italics? boolean
 ---@field disable_italic_comments? boolean
----@field sign_column_background? "none" | "grey"
+---@field sign_column_background? "none" | "grey" | "linenr"
 ---@field ui_contrast? "low" | "high"
 ---@field dim_inactive_windows? boolean
 ---@field diagnostic_text_highlight? boolean

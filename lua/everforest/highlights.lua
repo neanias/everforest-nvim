@@ -125,13 +125,13 @@ highlights.generate_syntax = function(palette, options)
     SignColumn = syntax_entry(palette.fg, sign_column_respecting_colour(palette.bg1)),
     IncSearch = syntax_entry(palette.bg0, palette.red),
     Substitute = syntax_entry(palette.bg0, palette.yellow),
-    LineNr = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
+    LineNr = syntax_entry(
+      set_colour_based_on_ui_contrast(palette.bg5, palette.grey0),
+      (options.sign_column_background == "linenr" and options.transparent_background_level == 0 and palette.bg1)
+        or palette.none
+    ),
     LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
     LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
-    CursorLineNr = syntax_entry(
-      set_colour_based_on_ui_contrast(palette.grey1, palette.grey2),
-      sign_column_respecting_colour(palette.bg1)
-    ),
     MatchParen = syntax_entry(palette.none, palette.bg4),
     ModeMsg = syntax_entry(palette.fg, palette.none, { styles.bold }),
     MoreMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
@@ -793,12 +793,6 @@ highlights.generate_syntax = function(palette, options)
     ["@lsp.typemod.variable.defaultLibrary.typescriptreact"] = { link = "@constant.builtin" },
     ["@lsp.typemod.variable.injected"] = { link = "@variable" },
     ["@lsp.typemod.variable.static"] = { link = "Red" },
-
-    -- nvim-treesitter/nvim-treesitter-context
-    TreesitterContextLineNumber = syntax_entry(
-      (options.ui_contrast == "low" and palette.bg5) or palette.grey0,
-      transparency_respecting_colour(palette.bg0)
-    ),
 
     -- p00f/ts-rainbow
     rainbowcol1 = { link = "Red" },
@@ -2206,6 +2200,55 @@ highlights.generate_syntax = function(palette, options)
     syntax["NormalFloat"] = syntax_entry(palette.fg, palette.none)
     syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.none)
     syntax["FloatTitle"] = syntax_entry(palette.fg, palette.none, { styles.bold })
+  end
+
+  if
+    options.dim_inactive_windows == false
+    or options.transparent_background_level > 0
+    or options.sign_column_background == "linenr"
+  then
+    syntax["TreesitterContextLineNumber"] = { link = "LineNr" }
+  else
+    syntax["TreesitterContextLineNumber"] =
+      syntax_entry((options.ui_contrast == "low" and palette.bg5) or palette.grey0, palette.bg0)
+  end
+
+  if options.ui_contrast == "low" then
+    if options.sign_column_background == "linenr" and options.transparent_background_level == 0 then
+      if vim.o.diff then
+        syntax["CursorLineNr"] = syntax_entry(palette.grey1, palette.bg1, { styles.underline })
+      elseif vim.o.relativenumber and not vim.o.cursorline then
+        syntax["CursorLineNr"] = syntax_entry(palette.grey1, palette.bg1)
+      else
+        syntax["CursorLineNr"] = syntax_entry(palette.grey2, palette.bg1)
+      end
+    else
+      if vim.o.diff then
+        syntax["CursorLineNr"] = syntax_entry(palette.grey1, palette.none, { styles.underline })
+      elseif (vim.o.relativenumber and not vim.o.cursorline) or options.sign_column_background == "none" then
+        syntax["CursorLineNr"] = syntax_entry(palette.grey1, palette.none)
+      else
+        syntax["CursorLineNr"] = syntax_entry(palette.grey1, palette.bg1)
+      end
+    end
+  else
+    if options.sign_column_background == "linenr" and options.transparent_background_level == 0 then
+      if vim.o.diff then
+        syntax["CursorLineNr"] = syntax_entry(palette.grey2, palette.none, { styles.underline })
+      elseif vim.o.relativenumber and not vim.o.cursorline then
+        syntax["CursorLineNr"] = syntax_entry(palette.grey2, palette.none)
+      else
+        syntax["CursorLineNr"] = syntax_entry(palette.fg, palette.bg1)
+      end
+    else
+      if vim.o.diff then
+        syntax["CursorLineNr"] = syntax_entry(palette.grey2, palette.none, { styles.underline })
+      elseif (vim.o.relativenumber and not vim.o.cursorline) or options.sign_column_background == "none" then
+        syntax["CursorLineNr"] = syntax_entry(palette.grey2, palette.none)
+      else
+        syntax["CursorLineNr"] = syntax_entry(palette.grey2, palette.bg1)
+      end
+    end
   end
 
   local lsp_kind_colours = {
