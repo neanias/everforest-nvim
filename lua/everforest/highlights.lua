@@ -141,7 +141,7 @@ highlights.generate_syntax = function(palette, options)
     FloatBorder = syntax_entry(palette.grey1, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
     FloatTitle = syntax_entry(
       palette.grey1,
-      (options.float_style == "bright" and palette.bg2) or palette.bg_dim,
+      (options.float_style == "bright" and palette.bg4) or palette.bg0,
       { styles.bold }
     ),
     NormalNC = syntax_entry(
@@ -2202,7 +2202,7 @@ highlights.generate_syntax = function(palette, options)
   if options.float_style == "none" then
     syntax["NormalFloat"] = syntax_entry(palette.fg, palette.bg0)
     syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
-    syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg0, { styles.bold })
+    syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg1, { styles.bold })
   end
 
   if
