@@ -128,7 +128,7 @@ highlights.generate_syntax = function(palette, options)
     LineNr = syntax_entry(
       set_colour_based_on_ui_contrast(palette.bg5, palette.grey0),
       (options.sign_column_background == "linenr" and options.transparent_background_level == 0 and palette.bg1)
-        or palette.none
+      or palette.none
     ),
     LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
     LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
@@ -1417,9 +1417,8 @@ highlights.generate_syntax = function(palette, options)
 
     -- echasnovski/mini.nvim
     MiniAnimateCursor = syntax_entry(palette.none, palette.none, { styles.reverse, styles.nocombine }),
-    MiniFilesFile = syntax_entry(palette.fg, palette.none),
-    MiniFilesTitleFocused = syntax_entry(
-      palette.green,
+    MiniFilesTitle = syntax_entry(
+      palette.fg,
       options.float_style == "dim" and palette.bg_dim or palette.bg2,
       { styles.bold }
     ),
@@ -1489,12 +1488,6 @@ highlights.generate_syntax = function(palette, options)
     MiniDiffSignAdd = { link = "GreenSign" },
     MiniDiffSignChange = { link = "BlueSign" },
     MiniDiffSignDelete = { link = "RedSign" },
-    MiniFilesBorder = { link = "FloatBorder" },
-    MiniFilesBorderModified = { link = "DiagnosticFloatingWarn" },
-    MiniFilesCursorLine = { link = "CursorLine" },
-    MiniFilesDirectory = { link = "Directory" },
-    MiniFilesNormal = { link = "NormalFloat" },
-    MiniFilesTitle = { link = "FloatTitle" },
     MiniIndentscopeSymbol = { link = "Grey" },
     MiniJump = { link = "Search" },
     MiniJump2dDim = { link = "Comment" },
@@ -2203,17 +2196,18 @@ highlights.generate_syntax = function(palette, options)
     syntax["NormalFloat"] = syntax_entry(palette.fg, palette.bg0)
     syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
     syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg1, { styles.bold })
+    syntax["MiniFilesTitle"] = syntax_entry(palette.fg, palette.bg0, { styles.bold })
   end
 
   if
-    options.dim_inactive_windows == false
-    or options.transparent_background_level > 0
-    or options.sign_column_background == "linenr"
+      options.dim_inactive_windows == false
+      or options.transparent_background_level > 0
+      or options.sign_column_background == "linenr"
   then
     syntax["TreesitterContextLineNumber"] = { link = "LineNr" }
   else
     syntax["TreesitterContextLineNumber"] =
-      syntax_entry((options.ui_contrast == "low" and palette.bg5) or palette.grey0, palette.bg0)
+        syntax_entry((options.ui_contrast == "low" and palette.bg5) or palette.grey0, palette.bg0)
   end
 
   if options.ui_contrast == "low" then
