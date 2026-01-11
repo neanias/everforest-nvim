@@ -128,7 +128,7 @@ highlights.generate_syntax = function(palette, options)
     LineNr = syntax_entry(
       set_colour_based_on_ui_contrast(palette.bg5, palette.grey0),
       (options.sign_column_background == "linenr" and options.transparent_background_level == 0 and palette.bg1)
-      or palette.none
+        or palette.none
     ),
     LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
     LineNrBelow = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
@@ -1439,7 +1439,9 @@ highlights.generate_syntax = function(palette, options)
     MiniJump2dSpot = syntax_entry(palette.orange, palette.none, { styles.bold, styles.nocombine }),
     MiniJump2dSpotAhead = syntax_entry(palette.aqua, palette.none, { styles.nocombine }),
     MiniJump2dSpotUnique = syntax_entry(palette.yellow, palette.none, { styles.bold, styles.nocombine }),
-    MiniPickPrompt = syntax_entry(palette.blue, options.float_style == "dim" and palette.bg_dim or palette.bg2),
+    MiniPickPrompt = { link = "NormalFloat" },
+    MiniPickPromptPrefix = syntax_entry(palette.orange, options.float_style == "dim" and palette.bg_dim or palette.bg2),
+    MiniPickPromptCaret = syntax_entry(palette.blue, options.float_style == "dim" and palette.bg_dim or palette.bg2),
     MiniStarterCurrent = syntax_entry(palette.none, palette.none, { styles.nocombine }),
     MiniStatuslineDevinfo = syntax_entry(palette.grey2, palette.bg1),
     MiniStatuslineFilename = syntax_entry(palette.grey1, palette.bg1),
@@ -1499,18 +1501,6 @@ highlights.generate_syntax = function(palette, options)
     MiniNotifyNormal = { link = "NormalFloat" },
     MiniNotifyTitle = { link = "FloatTitle" },
     MiniOperatorsExchangeFrom = { link = "IncSearch" },
-    MiniPickBorder = { link = "FloatBorder" },
-    MiniPickBorderBusy = { link = "DiagnosticFloatingWarn" },
-    MiniPickBorderText = { link = "FloatTitle" },
-    MiniPickHeader = { link = "DiagnosticFloatingHint" },
-    MiniPickIconDirectory = { link = "Directory" },
-    MiniPickIconFile = { link = "MiniPickNormal" },
-    MiniPickMatchCurrent = { link = "CursorLine" },
-    MiniPickMatchMarked = { link = "Visual" },
-    MiniPickMatchRanges = { link = "DiagnosticFloatingHint" },
-    MiniPickNormal = { link = "NormalFloat" },
-    MiniPickPreviewLine = { link = "CursorLine" },
-    MiniPickPreviewRegion = { link = "IncSearch" },
     MiniStarterFooter = { link = "Orange" },
     MiniStarterHeader = { link = "Yellow" },
     MiniStarterInactive = { link = "Comment" },
@@ -2197,17 +2187,19 @@ highlights.generate_syntax = function(palette, options)
     syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
     syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg1, { styles.bold })
     syntax["MiniFilesTitle"] = syntax_entry(palette.fg, palette.bg0, { styles.bold })
+    syntax["MiniPickPromptPrefix"] = syntax_entry(palette.orange, palette.bg0)
+    syntax["MiniPickPromptCaret"] = syntax_entry(palette.blue, palette.bg0)
   end
 
   if
-      options.dim_inactive_windows == false
-      or options.transparent_background_level > 0
-      or options.sign_column_background == "linenr"
+    options.dim_inactive_windows == false
+    or options.transparent_background_level > 0
+    or options.sign_column_background == "linenr"
   then
     syntax["TreesitterContextLineNumber"] = { link = "LineNr" }
   else
     syntax["TreesitterContextLineNumber"] =
-        syntax_entry((options.ui_contrast == "low" and palette.bg5) or palette.grey0, palette.bg0)
+      syntax_entry((options.ui_contrast == "low" and palette.bg5) or palette.grey0, palette.bg0)
   end
 
   if options.ui_contrast == "low" then
