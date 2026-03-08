@@ -127,7 +127,7 @@ highlights.generate_syntax = function(palette, options)
     Substitute = syntax_entry(palette.bg0, palette.yellow),
     LineNr = syntax_entry(
       set_colour_based_on_ui_contrast(palette.bg5, palette.grey0),
-      (options.sign_column_background == "linenr" and options.transparent_background_level == 0 and palette.bg1)
+      (options.sign_column_background == "linenr" and options.transparent_background_level > 0 and palette.bg1)
         or palette.none
     ),
     LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
@@ -1418,8 +1418,8 @@ highlights.generate_syntax = function(palette, options)
     -- echasnovski/mini.nvim
     MiniAnimateCursor = syntax_entry(palette.none, palette.none, { styles.reverse, styles.nocombine }),
     MiniFilesTitle = syntax_entry(
-      palette.fg,
-      options.float_style == "dim" and palette.bg_dim or palette.bg2,
+      options.float_style == "dim" and palette.grey0 or palette.grey2,
+      options.float_style == "dim" and palette.bg0 or palette.bg4,
       { styles.bold }
     ),
     MiniHipatternsFixme = syntax_entry(palette.bg0, palette.red, { styles.bold }),
@@ -2186,7 +2186,7 @@ highlights.generate_syntax = function(palette, options)
     syntax["NormalFloat"] = syntax_entry(palette.fg, palette.bg0)
     syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
     syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg1, { styles.bold })
-    syntax["MiniFilesTitle"] = syntax_entry(palette.fg, palette.bg0, { styles.bold })
+    syntax["MiniFilesTitle"] = syntax_entry(palette.grey1, palette.bg1, { styles.bold })
     syntax["MiniPickPromptPrefix"] = syntax_entry(palette.orange, palette.bg0)
     syntax["MiniPickPromptCaret"] = syntax_entry(palette.blue, palette.bg0)
   end
