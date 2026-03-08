@@ -1209,6 +1209,14 @@ highlights.generate_syntax = function(palette, options)
     BookmarkLine = { link = "DiffChange" },
     BookmarkAnnotationLine = { link = "DiffAdd" },
 
+    -- ggml-org/llama.vim
+    llama_hl_hint = { link = "Grey" },
+    llama_hl_info = { link = "InlayHints" },
+    llama_hl_inst_src = { link = "Visual" },
+    llama_hl_inst_virt_proc = { link = "Grey" },
+    llama_hl_inst_virt_gen = { link = "Grey" },
+    llama_hl_inst_virt_ready = { link = "Grey" },
+
     -- hrsh7th/nvim-cmp
     CmpItemAbbrMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
     CmpItemAbbrMatchFuzzy = syntax_entry(palette.green, palette.none, { styles.bold }),
