@@ -16,7 +16,7 @@
 ---@field diagnostic_line_highlight boolean
 ---@field spell_foreground boolean
 ---@field show_eob boolean
----@field float_style "bright" | "dim" | "none"
+---@field float_style "bright" | "dim" | "blend"
 ---@field inlay_hints_background "none" | "dimmed"
 ---@field on_highlights fun(highlight_groups: Everforest.Highlights, palette: Everforest.Palette)
 ---@field colours_override fun(palette: Everforest.Palette)
@@ -34,7 +34,7 @@
 ---@field diagnostic_line_highlight? boolean
 ---@field spell_foreground? boolean
 ---@field show_eob? boolean
----@field float_style? "bright" | "dim" | "none"
+---@field float_style? "bright" | "dim" | "blend"
 ---@field inlay_hints_background? "none" | "dimmed"
 ---@field on_highlights? fun(highlight_groups: Everforest.Highlights, palette: Everforest.Palette)
 ---@field colours_override? fun(palette: Everforest.Palette)

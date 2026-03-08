@@ -2182,7 +2182,7 @@ highlights.generate_syntax = function(palette, options)
     syntax["InlayHints"] = syntax_entry(palette.grey1, palette.bg_dim)
   end
 
-  if options.float_style == "none" then
+  if options.float_style == "blend" then
     syntax["NormalFloat"] = syntax_entry(palette.fg, palette.bg0)
     syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
     syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg1, { styles.bold })

@@ -56,11 +56,12 @@ local M = {
     ---makes the background of these windows lighter than |hl-Normal|, whereas
     ---`"dim"` makes it darker.
     ---
-    ---The special value `"none"` causes floating windows to be displayed with the
-    ---same background as normal windows. Only use this style if Neovim is configured
-    ---with a non-empty |"winborder"|, otherwise floating windows will visually blend
-    ---into the main buffer. Plugins which create floating windows without border by
-    ---default may also need to be configured individually.
+    ---The special value `"blend"` causes floating windows to be displayed with
+    ---the same background as normal windows. Only use this style if Neovim is
+    ---configured with a non-empty |"winborder"|, otherwise floating windows
+    ---will visually blend into the main buffer. Plugins which create floating
+    ---windows without border by default may also need to be configured
+    ---individually.
     ---
     ---Floating windows include for instance diagnostic pop-ups, scrollable
     ---documentation windows from completion engines, overlay windows from
@@ -89,6 +90,10 @@ local M = {
 M.config = M.default_config
 
 M.setup = function(opts)
+  if opts["float_style"] ~= nil and opts.float_style == "none" then
+    opts.float_style = "blend"
+    vim.notify("Everforest float_style='none' has been renamed to 'blend'", vim.log.levels.WARN)
+  end
   M.config = vim.tbl_extend("keep", opts or {}, M.default_config)
 end
 
