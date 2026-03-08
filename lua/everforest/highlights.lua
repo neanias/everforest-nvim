@@ -2183,12 +2183,21 @@ highlights.generate_syntax = function(palette, options)
   end
 
   if options.float_style == "blend" then
-    syntax["NormalFloat"] = syntax_entry(palette.fg, palette.bg0)
-    syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
-    syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg1, { styles.bold })
-    syntax["MiniFilesTitle"] = syntax_entry(palette.grey1, palette.bg1, { styles.bold })
-    syntax["MiniPickPromptPrefix"] = syntax_entry(palette.orange, palette.bg0)
-    syntax["MiniPickPromptCaret"] = syntax_entry(palette.blue, palette.bg0)
+    if options.transparent_background_level > 0 then
+      syntax["NormalFloat"] = { link = "Normal" }
+      syntax["FloatBorder"] = { link = "Grey" }
+      syntax["FloatTitle"] = syntax_entry(palette.fg, palette.none, { styles.bold })
+      syntax["MiniFilesTitle"] = { link = "Grey" }
+      syntax["MiniPickPromptPrefix"] = { link = "Orange" }
+      syntax["MiniPickPromptCaret"] = { link = "Blue" }
+    else
+      syntax["NormalFloat"] = syntax_entry(palette.fg, palette.bg0)
+      syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
+      syntax["FloatTitle"] = syntax_entry(palette.fg, palette.bg1, { styles.bold })
+      syntax["MiniFilesTitle"] = syntax_entry(palette.grey1, palette.bg1, { styles.bold })
+      syntax["MiniPickPromptPrefix"] = syntax_entry(palette.orange, palette.bg0)
+      syntax["MiniPickPromptCaret"] = syntax_entry(palette.blue, palette.bg0)
+    end
   end
 
   if
