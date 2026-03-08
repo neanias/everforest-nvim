@@ -195,6 +195,7 @@ highlights.generate_syntax = function(palette, options)
     Visual = syntax_entry(palette.none, palette.bg_visual),
     VisualNOS = syntax_entry(palette.none, palette.bg_visual),
     WarningMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
+    OkMsg = { link = "Green" },
     Whitespace = syntax_entry(palette.bg4, palette.none),
     WildMenu = { link = "PmenuSel" },
     WinBar = syntax_entry(
