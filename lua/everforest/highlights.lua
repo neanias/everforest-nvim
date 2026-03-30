@@ -1865,6 +1865,21 @@ highlights.generate_syntax = function(palette, options)
     FSPrefix = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0), { styles.bold }),
     FSSuffix = syntax_entry(palette.grey1, palette.none),
 
+    -- carlos-algms/agentic.nvim
+    AgenticCodeBlockFence = { link = "Directory" },
+    AgenticDiffAdd = { link = "DiffAdd" },
+    AgenticDiffAddWord = syntax_entry(palette.bg0, palette.bg_green, { styles.bold }),
+    AgenticDiffDeleteWord = syntax_entry(palette.bg0, palette.bg_red, { styles.bold }),
+    AgenticSpinnerBusy = { link = "Comment" },
+    AgenticSpinnerGenerating = syntax_entry(palette.blue, palette.none, { styles.bold }),
+    AgenticSpinnerSearching = syntax_entry(palette.yellow, palette.none, { styles.bold }),
+    AgenticSpinnerThinking = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    AgenticStatusCompleted = syntax_entry(palette.bg0, palette.green),
+    AgenticStatusFailed = syntax_entry(palette.bg0, palette.red),
+    AgenticStatusPending = syntax_entry(palette.bg0, palette.purple),
+    AgenticThinking = syntax_entry(palette.bg0, palette.bg3),
+    AgenticTitle = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
+
     -- Language specific settings
     -- Markdown
     markdownH1 = syntax_entry(palette.red, palette.none, { styles.bold }),
