@@ -1253,6 +1253,7 @@ highlights.generate_syntax = function(palette, options)
     SnacksPickerBufFlags = { link = "Grey" },
     SnacksPickerSelected = { link = "Aqua" },
     SnacksPickerKeymapRhs = { link = "Grey" },
+    SnacksPickerPathHidden = { link = "Grey" },
     -- }}}
 
     -- lewis6991/gitsigns.nvim
