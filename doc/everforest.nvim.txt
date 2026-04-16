@@ -1,4 +1,5 @@
-*everforest.nvim.txt*      For Neovim >= 0.8.0      Last change: 2026 April 07
+*everforest.nvim.txt*
+                             For Neovim >= 0.8.0    Last change: 2026 April 16
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
@@ -20,18 +21,18 @@ Table of Contents                          *everforest.nvim-table-of-contents*
 A Lua port of the everforest <https://github.com/sainnhe/everforest> colour
 scheme.
 
-  -----------------------------------------------------------------------
-                                   Dark                    Light
-  ----------------------- ----------------------- -----------------------
-           Hard             [everforest colour       [eveforest colour
-                             scheme dark hard]      scheme light hard]
+  ------------------------------------------------------------------------------
+                            Dark                             Light
+  ----------- -------------------------------- ---------------------------------
+     Hard      [everforest colour scheme dark   [eveforest colour scheme light
+                           hard]                             hard]
 
-     Medium (default)        [eveforest colour      [everforest colour
-                            scheme dark medium]    scheme light medium]
+    Medium     [eveforest colour scheme dark    [everforest colour scheme light
+   (default)              medium]                           medium]
 
-           Soft             [everforest colour      [everforest colour
-                             scheme dark soft]      scheme light soft]
-  -----------------------------------------------------------------------
+     Soft      [everforest colour scheme dark   [everforest colour scheme light
+                           soft]                             soft]
+  ------------------------------------------------------------------------------
 _All screenshots taken from my personal config_
 
 
@@ -302,16 +303,17 @@ PLUGIN SUPPORT                *everforest.nvim-everforest.nvim-plugin-support*
 - Trouble <https://github.com/folke/trouble.nvim>
 - WhichKey <https://github.com/folke/which-key.nvim>
 - aerial.nvim <https://github.com/stevearc/aerial.nvim>
+- agentic.nvim <https://github.com/carlos-algms/agentic.nvim>
 - blamer.nvim <https://github.com/APZelos/blamer.nvim>
-- fzf.vim <https://github.com/junegunn/fzf.vim>
 - fsread.nvim <https://github.com/nullchilly/fsread.nvim>
+- fzf.vim <https://github.com/junegunn/fzf.vim>
 - lightspeed.nvim <https://github.com/ggandor/lightspeed.nvim>
 - nvim-cmp <https://github.com/hrsh7th/nvim-cmp>
 - nvim-dap-ui <https://github.com/rcarriga/nvim-dap-ui>
 - nvim-navic <https://github.com/SmiteshP/nvim-navic>
 - nvim-notify <https://github.com/rcarriga/nvim-notify>
-- nvim-ts-rainbow <https://github.com/p00f/nvim-ts-rainbow>
 - nvim-ts-rainbow2 <https://github.com/HiPhish/nvim-ts-rainbow2>
+- nvim-ts-rainbow <https://github.com/p00f/nvim-ts-rainbow>
 - packer.nvim <https://github.com/wbthomason/packer.nvim>
 - symbols-outline.nvim <https://github.com/simrat39/symbols-outline.nvim>
 - undotree <https://github.com/mbbill/undotree>
@@ -332,7 +334,7 @@ STILL TODO                        *everforest.nvim-everforest.nvim-still-todo*
     - `transparent_background`
     - `dim_inactive_windows`
     - `disable_italic_comments`
-    - `enable_italic` — this is `italic` in everforest-nvim
+    - `enable_italic` — this is `italic` in everforest-nvim
     - _cursor
     - `sign_column_background`
     - `spell_foreground`
