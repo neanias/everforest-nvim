@@ -19,6 +19,13 @@ _All screenshots taken from [my personal config](https://github.com/neanias/conf
 
 ## Installation
 
+Using Neovim 0.12's `vim.pack`
+
+```lua
+vim.pack.add { { src = "https://github.com/neanias/everforest-nvim", name = " everforest" } }
+vim.cmd([[colorscheme everforest]])
+```
+
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
