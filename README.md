@@ -23,6 +23,9 @@ Using Neovim 0.12's `vim.pack`
 
 ```lua
 vim.pack.add { { src = "https://github.com/neanias/everforest-nvim", name = " everforest" } }
+require("everforest").setup({
+      -- Your config here
+})
 vim.cmd([[colorscheme everforest]])
 ```
 
