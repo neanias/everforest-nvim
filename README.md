@@ -46,24 +46,6 @@ require("lazy").setup({
 })
 ```
 
-Using [packer.nvim](https://github.com/wbthomason/packer.nvim):
-
-```lua
-use({
-  "neanias/everforest-nvim",
-  -- Optional; default configuration will be used if setup isn't called.
-  config = function()
-    require("everforest").setup()
-  end,
-})
-```
-
-Using [vim-plug](https://github.com/junegunn/vim-plug):
-
-```viml
-Plug 'neanias/everforest-nvim', { 'branch': 'main' }
-```
-
 ## Usage
 
 ```viml
