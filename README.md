@@ -22,9 +22,9 @@ _All screenshots taken from [my personal config](https://github.com/neanias/conf
 Using Neovim 0.12's `vim.pack`
 
 ```lua
-vim.pack.add { { src = "https://github.com/neanias/everforest-nvim", name = " everforest" } }
+vim.pack.add { "https://github.com/neanias/everforest-nvim" }
 require("everforest").setup({
-      -- Your config here
+  -- Your config here
 })
 vim.cmd([[colorscheme everforest]])
 ```
