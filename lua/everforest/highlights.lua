@@ -1446,6 +1446,16 @@ highlights.generate_syntax = function(palette, options)
     MiniIconsRed = syntax_entry(palette.red, palette.none),
     MiniIconsYellow = syntax_entry(palette.yellow, palette.none),
     MiniIndentscopePrefix = syntax_entry(palette.none, palette.none, { styles.nocombine }),
+    MiniInputAdded = syntax_entry(palette.green, options.float_style == "dim" and palette.bg_dim or palette.bg2),
+    MiniInputCaret = syntax_entry(palette.blue, options.float_style == "dim" and palette.bg_dim or palette.bg2),
+    MiniInputHide = syntax_entry(
+      palette.yellow,
+      options.float_style == "dim" and palette.bg_dim or palette.bg2,
+      { styles.bold }
+    ),
+    MiniInputHint = syntax_entry(palette.grey1, options.float_style == "dim" and palette.bg_dim or palette.bg2),
+    MiniInputPrompt = { link = "FloatTitle" },
+    MiniInputSpecial = syntax_entry(palette.orange, options.float_style == "dim" and palette.bg_dim or palette.bg2),
     MiniJump2dSpot = syntax_entry(palette.orange, palette.none, { styles.bold, styles.nocombine }),
     MiniJump2dSpotAhead = syntax_entry(palette.aqua, palette.none, { styles.nocombine }),
     MiniJump2dSpotUnique = syntax_entry(palette.yellow, palette.none, { styles.bold, styles.nocombine }),
@@ -2212,6 +2222,11 @@ highlights.generate_syntax = function(palette, options)
       syntax["MiniFilesTitle"] = { link = "Grey" }
       syntax["MiniPickPromptPrefix"] = { link = "Orange" }
       syntax["MiniPickPromptCaret"] = { link = "Blue" }
+      syntax["MiniInputCaret"] = { link = "Blue" }
+      syntax["MiniInputAdded"] = { link = "Green" }
+      syntax["MiniInputHint"] = { link = "Grey" }
+      syntax["MiniInputSpecial"] = { link = "Orange" }
+      syntax["MiniInputHide"] = syntax_entry(palette.yellow, palette.none, { styles.bold })
     else
       syntax["NormalFloat"] = syntax_entry(palette.fg, palette.bg0)
       syntax["FloatBorder"] = syntax_entry(palette.grey1, palette.bg0)
@@ -2219,6 +2234,11 @@ highlights.generate_syntax = function(palette, options)
       syntax["MiniFilesTitle"] = syntax_entry(palette.grey1, palette.bg1, { styles.bold })
       syntax["MiniPickPromptPrefix"] = syntax_entry(palette.orange, palette.bg0)
       syntax["MiniPickPromptCaret"] = syntax_entry(palette.blue, palette.bg0)
+      syntax["MiniInputCaret"] = syntax_entry(palette.blue, palette.bg0)
+      syntax["MiniInputAdded"] = syntax_entry(palette.green, palette.bg0)
+      syntax["MiniInputHint"] = syntax_entry(palette.grey1, palette.bg0)
+      syntax["MiniInputSpecial"] = syntax_entry(palette.orange, palette.bg0)
+      syntax["MiniInputHide"] = syntax_entry(palette.yellow, palette.bg0)
     end
   end
 
