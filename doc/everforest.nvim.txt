@@ -1,5 +1,5 @@
 *everforest.nvim.txt*
-                             For Neovim >= 0.8.0    Last change: 2026 April 16
+                              For Neovim >= 0.8.0    Last change: 2026 July 27
 
 ==============================================================================
 Table of Contents                          *everforest.nvim-table-of-contents*
@@ -45,6 +45,16 @@ FEATURES                            *everforest.nvim-everforest.nvim-features*
 
 INSTALLATION                    *everforest.nvim-everforest.nvim-installation*
 
+Using Neovim 0.12’s `vim.pack`
+
+>lua
+    vim.pack.add { "https://github.com/neanias/everforest-nvim" }
+    require("everforest").setup({
+      -- Your config here
+    })
+    vim.cmd([[colorscheme everforest]])
+<
+
 Using lazy.nvim <https://github.com/folke/lazy.nvim>:
 
 >lua
@@ -60,24 +70,6 @@ Using lazy.nvim <https://github.com/folke/lazy.nvim>:
         })
       end,
     })
-<
-
-Using packer.nvim <https://github.com/wbthomason/packer.nvim>:
-
->lua
-    use({
-      "neanias/everforest-nvim",
-      -- Optional; default configuration will be used if setup isn't called.
-      config = function()
-        require("everforest").setup()
-      end,
-    })
-<
-
-Using vim-plug <https://github.com/junegunn/vim-plug>:
-
->viml
-    Plug 'neanias/everforest-nvim', { 'branch': 'main' }
 <
 
 
